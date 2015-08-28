@@ -16,7 +16,7 @@ from django.utils import safestring
 from django.utils.translation import ugettext_lazy as _
 from horizon.utils import functions as utils
 from horizon import tables
-from horizon_web_ui.freezer_ui.utils import timestamp_to_string
+from freezer_ui.utils import timestamp_to_string
 
 
 class Restore(tables.LinkAction):

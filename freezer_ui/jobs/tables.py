@@ -20,8 +20,8 @@ from horizon import messages
 from horizon import tables
 from horizon.utils.urlresolvers import reverse
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
-from horizon_web_ui.freezer_ui.utils import timestamp_to_string
+import freezer_ui.api.api as freezer_api
+from freezer_ui.utils import timestamp_to_string
 
 
 def format_last_backup(last_backup):
@@ -212,7 +212,7 @@ class EditAction(tables.LinkAction):
 
     def get_link_url(self, datum=None):
         # this is used to pass to values as an url
-        # TODO: look for a way to improve this
+        # TODO(m3m0): look for a way to improve this
         ids = '{0}==={1}'.format(datum.action_id, datum.job_id)
         return reverse("horizon:freezer_ui:jobs:create_action",
                        kwargs={'job_id': ids})
@@ -232,7 +232,7 @@ class ActionsTable(tables.DataTable):
 
     def get_object_id(self, container):
         # this is used to pass to values as an url
-        # TODO: look for a way to improve this
+        # TODO(m3m0): look for a way to improve this
         ids = '{0}==={1}'.format(container.action_id, container.job_id)
         return ids
 

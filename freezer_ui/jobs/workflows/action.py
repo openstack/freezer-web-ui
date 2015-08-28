@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import workflows
 from horizon import exceptions
 from horizon import forms
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+import freezer_ui.api.api as freezer_api
 
 
 class ActionConfigurationAction(workflows.Action):

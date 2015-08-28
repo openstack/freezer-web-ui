@@ -18,8 +18,8 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
-from horizon_web_ui.freezer_ui.utils import actions_in_job
+import freezer_ui.api.api as freezer_api
+from freezer_ui.utils import actions_in_job
 
 
 class ActionsConfigurationAction(workflows.Action):
@@ -30,6 +30,7 @@ class ActionsConfigurationAction(workflows.Action):
         slug = "actions"
         help_text_template = "freezer_ui/jobs" \
                              "/_actions.html"
+
 
 class ActionsConfiguration(workflows.Step):
     action_class = ActionsConfigurationAction

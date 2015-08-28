@@ -13,7 +13,7 @@
 from django.conf.urls import patterns
 from django.conf.urls import url
 
-from horizon_web_ui.freezer_ui.jobs import views
+from freezer_ui.jobs import views
 
 
 urlpatterns = patterns(

@@ -19,7 +19,7 @@ from django.views import generic
 from openstack_dashboard.api.rest import utils as rest_utils
 from openstack_dashboard.api.rest.utils import JSONResponse
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+import freezer_ui.api.api as freezer_api
 
 
 # https://github.com/tornadoweb/tornado/issues/1009

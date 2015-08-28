@@ -10,9 +10,9 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""Some helper functions to use the freezer_ui client functionality
-   from horizon.
-"""
+# Some helper functions to use the freezer_ui client functionality
+# from horizon.
+
 
 import warnings
 
@@ -23,20 +23,20 @@ from horizon.utils.memoized import memoized  # noqa
 
 
 import freezer.apiclient.client
-from horizon_web_ui.freezer_ui.utils import Action
-from horizon_web_ui.freezer_ui.utils import ActionJob
-from horizon_web_ui.freezer_ui.utils import Backup
-from horizon_web_ui.freezer_ui.utils import Client
-from horizon_web_ui.freezer_ui.utils import Job
-from horizon_web_ui.freezer_ui.utils import JobList
-from horizon_web_ui.freezer_ui.utils import Session
-from horizon_web_ui.freezer_ui.utils import create_dict_action
-from horizon_web_ui.freezer_ui.utils import create_dummy_id
+from freezer_ui.utils import Action
+from freezer_ui.utils import ActionJob
+from freezer_ui.utils import Backup
+from freezer_ui.utils import Client
+from freezer_ui.utils import Job
+from freezer_ui.utils import JobList
+from freezer_ui.utils import Session
+from freezer_ui.utils import create_dict_action
+from freezer_ui.utils import create_dummy_id
 
 
 @memoized
 def get_service_url(request):
-    """ Get Freezer API url from keystone catalog.
+    """Get Freezer API url from keystone catalog.
     if Freezer is not set in keystone, the fallback will be
     'FREEZER_API_URL' in local_settings.py
     """
@@ -288,7 +288,8 @@ def client_get(request, client_id):
 
 def add_job_to_session(request, session_id, job_id):
     """This function will add a job to a session and the API will handle the
-    copy of job information to the session """
+    copy of job information to the session
+    """
     try:
         return _freezerclient(request).sessions.add_job(session_id, job_id)
     except Exception:
@@ -297,7 +298,8 @@ def add_job_to_session(request, session_id, job_id):
 
 def remove_job_from_session(request, session_id, job_id):
     """Remove a job from a session will delete the job information but not the
-    job itself """
+    job itself
+    """
     try:
         return _freezerclient(request).sessions.remove_job(session_id, job_id)
     except Exception:
@@ -366,7 +368,8 @@ def session_get(request, session_id):
 def backups_list(request, offset=0, time_after=None, time_before=None,
                  text_match=None):
     """List all backups and optionally you can provide filters and pagination
-     values """
+     values
+     """
     page_size = utils.get_page_size(request)
 
     search = {}

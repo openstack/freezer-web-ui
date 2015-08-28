@@ -24,7 +24,7 @@ from django.conf.urls import include
 from django.conf.urls import patterns
 from django.conf.urls import url
 
-import horizon_web_ui.freezer_ui.api.rest.urls as rest_urls
+import freezer_ui.api.rest.urls as rest_urls
 
 urlpatterns = patterns(
     '',

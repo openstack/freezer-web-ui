@@ -18,11 +18,11 @@ from horizon import browsers
 from horizon import exceptions
 from horizon import workflows
 
-import horizon_web_ui.freezer_ui.sessions.browsers as project_browsers
-from horizon_web_ui.freezer_ui.sessions.workflows import attach
-from horizon_web_ui.freezer_ui.sessions.workflows import create_session
-import horizon_web_ui.freezer_ui.api.api as freezer_api
-from horizon_web_ui.freezer_ui.utils import SessionJob
+import freezer_ui.sessions.browsers as project_browsers
+from freezer_ui.sessions.workflows import attach
+from freezer_ui.sessions.workflows import create_session
+import freezer_ui.api.api as freezer_api
+from freezer_ui.utils import SessionJob
 
 
 class AttachToSessionWorkflow(workflows.WorkflowView):

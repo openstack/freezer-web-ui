@@ -22,10 +22,9 @@ from horizon import exceptions
 from horizon import tables
 from horizon import workflows
 
-
-from horizon_web_ui.freezer_ui.backups import tables as freezer_tables
-from horizon_web_ui.freezer_ui.backups.workflows import restore as restore_workflow
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+from freezer_ui.backups import tables as freezer_tables
+from freezer_ui.backups.workflows import restore as restore_workflow
+import freezer_ui.api.api as freezer_api
 
 
 class IndexView(tables.DataTableView):
@@ -69,7 +68,8 @@ class RestoreView(workflows.WorkflowView):
             int(backup.data_dict[0]['backup_metadata']['time_stamp']))
         backup_date_str = django_date(backup_date, 'SHORT_DATETIME_FORMAT')
         return "Restore '{}' from {}".format(
-            backup.data_dict[0]['backup_metadata']['backup_name'], backup_date_str)
+            backup.data_dict[0]['backup_metadata']['backup_name'],
+            backup_date_str)
 
     def get_initial(self):
         return {"backup_id": self.kwargs['backup_id']}
@@ -79,4 +79,3 @@ class RestoreView(workflows.WorkflowView):
         workflow.name = self.get_workflow_name()
 
         return workflow
-

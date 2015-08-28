@@ -14,8 +14,10 @@
 #    under the License.
 
 from django.utils.translation import ugettext_lazy as _
+
+from freezer_ui.sessions import tables
+
 from horizon import browsers
-from horizon_web_ui.freezer_ui.sessions import tables
 
 
 class SessionBrowser(browsers.ResourceBrowser):

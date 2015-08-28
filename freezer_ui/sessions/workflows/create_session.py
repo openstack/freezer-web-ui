@@ -18,7 +18,7 @@ from horizon import exceptions
 from horizon import forms
 from horizon import workflows
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+import freezer_ui.api.api as freezer_api
 
 
 class SessionConfigurationAction(workflows.Action):

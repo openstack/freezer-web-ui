@@ -10,6 +10,5 @@ sys.path.append('/opt/stack/freezer')
 
 # A list of applications to be added to INSTALLED_APPS.
 ADD_INSTALLED_APPS = [
-    'horizon_web_ui.freezer_ui',
+    'freezer_ui',
 ]
-

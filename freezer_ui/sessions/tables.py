@@ -17,7 +17,7 @@ from django.utils.translation import ungettext_lazy
 from horizon import tables
 from horizon.utils.urlresolvers import reverse
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+import freezer_ui.api.api as freezer_api
 
 
 def get_link(session):
@@ -115,7 +115,7 @@ class JobsTable(tables.DataTable):
 
     def get_object_id(self, job):
         # this is used to pass to values as an url
-        # TODO: look for a way to improve this
+        # TODO(m3m0): look for a way to improve this
         ids = '{0}==={1}'.format(job.job_id, job.session_id)
         return ids
 

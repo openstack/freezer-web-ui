@@ -18,13 +18,13 @@ from horizon import forms
 from horizon import exceptions
 from horizon import workflows
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
+import freezer_ui.api.api as freezer_api
 
 
 class DestinationAction(workflows.MembershipAction):
     path = forms.CharField(label=_("Destination Path"),
-                           help_text=_("The path in which the backup should be "
-                                       "restored"),
+                           help_text=_("The path in which the backup should be"
+                                       " restored"),
                            required=True)
     backup_id = forms.CharField(widget=forms.HiddenInput())
 

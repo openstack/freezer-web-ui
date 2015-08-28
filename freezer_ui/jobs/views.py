@@ -19,12 +19,11 @@ from horizon import exceptions
 from horizon import messages
 from horizon import workflows
 
-import horizon_web_ui.freezer_ui.api.api as freezer_api
-import horizon_web_ui.freezer_ui.jobs.browsers as project_browsers
-from horizon_web_ui.freezer_ui.utils import create_dict_action
+import freezer_ui.api.api as freezer_api
+import freezer_ui.jobs.browsers as project_browsers
+from freezer_ui.utils import create_dict_action
 import workflows.configure as configure_workflow
 import workflows.action as action_workflow
-
 
 
 class JobWorkflowView(workflows.WorkflowView):
@@ -98,7 +97,7 @@ class ActionWorkflowView(workflows.WorkflowView):
         try:
             action_id, job_id = ids.split('===')
         except ValueError:
-            action_id = None
+            # action_id = None
             job_id = self.kwargs['job_id']
         try:
             return freezer_api.job_get(self.request, job_id)
@@ -116,7 +115,7 @@ class ActionWorkflowView(workflows.WorkflowView):
         try:
             action_id, job_id = self.kwargs['job_id'].split('===')
         except ValueError:
-            job_id = self.kwargs['job_id']
+            # job_id = self.kwargs['job_id']
             action_id = None
 
         if self.is_update():
@@ -133,9 +132,9 @@ class ActionWorkflowView(workflows.WorkflowView):
                         initial.update(**rules)
                 except KeyError:
                     messages.warning(self.request, _("Cannot edit an action "
-                                                     "created by the scheduler"))
+                                                     "created by the"
+                                                     " scheduler"))
                     exceptions.handle(self.request, "")
 
             initial.update({'original_name': job.id})
         return initial
-

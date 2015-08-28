@@ -12,8 +12,9 @@
 
 from django.utils.translation import ugettext_lazy as _
 
+from freezer_ui import dashboard
+
 import horizon
-from horizon_web_ui.freezer_ui import dashboard
 
 
 class JobsPanel(horizon.Panel):
