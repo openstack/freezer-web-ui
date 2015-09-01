@@ -142,3 +142,11 @@ def actions_in_job(ids):
     """
     ids = ids.split('===')
     return [i for i in ids if i]
+
+
+def assign_value_from_source(source_dict, dest_dict, key):
+    """Assign a value to a destination dict from a source dict
+    if the key exists
+    """
+    if key in source_dict:
+        dest_dict[key] = source_dict.pop(key)

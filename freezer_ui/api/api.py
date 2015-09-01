@@ -32,6 +32,7 @@ from freezer_ui.utils import JobList
 from freezer_ui.utils import Session
 from freezer_ui.utils import create_dict_action
 from freezer_ui.utils import create_dummy_id
+from freezer_ui.utils import assign_value_from_source
 
 
 @memoized
@@ -76,14 +77,10 @@ def job_create(request, context):
     job = create_dict_action(**context)
 
     schedule = {}
-    if job['schedule_end_date']:
-        schedule['schedule_end_date'] = job.pop('schedule_end_date')
 
-    if job['schedule_interval']:
-        schedule['schedule_interval'] = job.pop('schedule_interval')
-
-    if job['schedule_start_date']:
-        schedule['schedule_start_date'] = job.pop('schedule_start_date')
+    assign_value_from_source(job, schedule, 'schedule_end_date')
+    assign_value_from_source(job, schedule, 'schedule_interval')
+    assign_value_from_source(job, schedule, 'schedule_start_date')
 
     job.pop('clients', None)
     client_id = job.pop('client_id', None)
@@ -101,14 +98,10 @@ def job_edit(request, context):
     job = create_dict_action(**context)
 
     schedule = {}
-    if job['schedule_end_date']:
-        schedule['schedule_end_date'] = job.pop('schedule_end_date')
 
-    if job['schedule_interval']:
-        schedule['schedule_interval'] = job.pop('schedule_interval')
-
-    if job['schedule_start_date']:
-        schedule['schedule_start_date'] = job.pop('schedule_start_date')
+    assign_value_from_source(job, schedule, 'schedule_end_date')
+    assign_value_from_source(job, schedule, 'schedule_interval')
+    assign_value_from_source(job, schedule, 'schedule_start_date')
 
     job['description'] = job.pop('description', None)
     actions = job.pop('job_actions', [])
@@ -162,12 +155,9 @@ def action_create(request, context):
     """Create a new action for a job """
     action = {}
 
-    if context['max_retries']:
-        action['max_retries'] = context.pop('max_retries')
-    if context['max_retries_interval']:
-        action['max_retries_interval'] = context.pop('max_retries_interval')
-    if context['mandatory']:
-        action['mandatory'] = context.pop('mandatory')
+    assign_value_from_source(context, action, 'max_retries')
+    assign_value_from_source(context, action, 'max_retries_interval')
+    assign_value_from_source(context, action, 'mandatory')
 
     job_id = context.pop('original_name')
     job_action = create_dict_action(**context)
@@ -242,13 +232,9 @@ def action_update(request, context):
     for a in job['job_actions']:
         if a['action_id'] == action_id:
 
-            if context['max_retries']:
-                a['max_retries'] = context.pop('max_retries')
-            if context['max_retries_interval']:
-                a['max_retries_interval'] = \
-                    context.pop('max_retries_interval')
-            if context['mandatory']:
-                a['mandatory'] = context.pop('mandatory')
+            assign_value_from_source(context, a, 'max_retries')
+            assign_value_from_source(context, a, 'max_retries_interval')
+            assign_value_from_source(context, a, 'mandatory')
 
             updated_action = create_dict_action(**context)
 
@@ -310,12 +296,13 @@ def session_create(request, context):
     """A session is a group of jobs who share the same scheduling time. """
     session = create_dict_action(**context)
     session['description'] = session.pop('description', None)
-    schedule = {
-        'schedule_end_date': session.pop('schedule_end_date', None),
-        'schedule_interval': session.pop('schedule_interval', None),
-        'schedule_start_date': session.pop('schedule_start_date', None),
-    }
-    session['schedule'] = schedule
+    schedule = {}
+
+    assign_value_from_source(session, schedule, 'schedule_start_date')
+    assign_value_from_source(session, schedule, 'schedule_end_date')
+    assign_value_from_source(session, schedule, 'schedule_interval')
+
+    session['job_schedule'] = schedule
     return _freezerclient(request).sessions.create(session)
 
 
@@ -324,12 +311,13 @@ def session_update(request, context):
     session = create_dict_action(**context)
     session_id = session.pop('session_id', None)
     session['description'] = session.pop('description', None)
-    schedule = {
-        'schedule_end_date': session.pop('schedule_end_date', None),
-        'schedule_interval': session.pop('schedule_interval', None),
-        'schedule_start_date': session.pop('schedule_start_date', None),
-    }
-    session['schedule'] = schedule
+    schedule = {}
+
+    assign_value_from_source(session, schedule, 'schedule_start_date')
+    assign_value_from_source(session, schedule, 'schedule_end_date')
+    assign_value_from_source(session, schedule, 'schedule_interval')
+
+    session['job_schedule'] = schedule
     return _freezerclient(request).sessions.update(session_id, session)
 
 
@@ -345,9 +333,9 @@ def session_list(request):
                         s['description'],
                         s['status'],
                         s['jobs'],
-                        s['schedule']['schedule_start_date'],
-                        s['schedule']['schedule_interval'],
-                        s['schedule']['schedule_end_date'])
+                        s['job_schedule'].get('schedule_start_date'),
+                        s['job_schedule'].get('schedule_interval'),
+                        s['job_schedule'].get('schedule_end_date'))
                 for s in sessions]
     return sessions
 
@@ -359,9 +347,9 @@ def session_get(request, session_id):
                       session['description'],
                       session['status'],
                       session['jobs'],
-                      session['schedule']['schedule_start_date'],
-                      session['schedule']['schedule_interval'],
-                      session['schedule']['schedule_end_date'])
+                      session['job_schedule'].get('schedule_start_date'),
+                      session['job_schedule'].get('schedule_interval'),
+                      session['job_schedule'].get('schedule_end_date'))
     return session
 
 
