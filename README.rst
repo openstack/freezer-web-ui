@@ -5,16 +5,22 @@ Freezer - Horizon Dashboard
 Requirements
 ============
 
+Freezer Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
+
+    git clone https://github.com/stackforge/freezer
+    cd freezer
+    python setup.py install (is important that freezer is installed from source and not with pip)
+
 Freezer Dashboard requires a freezer API endpoint which you can install following this steps::
 
-    https://github.com/stackforge/freezer/blob/master/freezer_api/README.rst
+    https://github.com/stackforge/freezer-api/blob/master/README.rst
 
 API registration
 ================
 
 Register freezer api endpoint::
 
-    https://github.com/stackforge/freezer/blob/master/freezer_api/README.rst#3-api-registration
+    https://github.com/stackforge/freezer-api/blob/master/README.rst#3-api-registration
 
 If keystone service-create and endpoint-create are not available you can set as a fallback the following on::
 
@@ -32,31 +38,32 @@ directory is /opt/stack/horizon/openstack_dashboard/dashboards/.
 
 To install freezer dashboard for development you need to do the following::
 
-    # git clone https://github.com/stackforge/freezer
+    # git clone https://github.com/stackforge/freezer-web-ui
 
-    # cd freezer/horizon_web_ui
+    # cd freezer-web-ui
 
-    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/local/enabled/
+    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled
     
     # modify _50_freezer.py (line 9) and point the path to the freezer repo.
 
     # cd /opt/stack/horizon/
 
-    # ./run_tests.sh --runserver 0.0.0.0:8000
-
     # pip install -r requirements.txt
 
+    # make sure freezer is installed from source as detailed in the first step
+
+    # ./run_tests.sh --runserver 0.0.0.0:8000
 
 Production Installation
 =======================
 
 To deploy freezer dashboard in production you need to do the following::
 
-    # git clone https://github.com/stackforge/freezer
+    # git clone https://github.com/stackforge/freezer-web-ui
 
-    # cd freezer/horizon_web_ui
+    # cd freezer-web-ui
 
-    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/local/enabled/
+    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/
 
     # modify _50_freezer.py (line 9) and point the path to the freezer repo.
 
@@ -95,3 +102,20 @@ Test coverage
 2. View coverage report::
 
     coverage report
+
+
+Tox
+---
+
+1. Run tox::
+
+    tox -v
+
+
+Development under proxy
+_______________________
+
+If you are developing or deploying under proxies remember to set no_proxies for::
+
+    freezer-api endpoint
+    keystone endpoint
