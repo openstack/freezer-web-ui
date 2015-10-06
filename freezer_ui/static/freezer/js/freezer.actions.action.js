@@ -1,3 +1,7 @@
+/*global $*/
+
+"use strict";
+
 function hideEverything() {
     // Common controls
     $("#id_backup_name").closest(".form-group").hide();
@@ -69,7 +73,7 @@ function showCinderOptions() {
     $("#id_container").closest(".form-group").show();
 }
 
-function showSSHOptions(){
+function showSSHOptions() {
     $("#id_ssh_key").closest(".form-group").show();
     $("#id_ssh_username").closest(".form-group").show();
     $("#id_ssh_host").closest(".form-group").show();
@@ -77,86 +81,81 @@ function showSSHOptions(){
 
 hideEverything();
 
-$("#id_action").change(function() {
+$("#id_action").change(function () {
     // Update the inputs according freezer action
 
-    if ($("#id_action").val() == 'backup') {
+    if ($("#id_action").val() === 'backup') {
         hideEverything();
         showBackupOptions();
-    }
-    else if ($("#id_action").val() == 'restore') {
+    } else if ($("#id_action").val() === 'restore') {
         hideEverything();
         showRestoreOptions();
-    }
-    else if ($("#id_action").val() == 'admin') {
+    } else if ($("#id_action").val() === 'admin') {
         hideEverything();
         showAdminOptions();
-    }
-    else  {
+    } else {
         hideEverything();
     }
 });
 
 
-$("#id_storage").change(function() {
-    // Update the inputs according freezer action
+$("#id_storage").change(function () {
+    // Update the inputs according freezer storage backend
 
-    if ($("#id_storage").val() == 'swift') {
+    if ($("#id_storage").val() === 'swift') {
         hideEverything();
         showBackupOptions();
-    }
-    else if ($("#id_storage").val() == 'ssh') {
+        $("#id_mode").closest(".form-group").hide();
+    } else if ($("#id_storage").val() === 'ssh') {
         hideEverything();
         showBackupOptions();
+        $("#id_mode").closest(".form-group").hide();
         showSSHOptions();
-    }
-    else if ($("#id_storage").val() == 'local') {
+    } else if ($("#id_storage").val() === 'local') {
         hideEverything();
         showBackupOptions();
-    }
-    else  {
+        $("#id_mode").closest(".form-group").hide();
+    } else {
         hideEverything();
     }
 });
 
 
-$("#id_mode").change(function() {
-    if ($("#id_action").val() == 'backup') {
-        if ($("#id_mode").val() == 'fs') {
+$("#id_mode").change(function () {
+    // Update the inputs according freezer mode
+    if ($("#id_action").val() === 'backup') {
+        if ($("#id_mode").val() === 'fs') {
             hideEverything();
             showBackupOptions();
-        }
-        else if ($("#id_mode").val() == 'mysql') {
+            $("#id_advanced_configuration").closest(".form-group").show();
+        } else if ($("#id_mode").val() === 'mysql') {
             hideEverything();
             showBackupOptions();
             $("#id_mysql_conf").closest(".form-group").show();
             $("#id_sql_server_conf").closest(".form-group").hide();
-        }
-        else if ($("#id_mode").val() == 'mssql') {
+            $("#id_advanced_configuration").closest(".form-group").show();
+        } else if ($("#id_mode").val() === 'mssql') {
             hideEverything();
             showBackupOptions();
             $("#id_sql_server_conf").closest(".form-group").show();
             $("#id_mysql_conf").closest(".form-group").hide();
-        }
-        else if ($("#id_mode").val() == 'mongo') {
+            $("#id_advanced_configuration").closest(".form-group").show();
+        } else if ($("#id_mode").val() === 'mongo') {
             hideEverything();
             showBackupOptions();
             $("#id_sql_server_conf").closest(".form-group").hide();
             $("#id_mysql_conf").closest(".form-group").hide();
-        }
-        else if ($("#id_mode").val() == 'cinder') {
+            $("#id_advanced_configuration").closest(".form-group").show();
+        } else if ($("#id_mode").val() === 'cinder') {
             hideEverything();
             showCinderOptions();
             $("#id_cinder_vol_id").closest(".form-group").show().addClass("required");
-        }
-        else if ($("#id_mode").val() == 'nova') {
+            $("#id_advanced_configuration").closest(".form-group").show();
+        } else if ($("#id_mode").val() === 'nova') {
             hideEverything();
             showNovaOptions();
             $("#id_nova_inst_id").closest(".form-group").show().addClass("required");
-        }
-        else {
-
+            $("#id_advanced_configuration").closest(".form-group").show();
         }
     }
 });
-
