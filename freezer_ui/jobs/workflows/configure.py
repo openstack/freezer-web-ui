@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
 from horizon import forms
+from horizon import messages
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
@@ -192,45 +193,41 @@ class ConfigureJob(workflows.Workflow):
 
     def handle(self, request, context):
         try:
-            if context['original_name'] == '':
+            is_edit = False
+            if not context['original_name'] == '':
+                is_edit = True
 
-                # for each action_id get the action object and append it
-                # to context['job_actions']
-                actions = actions_in_job(context.pop('actions', []))
-                actions_for_job = []
-                for action in actions:
-                    a = freezer_api.action_get(request, action)
-                    a = {
-                        'action_id': a['action_id'],
-                        'freezer_action': a['freezer_action']
-                    }
-                    actions_for_job.append(a)
+            actions = actions_in_job(context.pop('actions', []))
+            actions_for_job = []
 
-                context['job_actions'] = actions_for_job
-
-                for client in context['clients']:
-                    context['client_id'] = client
-                    freezer_api.job_create(request, context)
-            else:
-                actions = actions_in_job(context.pop('actions', []))
-                actions_for_job = []
-
+            if is_edit:
+                # if this is a edit get the job and delete the action list
+                # TODO(m3m0) improve this to not recreate the action list
                 job_id = context['original_name']
                 job = freezer_api.job_get(request, job_id)
-
                 del job[0].data_dict['job_actions']
 
-                for action in actions:
-                    a = freezer_api.action_get(request, action)
-                    a = {
-                        'action_id': a['action_id'],
-                        'freezer_action': a['freezer_action']
-                    }
-                    actions_for_job.append(a)
+            for action in actions:
+                a = freezer_api.action_get(request, action)
+                a = {
+                    'action_id': a['action_id'],
+                    'freezer_action': a['freezer_action']
+                }
+                actions_for_job.append(a)
 
-                context['job_actions'] = actions_for_job
+            context['job_actions'] = actions_for_job
 
+            if is_edit:
                 return freezer_api.job_edit(request, context)
+            else:
+                if context['clients']:
+                    for client in context['clients']:
+                        context['client_id'] = client
+                        freezer_api.job_create(request, context)
+                else:
+                    messages.warning(request, _("At least one client is "
+                                                "required to create a job"))
+                    return False
             return True
         except Exception:
             exceptions.handle(request)
