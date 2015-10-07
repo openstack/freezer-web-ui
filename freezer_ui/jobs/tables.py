@@ -148,6 +148,11 @@ class CreateAction(tables.LinkAction):
                        kwargs={'job_id': datum.job_id})
 
 
+class ObjectFilterAction(tables.FilterAction):
+    def allowed(self, request, datum):
+        return bool(self.table.kwargs['job_id'])
+
+
 class JobsTable(tables.DataTable):
     job_name = tables.Column("description",
                              link=get_backup_configs_link,
@@ -162,7 +167,8 @@ class JobsTable(tables.DataTable):
     class Meta(object):
         name = "jobs"
         verbose_name = _("Jobs")
-        table_actions = (CreateJob,
+        table_actions = (ObjectFilterAction,
+                         CreateJob,
                          DeleteMultipleJobs)
         footer = False
         multi_select = True
@@ -216,11 +222,6 @@ class EditAction(tables.LinkAction):
         ids = '{0}==={1}'.format(datum.action_id, datum.job_id)
         return reverse("horizon:freezer_ui:jobs:create_action",
                        kwargs={'job_id': ids})
-
-
-class ObjectFilterAction(tables.FilterAction):
-    def allowed(self, request, datum):
-        return bool(self.table.kwargs['job_id'])
 
 
 class ActionsTable(tables.DataTable):

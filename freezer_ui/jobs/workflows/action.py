@@ -241,7 +241,11 @@ class ActionConfiguration(workflows.Step):
                    'remove_older_than',
                    'remove_from_date',
                    'original_name',
-                   'action_id')
+                   'action_id',
+                   'storage',
+                   'ssh_host',
+                   'ssh_username',
+                   'ssh_key')
 
 
 class SnapshotConfigurationAction(workflows.Action):
@@ -385,7 +389,11 @@ class AdvancedConfigurationAction(workflows.Action):
         required=False)
 
     compression = forms.ChoiceField(
-        choices=[('gzip', _("Minimum Compression (GZip/Zip/Zlib)"))],
+        choices=[
+            ('gzip', _("Minimum Compression (GZip/Zip/Zlib)")),
+            ('bzip2', _("More Effective Compression (Bzip2)")),
+            ('xz', _("Lossless Data Compression (XZ)"))
+        ],
         help_text="",
         label=_('Compression Level'),
         required=False)
