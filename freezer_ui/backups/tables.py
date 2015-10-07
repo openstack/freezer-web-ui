@@ -43,31 +43,40 @@ def icons(backup):
 
     placeholder = '<i class="fa fa-fw"></i>'
 
-    level_txt = "Level: {} ({} backup) out of {}".format(
-        backup.level, "Full" if backup.level == 0 else "Incremental",
-        backup.max_level)
+    try:
+        level_txt = "Level: {} ({} backup) out of {}".format(
+            backup.level, "Full" if backup.level == 0 else "Incremental",
+            backup.max_level)
+    except Exception:
+        level_txt = 'N/A'
+
     result.append(
         '<i class="fa fa-fw fa-custom-number" title="{}">{}</i>'.format(
             level_txt, backup.level))
 
-    if backup.encrypted:
-        result.append(
-            '<i class="fa fa-lock fa-fw" title="Backup is encrypted"></i>')
-    else:
+    try:
+        if backup.encrypted:
+            result.append(
+                '<i class="fa fa-lock fa-fw" title="Backup is encrypted"></i>')
+    except Exception:
         result.append(placeholder)
 
-    if int(backup.total_broken_links) > 0:
-        result.append(
-            '<i class="fa fa-chain-broken fa-fw" title="There are {} broken '
-            'links in this backup"></i>'.format(backup.total_broken_links))
-    else:
+    try:
+        if int(backup.total_broken_links) > 0:
+            result.append(
+                '<i class="fa fa-chain-broken fa-fw" title="There are {} '
+                'broken links in this backup"></i>'.format(
+                    backup.total_broken_links))
+    except Exception:
         result.append(placeholder)
 
-    if backup.excluded_files:
-        result.append(
-            '<i class="fa fa-minus-square fa-fw" title="{} files have been exc'
-            'luded from this backup"></i>'.format(len(backup.excluded_files)))
-    else:
+    try:
+        if backup.excluded_files:
+            result.append(
+                '<i class="fa fa-minus-square fa-fw" title="{} files have been'
+                ' excluded from this backup"></i>'.format(
+                    len(backup.excluded_files)))
+    except Exception:
         result.append(placeholder)
 
     return safestring.mark_safe("".join(result))
