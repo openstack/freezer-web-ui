@@ -26,6 +26,7 @@ class Freezer(horizon.Dashboard):
     slug = "freezer_ui"
     panels = (FreezerDR,)
     default_panel = 'jobs'
+    permissions = ('openstack.roles.admin',)
 
 
 horizon.register(Freezer)

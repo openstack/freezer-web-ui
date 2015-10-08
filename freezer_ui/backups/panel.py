@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 import horizon
 
-import freezer_ui.dashboard as dashboard
+from freezer_ui import dashboard
 
 
 class BackupsPanel(horizon.Panel):

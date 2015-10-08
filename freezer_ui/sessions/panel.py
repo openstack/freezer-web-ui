@@ -11,8 +11,10 @@
 #  under the License.
 
 from django.utils.translation import ugettext_lazy as _
-from freezer_ui import dashboard
+
 import horizon
+
+from freezer_ui import dashboard
 
 
 class SessionsPanel(horizon.Panel):
