@@ -1,3 +1,7 @@
+/*global $*/
+
+"use strict";
+
 function hideOptions() {
     // Snapshot specific controls
     $("#id_is_windows").closest(".form-group").hide();
@@ -11,9 +15,9 @@ function hideOptions() {
 }
 
 function is_windows() {
-   if ($("#id_is_windows").is(":checked")) {
-       return true;
-   }
+    if ($("#id_is_windows").is(":checked")) {
+        return true;
+    }
 }
 
 function showWindowsSnapshotOptions() {
@@ -53,8 +57,7 @@ function showSnapshotOptions() {
     if (is_windows()) {
         hideLinuxSnapshotOptions();
         showWindowsSnapshotOptions();
-    }
-    else {
+    } else {
         hideWindowsSnapshotOptions();
         showLinuxSnapshotOptions();
     }
@@ -62,20 +65,18 @@ function showSnapshotOptions() {
 
 hideOptions();
 
-$("#id_use_snapshot").click(function() {
+$("#id_use_snapshot").click(function () {
     if ($("#id_use_snapshot").is(":checked")) {
         showSnapshotOptions();
-    }
-    else {
+    } else {
         hideSnapshotOptions();
     }
 });
 
-$("#id_is_windows").click(function() {
+$("#id_is_windows").click(function () {
     if ($("#id_use_snapshot").is(":checked")) {
         showSnapshotOptions();
-    }
-    else {
+    } else {
         hideSnapshotOptions();
     }
 });
