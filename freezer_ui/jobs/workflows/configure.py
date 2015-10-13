@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+from collections import namedtuple
 import datetime
 
 from django.utils.translation import ugettext_lazy as _
@@ -56,7 +57,7 @@ class ClientsConfigurationAction(workflows.MembershipAction):
             all_clients = freezer_api.client_list(request)
         except Exception:
             exceptions.handle(request, err_msg)
-        client_list = [(c.client, c.hostname)
+        client_list = [(c.uuid, c.hostname)
                        for c in all_clients]
 
         field_name = self.get_member_field_name('member')
@@ -221,9 +222,21 @@ class ConfigureJob(workflows.Workflow):
                 return freezer_api.job_edit(request, context)
             else:
                 if context['clients']:
-                    for client in context['clients']:
-                        context['client_id'] = client
-                        freezer_api.job_create(request, context)
+                    # we have to query the api to get the list of clients
+                    # because MembershipAction for clients works with uuid's
+                    # and we need to send the client_id instead of the uuid
+                    # for the job creation
+                    clients = freezer_api.client_list(request)
+                    ClientIDS = namedtuple('Client', ['client_id', 'uuid'])
+
+                    client_list = [ClientIDS(c.client_id, c.uuid)
+                                   for c in clients]
+
+                    for client_uuid in context['clients']:
+                        for client_id, uuid in client_list:
+                            if client_uuid == uuid:
+                                context['client_id'] = client_id
+                                freezer_api.job_create(request, context)
                 else:
                     messages.warning(request, _("At least one client is "
                                                 "required to create a job"))

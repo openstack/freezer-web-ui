@@ -83,9 +83,10 @@ class Backup(Dict2Object):
 
 
 class Client(object):
-    def __init__(self, client, hostname):
-        self.client = client
+    def __init__(self, uuid, hostname, client_id):
+        self.uuid = uuid
         self.hostname = hostname
+        self.client_id = client_id
 
 
 class ActionJob(object):
