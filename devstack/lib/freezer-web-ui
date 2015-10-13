@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# Install the Freezer Web UI in Horizon
+
+# add the following to localrc:
+#   enable_service freezer-web_ui
+
+
+# Save trace setting
+XTRACE=$(set +o | grep xtrace)
+set +o xtrace
+
+
+# Functions
+# ---------
+
+function is_freezer_web_ui_enabled {
+    [[ ,${ENABLED_SERVICES} =~ ,"freezer-web-ui" ]] && return 0
+}
+
+
+# executed during: clean
+function cleanup_freezer_web_ui {
+    :
+}
+
+# executed during: stack install
+function install_freezer_web_ui {
+    if is_service_enabled horizon; then
+        sudo -H -E pip install -e git+${FREEZER_WEB_UI_REPO}@${FREEZER_WEB_UI_BRANCH}#egg=freezer_web_ui-origin_${FREEZER_WEB_UI_BRANCH}
+    else
+        echo "Horizon dashboard disabled. Freezer Web UI will not be installed"
+    fi
+}
+
+# executed during: stack post-config
+function configure_freezer_web_ui {
+    :
+}
+
+
+# executed during: stack extra
+function init_freezer_web_ui {
+    if is_service_enabled horizon; then
+
+        local dashboard_enabled_50_freezer_py="$HORIZON_DIR/openstack_dashboard/enabled/_50_freezer.py"
+
+        sudo cp $FREEZER_WEB_UI_FILES/_50_freezer.py.template $dashboard_enabled_50_freezer_py
+
+        sudo sed -e "
+            s|%FREEZER_WEB_UI_DIR%|$FREEZER_WEB_UI_DIR|g
+        " -i $dashboard_enabled_50_freezer_py
+
+    fi
+}
+
+
+# executed during: stack extra
+function start_freezer_web_ui {
+    restart_apache_server
+}
+
+
+# executed during: stop
+function stop_freezer_web_ui {
+    :
+}
+
+
+function install_freezer_client {
+    sudo -H -E pip install -e git+${FREEZER_CLIENT_REPO}@${FREEZER_CLIENT_BRANCH}#egg=freezer-origin_${FREEZER_CLIENT_BRANCH}
+}
+
+
+# Restore xtrace
+$XTRACE
