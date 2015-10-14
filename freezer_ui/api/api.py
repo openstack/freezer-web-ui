@@ -17,10 +17,10 @@
 import warnings
 
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from horizon.utils import functions as utils
 from horizon.utils.memoized import memoized  # noqa
-
 
 import freezer.apiclient.client
 from freezer_ui.utils import Action
@@ -36,29 +36,33 @@ from freezer_ui.utils import assign_value_from_source
 
 
 @memoized
+def get_hardcoded_url():
+    """Get FREEZER_API_URL from local_settings.py"""
+    try:
+        warnings.warn(_('Using hardcoded FREEZER_API_URL at {0}')
+                      .format(settings.FREEZER_API_URL))
+        return getattr(settings, 'FREEZER_API_URL', None)
+    except (AttributeError, TypeError):
+        warnings.warn(_('No FREEZER_API_URL was found in local_settings.py'))
+        raise
+
+
+@memoized
 def get_service_url(request):
-    """Get Freezer API url from keystone catalog.
+    """Get Freezer API url from keystone catalog or local_settings.py
     if Freezer is not set in keystone, the fallback will be
     'FREEZER_API_URL' in local_settings.py
     """
-    url = None
-
     catalog = (getattr(request.user, "service_catalog", None))
     if not catalog:
-        warnings.warn('Using hardcoded FREEZER_API_URL at {0}'
-                      .format(settings.FREEZER_API_URL))
-        return getattr(settings, 'FREEZER_API_URL', None)
+        return get_hardcoded_url()
 
     for c in catalog:
         if c['name'] == 'freezer':
             for e in c['endpoints']:
-                url = e['publicURL']
-        else:
-            warnings.warn('Using hardcoded FREEZER_API_URL at {0}'
-                          .format(settings.FREEZER_API_URL))
-            return getattr(settings, 'FREEZER_API_URL', None)
-
-    return url
+                return e['publicURL']
+    else:
+        return get_hardcoded_url()
 
 
 @memoized
