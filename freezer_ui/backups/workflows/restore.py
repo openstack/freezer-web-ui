@@ -83,10 +83,10 @@ class Restore(workflows.Workflow):
                 "original_name": job,  # this is the job_id
                 "action": "restore",
                 "backup_name":
-                    backup.data_dict[0]['backup_metadata']['backup_name'],
+                    backup.data_dict['backup_metadata']['backup_name'],
                 "restore_abs_path": data['path'],
                 "container":
-                    backup.data_dict[0]['backup_metadata']['container'],
+                    backup.data_dict['backup_metadata']['container'],
                 "restore_from_host": client.hostname,
                 "max_retries": 3,
                 "max_retries_interval": 60,

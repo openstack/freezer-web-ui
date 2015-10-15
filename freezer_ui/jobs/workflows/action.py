@@ -324,12 +324,13 @@ class SnapshotConfiguration(workflows.Step):
     contributes = ('use_snapshot',
                    'is_windows',
                    'vssadmin',
-                   'lvm_auto_snap',
-                   'lvm_srcvol',
-                   'lvm_snapname',
-                   'lvm_snapsize',
-                   'lvm_dirmount',
-                   'lvm_volgroup',)
+                   # 'lvm_auto_snap',
+                   # 'lvm_srcvol',
+                   # 'lvm_snapname',
+                   # 'lvm_snapsize',
+                   # 'lvm_dirmount',
+                   # 'lvm_volgroup',
+                   )
 
 
 class AdvancedConfigurationAction(workflows.Action):
@@ -527,25 +528,26 @@ class AdvancedConfigurationAction(workflows.Action):
 class AdvancedConfiguration(workflows.Step):
     action_class = AdvancedConfigurationAction
     contributes = ('log_file',
-                   'exclude',
-                   'proxy',
-                   'os_auth_ver',
-                   'upload_limit',
-                   'download_limit',
-                   'optimize',
-                   'compression',
-                   'max_segment_size',
-                   'hostname',
-                   'encryption_password',
-                   'no_incremental',
-                   'max_level',
-                   'always_level',
-                   'restart_always_level',
-                   'insecure',
-                   'dereference_symlink',
-                   'dry_run',
-                   'max_priority',
-                   'quiet',)
+                   # 'exclude',
+                   # 'proxy',
+                   # 'os_auth_ver',
+                   # 'upload_limit',
+                   # 'download_limit',
+                   # 'optimize',
+                   # 'compression',
+                   # 'max_segment_size',
+                   # 'hostname',
+                   # 'encryption_password',
+                   # 'no_incremental',
+                   # 'max_level',
+                   # 'always_level',
+                   # 'restart_always_level',
+                   # 'insecure',
+                   # 'dereference_symlink',
+                   # 'dry_run',
+                   # 'max_priority',
+                   # 'quiet',
+                   )
 
 
 class RulesConfigurationAction(workflows.Action):

@@ -51,9 +51,9 @@ class RestoreView(workflows.WorkflowView):
     workflow_class = restore_workflow.Restore
 
     def get_object(self, *args, **kwargs):
-        id = self.kwargs['backup_id']
+        backup_id = self.kwargs['backup_id']
         try:
-            return freezer_api.backup_get(self.request, id)
+            return freezer_api.backup_get(self.request, backup_id)
         except Exception:
             redirect = reverse("horizon:freezer_ui:backups:index")
             msg = _('Unable to retrieve details.')
@@ -63,12 +63,13 @@ class RestoreView(workflows.WorkflowView):
         return 'name' in self.kwargs and bool(self.kwargs['name'])
 
     def get_workflow_name(self):
-        backup = freezer_api.backup_get(self.request, self.kwargs['backup_id'])
+        backup_id = self.kwargs['backup_id']
+        backup = freezer_api.backup_get(self.request, backup_id)
         backup_date = datetime.datetime.fromtimestamp(
-            int(backup.data_dict[0]['backup_metadata']['time_stamp']))
+            int(backup.data_dict['backup_metadata']['time_stamp']))
         backup_date_str = django_date(backup_date, 'SHORT_DATETIME_FORMAT')
         return "Restore '{}' from {}".format(
-            backup.data_dict[0]['backup_metadata']['backup_name'],
+            backup.data_dict['backup_metadata']['backup_name'],
             backup_date_str)
 
     def get_initial(self):
@@ -77,5 +78,4 @@ class RestoreView(workflows.WorkflowView):
     def get_workflow(self, *args, **kwargs):
         workflow = super(RestoreView, self).get_workflow(*args, **kwargs)
         workflow.name = self.get_workflow_name()
-
         return workflow

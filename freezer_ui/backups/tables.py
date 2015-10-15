@@ -47,12 +47,11 @@ def icons(backup):
         level_txt = "Level: {} ({} backup) out of {}".format(
             backup.level, "Full" if backup.level == 0 else "Incremental",
             backup.max_level)
+        result.append(
+            '<i class="fa fa-fw fa-custom-number" title="{}">{}</i>'.format(
+                level_txt, backup.level))
     except Exception:
-        level_txt = 'N/A'
-
-    result.append(
-        '<i class="fa fa-fw fa-custom-number" title="{}">{}</i>'.format(
-            level_txt, backup.level))
+        result.append("Level: {}".format("Full"))
 
     try:
         if backup.encrypted:
@@ -84,13 +83,12 @@ def icons(backup):
 
 def backup_detail_view(backup):
     return reverse("horizon:freezer_ui:backups:detail",
-                   args=[backup.id])
+                   args=[backup.backup_id])
 
 
 class BackupsTable(tables.DataTable):
-    name = tables.Column('backup_name',
-                         verbose_name=_("Backup Name"),
-                         link=backup_detail_view)
+    backup_name = tables.Column('backup_name',
+                                verbose_name=_("Backup Name"))
     hostname = tables.Column('hostname', verbose_name=_("Hostname"))
     created = tables.Column("time_stamp",
                             verbose_name=_("Created At"),

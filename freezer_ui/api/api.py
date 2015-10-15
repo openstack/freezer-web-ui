@@ -401,6 +401,14 @@ def backups_list(request, offset=0, time_after=None, time_before=None,
 
 def backup_get(request, backup_id):
     """Get a single backup"""
+    # for a local or ssh backup, the backup_id contains the
+    # path of the directory to backup, so that includes "/"
+    # or "\" for windows.
+    # so we send "--" instead "/" from the client to avoid
+    # conflicts in the api endpoint
+    backup_id = backup_id.replace("/", '--')
+    backup_id = backup_id.replace("\\", '--')
+
     backup = _freezerclient(request).backups.get(backup_id)
     backup = Backup(backup)
     return backup
