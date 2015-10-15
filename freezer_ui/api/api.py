@@ -258,7 +258,9 @@ def action_delete(request, ids):
 
 def client_list(request):
     clients = _freezerclient(request).registration.list()
-    clients = [Client(c['uuid'], c['client']['hostname'])
+    clients = [Client(c['uuid'],
+                      c['client']['hostname'],
+                      c['client']['client_id'])
                for c in clients]
     return clients
 
@@ -272,7 +274,9 @@ def client_list_json(request):
 def client_get(request, client_id):
     """Get a single client"""
     client = _freezerclient(request).registration.get(client_id)
-    client = Client(client['uuid'], client['client']['hostname'])
+    client = Client(client['uuid'],
+                    client['client']['hostname'],
+                    client['client']['client_id'])
     return client
 
 
