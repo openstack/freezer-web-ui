@@ -142,7 +142,7 @@ def job_get(request, job_id):
 
 
 def job_list(request):
-    jobs = _freezerclient(request).jobs.list_all()
+    jobs = _freezerclient(request).jobs.list_all(limit=100)
     job_list = []
     for j in jobs:
         description = j['description']
@@ -173,14 +173,25 @@ def action_create(request, context):
     return _freezerclient(request).jobs.update(job_id, job)
 
 
+def action_create_without_job(request, context):
+    """Create an action without being attached to a job"""
+    action = {}
+    assign_value_from_source(context, action, 'max_retries')
+    assign_value_from_source(context, action, 'max_retries_interval')
+    assign_value_from_source(context, action, 'mandatory')
+    job_action = create_dict_action(**context)
+    action['freezer_action'] = job_action
+    return _freezerclient(request).actions.create(action)
+
+
 def action_list(request):
-    actions = _freezerclient(request).actions.list()
+    actions = _freezerclient(request).actions.list(limit=100)
     actions = [Action(data) for data in actions]
     return actions
 
 
 def action_list_json(request):
-    return _freezerclient(request).actions.list()
+    return _freezerclient(request).actions.list(limit=100)
 
 
 def actions_in_job_json(request, job_id):
@@ -257,7 +268,7 @@ def action_delete(request, ids):
 
 
 def client_list(request):
-    clients = _freezerclient(request).registration.list()
+    clients = _freezerclient(request).registration.list(limit=100)
     clients = [Client(c['uuid'],
                       c['client']['hostname'],
                       c['client']['client_id'])
@@ -267,7 +278,7 @@ def client_list(request):
 
 def client_list_json(request):
     """Return a list of clients directly form the api in json format"""
-    clients = _freezerclient(request).registration.list()
+    clients = _freezerclient(request).registration.list(limit=100)
     return clients
 
 
@@ -336,7 +347,7 @@ def session_delete(request, session_id):
 
 def session_list(request):
     """List all sessions """
-    sessions = _freezerclient(request).sessions.list_all()
+    sessions = _freezerclient(request).sessions.list_all(limit=100)
     sessions = [Session(s['session_id'],
                         s['description'],
                         s['status'],
@@ -404,10 +415,10 @@ def backup_get(request, backup_id):
     # for a local or ssh backup, the backup_id contains the
     # path of the directory to backup, so that includes "/"
     # or "\" for windows.
-    # so we send "--" instead "/" from the client to avoid
+    # so we send "~~~" instead "/" from the client to avoid
     # conflicts in the api endpoint
-    backup_id = backup_id.replace("/", '--')
-    backup_id = backup_id.replace("\\", '--')
+    backup_id = backup_id.replace("/", "~~~")
+    backup_id = backup_id.replace("\\", "~~~")
 
     backup = _freezerclient(request).backups.get(backup_id)
     backup = Backup(backup)

@@ -68,19 +68,7 @@ class Restore(workflows.Workflow):
             backup = freezer_api.backup_get(request, backup_id)
             name = "Restore job for {0}".format(client_id)
 
-            # 1st step is to create a job
-            restore_job = {
-                "description": name,
-                "client_id": client_id,
-                "schedule_end_date": None,
-                "schedule_interval": None,
-                "schedule_start_date": None
-            }
-            job = freezer_api.job_create(request, restore_job)
-
-            # 2nd step is to create an action for this job
-            restore_action = {
-                "original_name": job,  # this is the job_id
+            action = {
                 "action": "restore",
                 "backup_name":
                     backup.data_dict['backup_metadata']['backup_name'],
@@ -88,11 +76,26 @@ class Restore(workflows.Workflow):
                 "container":
                     backup.data_dict['backup_metadata']['container'],
                 "restore_from_host": client.hostname,
-                "max_retries": 3,
-                "max_retries_interval": 60,
-                "mandatory": False
+                "storage": "local"
             }
-            return freezer_api.action_create(request, restore_action)
+
+            action_id = freezer_api.action_create_without_job(
+                request, action)
+
+            job = {
+                "job_actions": [{
+                    "action_id": action_id,
+                    "freezer_action": action
+                }],
+                "client_id": client_id,
+                "description": name,
+                "job_schedule": {
+                    "schedule_end_date": None,
+                    "schedule_interval": None,
+                    "schedule_start_date": None
+                }
+            }
+            return freezer_api.job_create(request, job)
         except Exception:
             exceptions.handle(request)
             return False

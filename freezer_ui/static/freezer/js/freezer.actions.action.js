@@ -105,16 +105,16 @@ $("#id_storage").change(function () {
     if ($("#id_storage").val() === 'swift') {
         hideEverything();
         showBackupOptions();
-        $("#id_mode").closest(".form-group").hide();
+        ("#id_mode").closest(".form-group").show();
     } else if ($("#id_storage").val() === 'ssh') {
         hideEverything();
         showBackupOptions();
-        $("#id_mode").closest(".form-group").hide();
+        $("#id_mode").closest(".form-group").show();
         showSSHOptions();
     } else if ($("#id_storage").val() === 'local') {
         hideEverything();
         showBackupOptions();
-        $("#id_mode").closest(".form-group").hide();
+        $("#id_mode").closest(".form-group").show();
     } else {
         hideEverything();
     }

@@ -39,7 +39,7 @@ class ActionConfigurationAction(workflows.Action):
         required=True)
 
     backup_name = forms.CharField(
-        label=_("Backup Name"),
+        label=_("Job Name"),
         required=False)
 
     mysql_conf = forms.CharField(
@@ -240,7 +240,6 @@ class ActionConfiguration(workflows.Step):
                    'dst_file',
                    'remove_older_than',
                    'remove_from_date',
-                   'original_name',
                    'action_id',
                    'storage',
                    'ssh_host',
@@ -324,13 +323,12 @@ class SnapshotConfiguration(workflows.Step):
     contributes = ('use_snapshot',
                    'is_windows',
                    'vssadmin',
-                   # 'lvm_auto_snap',
-                   # 'lvm_srcvol',
-                   # 'lvm_snapname',
-                   # 'lvm_snapsize',
-                   # 'lvm_dirmount',
-                   # 'lvm_volgroup',
-                   )
+                   'lvm_auto_snap',
+                   'lvm_srcvol',
+                   'lvm_snapname',
+                   'lvm_snapsize',
+                   'lvm_dirmount',
+                   'lvm_volgroup',)
 
 
 class AdvancedConfigurationAction(workflows.Action):
@@ -527,8 +525,8 @@ class AdvancedConfigurationAction(workflows.Action):
 
 class AdvancedConfiguration(workflows.Step):
     action_class = AdvancedConfigurationAction
-    contributes = ('log_file',
-                   # 'exclude',
+    contributes = ('exclude',
+                   # 'log_file',
                    # 'proxy',
                    # 'os_auth_ver',
                    # 'upload_limit',
@@ -536,18 +534,17 @@ class AdvancedConfiguration(workflows.Step):
                    # 'optimize',
                    # 'compression',
                    # 'max_segment_size',
-                   # 'hostname',
-                   # 'encryption_password',
-                   # 'no_incremental',
-                   # 'max_level',
-                   # 'always_level',
-                   # 'restart_always_level',
+                   'hostname',
+                   'encryption_password',
+                   'no_incremental',
+                   'max_level',
+                   'always_level',
+                   'restart_always_level',
                    # 'insecure',
-                   # 'dereference_symlink',
+                   'dereference_symlink',
                    # 'dry_run',
-                   # 'max_priority',
-                   # 'quiet',
-                   )
+                   'max_priority',
+                   'quiet',)
 
 
 class RulesConfigurationAction(workflows.Action):
