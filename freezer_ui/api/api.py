@@ -406,7 +406,6 @@ def backups_list(request, offset=0, time_after=None, time_before=None,
 
     # Wrap data in object for easier handling
     backups = [Backup(data) for data in backups]
-
     return backups, has_more
 
 
