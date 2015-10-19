@@ -4,10 +4,6 @@ DASHBOARD = 'freezer_ui'
 # If set to True, this dashboard will not be added to the settings.
 DISABLED = False
 
-# Until there is a more elegant SYSPATH var scheme...
-import sys
-sys.path.append('/opt/stack/freezer')
-
 # A list of applications to be added to INSTALLED_APPS.
 ADD_INSTALLED_APPS = [
     'freezer_ui',
