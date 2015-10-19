@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
 import datetime
 import pprint
 
@@ -27,6 +28,9 @@ from freezer_ui.backups.workflows import restore as restore_workflow
 import freezer_ui.api.api as freezer_api
 
 
+LOG = logging.getLogger(__name__)
+
+
 class IndexView(tables.DataTableView):
     name = _("Backups")
     slug = "backups"
@@ -42,7 +46,6 @@ class DetailView(generic.TemplateView):
     template_name = 'freezer_ui/backups/detail.html'
 
     def get_context_data(self, **kwargs):
-
         backup = freezer_api.backup_get(self.request, kwargs['backup_id'])
         return {'data': pprint.pformat(backup.data_dict)}
 

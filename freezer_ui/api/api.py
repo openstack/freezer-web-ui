@@ -14,10 +14,9 @@
 # from horizon.
 
 
-import warnings
+import logging
 
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
 from horizon.utils import functions as utils
 from horizon.utils.memoized import memoized  # noqa
@@ -35,15 +34,18 @@ from freezer_ui.utils import create_dummy_id
 from freezer_ui.utils import assign_value_from_source
 
 
+LOG = logging.getLogger(__name__)
+
+
 @memoized
 def get_hardcoded_url():
     """Get FREEZER_API_URL from local_settings.py"""
     try:
-        warnings.warn(_('Using hardcoded FREEZER_API_URL at {0}')
-                      .format(settings.FREEZER_API_URL))
+        LOG.warn('Using hardcoded FREEZER_API_URL at {0}'
+                 .format(settings.FREEZER_API_URL))
         return getattr(settings, 'FREEZER_API_URL', None)
     except (AttributeError, TypeError):
-        warnings.warn(_('No FREEZER_API_URL was found in local_settings.py'))
+        LOG.warn('No FREEZER_API_URL was found in local_settings.py')
         raise
 
 

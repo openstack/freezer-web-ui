@@ -11,6 +11,8 @@
 #  under the License.
 
 
+import logging
+
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,6 +21,9 @@ from horizon import exceptions
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
+
+
+LOG = logging.getLogger(__name__)
 
 
 class DestinationAction(workflows.MembershipAction):
