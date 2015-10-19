@@ -142,7 +142,7 @@ def job_get(request, job_id):
 
 
 def job_list(request):
-    jobs = _freezerclient(request).jobs.list_all()
+    jobs = _freezerclient(request).jobs.list_all(limit=100)
     job_list = []
     for j in jobs:
         description = j['description']
@@ -174,7 +174,7 @@ def action_create(request, context):
 
 
 def action_list(request):
-    actions = _freezerclient(request).actions.list()
+    actions = _freezerclient(request).actions.list(limit=100)
     actions = [Action(data) for data in actions]
     return actions
 
@@ -257,7 +257,7 @@ def action_delete(request, ids):
 
 
 def client_list(request):
-    clients = _freezerclient(request).registration.list()
+    clients = _freezerclient(request).registration.list(limit=100)
     clients = [Client(c['uuid'],
                       c['client']['hostname'],
                       c['client']['client_id'])
@@ -267,7 +267,7 @@ def client_list(request):
 
 def client_list_json(request):
     """Return a list of clients directly form the api in json format"""
-    clients = _freezerclient(request).registration.list()
+    clients = _freezerclient(request).registration.list(limit=100)
     return clients
 
 
@@ -336,7 +336,7 @@ def session_delete(request, session_id):
 
 def session_list(request):
     """List all sessions """
-    sessions = _freezerclient(request).sessions.list_all()
+    sessions = _freezerclient(request).sessions.list_all(limit=100)
     sessions = [Session(s['session_id'],
                         s['description'],
                         s['status'],
@@ -395,7 +395,6 @@ def backups_list(request, offset=0, time_after=None, time_before=None,
 
     # Wrap data in object for easier handling
     backups = [Backup(data) for data in backups]
-
     return backups, has_more
 
 
