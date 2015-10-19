@@ -62,7 +62,7 @@ def get_service_url(request):
     for c in catalog:
         if c['name'] == 'freezer':
             for e in c['endpoints']:
-                return e['publicURL']
+                return e['internalURL']
     else:
         return get_hardcoded_url()
 
