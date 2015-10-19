@@ -10,6 +10,8 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
+
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse_lazy
@@ -24,6 +26,9 @@ import freezer_ui.jobs.browsers as project_browsers
 from freezer_ui.utils import create_dict_action
 import workflows.configure as configure_workflow
 import workflows.action as action_workflow
+
+
+LOG = logging.getLogger(__name__)
 
 
 class JobWorkflowView(workflows.WorkflowView):

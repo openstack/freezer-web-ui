@@ -10,6 +10,8 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
+
 from collections import namedtuple
 import datetime
 
@@ -22,6 +24,9 @@ from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
 from freezer_ui.utils import actions_in_job
+
+
+LOG = logging.getLogger(__name__)
 
 
 class ActionsConfigurationAction(workflows.Action):

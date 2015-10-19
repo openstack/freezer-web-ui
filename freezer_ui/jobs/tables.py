@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
 import datetime
 from django import shortcuts
 from django.utils import safestring
@@ -22,6 +23,9 @@ from horizon.utils.urlresolvers import reverse
 
 import freezer_ui.api.api as freezer_api
 from freezer_ui.utils import timestamp_to_string
+
+
+LOG = logging.getLogger(__name__)
 
 
 def format_last_backup(last_backup):

@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
 import datetime
 
 from django.utils.translation import ugettext_lazy as _
@@ -19,6 +20,9 @@ from horizon import forms
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
+
+
+LOG = logging.getLogger(__name__)
 
 
 class SessionConfigurationAction(workflows.Action):
