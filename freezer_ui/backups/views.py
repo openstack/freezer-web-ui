@@ -38,16 +38,27 @@ class IndexView(tables.DataTableView):
     template_name = "freezer_ui/backups/index.html"
 
     def get_data(self):
-        backups, self._has_more = freezer_api.backups_list(self.request)
-        return backups
+        try:
+            backups, self._has_more = freezer_api.backups_list(self.request)
+            return backups
+        except Exception:
+            redirect = reverse("horizon:freezer_ui:backups:index")
+            msg = _('Unable to retrieve backups.')
+            exceptions.handle(self.request, msg, redirect=redirect)
 
 
 class DetailView(generic.TemplateView):
     template_name = 'freezer_ui/backups/detail.html'
 
     def get_context_data(self, **kwargs):
-        backup = freezer_api.backup_get(self.request, kwargs['backup_id'])
-        return {'data': pprint.pformat(backup.data_dict)}
+        try:
+            backup = freezer_api.backup_get(self.request,
+                                            kwargs['backup_id'])
+            return {'data': pprint.pformat(backup.data_dict)}
+        except Exception:
+            redirect = reverse("horizon:freezer_ui:backups:index")
+            msg = _('Unable to retrieve backup.')
+            exceptions.handle(self.request, msg, redirect=redirect)
 
 
 class RestoreView(workflows.WorkflowView):
@@ -66,19 +77,30 @@ class RestoreView(workflows.WorkflowView):
         return 'name' in self.kwargs and bool(self.kwargs['name'])
 
     def get_workflow_name(self):
-        backup_id = self.kwargs['backup_id']
-        backup = freezer_api.backup_get(self.request, backup_id)
-        backup_date = datetime.datetime.fromtimestamp(
-            int(backup.data_dict['backup_metadata']['time_stamp']))
-        backup_date_str = django_date(backup_date, 'SHORT_DATETIME_FORMAT')
-        return "Restore '{}' from {}".format(
-            backup.data_dict['backup_metadata']['backup_name'],
-            backup_date_str)
+        try:
+            backup_id = self.kwargs['backup_id']
+            backup = freezer_api.backup_get(self.request, backup_id)
+            backup_date = datetime.datetime.fromtimestamp(
+                int(backup.data_dict['backup_metadata']['time_stamp']))
+            backup_date_str = django_date(backup_date,
+                                          'SHORT_DATETIME_FORMAT')
+            return "Restore '{}' from {}".format(
+                backup.data_dict['backup_metadata']['backup_name'],
+                backup_date_str)
+        except Exception:
+            redirect = reverse("horizon:freezer_ui:backups:index")
+            msg = _('Unable to retrieve backups.')
+            exceptions.handle(self.request, msg, redirect=redirect)
 
     def get_initial(self):
         return {"backup_id": self.kwargs['backup_id']}
 
     def get_workflow(self, *args, **kwargs):
-        workflow = super(RestoreView, self).get_workflow(*args, **kwargs)
-        workflow.name = self.get_workflow_name()
-        return workflow
+        try:
+            workflow = super(RestoreView, self).get_workflow(*args, **kwargs)
+            workflow.name = self.get_workflow_name()
+            return workflow
+        except Exception:
+            redirect = reverse("horizon:freezer_ui:backups:index")
+            msg = _('Unable to retrieve backups.')
+            exceptions.handle(self.request, msg, redirect=redirect)

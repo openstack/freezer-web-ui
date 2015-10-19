@@ -7,20 +7,22 @@ Requirements
 
 Freezer Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
 
-    git clone https://github.com/stackforge/freezer
+    pip install parsedatetime>=1.4
+    git clone https://github.com/openstack/freezer
     cd freezer
-    python setup.py install (is important that freezer is installed from source and not with pip)
+    python setup.py install (is important that freezer is installed from source and not with pip and
+                             is installed on horizon virtual environment)
 
 Freezer Dashboard requires a freezer API endpoint which you can install following this steps::
 
-    https://github.com/stackforge/freezer-api/blob/master/README.rst
+    https://github.com/openstack/freezer-api/blob/master/README.rst
 
 API registration
 ================
 
 Register freezer api endpoint::
 
-    https://github.com/stackforge/freezer-api/blob/master/README.rst#3-api-registration
+    https://github.com/openstack/freezer-api/blob/master/README.rst#3-api-registration
 
 If keystone service-create and endpoint-create are not available you can set as a fallback the following on::
 
@@ -38,7 +40,7 @@ directory is /opt/stack/horizon/openstack_dashboard/dashboards/.
 
 To install freezer dashboard for development you need to do the following::
 
-    # git clone https://github.com/stackforge/freezer-web-ui
+    # git clone https://github.com/openstack/freezer-web-ui
 
     # cd freezer-web-ui
 
@@ -59,13 +61,11 @@ Production Installation
 
 To deploy freezer dashboard in production you need to do the following::
 
-    # git clone https://github.com/stackforge/freezer-web-ui
+    # git clone https://github.com/openstack/freezer-web-ui
 
     # cd freezer-web-ui
 
     # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/
-
-    # modify _50_freezer.py (line 9) and point the path to the freezer repo.
 
     # restart apache2 service
 
