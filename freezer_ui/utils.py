@@ -87,6 +87,7 @@ class Client(object):
         self.uuid = uuid
         self.hostname = hostname
         self.client_id = client_id
+        self.id = client_id
 
 
 class ActionJob(object):

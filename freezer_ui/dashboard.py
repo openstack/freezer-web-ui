@@ -18,7 +18,7 @@ import horizon
 class FreezerDR(horizon.PanelGroup):
     slug = "freezerdr"
     name = _("Backup and Restore")
-    panels = ('jobs', 'sessions', 'backups')
+    panels = ('jobs', 'sessions', 'backups', 'clients')
 
 
 class Freezer(horizon.Dashboard):
