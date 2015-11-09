@@ -12,21 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Defaults
-# --------
+"""
+URL patterns for the OpenStack Dashboard.
+"""
 
-# Set up default directories
-FREEZER_WEB_UI_DIR=$DEST/freezer-web-ui
-FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
+from django.conf.urls import patterns
+from django.conf.urls import url
 
-# Freezer Web UI repository
-FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
-FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
+import rest_api
 
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
-
-
-enable_service freezer-web-ui freezer-client
+urlpatterns = patterns(
+    '',
+    url(r'^api/clients$', rest_api.Clients.as_view(), name="api_clients"),
+    url(r'^api/actions$', rest_api.ActionList.as_view(), name="api_actions"),
+    url(r'^api/actions/job/(?P<job_id>[^/]+)?$',
+        rest_api.Actions.as_view(), name="api_actions_in_job"),
+)

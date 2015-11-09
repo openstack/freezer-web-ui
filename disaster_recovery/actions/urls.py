@@ -12,21 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Defaults
-# --------
 
-# Set up default directories
-FREEZER_WEB_UI_DIR=$DEST/freezer-web-ui
-FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
+from django.conf.urls import patterns
+from django.conf.urls import url
 
-# Freezer Web UI repository
-FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
-FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
-
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
+from disaster_recovery.actions import views
 
 
-enable_service freezer-web-ui freezer-client
+urlpatterns = patterns(
+    '',
+    url(r'^$', views.IndexView.as_view(), name='index'),
+
+    url(r'^create/(?P<action_id>[^/]+)?$',
+        views.ActionWorkflowView.as_view(),
+        name='create'),
+
+    url(r'^action/(?P<action_id>[^/]+)?$',
+        views.ActionView.as_view(),
+        name='action'),
+)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  {% include "_stylesheets.html" %}
+{% endblock css %}
+
+{% load i18n %}
+{% block title %}{% trans "Actions" %}{% endblock title %}
+
+{% block page_header %}
+  {% include "horizon/common/_page_header.html" with title=_("Actions") %}
+{% endblock page_header %}
+
+{% block main %}
+  {{ table.render }}
+{% endblock main %}

@@ -15,7 +15,7 @@ where::
 
 For example::
 
-    enable_plugin freezer-web-ui https://github.com/stackforge/freezer-web-ui.git master
+    enable_plugin freezer-web-ui https://github.com/openstack/freezer-web-ui.git master
 
 For more information, see:
  http://docs.openstack.org/developer/devstack/plugins.html

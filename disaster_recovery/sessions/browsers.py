@@ -12,21 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Defaults
-# --------
+from django.utils.translation import ugettext_lazy as _
 
-# Set up default directories
-FREEZER_WEB_UI_DIR=$DEST/freezer-web-ui
-FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
+from disaster_recovery.sessions import tables
 
-# Freezer Web UI repository
-FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
-FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
-
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
+from horizon import browsers
 
 
-enable_service freezer-web-ui freezer-client
+class SessionBrowser(browsers.ResourceBrowser):
+    name = "session_configuration"
+    verbose_name = _("Session Configuration")
+    navigation_table_class = tables.SessionsTable
+    content_table_class = tables.JobsTable
+    navigable_item_name = _("Sessions")
+    navigation_kwarg_name = "session_id"

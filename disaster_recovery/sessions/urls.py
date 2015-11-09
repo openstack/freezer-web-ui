@@ -12,21 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Defaults
-# --------
+from django.conf.urls import patterns
+from django.conf.urls import url
 
-# Set up default directories
-FREEZER_WEB_UI_DIR=$DEST/freezer-web-ui
-FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
-
-# Freezer Web UI repository
-FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
-FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
-
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
+from disaster_recovery.sessions import views
 
 
-enable_service freezer-web-ui freezer-client
+urlpatterns = patterns(
+    '',
+
+    url(r'^(?P<session_id>[^/]+)?$',
+        views.SessionsView.as_view(),
+        name='index'),
+
+    url(r'^attach_to_session/(?P<job_id>[^/]+)?$',
+        views.AttachToSessionWorkflow.as_view(),
+        name='attach'),
+
+    url(r'^create/$',
+        views.CreateSessionWorkflow.as_view(),
+        name='create'),
+
+    url(r'^edit/(?P<session_id>[^/]+)?$',
+        views.CreateSessionWorkflow.as_view(),
+        name='edit'),
+
+)

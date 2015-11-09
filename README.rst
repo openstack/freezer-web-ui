@@ -2,6 +2,13 @@
 Freezer - Horizon Dashboard
 ===========================
 
+freezer-web-ui is a horizon plugin based in django aimed at providing an interaction
+with freezer
+
+* Release management: https://launchpad.net/freezer-web-ui
+* Blueprints and feature specifications: https://blueprints.launchpad.net/freezer-web-ui
+* Issue tracking: https://bugs.launchpad.net/freezer-web-ui
+
 Requirements
 ============
 
@@ -73,39 +80,8 @@ To deploy freezer dashboard in production you need to do the following::
 A new tab called "Disaster Recovery" will be on your panels.
 
 
-Running the unit tests
-======================
-
-1. Create a virtual environment::
-
-    virtualenv --no-site-packages -p /usr/bin/python2.7 .venv
-
-2. Activate the virtual environment::
-
-    . ./.venv/bin/activate
-
-3. Install the requirements::
-
-    pip install -r test-requirements.txt
-
-4. Run the tests::
-
-    python manage.py test . --settings=freezer_ui.tests.settings
-
-Test coverage
--------------
-
-1. Collect coverage information::
-
-    coverage run --source='.' --omit='.venv/*' manage.py test . --settings=freezer_ui.tests.settings
-
-2. View coverage report::
-
-    coverage report
-
-
 Tox
----
+===
 
 1. Run tox::
 

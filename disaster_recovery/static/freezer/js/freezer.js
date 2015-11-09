@@ -1,3 +1,4 @@
+/*
 # (c) Copyright 2014,2015 Hewlett-Packard Development Company, L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,22 +12,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+*/
 
-# Defaults
-# --------
+/*global angular*/
 
-# Set up default directories
-FREEZER_WEB_UI_DIR=$DEST/freezer-web-ui
-FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
+(function () {
+    'use strict';
+    angular.module('hz').controller('DestinationCtrl', function ($scope, $http, $location) {
+        $scope.query = '';
 
-# Freezer Web UI repository
-FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
-FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
-
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
-
-
-enable_service freezer-web-ui freezer-client
+        $http.get($location.protocol() + "://" + $location.host() + ":" + $location.port() + "/disaster_recovery/api/clients").
+            success(function (data) {
+                $scope.clients = data;
+            });
+        $scope.searchComparator = function (actual, expected) {
+            return actual.description.indexOf(expected) > 0;
+        };
+    });
+}());

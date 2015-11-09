@@ -1,0 +1,9 @@
+.fa-custom-number {
+    font-family: monospace;
+    line-height: 1;
+    padding: 0.1em;
+    vertical-align: baseline;
+    font-weight: bold;
+    border: 1px solid #999;
+    border-radius: 25%;
+}
