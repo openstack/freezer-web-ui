@@ -388,6 +388,7 @@ class Action(object):
         utils.assign_and_remove(action, action_rules, 'max_retries_interval')
         utils.assign_and_remove(action, action_rules, 'mandatory')
         action = utils.create_dict(**action)
+        action.pop('action_id', None)
         action = {'freezer_action': action}
         return self.client.actions.create(action)
 

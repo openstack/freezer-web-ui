@@ -68,9 +68,10 @@ class ActionWorkflowView(workflows.WorkflowView):
                 self.kwargs['action_id'], json=True)
             initial.update(**action['freezer_action'])
             initial.update({
-                "mandatory": action['mandatory'],
-                "max_retries": action['max_retries'],
-                "max_retries_interval": action['max_retries_interval']
+                "mandatory": action.get('mandatory', None),
+                "max_retries": action.get('max_retries', None),
+                "max_retries_interval":
+                    action.get('max_retries_interval', None)
             })
             initial.update({'action_id': action['action_id']})
         return initial
