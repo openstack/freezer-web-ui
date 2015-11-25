@@ -129,7 +129,9 @@ class BackupObject(object):
                  backup_name=None, backup_media=None, path_to_backup=None,
                  hostname=None, level=None, container=None,
                  curr_backup_level=None, encrypted=None,
-                 total_broken_links=None, excluded_files=None):
+                 total_broken_links=None, excluded_files=None, storage=None,
+                 ssh_host=None, ssh_key=None, ssh_username=None,
+                 ssh_port=None, mode=None):
         self.backup_id = backup_id
         self.id = backup_id
         self.backup_name = backup_name
@@ -144,6 +146,12 @@ class BackupObject(object):
         self.encrypted = encrypted
         self.total_broken_links = total_broken_links or 0
         self.excluded_files = excluded_files
+        self.storage = storage
+        self.ssh_host = ssh_host
+        self.ssh_key = ssh_key
+        self.ssh_username = ssh_username
+        self.ssh_port = ssh_port or 22
+        self.mode = mode or 'fs'
 
 
 class ClientObject(object):
