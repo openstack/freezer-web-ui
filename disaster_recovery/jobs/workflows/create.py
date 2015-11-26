@@ -67,7 +67,7 @@ class ClientsConfigurationAction(workflows.MembershipAction):
 
         field_name = self.get_member_field_name('member')
         if not job_id:
-            self.fields[field_name] = forms.MultipleChoiceField(required=False)
+            self.fields[field_name] = forms.MultipleChoiceField(required=True)
             self.fields[field_name].choices = client_list
 
     class Meta:
@@ -80,7 +80,7 @@ class ClientsConfiguration(workflows.UpdateMembersStep):
     help_text = _("From here you can add and remove clients to "
                   "this job from the list of available clients")
     available_list_title = _("All Clients")
-    members_list_title = _("Available clients")
+    members_list_title = _("Selected Clients")
     no_available_text = _("No clients found.")
     no_members_text = _("No clients selected.")
     show_roles = False
