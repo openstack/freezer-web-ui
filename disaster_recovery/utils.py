@@ -73,13 +73,13 @@ class SessionObject(object):
 
 
 class JobObject(object):
-    def __init__(self, job_id, description, result, event, client_id=None):
+    def __init__(self, job_id, description, result, event, client_id='_'):
         self.job_id = job_id
         self.id = job_id
         self.description = description
         self.result = result or 'pending'
         self.event = event or 'stop'
-        self.client_id = client_id
+        self.client_id = client_id.split('_')[1]
 
 
 class JobsInSessionObject(object):

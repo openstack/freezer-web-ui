@@ -87,6 +87,7 @@ class Job(object):
             job.get('description'),
             job.get('job_schedule', {}).get('result'),
             job.get('job_schedule', {}).get('event'),
+            job.get('client_id')
         ) for job in jobs]
 
     def get(self, job_id, json=False):
@@ -99,7 +100,8 @@ class Job(object):
             job.get('job_id'),
             job.get('description'),
             job.get('job_schedule', {}).get('result'),
-            job.get('job_schedule', {}).get('event'))
+            job.get('job_schedule', {}).get('event'),
+            job.get('client_id'))
 
     def create(self, job):
         return self._build(job)
@@ -333,7 +335,7 @@ class Action(object):
             action['freezer_action'].get('backup_name'),
             action['freezer_action'].get('path_to_backup')
             or action['freezer_action'].get('restore_abs_path'),
-            action['freezer_action'].get('storage'),
+            action['freezer_action'].get('storage')
         ) for action in actions]
 
     def get(self, job_id, json=False):

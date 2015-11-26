@@ -5,16 +5,15 @@ Freezer - Horizon Dashboard
 freezer-web-ui is a horizon plugin based in django aimed at providing an interaction
 with freezer
 
-* Release management: https://launchpad.net/freezer-web-ui
-* Blueprints and feature specifications: https://blueprints.launchpad.net/freezer-web-ui
-* Issue tracking: https://bugs.launchpad.net/freezer-web-ui
+* Release management: https://launchpad.net/freezer
+* Blueprints and feature specifications: https://blueprints.launchpad.net/freezer
+* Issue tracking: https://bugs.launchpad.net/freezer
 
 Requirements
 ============
 
 Freezer Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
 
-    pip install parsedatetime>=1.4
     git clone https://github.com/openstack/freezer
     cd freezer
     python setup.py install (is important that freezer is installed from source and not with pip and
@@ -51,9 +50,7 @@ To install freezer dashboard for development you need to do the following::
 
     # cd freezer-web-ui
 
-    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled
-    
-    # modify _50_freezer.py (line 9) and point the path to the freezer repo.
+    # cp _50_freezer.py.example  /opt/stack/horizon/openstack_dashboard/enabled/_50_freezer.py
 
     # cd /opt/stack/horizon/
 
@@ -72,12 +69,14 @@ To deploy freezer dashboard in production you need to do the following::
 
     # cd freezer-web-ui
 
-    # cp _50_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/
+    # cp _50_freezer.py.example  /opt/stack/horizon/openstack_dashboard/enabled/_50_freezer.py
+
+    # make sure freezer is installed from source as detailed in the first step
 
     # restart apache2 service
 
 
-A new tab called "Disaster Recovery" will be on your panels.
+A new tab called "Disaster Recovery" will appear on your panels.
 
 
 Tox
