@@ -464,6 +464,12 @@ class Backup(object):
             total_broken_links=b.get('backup_metadata', {}).get(
                 'total_broken_links'),
             excluded_files=b.get('backup_metadata', {}).get('excluded_files'),
+            storage=b.get('backup_metadata', {}).get('storage'),
+            ssh_host=b.get('backup_metadata', {}).get('ssh_host'),
+            ssh_key=b.get('backup_metadata', {}).get('ssh_key'),
+            ssh_username=b.get('backup_metadata', {}).get('ssh_username'),
+            ssh_port=b.get('backup_metadata', {}).get('ssh_port'),
+            mode=b.get('backup_metadata', {}).get('ssh_mode'),
         ) for b in backups]
 
     def get(self, backup_id, json=False):
@@ -492,21 +498,33 @@ class Backup(object):
             total_broken_links=b.get('backup_metadata', {}).get(
                 'total_broken_links'),
             excluded_files=b.get('backup_metadata', {}).get('excluded_files'),
+            storage=b.get('backup_metadata', {}).get('storage'),
+            ssh_host=b.get('backup_metadata', {}).get('ssh_host'),
+            ssh_key=b.get('backup_metadata', {}).get('ssh_key'),
+            ssh_username=b.get('backup_metadata', {}).get('ssh_username'),
+            ssh_port=b.get('backup_metadata', {}).get('ssh_port'),
+            mode=b.get('backup_metadata', {}).get('ssh_mode'),
         )
 
     def restore(self, data):
         backup = self.get(data['backup_id'])
         client_id = data['client']
-        name = "Restore job for {0}".format(client_id)
-        # TODO(m3m0): change storage to be flexible
+        name = "Restore {0} for {1}".format(backup.backup_name, client_id)
+
         action = {
             'action': 'restore',
             'backup_name': backup.backup_name,
             'restore_abs_path': data['path'],
             'container': backup.container,
             'restore_from_host': backup.hostname,
-            'storage': 'local'
+            'storage': backup.storage
         }
+
+        if backup.storage == 'ssh':
+            action['ssh_host'] = backup.ssh_host
+            action['ssh_key'] = backup.ssh_key
+            action['ssh_username'] = backup.ssh_username
+            action['ssh_port'] = backup.ssh_port
 
         action_id = Action(self.request).create(action)
 
