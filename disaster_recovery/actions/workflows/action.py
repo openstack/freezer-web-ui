@@ -177,12 +177,12 @@ class ActionConfigurationAction(workflows.Action):
 
     def _check_container(self, cleaned_data):
         if not cleaned_data.get('container'):
-            msg = _("You must define a container.")
+            msg = _("You must define a container or path to backup.")
             self._errors['container'] = self.error_class([msg])
 
     def _check_backup_name(self, cleaned_data):
         if not cleaned_data.get('backup_name'):
-            msg = _("You must define an backup name.")
+            msg = _("You must define a job name.")
             self._errors['backup_name'] = self.error_class([msg])
 
     def _check_path_to_backup(self, cleaned_data):

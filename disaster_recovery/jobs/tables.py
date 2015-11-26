@@ -142,13 +142,16 @@ class CreateJob(tables.LinkAction):
 class JobsTable(tables.DataTable):
     job_name = tables.Column("description",
                              link=get_link,
-                             verbose_name=_("Job Name"))
+                             verbose_name=_("Name"))
+
+    client_id = tables.Column("client_id",
+                              verbose_name=_("Host"))
 
     event = tables.Column("event",
-                          verbose_name=_("Job Status"))
+                          verbose_name=_("Status"))
 
     result = tables.Column("result",
-                           verbose_name=_("Job Result"))
+                           verbose_name=_("Result"))
 
     def get_object_id(self, row):
         return row.id

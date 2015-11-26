@@ -53,13 +53,13 @@ if (job_id !== "") {
             $.each(data.available, function (index, item) {
                 $("#actions_available").append(
                     "<li class='list-group-item' id=" + item.action_id + ">" +
-                        item.freezer_action.backup_name + "</li>"
+                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
                 );
             });
             $.each(data.selected, function (index, item) {
                 $("#actions_selected").append(
                     "<li class='list-group-item' id=" + item.action_id + ">" +
-                        item.freezer_action.backup_name + "</li>"
+                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
                 );
             });
         },
@@ -82,8 +82,7 @@ if (job_id !== "") {
             $.each(data, function (index, item) {
                 $("#actions_available").append(
                     "<li class='list-group-item' id=" + item.action_id + ">" +
-                        item.freezer_action.backup_name +
-                        "</li>"
+                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
                 );
             });
         },
