@@ -44,7 +44,8 @@ class InfoAction(workflows.Action):
     job_id = forms.CharField(label=_("Job ID"), required=False,
                              widget=forms.HiddenInput(),)
     actions = forms.CharField(label=_("Actions"), required=False,
-                              widget=forms.HiddenInput(),)
+                              widget=forms.TextInput(
+                                  attrs={'readonly': 'readonly'}))
 
     def __init__(self, request, *args, **kwargs):
         super(InfoAction, self).__init__(request, *args, **kwargs)
@@ -68,7 +69,7 @@ class ConfigureActions(workflows.Workflow):
     success_message = _('Actions saved correctly.')
     failure_message = _('Unable to save actions.')
     success_url = "horizon:disaster_recovery:jobs:index"
-    default_steps = (ActionsConfiguration, Info,)
+    default_steps = (ActionsConfiguration, Info)
 
     def handle(self, request, context):
         try:

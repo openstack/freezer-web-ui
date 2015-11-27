@@ -391,6 +391,10 @@ class Action(object):
         utils.assign_and_remove(action, action_rules, 'mandatory')
         action = utils.create_dict(**action)
         action.pop('action_id', None)
+        # if the backup name has spaces the tar metadata file cannot be found
+        # so we replace " " for "_"
+        backup_name = action.pop('backup_name', None)
+        action['backup_name'] = backup_name.replace(' ', '_')
         action = {'freezer_action': action}
         return self.client.actions.create(action)
 

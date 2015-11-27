@@ -96,6 +96,7 @@ class ActionsTable(tables.DataTable):
     path_to_backup = tables.Column('path_to_backup',
                                    verbose_name=_("Path To Backup or Restore"))
     storage = tables.Column('storage', verbose_name=_("Storage"))
+    mode = tables.Column('mode', verbose_name=_("Mode"))
 
     class Meta:
         name = "actions_table"
