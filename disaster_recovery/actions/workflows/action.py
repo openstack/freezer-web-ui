@@ -159,6 +159,12 @@ class ActionConfigurationAction(workflows.Action):
         cleaned_data = super(ActionConfigurationAction, self).clean()
 
         if cleaned_data.get('action') == 'backup':
+            if cleaned_data.get('mode') == 'cinder' \
+                    or cleaned_data.get('mode') == 'nova':
+                self._check_container(cleaned_data)
+                self._check_backup_name(cleaned_data)
+                return cleaned_data
+
             self._check_container(cleaned_data)
             self._check_backup_name(cleaned_data)
             self._check_path_to_backup(cleaned_data)
@@ -268,46 +274,6 @@ class SnapshotConfigurationAction(workflows.Action):
         widget=forms.CheckboxInput(),
         required=False)
 
-    lvm_auto_snap = forms.CharField(
-        label=_("LVM Auto Snapshot"),
-        help_text=_("Automatically guess the volume group and "
-                    "volume name for given PATH."),
-        required=False)
-
-    lvm_srcvol = forms.CharField(
-        label=_("Set The Volume For Snapshot"),
-        help_text=_("Set the lvm volume you want to take a "
-                    "snapshot from. Default no volume"),
-        required=False)
-
-    lvm_snapname = forms.CharField(
-        label=_("Set A Snapshot Name"),
-        help_text=_("Set the lvm snapshot name to use. "
-                    "If the snapshot name already exists, "
-                    "the old one will be used a no new one "
-                    "will be created. Default freezer_backup_snap."),
-        required=False)
-
-    lvm_snapsize = forms.CharField(
-        label=_("Snapshot Size"),
-        help_text=_("Set the lvm snapshot size when creating "
-                    "a new snapshot. Please add G for Gigabytes "
-                    "or M for Megabytes, i.e. 500M or 8G. Default 5G."),
-        required=False)
-
-    lvm_dirmount = forms.CharField(
-        label=_("Snapshot Directory"),
-        help_text=_("Set the directory you want to mount "
-                    "the lvm snapshot to. Default not set"),
-        required=False)
-
-    lvm_volgroup = forms.CharField(
-        label=_("Volume Group"),
-        help_text=_("Specify the volume group of your logical volume."
-                    "This is important to mount your snapshot volume."
-                    "Default not set"),
-        required=False)
-
     class Meta(object):
         name = _("Snapshot")
         help_text_template = "disaster_recovery/jobs" \
@@ -318,12 +284,7 @@ class SnapshotConfiguration(workflows.Step):
     action_class = SnapshotConfigurationAction
     contributes = ('use_snapshot',
                    'is_windows',
-                   'lvm_auto_snap',
-                   'lvm_srcvol',
-                   'lvm_snapname',
-                   'lvm_snapsize',
-                   'lvm_dirmount',
-                   'lvm_volgroup',)
+                   'is_linux')
 
 
 class AdvancedConfigurationAction(workflows.Action):
@@ -582,16 +543,16 @@ class ActionWorkflow(workflows.Workflow):
         try:
             if context['is_windows']:
                 client_os = 'Windows'
-                context.pop('is_windows')
             else:
                 client_os = 'Linux'
-                context.pop('is_windows')
 
             if context['use_snapshot'] and client_os == 'Windows':
                 context['vssadmin'] = True
                 context.pop('use_snapshot')
+            elif context['use_snapshot'] and client_os == 'Linux':
+                context['snapshot'] = True
+                context.pop('use_snapshot')
             else:
-                context['vssadmin'] = False
                 context.pop('use_snapshot')
 
             if context['action_id'] == '':
