@@ -45,7 +45,7 @@ class ActionConfigurationAction(workflows.Action):
         required=True)
 
     backup_name = forms.CharField(
-        label=_("Job Name"),
+        label=_("Action Name"),
         required=False)
 
     mysql_conf = forms.CharField(
@@ -188,7 +188,7 @@ class ActionConfigurationAction(workflows.Action):
 
     def _check_backup_name(self, cleaned_data):
         if not cleaned_data.get('backup_name'):
-            msg = _("You must define a job name.")
+            msg = _("You must define an action name.")
             self._errors['backup_name'] = self.error_class([msg])
 
     def _check_path_to_backup(self, cleaned_data):
