@@ -29,75 +29,7 @@ import disaster_recovery.api.api as freezer_api
 LOG = logging.getLogger(__name__)
 
 
-class ActionsConfigurationAction(workflows.Action):
-    pass
-
-    class Meta(object):
-        name = _("Actions")
-        slug = "actions"
-        help_text_template = "disaster_recovery/jobs" \
-                             "/_actions.html"
-
-
-class ActionsConfiguration(workflows.Step):
-    action_class = ActionsConfigurationAction
-    contributes = ('actions',)
-
-
-class ClientsConfigurationAction(workflows.MembershipAction):
-    def __init__(self, request, *args, **kwargs):
-        super(ClientsConfigurationAction, self).__init__(request,
-                                                         *args,
-                                                         **kwargs)
-        err_msg = _('Unable to retrieve client list.')
-
-        job_id = args[0].get('job_id', None)
-
-        default_role_name = self.get_default_role_field_name()
-        self.fields[default_role_name] = forms.CharField(required=False)
-        self.fields[default_role_name].initial = 'member'
-
-        all_clients = []
-        try:
-            all_clients = freezer_api.Client(request).list()
-        except Exception:
-            exceptions.handle(request, err_msg)
-        client_list = [(c.uuid, c.hostname)
-                       for c in all_clients]
-
-        field_name = self.get_member_field_name('member')
-        if not job_id:
-            self.fields[field_name] = forms.MultipleChoiceField(required=True)
-            self.fields[field_name].choices = client_list
-
-    class Meta:
-        name = _("Clients")
-        slug = 'selected_clients'
-
-
-class ClientsConfiguration(workflows.UpdateMembersStep):
-    action_class = ClientsConfigurationAction
-    help_text = _("From here you can add and remove clients to "
-                  "this job from the list of available clients")
-    available_list_title = _("All Clients")
-    members_list_title = _("Selected Clients")
-    no_available_text = _("No clients found.")
-    no_members_text = _("No clients selected.")
-    show_roles = False
-    contributes = ("clients",)
-
-    def contribute(self, data, context):
-        request = self.workflow.request
-        if data:
-            field_name = self.get_member_field_name('member')
-            context["clients"] = request.POST.getlist(field_name)
-        return context
-
-
 class InfoConfigurationAction(workflows.Action):
-    actions = forms.CharField(
-        widget=forms.HiddenInput(),
-        required=False)
 
     description = forms.CharField(
         label=_("Job Name"),
@@ -141,22 +73,10 @@ class InfoConfigurationAction(workflows.Action):
             return False
 
     def _check_start_datetime(self, cleaned_data):
-        if cleaned_data.get('schedule_start_date') and not \
+        if cleaned_data.get('start_datetime') and not \
                 self._validate_iso_format(
                     cleaned_data.get('schedule_start_date')):
             msg = _("Start date time is not in ISO format.")
-            self._errors['schedule_start_date'] = self.error_class([msg])
-
-        if (cleaned_data.get('schedule_start_date') and
-                cleaned_data.get('schedule_end_date')) and\
-                not cleaned_data.get('schedule_interval'):
-            msg = _("Please provide this value.")
-            self._errors['schedule_interval'] = self.error_class([msg])
-
-        if (cleaned_data.get('schedule_end_date') and
-                not cleaned_data.get('schedule_start_date')) and\
-                not cleaned_data.get('schedule_interval'):
-            msg = _("Please provide this value.")
             self._errors['schedule_start_date'] = self.error_class([msg])
 
     def _check_end_datetime(self, cleaned_data):
@@ -183,23 +103,19 @@ class InfoConfiguration(workflows.Step):
                    'schedule_end_date')
 
 
-class ConfigureJob(workflows.Workflow):
-    slug = "job"
-    name = _("Job Configuration")
+class UpdateJob(workflows.Workflow):
+    slug = "update_job"
+    name = _("Update Job")
     finalize_button_name = _("Save")
     success_message = _('Job created correctly.')
     failure_message = _('Unable to created job.')
     success_url = "horizon:disaster_recovery:jobs:index"
-    default_steps = (InfoConfiguration,
-                     ClientsConfiguration,
-                     ActionsConfiguration)
+    default_steps = (InfoConfiguration,)
 
     def handle(self, request, context):
         try:
             if context['job_id'] != '':
                 freezer_api.Job(request).update(context['job_id'], context)
-            else:
-                freezer_api.Job(request).create(context)
             return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
         except Exception:
             exceptions.handle(request)

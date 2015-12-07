@@ -14,7 +14,7 @@ var parent = $(".sortable_lists").parent();
 parent.removeClass("col-sm-6");
 parent.addClass("col-sm-12");
 var siblings = parent.siblings();
-siblings.remove();
+siblings.hide();
 
 
 $("form").submit(function (event) {
@@ -28,6 +28,7 @@ $("form").submit(function (event) {
 
 
 var job_id = $('#id_job_id').val();
+
 
 function get_url() {
     var url = $(location).attr("origin");

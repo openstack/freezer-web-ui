@@ -75,31 +75,33 @@ function showRestoreOptions() {
     $("#id_storage").closest(".form-group").show();
 }
 
-function showNovaOptions() {
-    $("#id_mode").closest(".form-group").show();
-    $("#id_nova_inst_id").closest(".form-group").show();
-    $("#id_backup_name").closest(".form-group").show();
-    $("#id_container").closest(".form-group").show();
-}
-
-function showCinderOptions() {
-    $("#id_mode").closest(".form-group").show();
-    $("#id_cinder_vol_id").closest(".form-group").show();
-    $("#id_backup_name").closest(".form-group").show();
-    $("#id_container").closest(".form-group").show();
-}
-
 function showSSHOptions() {
     $("#id_ssh_key").closest(".form-group").show();
     $("#id_ssh_username").closest(".form-group").show();
     $("#id_ssh_host").closest(".form-group").show();
 }
 
-hideEverything();
+function triggerChanges() {
+    $("#id_action").trigger('change');
+    $("#id_mode").trigger('change');
+    $("#id_storage").trigger('change');
+}
+
+function hideModeOptions() {
+    $("#id_cinder_vol_id").closest(".form-group").hide();
+    $("#id_nova_inst_id").closest(".form-group").hide();
+    $("#id_mysql_conf").closest(".form-group").hide();
+    $("#id_sql_server_conf").closest(".form-group").hide();
+}
+
+function hideSSHOptions() {
+    $("#id_ssh_key").closest(".form-group").hide();
+    $("#id_ssh_username").closest(".form-group").hide();
+    $("#id_ssh_host").closest(".form-group").hide();
+}
 
 $("#id_action").change(function () {
     // Update the inputs according freezer action
-
     if ($("#id_action").val() === 'backup') {
         hideEverything();
         showBackupOptions();
@@ -117,22 +119,18 @@ $("#id_action").change(function () {
 
 $("#id_storage").change(function () {
     // Update the inputs according freezer storage backend
-
     if ($("#id_storage").val() === 'swift') {
-        hideEverything();
+        //hideEverything();
         showBackupOptions();
-        ("#id_mode").closest(".form-group").show();
+        hideSSHOptions();
     } else if ($("#id_storage").val() === 'ssh') {
-        hideEverything();
+        //hideEverything();
         showBackupOptions();
-        $("#id_mode").closest(".form-group").show();
         showSSHOptions();
     } else if ($("#id_storage").val() === 'local') {
-        hideEverything();
+        //hideEverything();
         showBackupOptions();
-        $("#id_mode").closest(".form-group").show();
-    } else {
-        hideEverything();
+        hideSSHOptions();
     }
 });
 
@@ -141,37 +139,27 @@ $("#id_mode").change(function () {
     // Update the inputs according freezer mode
     if ($("#id_action").val() === 'backup') {
         if ($("#id_mode").val() === 'fs') {
-            hideEverything();
-            showBackupOptions();
-            $("#id_advanced_configuration").closest(".form-group").show();
+            hideModeOptions();
         } else if ($("#id_mode").val() === 'mysql') {
-            hideEverything();
-            showBackupOptions();
+            hideModeOptions();
             $("#id_mysql_conf").closest(".form-group").show();
-            $("#id_sql_server_conf").closest(".form-group").hide();
-            $("#id_advanced_configuration").closest(".form-group").show();
         } else if ($("#id_mode").val() === 'mssql') {
-            hideEverything();
-            showBackupOptions();
+            hideModeOptions();
             $("#id_sql_server_conf").closest(".form-group").show();
-            $("#id_mysql_conf").closest(".form-group").hide();
-            $("#id_advanced_configuration").closest(".form-group").show();
         } else if ($("#id_mode").val() === 'mongo') {
-            hideEverything();
-            showBackupOptions();
-            $("#id_sql_server_conf").closest(".form-group").hide();
-            $("#id_mysql_conf").closest(".form-group").hide();
-            $("#id_advanced_configuration").closest(".form-group").show();
+            hideModeOptions();
         } else if ($("#id_mode").val() === 'cinder') {
-            hideEverything();
-            showCinderOptions();
-            $("#id_cinder_vol_id").closest(".form-group").show().addClass("required");
-            $("#id_advanced_configuration").closest(".form-group").show();
+            hideModeOptions();
+            $("#id_cinder_vol_id").closest(".form-group").show();
         } else if ($("#id_mode").val() === 'nova') {
-            hideEverything();
-            showNovaOptions();
-            $("#id_nova_inst_id").closest(".form-group").show().addClass("required");
-            $("#id_advanced_configuration").closest(".form-group").show();
+            hideModeOptions();
+            $("#id_nova_inst_id").closest(".form-group").show();
         }
     }
+});
+
+
+$(function () {
+    hideEverything();
+    triggerChanges();
 });

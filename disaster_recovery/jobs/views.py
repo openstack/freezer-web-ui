@@ -16,7 +16,8 @@ from horizon import browsers
 from horizon import workflows
 
 import workflows.create as configure_workflow
-import workflows.actions as actions_workflow
+import workflows.update_job as update_job_workflow
+import workflows.update_actions as update_actions_workflow
 
 import disaster_recovery.api.api as freezer_api
 import disaster_recovery.jobs.browsers as project_browsers
@@ -65,8 +66,31 @@ class JobWorkflowView(workflows.WorkflowView):
         return initial
 
 
+class EditJobWorkflowView(workflows.WorkflowView):
+    workflow_class = update_job_workflow.UpdateJob
+
+    @shield("Unable to get job", redirect="jobs:index")
+    def get_object(self):
+        return freezer_api.Job(self.request).get(self.kwargs['job_id'])
+
+    def is_update(self):
+        return 'job_id' in self.kwargs and bool(self.kwargs['job_id'])
+
+    @shield("Unable to get job", redirect="jobs:index")
+    def get_initial(self):
+        initial = super(EditJobWorkflowView, self).get_initial()
+        if self.is_update():
+            initial.update({'job_id': None})
+            job = freezer_api.Job(self.request).get(self.kwargs['job_id'],
+                                                    json=True)
+            initial.update(**job)
+            initial.update(**job['job_schedule'])
+
+        return initial
+
+
 class ActionsInJobView(workflows.WorkflowView):
-    workflow_class = actions_workflow.ConfigureActions
+    workflow_class = update_actions_workflow.UpdateActions
 
     @shield("Unable to get job", redirect="jobs:index")
     def get_object(self):

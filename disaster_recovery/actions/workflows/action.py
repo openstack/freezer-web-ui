@@ -208,7 +208,6 @@ class ActionConfigurationAction(workflows.Action):
 
     def populate_action_choices(self, request, context):
         return [
-            ('', _("Select an action")),
             ('backup', _("Backup")),
             ('restore', _("Restore")),
             ('admin', _("Admin")),
