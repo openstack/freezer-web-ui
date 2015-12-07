@@ -33,6 +33,10 @@ urlpatterns = patterns(
         views.JobWorkflowView.as_view(),
         name='configure'),
 
+    url(r'^edit/(?P<job_id>[^/]+)?$',
+        views.EditJobWorkflowView.as_view(),
+        name='edit_job'),
+
     url(r'^edit_actions/(?P<job_id>[^/]+)?$',
         views.ActionsInJobView.as_view(),
         name='edit_action'),

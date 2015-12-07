@@ -335,7 +335,8 @@ class Action(object):
             action['freezer_action'].get('backup_name'),
             action['freezer_action'].get('path_to_backup')
             or action['freezer_action'].get('restore_abs_path'),
-            action['freezer_action'].get('storage')
+            action['freezer_action'].get('storage'),
+            mode=action['freezer_action'].get('mode')
         ) for action in actions]
 
     def get(self, job_id, json=False):

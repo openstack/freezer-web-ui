@@ -19,6 +19,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
 from horizon import tables
+from horizon import messages
 from horizon.utils.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
@@ -93,7 +94,7 @@ class EditJob(tables.LinkAction):
     icon = "pencil"
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:jobs:configure",
+        return reverse("horizon:disaster_recovery:jobs:edit_job",
                        kwargs={'job_id': datum.job_id})
 
 
@@ -114,6 +115,7 @@ class StartJob(tables.Action):
 
     def single(self, table, request, job_id):
         freezer_api.Job(request).start(job_id)
+        messages.success(request, _("Job has started"))
         return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
 
 
@@ -123,6 +125,7 @@ class StopJob(tables.Action):
 
     def single(self, table, request, job_id):
         freezer_api.Job(request).stop(job_id)
+        messages.success(request, _("Job has stopped"))
         return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
 
 
