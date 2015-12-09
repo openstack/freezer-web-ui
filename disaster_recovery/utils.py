@@ -12,6 +12,7 @@
 
 import datetime
 import uuid
+import re
 
 from functools import wraps
 
@@ -79,7 +80,11 @@ class JobObject(object):
         self.description = description
         self.result = result or 'pending'
         self.event = event or 'stop'
-        self.client_id = client_id.split('_')[1]
+        # Checking if client_id composed like <tenant_id>_<hostname>
+        if re.search("^[a-z0-9]{32}_.+", client_id):
+            self.client_id = client_id.split('_')[1]
+        else:
+            self.client_id = client_id
 
 
 class JobsInSessionObject(object):
