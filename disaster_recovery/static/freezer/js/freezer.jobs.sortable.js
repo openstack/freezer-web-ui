@@ -31,15 +31,15 @@ var job_id = $('#id_job_id').val();
 
 
 function get_url() {
-    var url = $(location).attr("origin");
-    url += '/disaster_recovery/api/actions/job/';
+    var url = $(location).attr("href");
+    url += 'api/actions/job/';
     url += job_id;
     return url;
 }
 
 function get_actions_url() {
-    var url = $(location).attr("origin");
-    url += '/disaster_recovery/api/actions';
+    var url = $(location).attr("href");
+    url += 'api/actions';
     return url;
 }
 
