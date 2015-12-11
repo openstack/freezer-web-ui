@@ -30,10 +30,24 @@ LOG = logging.getLogger(__name__)
 def client(request):
     """Return a freezer client object"""
     api_url = _get_service_url(request)
-    return freezer.apiclient.client.Client(
-        token=request.user.token.id,
-        auth_url=getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
-        endpoint=api_url)
+
+    # get keystone version to connect to
+    ks_version = getattr(settings,
+                         'OPENSTACK_API_VERSIONS', {}).get('identity', 2.0)
+
+    credentials = {
+        'token': request.user.token.id,
+        'auth_url': getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
+        'endpoint': api_url,
+        'version': ks_version
+    }
+
+    if ks_version == 3:
+        credentials['project_name'] = request.user.project_name
+        credentials['project_domain_name'] = \
+            request.user.domain_name or 'Default'
+
+    return freezer.apiclient.client.Client(**credentials)
 
 
 @memoized
