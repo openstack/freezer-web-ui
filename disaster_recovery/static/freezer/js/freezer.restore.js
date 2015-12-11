@@ -18,11 +18,15 @@
 
 "use strict";
 
-var url = $(location).attr("origin");
-url += '/disaster_recovery/api/clients';
+
+function get_url() {
+  var url = Browser.get_url();
+  url += 'clients/';
+  return url;
+}
 
 $.ajax({
-    url: url,
+    url: get_url(),
     type: "GET",
     cache: false,
     dataType: 'json',

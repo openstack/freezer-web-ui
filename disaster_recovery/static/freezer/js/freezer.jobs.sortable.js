@@ -30,22 +30,23 @@ $("form").submit(function (event) {
 var job_id = $('#id_job_id').val();
 
 
-function get_url() {
-    var url = $(location).attr("href");
-    url += 'api/actions/job/';
-    url += job_id;
-    return url;
+function actions_in_job_url() {
+  var url = Browser.get_url();
+  url += 'actions/job/';
+  url += job_id;
+  return url;
 }
 
-function get_actions_url() {
-    var url = $(location).attr("href");
-    url += 'api/actions';
-    return url;
+
+function actions_url() {
+  var url = Browser.get_url();
+  url += 'actions/';
+  return url;
 }
 
 if (job_id !== "") {
     $.ajax({
-        url: get_url(),
+        url: actions_in_job_url(),
         type: "GET",
         cache: false,
         dataType: 'json',
@@ -71,10 +72,8 @@ if (job_id !== "") {
         }
     });
 } else {
-    var url = get_actions_url();
-
     $.ajax({
-        url: url,
+        url: actions_url(),
         type: "GET",
         cache: false,
         dataType: 'json',

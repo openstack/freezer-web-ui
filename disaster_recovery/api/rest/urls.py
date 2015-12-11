@@ -23,8 +23,8 @@ import rest_api
 
 urlpatterns = patterns(
     '',
-    url(r'^api/clients$', rest_api.Clients.as_view(), name="api_clients"),
-    url(r'^api/actions$', rest_api.ActionList.as_view(), name="api_actions"),
+    url(r'^api/clients/$', rest_api.Clients.as_view(), name="api_clients"),
+    url(r'^api/actions/$', rest_api.ActionList.as_view(), name="api_actions"),
     url(r'^api/actions/job/(?P<job_id>[^/]+)?$',
         rest_api.Actions.as_view(), name="api_actions_in_job"),
 )
