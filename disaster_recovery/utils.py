@@ -10,6 +10,8 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import logging
+
 import datetime
 import uuid
 import re
@@ -21,6 +23,9 @@ from django.template.defaultfilters import date as django_date
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
+
+
+LOG = logging.getLogger(__name__)
 
 
 def create_dict(**kwargs):
@@ -181,7 +186,8 @@ def shield(message, redirect=''):
 
             try:
                 return function(request, *args, **kwargs)
-            except Exception:
+            except Exception as error:
+                LOG.error(error.message)
                 namespace = "horizon:disaster_recovery:"
                 r = reverse("{0}{1}".format(namespace, redirect))
                 exceptions.handle(request, _(message), redirect=r)
