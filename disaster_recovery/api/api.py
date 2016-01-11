@@ -518,13 +518,16 @@ class Backup(object):
         client_id = data['client']
         name = "Restore {0} for {1}".format(backup.backup_name, client_id)
 
+        iso_date = utils.timestamp_to_iso(backup.time_stamp)
+
         action = {
             'action': 'restore',
             'backup_name': backup.backup_name,
             'restore_abs_path': data['path'],
             'container': backup.container,
             'restore_from_host': backup.hostname,
-            'storage': backup.storage
+            'storage': backup.storage,
+            'restore_from_date': iso_date
         }
 
         if backup.storage == 'ssh':

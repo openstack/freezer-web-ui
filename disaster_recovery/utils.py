@@ -188,3 +188,11 @@ def shield(message, redirect=''):
 
         return wrapped_function
     return wrap
+
+
+def timestamp_to_iso(ts):
+    """Generate an iso date from time stamp
+    :param ts: time stamp
+    :return: iso date
+    """
+    return datetime.datetime.fromtimestamp(ts).isoformat()
