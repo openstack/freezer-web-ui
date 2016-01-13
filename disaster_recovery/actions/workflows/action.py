@@ -45,34 +45,34 @@ class ActionConfigurationAction(workflows.Action):
         required=True)
 
     backup_name = forms.CharField(
-        label=_("Action Name"),
+        label=_("Action Name *"),
         required=False)
 
     mysql_conf = forms.CharField(
-        label=_("MySQL Configuration File"),
+        label=_("MySQL Configuration File *"),
         help_text=_("Set the path where the MySQL configuration file "
                     "is on the file system "),
         required=False)
 
     sql_server_conf = forms.CharField(
-        label=_("SQL Server Configuration File"),
+        label=_("SQL Server Configuration File *"),
         help_text=_("Set the path where the SQL Server configuration file"
                     " is on the file system"),
         required=False)
 
     path_to_backup = forms.CharField(
-        label=_("Source File/Directory"),
+        label=_("Source File/Directory *"),
         help_text=_("The file or directory you want to back up."),
         required=False)
 
     container = forms.CharField(
-        label=_("Container Name or Path"),
+        label=_("Container Name or Path *"),
         help_text=_("Swift container for swift backend or "
                     "path for ssh or local backend"),
         required=False)
 
     restore_abs_path = forms.CharField(
-        label=_("Restore Absolute Path"),
+        label=_("Restore Absolute Path *"),
         help_text=_("Set the absolute path where you"
                     " want your data restored."),
         required=False)
@@ -99,12 +99,12 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     cinder_vol_id = forms.CharField(
-        label=_("Cinder Volume ID"),
+        label=_("Cinder Volume ID *"),
         help_text=_("Id of cinder volume for backup"),
         required=False)
 
     nova_inst_id = forms.CharField(
-        label=_("Nova Volume ID"),
+        label=_("Nova Volume ID *"),
         help_text=_("Id of nova instance for backup"),
         required=False)
 
@@ -141,17 +141,17 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     ssh_key = forms.CharField(
-        label=_("SSH Private Key"),
+        label=_("SSH Private Key *"),
         help_text=_("Path for ssh private key"),
         required=False)
 
     ssh_username = forms.CharField(
-        label=_("SSH Username"),
+        label=_("SSH Username *"),
         help_text=_("Path for ssh private key"),
         required=False)
 
     ssh_host = forms.CharField(
-        label=_("SSH Host"),
+        label=_("SSH Host *"),
         help_text=_("IP address or dns name of host to connect through ssh"),
         required=False)
 
