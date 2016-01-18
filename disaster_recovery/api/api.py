@@ -305,14 +305,18 @@ class Session(object):
     def jobs(self, session_id):
         session = self.get(session_id, json=True)
         jobs = []
+
+        if session is None:
+            return jobs
+
         try:
             jobs = [utils.JobsInSessionObject(k,
                                               session_id,
                                               v['client_id'],
                                               v['result'])
                     for k, v in session['jobs'].iteritems()]
-        except AttributeError:
-            pass
+        except AttributeError as error:
+            LOG.error(error.message)
         return jobs
 
     def _build(self, session):

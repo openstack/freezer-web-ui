@@ -32,11 +32,11 @@ class SessionsView(browsers.ResourceBrowserView):
     browser_class = project_browsers.SessionBrowser
     template_name = "disaster_recovery/sessions/browser.html"
 
-    @shield('Unable to get sessions list.', redirect='actions:index')
+    @shield('Unable to get sessions list.', redirect='sessions:index')
     def get_sessions_data(self):
         return freezer_api.Session(self.request).list(limit=100)
 
-    @shield('Unable to get job list.', redirect='actions:index')
+    @shield('Unable to get job list.', redirect='sessions:index')
     def get_jobs_data(self):
         if self.kwargs['session_id']:
             return freezer_api.Session(self.request).jobs(
