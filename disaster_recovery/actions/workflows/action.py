@@ -486,7 +486,7 @@ class AdvancedConfiguration(workflows.Step):
                    'dereference_symlink',
                    'dry_run',
                    'max_priority',
-                   'quiet',)
+                   'quiet')
 
 
 class RulesConfigurationAction(workflows.Action):

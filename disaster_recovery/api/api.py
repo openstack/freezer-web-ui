@@ -411,6 +411,7 @@ class Action(object):
         backup_name = action.pop('backup_name', None)
         action['backup_name'] = backup_name.replace(' ', '_')
         action = {'freezer_action': action}
+        action.update(action_rules)
         return self.client.actions.create(action)
 
 
