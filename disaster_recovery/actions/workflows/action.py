@@ -258,19 +258,12 @@ class ActionConfiguration(workflows.Step):
 
 
 class SnapshotConfigurationAction(workflows.Action):
-    use_snapshot = forms.BooleanField(
+    snapshot = forms.BooleanField(
         label=_("Snapshot"),
         help_text=_("Use a LVM or Shadow Copy snapshot "
                     "to have point in time consistent backups"),
         widget=forms.CheckboxInput(),
         initial=False,
-        required=False)
-
-    is_windows = forms.BooleanField(
-        label=_("Job For Windows"),
-        help_text=_("Is this job going to "
-                    "execute on windows?"),
-        widget=forms.CheckboxInput(),
         required=False)
 
     class Meta(object):
@@ -281,9 +274,7 @@ class SnapshotConfigurationAction(workflows.Action):
 
 class SnapshotConfiguration(workflows.Step):
     action_class = SnapshotConfigurationAction
-    contributes = ('use_snapshot',
-                   'is_windows',
-                   'is_linux')
+    contributes = ('snapshot',)
 
 
 class AdvancedConfigurationAction(workflows.Action):
@@ -540,20 +531,6 @@ class ActionWorkflow(workflows.Workflow):
 
     def handle(self, request, context):
         try:
-            if context['is_windows']:
-                client_os = 'Windows'
-            else:
-                client_os = 'Linux'
-
-            if context['use_snapshot'] and client_os == 'Windows':
-                context['vssadmin'] = True
-                context.pop('use_snapshot')
-            elif context['use_snapshot'] and client_os == 'Linux':
-                context['snapshot'] = True
-                context.pop('use_snapshot')
-            else:
-                context.pop('use_snapshot')
-
             if context['action_id'] == '':
                 freezer_api.Action(request).create(context)
             else:
