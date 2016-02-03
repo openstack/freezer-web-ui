@@ -53,30 +53,27 @@ def client(request):
 @memoized
 def _get_service_url(request):
     """Get freezer api url"""
-    catalog = (getattr(request.user, "service_catalog", None))
-    if not catalog:
-        return _get_hardcoded_url()
+    hardcoded_url = getattr(settings, 'FREEZER_API_URL', None)
+    if hardcoded_url is not None:
+        LOG.warn('Using hardcoded FREEZER_API_URL: {0}'.format(hardcoded_url))
+        return hardcoded_url
 
-    for c in catalog:
-        if c['name'] == 'freezer':
-            for e in c['endpoints']:
-                return e['internalURL']
-    else:
-        return _get_hardcoded_url()
+    e_type = getattr(settings, 'OPENSTACK_ENDPOINT_TYPE', '')
+    endpoint_type_priority = [e_type, ['internal', 'internalURL'], ['public',
+                              'publicURL']]
 
-
-@memoized
-def _get_hardcoded_url():
-    """In case freezer is not registered in keystone catalog, look for it in
-    local_settings.py
-    :return: freezer_api_url
-    """
     try:
-        LOG.warn('Using hardcoded FREEZER_API_URL at {0}'
-                 .format(settings.FREEZER_API_URL))
-        return getattr(settings, 'FREEZER_API_URL', None)
+        catalog = (getattr(request.user, "service_catalog", []))
+        for c in catalog:
+            if c['name'] == 'freezer':
+                for endpoint_type in endpoint_type_priority:
+                    for e in c['endpoints']:
+                        if e['interface'] in endpoint_type:
+                            return e['url']
+        raise ValueError('Could no get FREEZER_API_URL from config'
+                         ' or Keystone')
     except Exception:
-        LOG.warn('No FREEZER_API_URL was found in local_settings.py')
+        LOG.warn('Could no get FREEZER_API_URL from config or Keystone')
         raise
 
 
@@ -351,8 +348,8 @@ class Action(object):
             action.get('action_id'),
             action['freezer_action'].get('action'),
             action['freezer_action'].get('backup_name'),
-            action['freezer_action'].get('path_to_backup')
-            or action['freezer_action'].get('restore_abs_path'),
+            action['freezer_action'].get('path_to_backup') or
+            action['freezer_action'].get('restore_abs_path'),
             action['freezer_action'].get('storage'),
             mode=action['freezer_action'].get('mode')
         ) for action in actions]
