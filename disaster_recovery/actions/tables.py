@@ -58,9 +58,9 @@ class DeleteMultipleActions(DeleteAction):
     name = "delete_multiple_actions"
 
 
-class BackupFilter(tables.FilterAction):
+class Filter(tables.FilterAction):
     filter_type = "server"
-    filter_choices = (("contains", "Contains text", True),)
+    filter_choices = (("exact", "Exact text", True),)
 
 
 class CreateAction(tables.LinkAction):
@@ -102,5 +102,5 @@ class ActionsTable(tables.DataTable):
         name = "actions_table"
         verbose_name = _("Actions")
         row_actions = (EditAction, DeleteAction,)
-        table_actions = (BackupFilter, CreateAction, DeleteMultipleActions)
+        table_actions = (Filter, CreateAction, DeleteMultipleActions)
         multi_select = True

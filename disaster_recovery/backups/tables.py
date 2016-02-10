@@ -38,9 +38,9 @@ class Restore(tables.LinkAction):
                        kwargs={'backup_id': datum.id})
 
 
-class BackupFilter(tables.FilterAction):
+class Filter(tables.FilterAction):
     filter_type = "server"
-    filter_choices = (("contains", "Contains text", True),)
+    filter_choices = (("exact", "Exact text", True),)
 
 
 def icons(backup):
@@ -109,5 +109,5 @@ class BackupsTable(tables.DataTable):
         name = "backups"
         verbose_name = _("Backup History")
         row_actions = (Restore,)
-        table_actions = (BackupFilter,)
+        table_actions = (Filter,)
         multi_select = False
