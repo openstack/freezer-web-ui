@@ -84,13 +84,21 @@ class JobObject(object):
         self.job_id = job_id
         self.id = job_id
         self.description = description
-        self.result = result or 'pending'
-        self.event = event or 'stop'
+        self._result = result
+        self._event = event
         # Checking if client_id composed like <tenant_id>_<hostname>
         if re.search("^[a-z0-9]{32}_.+", client_id):
             self.client_id = client_id.split('_')[1]
         else:
             self.client_id = client_id
+
+    @property
+    def event(self):
+        return self._event or 'stop'
+
+    @property
+    def result(self):
+        return self._result or 'pending'
 
 
 class JobsInSessionObject(object):
