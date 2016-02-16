@@ -137,6 +137,10 @@ class JobsTable(tables.DataTable):
         multi_select = True
 
 
+class UpdateRow(tables.Row):
+    ajax = True
+
+
 class SessionsTable(tables.DataTable):
     description = tables.Column('description',
                                 link=get_link,
@@ -155,3 +159,4 @@ class SessionsTable(tables.DataTable):
                        DeleteSession,)
         footer = False
         multi_select = True
+        row_class = UpdateRow

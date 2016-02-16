@@ -118,6 +118,9 @@ class StartJob(tables.Action):
         messages.success(request, _("Job has started"))
         return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
 
+    def allowed(self, request, job=None):
+        return True
+
 
 class StopJob(tables.Action):
     name = "stop_job"
@@ -127,6 +130,11 @@ class StopJob(tables.Action):
         freezer_api.Job(request).stop(job_id)
         messages.success(request, _("Job has stopped"))
         return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+
+    def allowed(self, request, job=None):
+        if job.event == 'stop':
+            return False
+        return True
 
 
 def get_link(row):
@@ -140,6 +148,10 @@ class CreateJob(tables.LinkAction):
     url = "horizon:disaster_recovery:jobs:create"
     classes = ("ajax-modal",)
     icon = "plus"
+
+
+class UpdateRow(tables.Row):
+    ajax = True
 
 
 class JobsTable(tables.DataTable):
@@ -174,6 +186,7 @@ class JobsTable(tables.DataTable):
                        DeleteJob)
         footer = False
         multi_select = True
+        row_class = UpdateRow
 
 
 class DeleteAction(tables.DeleteAction):

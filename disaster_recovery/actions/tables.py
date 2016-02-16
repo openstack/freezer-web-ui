@@ -87,6 +87,10 @@ def get_link(action):
                    kwargs={'action_id': action.id})
 
 
+class UpdateRow(tables.Row):
+    ajax = True
+
+
 class ActionsTable(tables.DataTable):
     backup_name = tables.Column('backup_name',
 
@@ -104,3 +108,4 @@ class ActionsTable(tables.DataTable):
         row_actions = (EditAction, DeleteAction,)
         table_actions = (BackupFilter, CreateAction, DeleteMultipleActions)
         multi_select = True
+        row_class = UpdateRow
