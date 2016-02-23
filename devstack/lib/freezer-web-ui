@@ -57,13 +57,13 @@ function configure_freezer_web_ui {
 function init_freezer_web_ui {
     if is_service_enabled horizon; then
 
-        local dashboard_enabled_50_freezer_py="$HORIZON_DIR/openstack_dashboard/enabled/_50_freezer.py"
+        local dashboard_enabled_5050_freezer_py="$HORIZON_DIR/openstack_dashboard/enabled/_5050_freezer.py"
 
-        sudo cp $FREEZER_WEB_UI_FILES/_50_freezer.py.template $dashboard_enabled_50_freezer_py
+        sudo cp $FREEZER_WEB_UI_FILES/_5050_freezer.py.template $dashboard_enabled_5050_freezer_py
 
         sudo sed -e "
             s|%FREEZER_WEB_UI_DIR%|$FREEZER_WEB_UI_DIR|g
-        " -i $dashboard_enabled_50_freezer_py
+        " -i $dashboard_enabled_5050_freezer_py
 
     fi
 }
