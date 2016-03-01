@@ -63,7 +63,7 @@ class AttachJobToSession(workflows.Workflow):
     slug = "attach_job"
     name = _("Attach To Session")
     finalize_button_name = _("Attach")
-    success_message = _('Job saved successfully.')
+    success_message = _('Job attached successfully.')
     failure_message = _('Unable to attach to session.')
     success_url = "horizon:disaster_recovery:jobs:index"
     default_steps = (SessionConfiguration,)

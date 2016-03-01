@@ -107,8 +107,8 @@ class UpdateJob(workflows.Workflow):
     slug = "update_job"
     name = _("Update Job")
     finalize_button_name = _("Save")
-    success_message = _('Job created correctly.')
-    failure_message = _('Unable to created job.')
+    success_message = _('Job updated correctly.')
+    failure_message = _('Unable to update job.')
     success_url = "horizon:disaster_recovery:jobs:index"
     default_steps = (InfoConfiguration,)
 

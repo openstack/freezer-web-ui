@@ -520,7 +520,7 @@ class ActionWorkflow(workflows.Workflow):
     slug = "action"
     name = _("Action Configuration")
     finalize_button_name = _("Save")
-    success_message = _('Action file saved correctly.')
+    success_message = _('Action queued correctly. It will appear soon')
     failure_message = _('Unable to save action file.')
     success_url = "horizon:disaster_recovery:actions:index"
 
