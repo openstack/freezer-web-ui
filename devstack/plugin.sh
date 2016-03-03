@@ -21,7 +21,6 @@ if is_service_enabled freezer-web-ui; then
 
     if [[ "$1" == "stack" && "$2" == "install" ]]; then
         echo_summary "Installing Freezer Web UI"
-        install_freezer_client
         install_freezer_web_ui
     elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
         echo_summary "Configuring Freezer Web UI"

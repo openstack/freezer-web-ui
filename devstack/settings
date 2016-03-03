@@ -23,10 +23,5 @@ FREEZER_WEB_UI_FILES=${FREEZER_WEB_UI_DIR}/devstack/files
 FREEZER_WEB_UI_REPO=${FREEZER_WEB_UI_REPO:-${GIT_BASE}/openstack/freezer-web-ui.git}
 FREEZER_WEB_UI_BRANCH=${FREEZER_WEB_UI_BRANCH:-master}
 
-# Freezer client
-FREEZER_CLIENT_REPO=${FREEZER_CLIENT_REPO:-${GIT_BASE}/openstack/freezer.git}
-FREEZER_CLIENT_DIR=$DEST/freezer
-FREEZER_CLIENT_BRANCH=${FREEZER_CLIENT_BRANCH:-master}
-
-
-enable_service freezer-web-ui freezer-client
+# Enable freezer-web-ui
+enable_service freezer-web-ui
