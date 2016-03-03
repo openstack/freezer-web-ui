@@ -41,7 +41,8 @@ function cleanup_freezer_web_ui {
 # executed during: stack install
 function install_freezer_web_ui {
     if is_service_enabled horizon; then
-        sudo -H -E pip install -e git+${FREEZER_WEB_UI_REPO}@${FREEZER_WEB_UI_BRANCH}#egg=freezer_web_ui-origin_${FREEZER_WEB_UI_BRANCH}
+        git_clone $FREEZER_WEB_UI_REPO $FREEZER_WEB_DIR $FREEZER_WEB_UI_BRANCH
+        setup_develop $FREEZER_API_DIR
     else
         echo "Horizon dashboard disabled. Freezer Web UI will not be installed"
     fi
@@ -78,11 +79,6 @@ function start_freezer_web_ui {
 # executed during: stop
 function stop_freezer_web_ui {
     :
-}
-
-
-function install_freezer_client {
-    sudo -H -E pip install -e git+${FREEZER_CLIENT_REPO}@${FREEZER_CLIENT_BRANCH}#egg=freezer-origin_${FREEZER_CLIENT_BRANCH}
 }
 
 
