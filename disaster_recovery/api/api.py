@@ -35,11 +35,16 @@ def client(request):
     ks_version = getattr(settings,
                          'OPENSTACK_API_VERSIONS', {}).get('identity', 2.0)
 
+    insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
+    cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
+
     credentials = {
         'token': request.user.token.id,
         'auth_url': getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
         'endpoint': api_url,
-        'version': ks_version
+        'version': ks_version,
+        'cacert': cacert,
+        'insecure': insecure
     }
 
     if ks_version == 3:
