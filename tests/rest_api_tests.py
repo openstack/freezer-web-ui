@@ -15,7 +15,7 @@
 import json
 from mock import patch
 
-from horizon.utils.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 import openstack_dashboard.test.helpers as helpers
 
 
