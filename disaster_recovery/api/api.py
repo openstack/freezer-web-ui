@@ -102,7 +102,7 @@ class Job(object):
             job.get('job_id'),
             job.get('description'),
             job.get('job_schedule', {}).get('result'),
-            job.get('job_schedule', {}).get('event'),
+            job.get('job_schedule', {}).get('status'),
             job.get('client_id')
         ) for job in jobs]
 
