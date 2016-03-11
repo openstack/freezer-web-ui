@@ -32,6 +32,10 @@ class ActionConfigurationAction(workflows.Action):
         widget=forms.HiddenInput(),
         required=False)
 
+    backup_name = forms.CharField(
+        label=_("Action Name *"),
+        required=False)
+
     action = forms.ChoiceField(
         help_text=_("Set the action to be taken"),
         required=True)
@@ -43,10 +47,6 @@ class ActionConfigurationAction(workflows.Action):
     storage = forms.ChoiceField(
         help_text=_("Set storage backend for a backup"),
         required=True)
-
-    backup_name = forms.CharField(
-        label=_("Action Name *"),
-        required=False)
 
     mysql_conf = forms.CharField(
         label=_("MySQL Configuration File *"),
@@ -228,7 +228,7 @@ class ActionConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Action")
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "disaster_recovery/actions" \
                              "/_action.html"
 
 
@@ -268,7 +268,7 @@ class SnapshotConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Snapshot")
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "disaster_recovery/actions" \
                              "/_snapshot.html"
 
 
@@ -453,7 +453,7 @@ class AdvancedConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Advanced")
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "disaster_recovery/actions" \
                              "/_advanced.html"
 
 
@@ -493,19 +493,19 @@ class RulesConfigurationAction(workflows.Action):
         label=_("Max Retries Interval"),
         initial=0,
         min_value=0,
-        help_text=_("Set the interval between intervals "
+        help_text=_("Set the interval between executions "
                     "for retries in seconds"),
         required=False)
 
     mandatory = forms.BooleanField(
         label=_("Mandatory"),
-        help_text=_("Set this job as mandatory"),
+        help_text=_("Set this action as mandatory"),
         widget=forms.CheckboxInput(),
         required=False)
 
     class Meta(object):
         name = _("Rules")
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "disaster_recovery/actions" \
                              "/_rules.html"
 
 

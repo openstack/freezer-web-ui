@@ -49,12 +49,12 @@ def icons(backup):
     placeholder = '<i class="fa fa-fw"></i>'
 
     try:
-        level_txt = "Level: {} ({} backup) out of {}".format(
-            backup.level, "Full" if backup.level == 0 else "Incremental",
-            backup.max_level)
+        level_txt = "Level: {} ({} backup)".format(
+            backup.curr_backup_level, "Full"
+            if backup.curr_backup_level == 0 else "Incremental")
         result.append(
             '<i class="fa fa-fw fa-custom-number" title="{}">{}</i>'.format(
-                level_txt, backup.level))
+                level_txt, backup.curr_backup_level))
     except Exception:
         result.append("Level: {}".format("Full"))
 

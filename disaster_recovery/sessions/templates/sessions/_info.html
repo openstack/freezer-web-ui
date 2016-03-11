@@ -3,10 +3,11 @@
 {% block help_message %}
 <h4>{% blocktrans %}Session{% endblocktrans %}</h4>
 
-<p>{% blocktrans %}Specify the name for this session.{% endblocktrans %}</p>
+<p>{% blocktrans %}A group of jobs which share the same scheduling time.{% endblocktrans %}</p>
 
-<p>{% blocktrans %}A session is a collection of jobs which share scheduling information and will coordinate one
-    or more clients.{% endblocktrans %}</p>
-
+<link rel="stylesheet" href="{{ STATIC_URL }}freezer/css/bootstrap-datetimepicker.min.css">
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/moment.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/bootstrap-datetimepicker.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.datetimepicker.js'></script>
 
 {% endblock %}

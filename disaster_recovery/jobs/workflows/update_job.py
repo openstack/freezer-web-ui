@@ -90,7 +90,7 @@ class InfoConfigurationAction(workflows.Action):
         name = _("Job Info")
         slug = "info"
         help_text_template = "disaster_recovery/jobs" \
-                             "/_scheduling.html"
+                             "/_info.html"
 
 
 class InfoConfiguration(workflows.Step):
