@@ -1,0 +1,13 @@
+{% load i18n horizon humanize %}
+
+{% block help_message %}
+
+<h4>{% blocktrans %}Snapshot{% endblocktrans %}</h4>
+
+<p>{% blocktrans %}The snapshot technologies currently supported are LVM for Linux and Volume Shadow Copy for Windows.{% endblocktrans %}</p>
+
+<p>{% blocktrans %}For Linux, in order to use snapshot features, the data has to reside on an LVM volume.{% endblocktrans %}</p>
+
+{% endblock %}
+
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.actions.snapshot.js'></script>

@@ -1,0 +1,16 @@
+{% load i18n horizon humanize %}
+
+{% block help_message %}
+
+<h4>{% blocktrans %}Rules{% endblocktrans %}</h4>
+
+<p>{% blocktrans %}Define the following action rules:
+    <ul>
+        <li>Number of retries</li>
+        <li>Retries interval</li>
+        <li>Action is mandatory</li>
+    </ul>
+{% endblocktrans %}</p>
+
+{% endblock %}
+
