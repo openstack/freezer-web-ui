@@ -41,8 +41,8 @@ function cleanup_freezer_web_ui {
 # executed during: stack install
 function install_freezer_web_ui {
     if is_service_enabled horizon; then
-        git_clone $FREEZER_WEB_UI_REPO $FREEZER_WEB_DIR $FREEZER_WEB_UI_BRANCH
-        setup_develop $FREEZER_API_DIR
+        git_clone $FREEZER_WEB_UI_REPO $FREEZER_WEB_UI_DIR $FREEZER_WEB_UI_BRANCH
+        setup_develop $FREEZER_WEB_UI_DIR
     else
         echo "Horizon dashboard disabled. Freezer Web UI will not be installed"
     fi
