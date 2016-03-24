@@ -26,7 +26,7 @@ LOG = logging.getLogger(__name__)
 
 class Filter(tables.FilterAction):
     filter_type = "server"
-    filter_choices = (("contains", "Contains text", True),)
+    filter_choices = (("exact", "Exact text", True),)
 
 
 class DeleteClient(tables.DeleteAction):
