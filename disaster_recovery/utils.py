@@ -23,6 +23,7 @@ from django.template.defaultfilters import date as django_date
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
+from horizon import get_user_home
 
 
 LOG = logging.getLogger(__name__)
@@ -190,15 +191,23 @@ def shield(message, redirect=''):
     def wrap(function):
 
         @wraps(function)
-        def wrapped_function(request, *args, **kwargs):
+        def wrapped_function(view, *args, **kwargs):
 
             try:
-                return function(request, *args, **kwargs)
+                return function(view, *args, **kwargs)
             except Exception as error:
                 LOG.error(error.message)
                 namespace = "horizon:disaster_recovery:"
                 r = reverse("{0}{1}".format(namespace, redirect))
-                exceptions.handle(request, _(message), redirect=r)
+
+                if view.request.path == r:
+                    # To avoid an endless loop, we must not redirect to the
+                    # same page on which the error happened
+                    user_home = get_user_home(view.request.user)
+                    exceptions.handle(view.request, _(message),
+                                      redirect=user_home)
+                else:
+                    exceptions.handle(view.request, _(message), redirect=r)
 
         return wrapped_function
     return wrap
