@@ -20,10 +20,38 @@
 
 $(function () {
     $('#id_schedule_start_date').datetimepicker({
-        format: 'YYYY-MM-DDTHH:mm:ss'
+        format: 'YYYY-MM-DDTHH:mm:ss',
+        showClose: true,
+        tooltips: {
+            today: 'Go to today',
+            clear: 'Clear selection',
+            close: 'Close the picker'
+        },
+        widgetPositioning: {
+            horizontal: 'left',
+            vertical: 'bottom'
+        }
     });
 
     $('#id_schedule_end_date').datetimepicker({
-        format: 'YYYY-MM-DDTHH:mm:ss'
+        format: 'YYYY-MM-DDTHH:mm:ss',
+        showClose: true,
+        tooltips: {
+            today: 'Go to today',
+            clear: 'Clear selection',
+            close: 'Close the picker'
+        },
+        widgetPositioning: {
+            horizontal: 'left',
+            vertical: 'bottom'
+        },
+        useCurrent: false //Important! See issue #1075
+    });
+
+    $("#id_schedule_start_date").on("dp.change", function (e) {
+        $('#id_schedule_end_date').data("DateTimePicker").minDate(e.date);
+    });
+    $("#id_schedule_end_date").on("dp.change", function (e) {
+        $('#id_schedule_start_date').data("DateTimePicker").maxDate(e.date);
     });
 });

@@ -2,10 +2,12 @@
 
 {% block help_message %}
 <h4>{% blocktrans %}Job{% endblocktrans %}</h4>
+<p>{% blocktrans %}Describes actions to be executed by a client.{% endblocktrans %}</p>
+<p>{% blocktrans %}Job executions can be executed and scheduled, by providing the following settings.{% endblocktrans %}</p>
 
-<p>{% blocktrans %}Specify the details for creating a job.{% endblocktrans %}</p>
-
-<p>{% blocktrans %}A job defines an ordered list of actions to be executed in a client with scheduling information.{% endblocktrans %}</p>
-
+<link rel="stylesheet" href="{{ STATIC_URL }}freezer/css/bootstrap-datetimepicker.min.css">
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/moment.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/bootstrap-datetimepicker.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.datetimepicker.js'></script>
 
 {% endblock %}

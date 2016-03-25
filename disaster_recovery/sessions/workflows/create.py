@@ -44,7 +44,16 @@ class SessionConfigurationAction(workflows.Action):
 
     schedule_interval = forms.CharField(
         label=_("Interval"),
-        required=False)
+        required=False,
+        help_text=_("""Set the interval in the following format:
+                       continuous,
+                       N weeks,
+                       N days,
+                       N hours,
+                       N minutes,
+                       N seconds,
+                       If no start date is provided the job
+                       will start immediately"""))
 
     schedule_end_date = forms.CharField(
         label=_("End Date and Time"),
@@ -80,8 +89,8 @@ class SessionConfigurationAction(workflows.Action):
     class Meta:
         name = _("Session Information")
         slug = "sessions"
-        help_text_template = "disaster_recovery/jobs" \
-                             "/_scheduling.html"
+        help_text_template = "disaster_recovery/sessions" \
+                             "/_info.html"
 
 
 class SessionConfiguration(workflows.Step):
