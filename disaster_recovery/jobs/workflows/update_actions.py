@@ -58,7 +58,8 @@ class UpdateActions(workflows.Workflow):
     def handle(self, request, context):
         try:
             if context['job_id'] != '':
-                freezer_api.Job(request).update(context['job_id'], context)
+                freezer_api.Job(request).update_actions(context['job_id'],
+                                                        context['actions'])
             return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
         except Exception:
             exceptions.handle(request)
