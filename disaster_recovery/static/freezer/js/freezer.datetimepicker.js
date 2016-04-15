@@ -19,8 +19,19 @@
 "use strict";
 
 $(function () {
-    $('#id_schedule_start_date').datetimepicker({
+    var config = {
         format: 'YYYY-MM-DDTHH:mm:ss',
+        icons: {
+            time: 'fa fa-clock-o',
+            date: 'fa fa-calendar',
+            up: 'fa fa-chevron-up',
+            down: 'fa fa-chevron-down',
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-circle-o',
+            clear: 'fa fa-trash',
+            close: 'fa fa-times'
+        },
         showClose: true,
         tooltips: {
             today: 'Go to today',
@@ -31,27 +42,19 @@ $(function () {
             horizontal: 'left',
             vertical: 'bottom'
         }
+    };
+
+    var $start_date = $('#id_schedule_start_date');
+    var $end_date = $('#id_schedule_end_date');
+
+    $start_date.datetimepicker(config);
+    $end_date.datetimepicker(config);
+
+    $start_date.on("dp.change", function (e) {
+        $end_date.data("DateTimePicker").minDate(e.date);
     });
 
-    $('#id_schedule_end_date').datetimepicker({
-        format: 'YYYY-MM-DDTHH:mm:ss',
-        showClose: true,
-        tooltips: {
-            today: 'Go to today',
-            clear: 'Clear selection',
-            close: 'Close the picker'
-        },
-        widgetPositioning: {
-            horizontal: 'left',
-            vertical: 'bottom'
-        },
-        useCurrent: false //Important! See issue #1075
-    });
-
-    $("#id_schedule_start_date").on("dp.change", function (e) {
-        $('#id_schedule_end_date').data("DateTimePicker").minDate(e.date);
-    });
-    $("#id_schedule_end_date").on("dp.change", function (e) {
-        $('#id_schedule_start_date').data("DateTimePicker").maxDate(e.date);
+    $end_date.on("dp.change", function (e) {
+        $start_date.data("DateTimePicker").maxDate(e.date);
     });
 });
