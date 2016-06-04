@@ -1,0 +1,788 @@
+# OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# Rob Cresswell <robert.cresswell@outlook.com>, 2015. #zanata
+# Andi Chandler <andi@gowling.com>, 2016. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# Rob Cresswell <robert.cresswell@outlook.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui 2.0.0.dev29\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-04-19 16:19+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-06-03 10:47+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"Language-Team: English (United Kingdom)\n"
+"Language: en-GB\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action Configuration"
+msgstr "Action Configuration"
+
+msgid "Action Name"
+msgstr "Action Name"
+
+msgid "Action Name *"
+msgstr "Action Name *"
+
+msgid "Action Type"
+msgstr "Action Type"
+
+msgid "Action queued correctly. It will appear soon"
+msgstr "Action queued correctly. It will appear soon"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Actions Configuration"
+msgstr "Actions Configuration"
+
+msgid "Actions saved correctly."
+msgstr "Actions saved correctly."
+
+msgid "Actions updated correctly."
+msgstr "Actions updated correctly."
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Advanced"
+msgstr "Advanced"
+
+msgid "All Clients"
+msgstr "All Clients"
+
+msgid "Allow to access swift servers without checking SSL certs."
+msgstr "Allow to access swift servers without checking SSL certs."
+
+msgid "Always Level"
+msgstr "Always Level"
+
+msgid "Attach"
+msgstr "Attach"
+
+msgid "Attach To Session"
+msgstr "Attach To Session"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Backup History"
+msgstr "Backup History"
+
+msgid "Backup Name"
+msgstr "Backup Name"
+
+msgid "Backup and Restore"
+msgstr "Backup and Restore"
+
+msgid "Backups"
+msgstr "Backups"
+
+msgid ""
+"Checks in the specified container for object older than the specified days."
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default False (Disabled) The option --remove-older-then is deprecated "
+"and will be removed soon"
+msgstr ""
+"Checks in the specified container for object older than the specified days."
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default False (Disabled) The option --remove-older-then is deprecated "
+"and will be removed soon"
+
+msgid ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-03-25T23:23:23. Make "
+"sure the 'T' is between date and time "
+msgstr ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-06-07T16:30:23. Make "
+"sure the 'T' is between date and time "
+
+msgid "Choose what you want to backup"
+msgstr "Choose what you want to backup"
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID *"
+msgstr "Cinder Volume ID *"
+
+msgid "Client ID"
+msgstr "Client ID"
+
+msgid "Client is required"
+msgstr "Client is required"
+
+msgid "Clients"
+msgstr "Clients"
+
+msgid "Clone Job"
+msgstr "Clone Job"
+
+msgid "Clone and edit a job file"
+msgstr "Clone and edit a job file"
+
+msgid "Compression Level"
+msgstr "Compression Level"
+
+msgid "Container Name or Path *"
+msgstr "Container Name or Path *"
+
+msgid "Create Action"
+msgstr "Create Action"
+
+msgid "Create Job"
+msgstr "Create Job"
+
+msgid "Create Session"
+msgstr "Create Session"
+
+msgid "Created At"
+msgstr "Created At"
+
+msgid "Define a name for this session"
+msgstr "Define a name for this session"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "Delete Action"
+msgstr[1] "Delete Actions"
+
+msgid "Delete Client"
+msgid_plural "Delete Clients"
+msgstr[0] "Delete Client"
+msgstr[1] "Delete Clients"
+
+msgid "Delete Clients is not recoverable."
+msgstr "Delete Clients is not recoverable."
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "Delete Job"
+msgstr[1] "Delete Jobs"
+
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "Delete Job File"
+msgstr[1] "Delete Job Files"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "Delete Session"
+msgstr[1] "Delete Sessions"
+
+msgid "Delete actions is not recoverable."
+msgstr "Delete actions is not recoverable."
+
+msgid "Delete jobs is not recoverable."
+msgstr "Delete jobs is not recoverable."
+
+msgid "Delete sessions is not recoverable."
+msgstr "Delete sessions is not recoverable."
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "Deleted Action"
+msgstr[1] "Deleted Actions"
+
+msgid "Deleted Client"
+msgid_plural "Deleted Clients"
+msgstr[0] "Deleted Client"
+msgstr[1] "Deleted Clients"
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "Deleted Job"
+msgstr[1] "Deleted Jobs"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "Deleted Job File"
+msgstr[1] "Deleted Job Files"
+
+msgid "Deleted Session"
+msgid_plural "Deleted Sessions"
+msgstr[0] "Deleted Session"
+msgstr[1] "Deleted Sessions"
+
+msgid "Deleted action File"
+msgid_plural "Deleted action Files"
+msgstr[0] "Deleted action File"
+msgstr[1] "Deleted action Files"
+
+msgid "Destination"
+msgstr "Destination"
+
+msgid "Destination File"
+msgstr "Destination File"
+
+msgid "Destination Path"
+msgstr "Destination Path"
+
+msgid ""
+"Disable incremental feature. By default freezer build the meta data even for "
+"level 0 backup. By setting this option incremental meta data is not created "
+"at all. Default disabled"
+msgstr ""
+"Disable incremental feature. By default Freezer builds the meta data even "
+"for level 0 backup. By setting this option incremental meta data is not "
+"created at all. Default disabled"
+
+msgid "Disaster Recovery"
+msgstr "Disaster Recovery"
+
+msgid "Do everything except writing or removing objects"
+msgstr "Do everything except writing or removing objects"
+
+msgid "Download Limit"
+msgstr "Download Limit"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+
+msgid "Dry Run"
+msgstr "Dry Run"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Edit Actions"
+msgstr "Edit Actions"
+
+msgid "Edit Job"
+msgstr "Edit Job"
+
+msgid "Edit Session"
+msgstr "Edit Session"
+
+msgid "Encryption Key"
+msgstr "Encryption Key"
+
+msgid "End Date and Time"
+msgstr "End Date and Time"
+
+msgid "End date time is not in ISO format."
+msgstr "End date time is not in ISO format."
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+msgstr "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+
+msgid "Error getting session list"
+msgstr "Error getting session list"
+
+msgid "Exclude Files"
+msgstr "Exclude Files"
+
+msgid ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+msgstr ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+
+msgid "File system"
+msgstr "File system"
+
+msgid "Follow Symlinks"
+msgstr "Follow Symlinks"
+
+msgid ""
+"Follow hard and soft links and archive and dump the files they refer to. "
+"Default False"
+msgstr ""
+"Follow hard and soft links and archive and dump the files they refer to. "
+"Default False"
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+
+msgid "Get A Single Object"
+msgstr "Get A Single Object"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "IP address or dns name of host to connect through ssh"
+msgstr "IP address or DNS name of host to connect through ssh"
+
+msgid "Id of cinder volume for backup"
+msgstr "Id of cinder volume for backup"
+
+msgid "Id of nova instance for backup"
+msgstr "Id of nova instance for backup"
+
+msgid "In case of error, set the amount of retries for this job"
+msgstr "In case of error, set the amount of retries for this job"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Job Configuration"
+msgstr "Job Configuration"
+
+msgid "Job ID"
+msgstr "Job ID"
+
+msgid "Job Info"
+msgstr "Job Info"
+
+msgid "Job Name"
+msgstr "Job Name"
+
+msgid "Job attached successfully."
+msgstr "Job attached successfully."
+
+msgid "Job has started"
+msgstr "Job has started"
+
+msgid "Job has stopped"
+msgstr "Job has stopped"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr "Job queued correctly. It will appear soon"
+
+msgid "Job updated correctly."
+msgstr "Job updated correctly."
+
+msgid "Jobs"
+msgstr "Jobs"
+
+msgid "Local Path"
+msgstr "Local Path"
+
+msgid "Log File Path"
+msgstr "Log File Path"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "Lossless Data Compression (XZ)"
+
+msgid "Mandatory"
+msgstr "Mandatory"
+
+msgid "Max Level"
+msgstr "Max Level"
+
+msgid "Max Priority"
+msgstr "Max Priority"
+
+msgid "Max Retries"
+msgstr "Max Retries"
+
+msgid "Max Retries Interval"
+msgstr "Max Retries Interval"
+
+msgid "Maximum Segment Size"
+msgstr "Maximum Segment Size"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "Minimum Compression (GZip/Zip/Zlib)"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "More Effective Compression (Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File *"
+msgstr "MySQL Configuration File *"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "No Incremental"
+msgstr "No Incremental"
+
+msgid "No clients found."
+msgstr "No clients found."
+
+msgid "No clients selected."
+msgstr "No clients selected."
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Volume ID *"
+msgstr "Nova Volume ID *"
+
+msgid "OpenStack Authentication Version"
+msgstr "OpenStack Authentication Version"
+
+msgid "Path To Backup or Restore"
+msgstr "Path To Backup or Restore"
+
+msgid "Path for ssh private key"
+msgstr "Path for ssh private key"
+
+msgid "Please provide this value."
+msgstr "Please provide this value."
+
+msgid "Proxy URL"
+msgstr "Proxy URL"
+
+msgid "Quiet"
+msgstr "Quiet"
+
+msgid "Remove From Date"
+msgstr "Remove From Date"
+
+msgid "Remove Older Than"
+msgstr "Remove Older Than"
+
+msgid "Repeat this configuration in a minutes interval."
+msgstr "Repeat this configuration in a minutes interval."
+
+msgid "Restart Always Level"
+msgstr "Restart Always Level"
+
+msgid ""
+"Restart the backup from level 0 after n days. Valid only if --always-level "
+"option if set. If --always-level is used together with --remove-older-then, "
+"there might be the chance where the initial level 0 will be removed Default "
+"False (Disabled)"
+msgstr ""
+"Restart the backup from level 0 after n days. Valid only if --always-level "
+"option if set. If --always-level is used together with --remove-older-then, "
+"there might be the chance where the initial level 0 will be removed Default "
+"False (Disabled)"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Restore Absolute Path *"
+msgstr "Restore Absolute Path *"
+
+msgid "Restore From Date"
+msgstr "Restore From Date"
+
+msgid "Restore From Host"
+msgstr "Restore From Host"
+
+msgid "Restore job successfully queued. It will get executed soon."
+msgstr "Restore job successfully queued. It will get executed soon."
+
+msgid "Result"
+msgstr "Result"
+
+msgid "Rules"
+msgstr "Rules"
+
+msgid "SQL Server Configuration File *"
+msgstr "SQL Server Configuration File *"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host *"
+msgstr "SSH Host *"
+
+msgid "SSH Private Key *"
+msgstr "SSH Private Key *"
+
+msgid "SSH Username *"
+msgstr "SSH Username *"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Select A Session"
+msgstr "Select A Session"
+
+msgid "Selected Clients"
+msgstr "Selected Clients"
+
+msgid "Session"
+msgstr "Session"
+
+msgid "Session Configuration"
+msgstr "Session Configuration"
+
+msgid "Session Information"
+msgstr "Session Information"
+
+msgid "Session Name"
+msgstr "Session Name"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr "Session queued correctly. It will appear soon"
+
+msgid "Sessions"
+msgstr "Sessions"
+
+msgid "Set a name for this job"
+msgstr "Set a name for this job"
+
+msgid "Set a session to attach this job"
+msgstr "Set a session to attach this job"
+
+msgid ""
+"Set backup maximum level used with tar to implement incremental backup. If a "
+"level 3 is specified, the backup will be executed from level 0 to level 3 "
+"and to that point always a backup level 3 will be executed. It will not "
+"restart from level 0. This option has precedence over --max-backup-level. "
+"Default False (Disabled)"
+msgstr ""
+"Set backup maximum level used with tar to implement incremental backup. If a "
+"level 3 is specified, the backup will be executed from level 0 to level 3 "
+"and to that point always a backup level 3 will be executed. It will not "
+"restart from level 0. This option has precedence over --max-backup-level. "
+"Default False (Disabled)"
+
+msgid ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default current "
+"node hostname."
+msgstr ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default current "
+"node hostname."
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+
+msgid "Set storage backend for a backup"
+msgstr "Set storage backend for a backup"
+
+msgid "Set the absolute path where you want your data restored."
+msgstr "Set the absolute path where you want your data restored."
+
+msgid ""
+"Set the absolute path where you want your data restored.Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1979-10-03T23:23:23'. Make "
+"sure the 'T' is between date and time"
+msgstr ""
+"Set the absolute path where you want your data restored.Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1974-06-07T16:30:23'. Make "
+"sure the 'T' is between date and time"
+
+msgid "Set the action to be taken"
+msgstr "Set the action to be taken"
+
+msgid ""
+"Set the backup level used with tar to implement incremental backup. If a "
+"level 1 is specified but no level 0 is already available, a level 0 will be "
+"done and subsequently backs to level 1. Default 0 (No Incremental)"
+msgstr ""
+"Set the backup level used with tar to implement incremental backup. If a "
+"level 1 is specified but no level 0 is already available, a level 0 will be "
+"done and subsequently backs to level 1. Default 0 (No Incremental)"
+
+msgid ""
+"Set the cpu process to the highest priority (i.e. -20 on Linux) and real-"
+"time for I/O. The process priority will be set only if nice and ionice are "
+"installed Default disabled. Use with caution."
+msgstr ""
+"Set the CPU process to the highest priority (i.e. -20 on Linux) and real-"
+"time for I/O. The process priority will be set only if nice and ionice are "
+"installed Default disabled. Use with caution."
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+msgstr ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+
+msgid "Set the interval between executions for retries in seconds"
+msgstr "Set the interval between executions for retries in seconds"
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+
+msgid ""
+"Set the maximum file chunk size in bytes to upload to swift. Default "
+"67108864 bytes (64MB)"
+msgstr ""
+"Set the maximum file chunk size in bytes to upload to swift. Default "
+"67108864 bytes (64MB)"
+
+msgid "Set the path where the MySQL configuration file is on the file system "
+msgstr "Set the path where the MySQL configuration file is on the file system "
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system"
+msgstr ""
+"Set the path where the SQL Server configuration file is on the file system"
+
+msgid "Set the path where the encryption keyis on the file system"
+msgstr "Set the path where the encryption keyis on the file system"
+
+msgid "Set this action as mandatory"
+msgstr "Set this action as mandatory"
+
+msgid "Snapshot"
+msgstr "Snapshot"
+
+msgid "Source File/Directory *"
+msgstr "Source File/Directory *"
+
+msgid "Start Date and Time"
+msgstr "Start Date and Time"
+
+msgid "Start Job"
+msgstr "Start Job"
+
+msgid "Start date time is not in ISO format."
+msgstr "Start date time is not in ISO format."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stop Job"
+msgstr "Stop Job"
+
+msgid "Storage"
+msgstr "Storage"
+
+msgid "Suppress error messages"
+msgstr "Suppress error messages"
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "Swift auth version, could be 1, 2 or 3"
+msgstr "Swift auth version, could be 1, 2 or 3"
+
+msgid "Swift container for swift backend or path for ssh or local backend"
+msgstr "Swift container for swift backend or path for ssh or local backend"
+
+msgid "The Object name you want to download on the local file system."
+msgstr "The Object name you want to download on the local file system."
+
+msgid ""
+"The file name used to save the object on your local disk and upload file in "
+"swift."
+msgstr ""
+"The file name used to save the object on your local disk and upload file in "
+"swift."
+
+msgid "The file or directory you want to back up."
+msgstr "The file or directory you want to back up."
+
+msgid "The path in which the backup should be restored"
+msgstr "The path in which the backup should be restored"
+
+msgid "Unable to attach to session."
+msgstr "Unable to attach to session."
+
+msgid "Unable to create session."
+msgstr "Unable to create session."
+
+msgid "Unable to created job."
+msgstr "Unable to created job."
+
+msgid "Unable to retrieve client list."
+msgstr "Unable to retrieve client list."
+
+msgid "Unable to save action file."
+msgstr "Unable to save action file."
+
+msgid "Unable to save actions."
+msgstr "Unable to save actions."
+
+msgid "Unable to update actions."
+msgstr "Unable to update actions."
+
+msgid "Unable to update job."
+msgstr "Unable to update job."
+
+msgid "Update Actions"
+msgstr "Update Actions"
+
+msgid "Update Job"
+msgstr "Update Job"
+
+msgid "Upload Limit"
+msgstr "Upload Limit"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+
+msgid ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
+msgstr ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
+
+msgid "You must define a container or path to backup."
+msgstr "You must define a container or path to backup."
+
+msgid "You must define a path to backup."
+msgstr "You must define a path to backup."
+
+msgid "You must define a path to restore."
+msgstr "You must define a path to restore."
+
+msgid "You must define an action name."
+msgstr "You must define an action name."
+
+msgid "insecure"
+msgstr "insecure"
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"
