@@ -22,6 +22,7 @@ from horizon import tables
 from django.core.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
+from disaster_recovery.utils import shield
 
 
 LOG = logging.getLogger(__name__)
@@ -67,6 +68,7 @@ class DeleteSession(tables.DeleteAction):
             count
         )
 
+    @shield("Unable to delete session", redirect="sessions:index")
     def delete(self, request, session_id):
         return freezer_api.Session(request).delete(session_id)
 
@@ -108,6 +110,7 @@ class DeleteJobFromSession(tables.DeleteAction):
             count
         )
 
+    @shield("Unable to delete session", redirect="sessions:index")
     def delete(self, request, session):
         job_id, session_id = session.split('===')
         return freezer_api.Session(request).remove_job(session_id, job_id)

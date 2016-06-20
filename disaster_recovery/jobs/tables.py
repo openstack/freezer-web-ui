@@ -23,6 +23,7 @@ from horizon import messages
 from django.core.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
+from disaster_recovery.utils import shield
 
 
 LOG = logging.getLogger(__name__)
@@ -69,6 +70,7 @@ class DeleteJob(tables.DeleteAction):
             count
         )
 
+    @shield("Unable to delete job", redirect="jobs:index")
     def delete(self, request, job_id):
         return freezer_api.Job(request).delete(job_id)
 
@@ -82,6 +84,7 @@ class CloneJob(tables.Action):
     verbose_name = _("Clone Job")
     help_text = _("Clone and edit a job file")
 
+    @shield("Unable to clone job", redirect="jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).clone(job_id)
         return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
@@ -113,6 +116,7 @@ class StartJob(tables.Action):
     name = "start_job"
     verbose_name = _("Start Job")
 
+    @shield("Unable to start job", redirect="jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).start(job_id)
         messages.success(request, _("Job has started"))
@@ -126,6 +130,7 @@ class StopJob(tables.Action):
     name = "stop_job"
     verbose_name = _("Stop Job")
 
+    @shield("Unable to stop job", redirect="jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).stop(job_id)
         messages.success(request, _("Job has stopped"))
@@ -211,6 +216,7 @@ class DeleteAction(tables.DeleteAction):
             count
         )
 
+    @shield("Unable to delete action", redirect="jobs:index")
     def delete(self, request, obj_id):
         freezer_api.Job(request).delete_action(obj_id)
         return reverse("horizon:disaster_recovery:jobs:index")

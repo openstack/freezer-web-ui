@@ -19,6 +19,7 @@ from horizon import tables
 from django.core.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
+from disaster_recovery.utils import shield
 
 
 LOG = logging.getLogger(__name__)
@@ -51,6 +52,7 @@ class DeleteClient(tables.DeleteAction):
             count
         )
 
+    @shield("Unable to delete client", redirect="clients:index")
     def delete(self, request, client_id):
         return freezer_api.Client(request).delete(client_id)
 
