@@ -14,7 +14,6 @@
 # from horizon.
 
 import logging
-import time
 
 from django.conf import settings
 
@@ -121,13 +120,7 @@ class Job(object):
             job.get('client_id'))
 
     def create(self, job):
-        job = self._build(job)
-        # due to elasticsearch replication time, sometimes the newly created
-        # file is not reflected in the ui immediately, so a quick and dirty
-        # workaround is to sleep for 3 seconds to make sure that the changes
-        # are reflected
-        time.sleep(3)
-        return job
+        return self._build(job)
 
     def update(self, job_id, job):
         scheduling = {}
@@ -292,13 +285,7 @@ class Session(object):
             session.get('schedule', {}).get('schedule_end_date'))
 
     def create(self, session):
-        session = self._build(session)
-        # due to elasticsearch replication time, sometimes the newly created
-        # file is not reflected in the ui immediately, so a quick and dirty
-        # workaround is to sleep for 3 seconds to make sure that the changes
-        # are reflected
-        time.sleep(3)
-        return session
+        return self._build(session)
 
     def update(self, session, session_id):
         return self.client.sessions.update(session_id, session)
@@ -387,13 +374,7 @@ class Action(object):
             action['freezer_action'].get('storage'))
 
     def create(self, action):
-        action = self._build(action)
-        # due to elasticsearch replication time, sometimes the newly created
-        # file is not reflected in the ui immediately, so a quick and dirty
-        # workaround is to sleep for 3 seconds to make sure that the changes
-        # are reflected
-        time.sleep(3)
-        return action
+        return self._build(action)
 
     def update(self, action, action_id):
         updated_action = {}
