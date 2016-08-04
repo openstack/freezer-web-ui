@@ -7,11 +7,7 @@ var Browser = (function () {
     url += "//";
     url += $(location).attr("host");
 
-    if (url_path.indexOf("horizon") > -1) {
-        url += '/horizon/disaster_recovery/api/';
-    } else {
-        url += '/disaster_recovery/api/';
-    }
+    url += WEBROOT + 'disaster_recovery/api/';
 
     return {
         get_url : function () {
