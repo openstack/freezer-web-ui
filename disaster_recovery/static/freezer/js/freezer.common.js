@@ -1,7 +1,5 @@
 var Browser = (function () {
 
-    var url_path = $(location).attr("pathname");
-
     var url = null;
     url = $(location).attr("protocol");
     url += "//";
