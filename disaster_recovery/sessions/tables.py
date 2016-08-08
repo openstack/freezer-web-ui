@@ -17,9 +17,9 @@ import logging
 
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
+from django.core.urlresolvers import reverse
 
 from horizon import tables
-from django.core.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
 from disaster_recovery.utils import shield

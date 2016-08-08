@@ -465,13 +465,13 @@ class Backup(object):
         self.request = request
         self.client = client(request)
 
-    def list(self, json=False, limit=500, offset=0, search=None):
+    def list(self, json=False, limit=500, offset=0, search={}):
         if search:
             search = {"match": [{"_all": search}, ], }
 
-        backups = self.client.backups.list(limit=limit,
-                                           offset=offset,
-                                           search=search)
+        backups = self.client.backups.list_all(limit=limit,
+                                               offset=offset,
+                                               search=search)
 
         if json:
             return backups
