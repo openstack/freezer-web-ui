@@ -36,6 +36,7 @@ function hideEverything() {
     $("#id_restore_abs_path").closest(".form-group").hide();
     $("#id_restore_from_host").closest(".form-group").hide();
     $("#id_restore_from_date").closest(".form-group").hide();
+    $("#restore-warning").hide();
 
     // Admin specific controls
     $("#id_remove_older_than").closest(".form-group").hide();
@@ -73,6 +74,7 @@ function showRestoreOptions() {
     $("#id_restore_from_host").closest(".form-group").show();
     $("#id_restore_from_date").closest(".form-group").show();
     $("#id_storage").closest(".form-group").show();
+    $("#restore-warning").show();
 }
 
 function showSSHOptions() {
@@ -81,85 +83,54 @@ function showSSHOptions() {
     $("#id_ssh_host").closest(".form-group").show();
 }
 
-function triggerChanges() {
-    $("#id_action").trigger('change');
-    $("#id_mode").trigger('change');
-    $("#id_storage").trigger('change');
-}
-
-function hideModeOptions() {
-    $("#id_cinder_vol_id").closest(".form-group").hide();
-    $("#id_nova_inst_id").closest(".form-group").hide();
-    $("#id_mysql_conf").closest(".form-group").hide();
-    $("#id_sql_server_conf").closest(".form-group").hide();
-}
-
-function hideSSHOptions() {
-    $("#id_ssh_key").closest(".form-group").hide();
-    $("#id_ssh_username").closest(".form-group").hide();
-    $("#id_ssh_host").closest(".form-group").hide();
-}
-
-$("#id_action").change(function () {
+function setActionOptions() {
     // Update the inputs according freezer action
-    if ($("#id_action").val() === 'backup') {
-        hideEverything();
+    var $id_action = $("#id_action").val();
+    if ($id_action === 'backup') {
         showBackupOptions();
-    } else if ($("#id_action").val() === 'restore') {
-        hideEverything();
+    } else if ($id_action === 'restore') {
         showRestoreOptions();
-    } else if ($("#id_action").val() === 'admin') {
-        hideEverything();
+    } else if ($id_action === 'admin') {
         showAdminOptions();
-    } else {
-        hideEverything();
     }
-});
+}
 
-
-$("#id_storage").change(function () {
+function setStorageOptions() {
     // Update the inputs according freezer storage backend
-    if ($("#id_storage").val() === 'swift') {
-        //hideEverything();
-        showBackupOptions();
-        hideSSHOptions();
-    } else if ($("#id_storage").val() === 'ssh') {
-        //hideEverything();
-        showBackupOptions();
-        showSSHOptions();
-    } else if ($("#id_storage").val() === 'local') {
-        //hideEverything();
-        showBackupOptions();
-        hideSSHOptions();
+    var $id_action = $("#id_action").val();
+    if ($id_action === 'backup' || $id_action === 'restore') {
+        if ($("#id_storage").val() === 'ssh') {
+            showSSHOptions();
+        }
     }
-});
+}
 
-
-$("#id_mode").change(function () {
+function setModeOptions() {
     // Update the inputs according freezer mode
     if ($("#id_action").val() === 'backup') {
-        if ($("#id_mode").val() === 'fs') {
-            hideModeOptions();
-        } else if ($("#id_mode").val() === 'mysql') {
-            hideModeOptions();
+        var $id_mode = $("#id_mode").val();
+        if ($id_mode === 'mysql') {
             $("#id_mysql_conf").closest(".form-group").show();
-        } else if ($("#id_mode").val() === 'mssql') {
-            hideModeOptions();
+        } else if ($id_mode === 'mssql') {
             $("#id_sql_server_conf").closest(".form-group").show();
-        } else if ($("#id_mode").val() === 'mongo') {
-            hideModeOptions();
-        } else if ($("#id_mode").val() === 'cinder') {
-            hideModeOptions();
+        } else if ($id_mode === 'cinder') {
             $("#id_cinder_vol_id").closest(".form-group").show();
-        } else if ($("#id_mode").val() === 'nova') {
-            hideModeOptions();
+        } else if ($id_mode === 'nova') {
             $("#id_nova_inst_id").closest(".form-group").show();
         }
     }
-});
+}
 
+$("#id_action, #id_storage, #id_mode").change(function () {
+    hideEverything();
+    setActionOptions();
+    setStorageOptions();
+    setModeOptions();
+});
 
 $(function () {
     hideEverything();
-    triggerChanges();
+    setActionOptions();
+    setStorageOptions();
+    setModeOptions();
 });
