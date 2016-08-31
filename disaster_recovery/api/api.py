@@ -234,11 +234,7 @@ class Job(object):
         actions_in_job = []
         for action_id in action_ids:
             action = Action(self.request).get(action_id, json=True)
-            a = {
-                'action_id': action['action_id'],
-                'freezer_action': action['freezer_action']
-            }
-            actions_in_job.append(a)
+            actions_in_job.append(action)
         return actions_in_job
 
 
