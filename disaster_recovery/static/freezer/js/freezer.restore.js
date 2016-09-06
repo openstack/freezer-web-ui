@@ -25,6 +25,15 @@ function get_url() {
   return url;
 }
 
+function freezerGetRow(item) {
+  var tr = $('<tr>');
+  tr.append($('<td class="multi_select_column">')
+    .append($('<input type="radio" name="client">')
+      .attr('value', item.client.client_id)));
+  tr.append($('<td>').text(item.client.hostname));
+  return tr;
+}
+
 $.ajax({
     url: get_url(),
     type: "GET",
@@ -33,16 +42,12 @@ $.ajax({
     contentType: 'application/json; charset=utf-8',
     success: function(data) {
         $.each(data, function (index, item) {
-            $("#available_clients").append(
-                '<tr><td class="multi_select_column">' +
-                    '<input type="radio" name="client" value=' + item.client.client_id + '></td>' +
-                     '<td>' + item.client.hostname + '</td></tr>'
-            );
+            $("#available_clients").append(freezerGetRow(item));
         });
     },
     error: function (request, error) {
         $("#available_clients").append(
-            '<tr><td>Error getting client list</td></tr>'
+            '<tr><td>Error getting client list</td></tr>' // UNTRANSLATED
         );
     }
 });

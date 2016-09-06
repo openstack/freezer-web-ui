@@ -9,6 +9,7 @@ $(function () {
     }).disableSelection();
 });
 
+// BAD: This is putting all these members on global scope.
 
 var parent = $(".sortable_lists").parent();
 parent.removeClass("col-sm-6");
@@ -44,6 +45,12 @@ function actions_url() {
   return url;
 }
 
+function freezerLi(item) {
+  return $('<li class="list-group-item">')
+    .attr('id', item.action_id)
+    .text("(" + item.freezer_action.action + ") " + item.freezer_action.backup_name);
+}
+
 if (job_id !== "") {
     $.ajax({
         url: actions_in_job_url(),
@@ -53,21 +60,15 @@ if (job_id !== "") {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             $.each(data.available, function (index, item) {
-                $("#actions_available").append(
-                    "<li class='list-group-item' id=" + item.action_id + ">" +
-                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
-                );
+                $("#actions_available").append(freezerLi(item));
             });
             $.each(data.selected, function (index, item) {
-                $("#actions_selected").append(
-                    "<li class='list-group-item' id=" + item.action_id + ">" +
-                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
-                );
+                $("#actions_selected").append(freezerLi(item));
             });
         },
         error: function (request, error) {
             $("#actions_available").append(
-                '<tr><td>Error getting action list</td></tr>'
+                '<tr><td>Error getting action list</td></tr>' // UNTRANSLATED
             );
         }
     });
@@ -80,15 +81,12 @@ if (job_id !== "") {
         contentType: 'application/json; charset=utf-8' ,
         success: function (data) {
             $.each(data, function (index, item) {
-                $("#actions_available").append(
-                    "<li class='list-group-item' id=" + item.action_id + ">" +
-                        "(" + item.freezer_action.action + ")"  + " " + item.freezer_action.backup_name + "</li>"
-                );
+                $("#actions_available").append(freezerLi(item));
             });
         },
         error: function (request, error) {
             $("#actions_available").append(
-                '<tr><td>Error getting action list</td></tr>'
+                '<tr><td>Error getting action list</td></tr>' // UNTRANSLATED
             );
         }
     });
