@@ -1,0 +1,664 @@
+# Jimmy Li <ljzljm@163.com>, 2015. #zanata
+# OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# 适兕 <lijiangsheng1@gmail.com>, 2015. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# Gaoxiao Zhu <zhu.gaoxiao@h3c.com>, 2016. #zanata
+# howard lee <howard@mail.ustc.edu.cn>, 2016. #zanata
+# liujunpeng <liujunpeng@inspur.com>, 2016. #zanata
+# vuuv <froms2008@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui 3.0.0.0b4.dev3\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2016-09-08 14:46+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-09-05 03:42+0000\n"
+"Last-Translator: howard lee <howard@mail.ustc.edu.cn>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action Configuration"
+msgstr "action配置"
+
+msgid "Action Name"
+msgstr "action名称"
+
+msgid "Action Name *"
+msgstr "action名称*"
+
+msgid "Action Type"
+msgstr "Action类型"
+
+msgid "Action queued correctly. It will appear soon"
+msgstr "action已成功排队，将很快执行。"
+
+msgid "Actions"
+msgstr "动作"
+
+msgid "Actions Configuration"
+msgstr "Actions配置"
+
+msgid "Actions saved correctly."
+msgstr "Actions保存成功。"
+
+msgid "Actions updated correctly."
+msgstr "Actions已成功更新。"
+
+msgid "Admin"
+msgstr "管理员"
+
+msgid "Advanced"
+msgstr "高级"
+
+msgid "All Clients"
+msgstr "所有的Clients"
+
+msgid "Allow to access swift servers without checking SSL certs."
+msgstr "在无SSL认证的情况下允许访问swift服务。"
+
+msgid "Attach"
+msgstr "Attach"
+
+msgid "Attach To Session"
+msgstr "关联的Session"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "Backup History"
+msgstr "备份历史"
+
+msgid "Backup Name"
+msgstr "备份名称"
+
+msgid "Backup and Restore"
+msgstr "备份和恢复"
+
+msgid "Backups"
+msgstr "备份"
+
+msgid ""
+"Checks in the specified container for object older than the specified days."
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default False (Disabled) The option --remove-older-then is deprecated "
+"and will be removed soon"
+msgstr ""
+"在指定的容器中检查超过指定天数的对象。比如，如果指定天数设置为30，系统将会删"
+"除超过30天的远程对象。默认设置为False（功能为开启）。--remove-older-than选项"
+"因已被弃用而很快会被删除。"
+
+msgid ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-03-25T23:23:23. Make "
+"sure the 'T' is between date and time "
+msgstr ""
+"检查指定的容器并删除旧于给定日期（格式为YYYY-MM-DDThh:mm:ss 比如 "
+"1974-03-25T23:23:23）的对象。确保日期和时间使用字母\"T\"进行分隔。"
+
+msgid "Choose what you want to backup"
+msgstr "选择需要备份的内容"
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID *"
+msgstr "Cinder卷ID*"
+
+msgid "Client ID"
+msgstr "Client编号"
+
+msgid "Client is required"
+msgstr "Client是必须的"
+
+msgid "Clients"
+msgstr "Clients"
+
+msgid "Clone Job"
+msgstr "克隆任务"
+
+msgid "Clone and edit a job file"
+msgstr "克隆并编辑任务配置文件"
+
+msgid "Compression Level"
+msgstr "压缩等级"
+
+msgid "Container Name or Path *"
+msgstr "容器名称或路径*"
+
+msgid "Create Action"
+msgstr "创建action"
+
+msgid "Create Job"
+msgstr "创建任务"
+
+msgid "Create Session"
+msgstr "创建Session"
+
+msgid "Created At"
+msgstr "创建于"
+
+msgid "Define a name for this session"
+msgstr "为session定义名称"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "删除Action"
+
+msgid "Delete Clients is not recoverable."
+msgstr "删除Clients操作是不可恢复的。"
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "删除任务"
+
+msgid "Delete actions is not recoverable."
+msgstr "删除actions操作不可恢复"
+
+msgid "Delete jobs is not recoverable."
+msgstr "删除任务操作时不可恢复的。"
+
+msgid "Delete sessions is not recoverable."
+msgstr "删除sessions操作时不可恢复的。"
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "已删除的Actions"
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "已删除的任务"
+
+msgid "Destination"
+msgstr "目的地"
+
+msgid "Destination File"
+msgstr "目标文件"
+
+msgid "Destination Path"
+msgstr "目标路径"
+
+msgid ""
+"Disable incremental feature. By default freezer build the meta data even for "
+"level 0 backup. By setting this option incremental meta data is not created "
+"at all. Default disabled"
+msgstr ""
+"取消增量特性。freezer默认甚至会为级别为0的备份创建元数据。设置该选项后，"
+"freezer将不会创建元数据。默认情况下该选项设置为disabled。"
+
+msgid "Disaster Recovery"
+msgstr "灾难恢复"
+
+msgid "Do everything except writing or removing objects"
+msgstr "做除写和删除对象之外的任何事情"
+
+msgid "Download Limit"
+msgstr "下载限制"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"以每秒钟字节量的形式设置下载带宽限制，可以使用如下的形式：10k,120M,10G。"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Edit Actions"
+msgstr "编辑Actions"
+
+msgid "Edit Job"
+msgstr "编辑任务配置文件"
+
+msgid "Edit Session"
+msgstr "编辑Session"
+
+msgid "Encryption Key"
+msgstr "加密秘钥"
+
+msgid "End Date and Time"
+msgstr "结束日期和时间"
+
+msgid "End date time is not in ISO format."
+msgstr "结束时间不是ISO格式。"
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+msgstr "强化可以修改系统HTTP_PROXY和HTTPS_PROXY的代理"
+
+msgid "Error getting session list"
+msgstr "获取session列表出错"
+
+msgid "Exclude Files"
+msgstr "排除文件"
+
+msgid ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+msgstr ""
+"排除文件，假设给定的PATTERN.Ex为：'*.log, *.pyc'，这将会排除任何一个名称以."
+"log结尾的文件。默认情况下不会排除文件。"
+
+msgid "File system"
+msgstr "文件系统"
+
+msgid "Follow Symlinks"
+msgstr "Follow Symlinks"
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr "在这里，你可以向任务中添加或删除来自于可用client列表的client。"
+
+msgid "Get A Single Object"
+msgstr "得到一个单一的对象"
+
+msgid "Host"
+msgstr "主机"
+
+msgid "Hostname"
+msgstr "主机名"
+
+msgid "IP address or dns name of host to connect through ssh"
+msgstr "通过ssh连接的主机的ip地址或者dns名称"
+
+msgid "Id of cinder volume for backup"
+msgstr "需要进行备份的cinder卷id"
+
+msgid "Id of nova instance for backup"
+msgstr "需要进行备份的nova虚拟机id"
+
+msgid "In case of error, set the amount of retries for this job"
+msgstr "如果发生错误，为job设置重试次数"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Interval"
+msgstr "间隔"
+
+msgid "Job Configuration"
+msgstr "任务配置"
+
+msgid "Job ID"
+msgstr "任务ID"
+
+msgid "Job Info"
+msgstr "任务信息"
+
+msgid "Job Name"
+msgstr "任务名称"
+
+msgid "Job attached successfully."
+msgstr "任务关联成功。"
+
+msgid "Job has started"
+msgstr "任务已开始"
+
+msgid "Job has stopped"
+msgstr "任务已停止"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr "任务已成功排队，将很快执行。"
+
+msgid "Job updated correctly."
+msgstr "任务更新成功。"
+
+msgid "Jobs"
+msgstr "任务"
+
+msgid "Local Path"
+msgstr "本地路径"
+
+msgid "Log File Path"
+msgstr "日志文件路径"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "数据无损压缩方式 (XZ)"
+
+msgid "Mandatory"
+msgstr "强制的"
+
+msgid "Max Level"
+msgstr "最大级别"
+
+msgid "Max Priority"
+msgstr "最高优先级"
+
+msgid "Max Retries"
+msgstr "最大尝试次数"
+
+msgid "Max Retries Interval"
+msgstr "最大重试间隔"
+
+msgid "Maximum Segment Size"
+msgstr "最大段大小"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "最小压缩方式(GZip/Zip/Zlib)"
+
+msgid "Mode"
+msgstr "模式"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "更加高效的压缩方式(Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File *"
+msgstr "MySQL配置文件*"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "No Incremental"
+msgstr "非增量"
+
+msgid "No clients found."
+msgstr "没有找到任何clients。"
+
+msgid "No clients selected."
+msgstr "没有选择任何clients。"
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Volume ID *"
+msgstr "Nova卷ID*"
+
+msgid "OpenStack Authentication Version"
+msgstr "OpenStack认证系统版本"
+
+msgid "Path To Backup or Restore"
+msgstr "备份或恢复路径"
+
+msgid "Path for ssh private key"
+msgstr "ssh私钥路径"
+
+msgid "Please provide this value."
+msgstr "请提供值。"
+
+msgid "Proxy URL"
+msgstr "代理URL"
+
+msgid "Remove From Date"
+msgstr "根据日期进行删除"
+
+msgid "Remove Older Than"
+msgstr "删除较旧的"
+
+msgid "Repeat this configuration in a minutes interval."
+msgstr "重复该配置（以分钟级别间隔）。"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Restore Absolute Path *"
+msgstr "用于恢复的绝对路径"
+
+msgid "Restore From Date"
+msgstr "根据日期进行恢复"
+
+msgid "Restore From Host"
+msgstr "从主机恢复"
+
+msgid "Restore job successfully queued. It will get executed soon."
+msgstr "恢复任务已成功排队，将很快执行。"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "Rules"
+msgstr "规则"
+
+msgid "SQL Server Configuration File *"
+msgstr "SQL Server配置文件*"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host *"
+msgstr "SSH主机*"
+
+msgid "SSH Private Key *"
+msgstr "SSH私钥*"
+
+msgid "SSH Username *"
+msgstr "SSH用户名*"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Select A Session"
+msgstr "选择一个Session"
+
+msgid "Selected Clients"
+msgstr "选择的Clients"
+
+msgid "Session"
+msgstr "Session"
+
+msgid "Session Configuration"
+msgstr "Session配置"
+
+msgid "Session Information"
+msgstr "Session信息"
+
+msgid "Session Name"
+msgstr "Session名称"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr "Session已成功排队，将很快出现。"
+
+msgid "Sessions"
+msgstr "Sessions"
+
+msgid "Set a name for this job"
+msgstr "为任务设置名称"
+
+msgid "Set a session to attach this job"
+msgstr "设置session，使其关联到该任务"
+
+msgid ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default current "
+"node hostname."
+msgstr ""
+"为执行actions而设置用户名。如果你在一台机器上执行freezer，但是你想删除属于另"
+"外一台机器的对象，你可以使用另外一台机器的名称来设置这一选项来执行相应的"
+"actions。默认是当前节点用户名。"
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"设置日志文件，默认日志文件为/var/log/freezer.log，如果该文件不可写，freezer会"
+"尝试将日志写到~/.freezer/freezer.log中。"
+
+msgid "Set storage backend for a backup"
+msgstr "为备份设置存储后端"
+
+msgid "Set the absolute path where you want your data restored."
+msgstr "设置用于数据恢复的绝对路径"
+
+msgid ""
+"Set the absolute path where you want your data restored.Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1979-10-03T23:23:23'. Make "
+"sure the 'T' is between date and time"
+msgstr ""
+"为需要恢复的数据设置绝对路径。请提供格式为\"YYYY-MM-DDThh:mm:ss\"的日期，比如"
+"\"1979-10-03T23:23:23\"。确保日期和时间以字母\"T\"分隔。"
+
+msgid "Set the action to be taken"
+msgstr "设置所需的action"
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+msgstr ""
+"为认证需要恢复的数据设置主机名称。如果想在同一台执行备份的主机上恢复数据，直"
+"接在shell中输入\"$hostname\"，输出的结果即是需要传递给option的值。强制执行恢"
+"复。"
+
+msgid "Set the interval between executions for retries in seconds"
+msgstr "设置重试执行间隔（秒）"
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"按照如下格式设置间隔：\n"
+"      连续的，\n"
+"      N周，\n"
+"      N天，\n"
+"      N小时，\n"
+"      N分钟，\n"
+"      N秒，\n"
+"      如果为提供开始日期，任务将会立刻开始执行"
+
+msgid ""
+"Set the maximum file chunk size in bytes to upload to swift. Default "
+"67108864 bytes (64MB)"
+msgstr "设置用于swift上传的文件块最大字节数。默认为67108864字节（64MB）。"
+
+msgid "Set the path where the MySQL configuration file is on the file system "
+msgstr "设置MySQL配置文件在文件系统中的路径"
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system"
+msgstr "设置SQL Server配置文件在文件系统中的路径"
+
+msgid "Set the path where the encryption keyis on the file system"
+msgstr "设置加密秘钥在文件系统中的路径"
+
+msgid "Set this action as mandatory"
+msgstr "设置action为强制执行"
+
+msgid "Snapshot"
+msgstr "快照"
+
+msgid "Source File/Directory *"
+msgstr "源文件/目录*"
+
+msgid "Start Date and Time"
+msgstr "开始日期和时间"
+
+msgid "Start Job"
+msgstr "开始任务"
+
+msgid "Start date time is not in ISO format."
+msgstr "开始时间不是ISO格式。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Stop Job"
+msgstr "停止任务"
+
+msgid "Storage"
+msgstr "存储"
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "Swift auth version, could be 1, 2 or 3"
+msgstr "Swift认证版本应该是1,2或者3"
+
+msgid "Swift container for swift backend or path for ssh or local backend"
+msgstr "用于swift后端的swift容器，或者用于ssh的path，或者是本地后端"
+
+msgid "The Object name you want to download on the local file system."
+msgstr "需要下载的位于本地文件系统的对象名称"
+
+msgid ""
+"The file name used to save the object on your local disk and upload file in "
+"swift."
+msgstr "用于在本地磁盘保存对象和向swift上传文件的文件名称"
+
+msgid "The file or directory you want to back up."
+msgstr "需要备份的文件或目录"
+
+msgid "The path in which the backup should be restored"
+msgstr "备份存储路径"
+
+msgid "Unable to attach to session."
+msgstr "无法关联到session。"
+
+msgid "Unable to create session."
+msgstr "无法创建session。"
+
+msgid "Unable to created job."
+msgstr "无法创建任务。"
+
+msgid "Unable to retrieve client list."
+msgstr "无法获取client列表。"
+
+msgid "Unable to save action file."
+msgstr "无法保存action文件。"
+
+msgid "Unable to save actions."
+msgstr "无法保存actions。"
+
+msgid "Unable to update actions."
+msgstr "无法更新actions。"
+
+msgid "Unable to update job."
+msgstr "无法更新任务。"
+
+msgid "Update Actions"
+msgstr "更新Actions"
+
+msgid "Update Job"
+msgstr "更新任务"
+
+msgid "Upload Limit"
+msgstr "上传限制"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"以每秒钟字节量的形式设置上传带宽限制，可以使用如下的形式：10k,120M,10G。"
+
+msgid "You must define a container or path to backup."
+msgstr "你必须定义一个用于备份的容器或者路径"
+
+msgid "You must define a path to backup."
+msgstr "你必须定义一个用于备份的路径"
+
+msgid "You must define a path to restore."
+msgstr "你必须定义一个用于恢复的路径"
+
+msgid "You must define an action name."
+msgstr "你必须定义一个action名称"
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"
