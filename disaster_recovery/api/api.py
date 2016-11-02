@@ -13,7 +13,7 @@
 # Some helper functions to use the disaster_recovery client functionality
 # from horizon.
 
-import logging
+from oslo_log import log
 
 from django.conf import settings
 
@@ -23,7 +23,7 @@ import freezer.apiclient.client
 from disaster_recovery import utils
 
 
-LOG = logging.getLogger(__name__)
+LOG = log.getLogger(__name__)
 
 
 @memoized
