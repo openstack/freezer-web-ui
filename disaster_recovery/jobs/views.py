@@ -10,8 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import logging
-
 from horizon import browsers
 from horizon import workflows
 
@@ -23,9 +21,6 @@ import disaster_recovery.api.api as freezer_api
 import disaster_recovery.jobs.browsers as project_browsers
 
 from disaster_recovery.utils import shield
-
-
-LOG = logging.getLogger(__name__)
 
 
 class JobsView(browsers.ResourceBrowserView):

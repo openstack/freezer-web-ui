@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
-
 from django.core.urlresolvers import reverse
 from django.utils import safestring
 from django.utils.translation import ugettext_lazy as _
@@ -22,9 +20,6 @@ from horizon import tables
 from horizon.utils import functions as utils
 
 from disaster_recovery.utils import timestamp_to_string
-
-
-LOG = logging.getLogger(__name__)
 
 
 class Restore(tables.LinkAction):

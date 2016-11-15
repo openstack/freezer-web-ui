@@ -10,7 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import logging
 import pprint
 
 from django.core.urlresolvers import reverse_lazy
@@ -25,9 +24,6 @@ import disaster_recovery.api.api as freezer_api
 from disaster_recovery.actions import tables as freezer_tables
 from disaster_recovery.actions.workflows import action as action_workflow
 from disaster_recovery.utils import shield
-
-
-LOG = logging.getLogger(__name__)
 
 
 class IndexView(tables.DataTableView):

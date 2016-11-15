@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-import logging
-
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
@@ -23,9 +20,6 @@ from horizon import forms
 from horizon import workflows
 
 import disaster_recovery.api.api as freezer_api
-
-
-LOG = logging.getLogger(__name__)
 
 
 class DestinationAction(workflows.MembershipAction):

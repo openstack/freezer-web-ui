@@ -13,7 +13,6 @@
 # limitations under the License.
 
 import datetime
-import logging
 
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -24,9 +23,6 @@ from horizon import forms
 from horizon import workflows
 
 import disaster_recovery.api.api as freezer_api
-
-
-LOG = logging.getLogger(__name__)
 
 
 class SessionConfigurationAction(workflows.Action):

@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
-
 from horizon import browsers
 from horizon import workflows
 
@@ -23,9 +21,6 @@ import disaster_recovery.sessions.browsers as project_browsers
 from disaster_recovery.sessions.workflows import attach
 from disaster_recovery.sessions.workflows import create
 from disaster_recovery.utils import shield
-
-
-LOG = logging.getLogger(__name__)
 
 
 class SessionsView(browsers.ResourceBrowserView):
