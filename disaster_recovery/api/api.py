@@ -16,10 +16,9 @@
 import logging
 
 from django.conf import settings
-
 from horizon.utils.memoized import memoized  # noqa
+from freezerclient.v1 import client as freezer_client
 
-import freezer.apiclient.client
 from disaster_recovery import utils
 
 
@@ -35,7 +34,7 @@ def client(request):
     ks_version = getattr(settings,
                          'OPENSTACK_API_VERSIONS', {}).get('identity', 2.0)
 
-    insecure = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
+    verify = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
     cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
 
     credentials = {
@@ -43,8 +42,8 @@ def client(request):
         'auth_url': getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
         'endpoint': api_url,
         'version': ks_version,
-        'cacert': cacert,
-        'insecure': insecure
+        'cert': cacert,
+        'verify': verify,
     }
 
     if ks_version == 3:
@@ -52,7 +51,7 @@ def client(request):
         credentials['project_domain_name'] = \
             request.user.domain_name or 'Default'
 
-    return freezer.apiclient.client.Client(**credentials)
+    return freezer_client.Client(**credentials)
 
 
 @memoized
@@ -427,9 +426,9 @@ class Client(object):
         if search:
             search = {"match": [{"_all": search}, ], }
 
-        clients = self.client.registration.list(limit=limit,
-                                                offset=offset,
-                                                search=search)
+        clients = self.client.clients.list(limit=limit,
+                                           offset=offset,
+                                           search=search)
 
         if json:
             return clients
@@ -441,7 +440,7 @@ class Client(object):
         ) for c in clients]
 
     def get(self, client_id, json=False):
-        c = self.client.registration.get(client_id)
+        c = self.client.clients.get(client_id)
 
         if json:
             return c
@@ -452,7 +451,7 @@ class Client(object):
             c.get('uuid'))
 
     def delete(self, client_id):
-        return self.client.registration.delete(client_id)
+        return self.client.clients.delete(client_id)
 
 
 class Backup(object):
