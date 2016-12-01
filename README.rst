@@ -21,7 +21,7 @@ with freezer
 Requirements
 ============
 
-Freezer Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
+Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
 
     git clone https://github.com/openstack/freezer
     cd freezer
