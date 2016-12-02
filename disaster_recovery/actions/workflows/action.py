@@ -103,6 +103,11 @@ class ActionConfigurationAction(workflows.Action):
         help_text=_("Id of nova instance for backup"),
         required=False)
 
+    nova_network_id = forms.CharField(
+        label=_("Nova network ID *"),
+        help_text=_("Id of nova network for recover"),
+        required=False)
+
     get_object = forms.CharField(
         label=_("Get A Single Object"),
         help_text=_("The Object name you want to download on "
@@ -164,12 +169,29 @@ class ActionConfigurationAction(workflows.Action):
             self._check_backup_name(cleaned_data)
             self._check_path_to_backup(cleaned_data)
 
-        elif cleaned_data.get('action') == 'restore':
+        elif cleaned_data.get('action') == 'restore' \
+                and cleaned_data.get('mode') == 'fs':
             self._check_container(cleaned_data)
             self._check_backup_name(cleaned_data)
             self._check_restore_abs_path(cleaned_data)
+        elif cleaned_data.get('action') == 'restore' \
+                and cleaned_data.get('mode') == 'nova':
+            self._check_container(cleaned_data)
+            self._check_backup_name(cleaned_data)
+            self._check_nova_inst_id(cleaned_data)
+            self._check_nova_network_id(cleaned_data)
 
         return cleaned_data
+
+    def _check_nova_network_id(self, cleaned_data):
+        if not cleaned_data.get('nova_network_id'):
+            msg = _("You must define nova network id to restore.")
+            self._errors['nova_inst_id'] = self.error_class([msg])
+
+    def _check_nova_inst_id(self, cleaned_data):
+        if not cleaned_data.get('nova_inst_id'):
+            msg = _("You must define nova instance id to restore.")
+            self._errors['nova_inst_id'] = self.error_class([msg])
 
     def _check_restore_abs_path(self, cleaned_data):
         if not cleaned_data.get('restore_abs_path'):
@@ -243,6 +265,7 @@ class ActionConfiguration(workflows.Step):
                    'restore_from_date',
                    'cinder_vol_id',
                    'nova_inst_id',
+                   'nova_network_id',
                    'get_object',
                    'dst_file',
                    'remove_older_than',

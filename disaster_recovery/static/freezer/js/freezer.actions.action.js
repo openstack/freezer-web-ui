@@ -70,6 +70,7 @@ function showBackupOptions() {
 function showRestoreOptions() {
     $("#id_container").closest(".form-group").show();
     $("#id_backup_name").closest(".form-group").show();
+    $("#id_mode").closest(".form-group").show();
     $("#id_restore_abs_path").closest(".form-group").show();
     $("#id_restore_from_host").closest(".form-group").show();
     $("#id_restore_from_date").closest(".form-group").show();
@@ -106,9 +107,9 @@ function setStorageOptions() {
 }
 
 function setModeOptions() {
+    var $id_mode = $("#id_mode").val();
     // Update the inputs according freezer mode
     if ($("#id_action").val() === 'backup') {
-        var $id_mode = $("#id_mode").val();
         if ($id_mode === 'mysql') {
             $("#id_mysql_conf").closest(".form-group").show();
         } else if ($id_mode === 'mssql') {
@@ -117,6 +118,17 @@ function setModeOptions() {
             $("#id_cinder_vol_id").closest(".form-group").show();
         } else if ($id_mode === 'nova') {
             $("#id_nova_inst_id").closest(".form-group").show();
+        }
+    } else if($("#id_action").val() === 'restore') {
+        if ($id_mode === 'mysql') {
+            $("#id_mysql_conf").closest(".form-group").show();
+        } else if ($id_mode === 'mssql') {
+            $("#id_sql_server_conf").closest(".form-group").show();
+        } else if ($id_mode === 'cinder') {
+            $("#id_cinder_vol_id").closest(".form-group").show();
+        } else if ($id_mode === 'nova') {
+            $("#id_nova_inst_id").closest(".form-group").show();
+            $("#id_nova_network_id").closest(".form-group").show();
         }
     }
 }
