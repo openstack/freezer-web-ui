@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
-
 from django import shortcuts
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,9 +20,6 @@ from horizon import forms
 from horizon import workflows
 
 import disaster_recovery.api.api as freezer_api
-
-
-LOG = logging.getLogger(__name__)
 
 
 class ActionsConfigurationAction(workflows.Action):

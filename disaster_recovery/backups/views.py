@@ -11,7 +11,6 @@
 #  under the License.
 
 import datetime
-import logging
 import pprint
 
 from django.template.defaultfilters import date as django_date
@@ -26,9 +25,6 @@ import disaster_recovery.api.api as freezer_api
 from disaster_recovery.backups import tables as freezer_tables
 from disaster_recovery.backups.workflows import restore as restore_workflow
 from disaster_recovery.utils import shield
-
-
-LOG = logging.getLogger(__name__)
 
 
 class IndexView(tables.DataTableView):

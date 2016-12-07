@@ -10,8 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import logging
-
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
@@ -20,9 +18,6 @@ from django.core.urlresolvers import reverse
 
 import disaster_recovery.api.api as freezer_api
 from disaster_recovery.utils import shield
-
-
-LOG = logging.getLogger(__name__)
 
 
 class Filter(tables.FilterAction):
