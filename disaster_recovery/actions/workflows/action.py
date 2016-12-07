@@ -104,7 +104,7 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     nova_inst_id = forms.CharField(
-        label=_("Nova Volume ID *"),
+        label=_("Nova Instance ID *"),
         help_text=_("Id of nova instance for backup"),
         required=False)
 
