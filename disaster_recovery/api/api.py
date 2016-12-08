@@ -81,6 +81,34 @@ def _get_service_url(request):
         raise
 
 
+def get_schedule_info(context):
+    """Get schedule info from context
+    """
+    scheduling = {}
+    try:
+        if context['schedule_end_date'] != '':
+            utils.assign_and_remove(context, scheduling, 'schedule_end_date')
+        else:
+            context.pop('schedule_end_date')
+    except KeyError:
+        pass
+    try:
+        if context['schedule_interval'] != '':
+            utils.assign_and_remove(context, scheduling, 'schedule_interval')
+        else:
+            context.pop('schedule_interval')
+    except KeyError:
+        pass
+    try:
+        if context['schedule_start_date'] != '':
+            utils.assign_and_remove(context, scheduling, 'schedule_start_date')
+        else:
+            context.pop('schedule_start_date')
+    except KeyError:
+        pass
+    return scheduling
+
+
 class Job(object):
 
     def __init__(self, request):
@@ -122,31 +150,7 @@ class Job(object):
         return self._build(job)
 
     def update(self, job_id, job):
-        scheduling = {}
-        try:
-            if job['schedule_end_date'] != '':
-                utils.assign_and_remove(job, scheduling, 'schedule_end_date')
-            else:
-                job.pop('schedule_end_date')
-        except KeyError:
-            pass
-
-        try:
-            if job['schedule_interval'] != '':
-                utils.assign_and_remove(job, scheduling, 'schedule_interval')
-            else:
-                job.pop('schedule_interval')
-        except KeyError:
-            pass
-
-        try:
-            if job['schedule_start_date'] != '':
-                utils.assign_and_remove(job, scheduling, 'schedule_start_date')
-            else:
-                job.pop('schedule_start_date')
-        except KeyError:
-            pass
-
+        scheduling = get_schedule_info(job)
         job.pop('job_actions', [])
         job.pop('clients', None)
         job.pop('actions', None)
@@ -283,7 +287,9 @@ class Session(object):
         return self._build(session)
 
     def update(self, session, session_id):
-        return self.client.sessions.update(session_id, session)
+        new_session = {'schedule': get_schedule_info(session),
+                       'description': session.pop('description')}
+        return self.client.sessions.update(session_id, new_session)
 
     def delete(self, session_id):
         return self.client.sessions.delete(session_id)
