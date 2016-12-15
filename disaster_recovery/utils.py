@@ -13,7 +13,6 @@
 import logging
 
 import datetime
-import uuid
 import re
 
 from functools import wraps
@@ -24,6 +23,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
 from horizon import get_user_home
+from oslo_utils import uuidutils
 
 
 LOG = logging.getLogger(__name__)
@@ -48,7 +48,7 @@ def create_dummy_id():
     This is needed when the scheduler creates jobs with actions attached
     directly, those actions are not registered in the db.
     """
-    return uuid.uuid4().hex
+    return uuidutils.generate_uuid(dashed=False)
 
 
 def get_action_ids(ids):
