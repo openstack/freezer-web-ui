@@ -13,7 +13,7 @@
 # Some helper functions to use the disaster_recovery client functionality
 # from horizon.
 
-import logging
+from oslo_log import log
 
 from django.conf import settings
 from horizon.utils.memoized import memoized  # noqa
@@ -22,7 +22,7 @@ from freezerclient.v1 import client as freezer_client
 from disaster_recovery import utils
 
 
-LOG = logging.getLogger(__name__)
+LOG = log.getLogger(__name__)
 
 
 @memoized
