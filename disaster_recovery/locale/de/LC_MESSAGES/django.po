@@ -1,0 +1,806 @@
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# Frank Kloeker <eumel@arcor.de>, 2016. #zanata
+# Robert Simai <robert.simai@suse.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui 4.0.0.0b3.dev5\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2017-01-03 09:18+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-12-20 12:11+0000\n"
+"Last-Translator: Robert Simai <robert.simai@suse.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Action Configuration"
+msgstr "Aktionskonfiguration"
+
+msgid "Action Name"
+msgstr "Aktionsname"
+
+msgid "Action Name *"
+msgstr "Aktionsname *"
+
+msgid "Action Type"
+msgstr "Aktionstyp"
+
+msgid "Action queued correctly. It will appear soon"
+msgstr ""
+"Aktion wurde erfolgreich in die Warteschleife aufgenommen und wird in Kürze "
+"erscheinen."
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "Actions Configuration"
+msgstr "Konfiguration Aktionen"
+
+msgid "Actions saved correctly."
+msgstr "Aktionen erfolgreich gespeichert"
+
+msgid "Actions updated correctly."
+msgstr "Aktionen erfolgreich aktualisiert."
+
+msgid "Admin"
+msgstr "Administrator"
+
+msgid "Advanced"
+msgstr "Erweitert"
+
+msgid "All Clients"
+msgstr "Alle Klienten"
+
+msgid "Allow to access swift servers without checking SSL certs."
+msgstr "Erlaube Zugriff auf den Swift-Server ohne Prüfung der SSL-Zertifikate."
+
+msgid "Always Level"
+msgstr "Always Ebene"
+
+msgid "Attach"
+msgstr "Verbinden"
+
+msgid "Attach To Session"
+msgstr "Zur Sitzung verbinden"
+
+msgid "Backup"
+msgstr "Sicherungskopie"
+
+msgid "Backup History"
+msgstr "Sicherungshistorie"
+
+msgid "Backup Name"
+msgstr "Name der Sicherung"
+
+msgid "Backup and Restore"
+msgstr "Sichern und Wiederherstellen"
+
+msgid "Backups"
+msgstr "Sicherungskopien"
+
+msgid ""
+"Checks in the specified container for object older than the specified days."
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default False (Disabled) The option --remove-older-then is deprecated "
+"and will be removed soon"
+msgstr ""
+"Prüft im angegebenen Container auf Objekte, die älter als die angegebenen "
+"Tage sind. Wenn z.B. 30 angegeben wird, werden Remote-Objekte älter als 30 "
+"Tage entfernt. Standard ist Falsch (deaktiviert). Die Option --remove-older-"
+"then ist veraltet und wird in Kürze entfernt."
+
+msgid ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-03-25T23:23:23. Make "
+"sure the 'T' is between date and time "
+msgstr ""
+"Prüft im angegebenen Container und entfernt Objekte, die älter als das "
+"angegebene Datum sind. Bitte geben Sie Datum und Zeit im Format 'YYYY-MM-"
+"DDThh:mm:ss' an, z.B. '1974-03-25T23:23:23'. Stellen Sie sicher, dass das "
+"'T' zwischen Datum und Zeit steht."
+
+msgid "Choose what you want to backup"
+msgstr "Wählen Sie was gesichert werden soll"
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID *"
+msgstr "Cinder Datenträger-ID *"
+
+msgid "Client ID"
+msgstr "Klienten-ID"
+
+msgid "Client is required"
+msgstr "Client erforderlich"
+
+msgid "Clients"
+msgstr "Clients"
+
+msgid "Clone Job"
+msgstr "Aufgabe klonen"
+
+msgid "Clone and edit a job file"
+msgstr "Aufgabendatei klonen und bearbeiten"
+
+msgid "Compression Level"
+msgstr "Kompressionslevel"
+
+msgid "Container Name or Path *"
+msgstr "Containername oder -pfad"
+
+msgid "Create Action"
+msgstr "Aktion erstellen"
+
+msgid "Create Job"
+msgstr "Aufgabe erstellen"
+
+msgid "Create Session"
+msgstr "Sitzung erstellen"
+
+msgid "Created At"
+msgstr "Erstellt am"
+
+msgid "Define a name for this session"
+msgstr "Definieren Sie einen Namen für diese Sitzung"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "Aktion löschen"
+msgstr[1] "Aktionen löschen"
+
+msgid "Delete Client"
+msgid_plural "Delete Clients"
+msgstr[0] "Klient löschen"
+msgstr[1] "Klienten löschen"
+
+msgid "Delete Clients is not recoverable."
+msgstr "Clients löschen kann nicht rückgängig gemacht werden."
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "Aufgabe löschen"
+msgstr[1] "Aufgaben löschen"
+
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "Aufgabendatei löschen"
+msgstr[1] "Aufgabendateien löschen"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "Sitzung löschen"
+msgstr[1] "Sitzungen löschen"
+
+msgid "Delete actions is not recoverable."
+msgstr "Aktionen löschen kann nicht rückgängig gemacht werden."
+
+msgid "Delete jobs is not recoverable."
+msgstr "Aufgaben löschen kann nicht rückgängig gemacht werden."
+
+msgid "Delete sessions is not recoverable."
+msgstr "Sitzungen löschen kann nicht rückgängig gemacht werden."
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "Gelöschte Aktion"
+msgstr[1] "Gelöschte Aktionen"
+
+msgid "Deleted Client"
+msgid_plural "Deleted Clients"
+msgstr[0] "Gelöschter Klient"
+msgstr[1] "Gelöschte Klienten"
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "Gelöschte Aufgabe"
+msgstr[1] "Gelöschte Aufgaben"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "Gelöschte Aufgabendatei"
+msgstr[1] "Gelöschte Aufgabendateien"
+
+msgid "Deleted Session"
+msgid_plural "Deleted Sessions"
+msgstr[0] "Gelöschte Sitzung"
+msgstr[1] "Gelöschte Sitzungen"
+
+msgid "Deleted action File"
+msgid_plural "Deleted action Files"
+msgstr[0] "Gelöschte Aktionsdatei"
+msgstr[1] "Gelöschte Aktionsdateien"
+
+msgid "Destination"
+msgstr "Ziel"
+
+msgid "Destination File"
+msgstr "Zieldatei"
+
+msgid "Destination Path"
+msgstr "Zielpfad"
+
+msgid ""
+"Disable incremental feature. By default freezer build the meta data even for "
+"level 0 backup. By setting this option incremental meta data is not created "
+"at all. Default disabled"
+msgstr ""
+"Deaktiviere die inkrementell Eigenschaft. Als Standard erzeugt Freezer die "
+"Metadaten auch für Ebene 0 Sicherungen. Durch setzen dieser Option werden "
+"die inkrementell-Metadaten nicht erzeugt. Standard ist deaktiviert"
+
+msgid "Disaster Recovery"
+msgstr "Desaster-Wiederherstellung"
+
+msgid "Do everything except writing or removing objects"
+msgstr "Führe alles aus außer schreiben oder entfernen von Objekten"
+
+msgid "Download Limit"
+msgstr "Herunterladebegrenzung"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Bandbreite zum Herunterladen in Bytes pro Sekunde. Kann in Größenordnungen "
+"angegeben werden (10K, 120M, 10G)."
+
+msgid "Dry Run"
+msgstr "Testlauf"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Edit Actions"
+msgstr "Aktionen bearbeiten"
+
+msgid "Edit Job"
+msgstr "Aufgabe bearbeiten"
+
+msgid "Edit Session"
+msgstr "Sitzung bearbeiten"
+
+msgid "Encryption Key"
+msgstr "Chiffrierschlüssel"
+
+msgid "End Date and Time"
+msgstr "Enddatum und -zeit"
+
+msgid "End date time is not in ISO format."
+msgstr "Endzeit ist nicht im ISO-Format."
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+msgstr ""
+"Erzwinge Proxy, der die Systemvariablen HTTP_PROXY und HTTPS_PROXY setzt"
+
+msgid "Error getting session list"
+msgstr "Fehler beim Abruf der Sitzungsliste"
+
+msgid "Exclude Files"
+msgstr "Dateien ausschließen"
+
+msgid ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+msgstr ""
+"Dateien ausschließen, als Muster angegeben: '*.log, *.pyc' schließt alle "
+"Dateien mit der Endung .log aus. In der Grundeinstellung wird nichts "
+"ausgeschlossen."
+
+msgid "File system"
+msgstr "Dateisystem"
+
+msgid "Follow Symlinks"
+msgstr "Symbolischen Links folgen"
+
+msgid ""
+"Follow hard and soft links and archive and dump the files they refer to. "
+"Default False"
+msgstr ""
+"Folge Hard- und Softlinks, archiviere und verwerfe die Dateien auf die sie "
+"zeigen. Standard ist Falsch (deaktiviert)"
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr ""
+"Sie können aus der Liste der verfügbaren Klienten auswählen und diese der "
+"Aufgabe hinzufügen oder entfernen."
+
+msgid "Get A Single Object"
+msgstr "Ein einzelnes Objekt holen"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "IP address or dns name of host to connect through ssh"
+msgstr "IP-Adresse oder DNS-Name des Hosts zum Verbinden über SSH"
+
+msgid "Id of cinder volume for backup"
+msgstr "ID des Cinder Datenträgers für die Sicherung"
+
+msgid "Id of nova instance for backup"
+msgstr "ID der Novainstanz für die Sicherung"
+
+msgid "In case of error, set the amount of retries for this job"
+msgstr "Anzahl der Versuche im Fehlerfall für diese Aufgabe"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Interval"
+msgstr "Intervall"
+
+msgid "Job Configuration"
+msgstr "Aufgaben Konfiguration"
+
+msgid "Job ID"
+msgstr "Aufgaben-ID"
+
+msgid "Job Info"
+msgstr "Aufgabeninfo"
+
+msgid "Job Name"
+msgstr "Aufgabenname"
+
+msgid "Job attached successfully."
+msgstr "Aufgabe erfolgreich verbunden"
+
+msgid "Job has started"
+msgstr "Aufgabe wurde gestartet"
+
+msgid "Job has stopped"
+msgstr "Aufgabe wurde gestoppt"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr ""
+"Aufgabe wurde erfolgreich zur Warteschleife hinzugefügt und wird in Kürze "
+"erscheinen"
+
+msgid "Job updated correctly."
+msgstr "Aufgabe erfolgreich aktualisiert."
+
+msgid "Jobs"
+msgstr "Aufgaben"
+
+msgid "Local Path"
+msgstr "Lokaler Pfad"
+
+msgid "Log File Path"
+msgstr "Logdatei Pfad"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "Verlustfreie Datenkompression (XY)"
+
+msgid "Mandatory"
+msgstr "Obligatorisch"
+
+msgid "Max Level"
+msgstr "Maximale Ebene"
+
+msgid "Max Priority"
+msgstr "Maximale Priorität"
+
+msgid "Max Retries"
+msgstr "Maximale Versuche"
+
+msgid "Max Retries Interval"
+msgstr "Maximale Versuche Intervall"
+
+msgid "Maximum Segment Size"
+msgstr "Maximale Segmentgröße"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "Minimale Kompression (GZip/Zip/Zlib)"
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "Effektivere Kompression (Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File *"
+msgstr "MySQL Konfigurationsdatei *"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "No Incremental"
+msgstr "Nicht inkrementell"
+
+msgid "No clients found."
+msgstr "Keine Klienten gefunden."
+
+msgid "No clients selected."
+msgstr "Keine Klienten ausgewählt."
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Instance ID *"
+msgstr "Nova Datenträger-ID *"
+
+msgid "OpenStack Authentication Version"
+msgstr "OpenStack Authentifizierungsversion"
+
+msgid "Path To Backup or Restore"
+msgstr "Pfad zum Sichern oder Wiederherstellen"
+
+msgid "Path for ssh private key"
+msgstr "Pfad zum privaten SSH-Schlüssel"
+
+msgid "Please provide this value."
+msgstr "Bitte geben Sie diesen Wert an."
+
+msgid "Proxy URL"
+msgstr "Proxy URL"
+
+msgid "Quiet"
+msgstr "Still"
+
+msgid "Remove From Date"
+msgstr "Entfernen ab Datum"
+
+msgid "Remove Older Than"
+msgstr "Entfernen älter als"
+
+msgid "Repeat this configuration in a minutes interval."
+msgstr "Wiederhole diese Konfiguration im Minutentakt."
+
+msgid "Restart Always Level"
+msgstr "Wiederhole-immer Ebene"
+
+msgid ""
+"Restart the backup from level 0 after n days. Valid only if --always-level "
+"option if set. If --always-level is used together with --remove-older-then, "
+"there might be the chance where the initial level 0 will be removed Default "
+"False (Disabled)"
+msgstr ""
+"Wiederhole die Sicherung auf Ebene 0 nach n Tagen. Dies gilt nur, wenn die --"
+"always-level Option gesetzt ist. Sofern --always-level mit --remove-older-"
+"then verwenden wird besteht die Möglichkeit, dass die initiale Ebene 0 "
+"entfernt wird. Standard ist Falsch (deaktiviert)"
+
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+msgid "Restore Absolute Path *"
+msgstr "Absoluten Pfad wiederherstellen *"
+
+msgid "Restore From Date"
+msgstr "Wiederherstellen ab Datum"
+
+msgid "Restore From Host"
+msgstr "Von Host wiederherstellen"
+
+msgid "Restore job successfully queued. It will get executed soon."
+msgstr ""
+"Aufgabe wiederherstellen wurde erfolgreich in die Warteschleife aufgenommen "
+"und wird in Kürze ausgeführt."
+
+msgid "Result"
+msgstr "Ergebnis"
+
+msgid "Rules"
+msgstr "Regeln"
+
+msgid "SQL Server Configuration File *"
+msgstr "SQL-Server Konfigurationsdatei *"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host *"
+msgstr "SSH-Host *"
+
+msgid "SSH Private Key *"
+msgstr "Privater SSH-Schlüssel *"
+
+msgid "SSH Username *"
+msgstr "SSH-Benutzername *"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Select A Session"
+msgstr "Wählen Sie eine Sitzung"
+
+msgid "Selected Clients"
+msgstr "Ausgewählte Klienten"
+
+msgid "Session"
+msgstr "Sitzung"
+
+msgid "Session Configuration"
+msgstr "Konfiguration Sitzung"
+
+msgid "Session Information"
+msgstr "Sitzungsinformationen"
+
+msgid "Session Name"
+msgstr "Sitzungsname"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr ""
+"Sitzung wurde erfolgreich in die Warteschleife aufgenommen und wird in Kürze "
+"erscheinen"
+
+msgid "Sessions"
+msgstr "Sitzungen"
+
+msgid "Set a name for this job"
+msgstr "Geben Sie einen Namen für die Aufgabe an"
+
+msgid "Set a session to attach this job"
+msgstr "Geben Sie eine Sitzung für die Aufgabe an"
+
+msgid ""
+"Set backup maximum level used with tar to implement incremental backup. If a "
+"level 3 is specified, the backup will be executed from level 0 to level 3 "
+"and to that point always a backup level 3 will be executed. It will not "
+"restart from level 0. This option has precedence over --max-backup-level. "
+"Default False (Disabled)"
+msgstr ""
+"Setzt die maximale Sicherungsebene zur Verwendung mit 'tar' in "
+"inkrementellen Sicherungen. Wenn Ebene 3 angegebenen wird so wird die "
+"Sicherung von Ebene 0 bis 3 ausgeführt, dann folgt immer ein Backup auf "
+"Ebene 3. Es wird nicht von Ebene 0 neu gestartet. Diese Option hat Vorrang "
+"vor --max-backup-level. Standard ist Falsch (deaktiviert)"
+
+msgid ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default current "
+"node hostname."
+msgstr ""
+"Setze den Hostnamen zur Ausführung von Aktionen. Wenn Sie Freezer auf einem "
+"Host starten aber Objekte löschen wollen, die zu einem anderen Host gehören, "
+"können Sie dessen Hostnamen setzen um die passenden Aktionen auszuführen. "
+"Standard ist der Hostname des aktuellen Knotens."
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"Angabe Logdatei. Als Standard wird /var/log/freezer.log verwendet. Sollte "
+"die Datei nicht schreibbar sein versucht Freezer nach ~/.freezer/freezer.log "
+"zu schreiben."
+
+msgid "Set storage backend for a backup"
+msgstr "Wählen Sie ein Storage-Backend für die Sicherung"
+
+msgid "Set the absolute path where you want your data restored."
+msgstr ""
+"Setzen Sie den absoluten Pfad, in dem die Daten wiederhergestellt werden "
+"sollen."
+
+msgid ""
+"Set the absolute path where you want your data restored.Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1979-10-03T23:23:23'. Make "
+"sure the 'T' is between date and time"
+msgstr ""
+"Setzt den absoluten Pfad, in dem Sie die Daten wiederherstellen wollen. "
+"Bitte geben Sie Datum und Zeit im Format 'YYYY-MM-DDThh:mm:ss' an, z.B. "
+"'1979-10-03T23:23:23'. Stellen Sie sicher, dass das 'T' zwischen Datum und "
+"Zeit steht."
+
+msgid "Set the action to be taken"
+msgstr "Wählen Sie die auszuführende Aktion aus"
+
+msgid ""
+"Set the backup level used with tar to implement incremental backup. If a "
+"level 1 is specified but no level 0 is already available, a level 0 will be "
+"done and subsequently backs to level 1. Default 0 (No Incremental)"
+msgstr ""
+"Setzt die maximale Sicherungsebene zur Verwendung mit 'tar' in "
+"inkrementellen Sicherungen. Wenn Ebene 1 angegeben wird aber noch keine "
+"Ebene 0 verfügbar ist wird dies nachgeholt und danach folgt immer Ebene 1. "
+"Standard ist Falsch (deaktiviert), kein inkrementelles Backup."
+
+msgid ""
+"Set the cpu process to the highest priority (i.e. -20 on Linux) and real-"
+"time for I/O. The process priority will be set only if nice and ionice are "
+"installed Default disabled. Use with caution."
+msgstr ""
+"Setzt den CPU-Prozess auf höchste Priorität (z.B. -20 auf Linux) und auf "
+"Echtzeit für E/A. Die Prozesspriorität wird nur gesetzt wenn 'nice' und "
+"'ionice' installiert sind. Standard ist deaktiviert. Verwenden Sie diese "
+"Option mit Umsicht."
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+msgstr ""
+"Setzt den Hostnamen, um die wiederherzustellenden Daten zu bestimmen. Wenn "
+"Sie Daten vom selben Host herstellen wollen auf dem sie Sicherung "
+"durchgeführt wurde, tippen Sie in der Shell: '$ hostname' und die Ausgabe "
+"ist der Wert für diese Option. Die Angabe ist obligatorisch zur "
+"Wiederherstellung"
+
+msgid "Set the interval between executions for retries in seconds"
+msgstr "Setzt das Intervall in Sekunden für die Ausführung der Wiederholungen"
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"Setze das Intervall im folgenden Format:\n"
+"                       fortlaufend,\n"
+"                       N Wochen,\n"
+"                       N Tage,\n"
+"                       N Stunden,\n"
+"                       N Minuten,\n"
+"                       N Sekunden,\n"
+"                       Wenn kein Startdatum angegeben wird\n"
+"                       startet die Aufgabe sofort"
+
+msgid ""
+"Set the maximum file chunk size in bytes to upload to swift. Default "
+"67108864 bytes (64MB)"
+msgstr ""
+"Setzt die maximale Dateistückelung in Bytes für das Hochladen in Swift. "
+"Grundeinstellung ist 67108864 Bytes (64MB)"
+
+msgid "Set the path where the MySQL configuration file is on the file system "
+msgstr "Geben Sie den Pfad zur SQL-Konfigurationsdatei im Dateisystem an"
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system"
+msgstr ""
+"Geben Sie den Pfad zur SQL-Server-Konfigurationsdatei im Dateisystem an"
+
+msgid "Set the path where the encryption keyis on the file system"
+msgstr "Geben Sie den Pfad zum Chiffrierschlüssel im Dateisystem an"
+
+msgid "Set this action as mandatory"
+msgstr "Diese Aktion auf obligatorisch setzen"
+
+msgid "Snapshot"
+msgstr "Schattenkopie"
+
+msgid "Source File/Directory *"
+msgstr "Quelldatei/-verzeichnis *"
+
+msgid "Start Date and Time"
+msgstr "Startdatum und -uhrzeit"
+
+msgid "Start Job"
+msgstr "Aufgabe starten"
+
+msgid "Start date time is not in ISO format."
+msgstr "Startzeit ist nicht im ISO-Format."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stop Job"
+msgstr "Aufgabe stoppen"
+
+msgid "Storage"
+msgstr "Storage"
+
+msgid "Suppress error messages"
+msgstr "Fehlermeldungen unterdrücken"
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "Swift auth version, could be 1, 2 or 3"
+msgstr "Swift auth-Version, kann 1, 2 oder 3 sein"
+
+msgid "Swift container for swift backend or path for ssh or local backend"
+msgstr ""
+"Swift-Container für das Swift Backend oder Pfad für SSH oder lokales Backend"
+
+msgid "The Object name you want to download on the local file system."
+msgstr "Der Objektname zum herunterladen in das lokale Dateisystem."
+
+msgid ""
+"The file name used to save the object on your local disk and upload file in "
+"swift."
+msgstr ""
+"Der Dateiname zum Speichern des Objekts auf der lokalen Festplatte und zum "
+"Hochladen in Swift."
+
+msgid "The file or directory you want to back up."
+msgstr "Die Datei oder das Verzeichnis, das Sie sichern wollen."
+
+msgid "The path in which the backup should be restored"
+msgstr "Pfad, in dem die Sicherung wiederhergestellt werden soll"
+
+msgid "Unable to attach to session."
+msgstr "Verbindung mit der Sitzung fehlgeschlagen."
+
+msgid "Unable to create session."
+msgstr "Sitzung kann nicht erstellt werden."
+
+msgid "Unable to created job."
+msgstr "Aufgabe kann nicht erstellt werden."
+
+msgid "Unable to retrieve client list."
+msgstr "Klientenliste kann nicht abgerufen werden."
+
+msgid "Unable to save action file."
+msgstr "Aktionsdatei kann nicht gespeichert werden."
+
+msgid "Unable to save actions."
+msgstr "Aktionen können nicht gespeichert werden."
+
+msgid "Unable to update actions."
+msgstr "Aktionen können nicht aktualisiert werden."
+
+msgid "Unable to update job."
+msgstr "Aufgabe kann nicht aktualisiert werden."
+
+msgid "Update Actions"
+msgstr "Aktionen aktualisieren"
+
+msgid "Update Job"
+msgstr "Aufgabe aktualisieren"
+
+msgid "Upload Limit"
+msgstr "Hochladebegrenzung"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Bandbreitenbegrenzung zum Hochladen in Bytes pro Sekunde. Kann in "
+"Größenordnungen angegeben werden (10K, 120M, 10G)."
+
+msgid ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
+msgstr ""
+"Benutzen Sie LVM oder Shadow Copy Schattenkopien um sicherzustellen, dass "
+"Sie Zeitpunkt-konsistente Sicherungen erhalten."
+
+msgid "You must define a container or path to backup."
+msgstr "Sie müssen einen Container oder Pfad zur Sicherung angeben."
+
+msgid "You must define a path to backup."
+msgstr "Sie müssen einen Pfad zum Sichern angeben."
+
+msgid "You must define a path to restore."
+msgstr "Sie müssen einen Pfad zur Wiederherstellung angeben."
+
+msgid "You must define an action name."
+msgstr "Sie müssen einen Aktionsnamen angeben."
+
+msgid "insecure"
+msgstr "unsicher"
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"
