@@ -59,7 +59,8 @@ def _get_service_url(request):
     """Get freezer api url"""
     hardcoded_url = getattr(settings, 'FREEZER_API_URL', None)
     if hardcoded_url is not None:
-        LOG.warn('Using hardcoded FREEZER_API_URL: {0}'.format(hardcoded_url))
+        LOG.warning('Using hardcoded FREEZER_API_URL:{0}'
+                    .format(hardcoded_url))
         return hardcoded_url
 
     e_type = getattr(settings, 'OPENSTACK_ENDPOINT_TYPE', '')
@@ -77,7 +78,7 @@ def _get_service_url(request):
         raise ValueError('Could no get FREEZER_API_URL from config'
                          ' or Keystone')
     except Exception:
-        LOG.warn('Could no get FREEZER_API_URL from config or Keystone')
+        LOG.warning('Could no get FREEZER_API_URL from config or Keystone')
         raise
 
 
