@@ -30,14 +30,16 @@ Freezer Dashboard requires a freezer API client to be installed in the same envi
 
 Freezer Dashboard requires a freezer API endpoint which you can install following this steps::
 
-    https://github.com/openstack/freezer-api/blob/master/README.rst
+    `https://github.com/openstack/freezer-api/blob/master/README.rst
+    <https://github.com/openstack/freezer-api/blob/master/README.rst>`_
 
 API registration
 ================
 
 Register freezer api endpoint::
 
-    https://github.com/openstack/freezer-api/blob/master/README.rst#3-api-registration
+    `https://github.com/openstack/freezer-api/blob/master/README.rst#api-registration
+    <https://github.com/openstack/freezer-api/blob/master/README.rst#api-registration>`_
 
 If keystone service-create and endpoint-create are not available you can set as a fallback the following on::
 
