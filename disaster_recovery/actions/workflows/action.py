@@ -61,7 +61,7 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     container = forms.CharField(
-        label=_("Container Name or Path *"),
+        label=_("Container Name or Path"),
         help_text=_("Swift container for swift backend or "
                     "path for ssh or local backend"),
         required=False)
@@ -160,7 +160,6 @@ class ActionConfigurationAction(workflows.Action):
                 self._check_backup_name(cleaned_data)
                 return cleaned_data
 
-            self._check_container(cleaned_data)
             self._check_backup_name(cleaned_data)
             self._check_path_to_backup(cleaned_data)
 

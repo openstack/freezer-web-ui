@@ -115,8 +115,10 @@ function setModeOptions() {
             $("#id_sql_server_conf").closest(".form-group").show();
         } else if ($id_mode === 'cinder') {
             $("#id_cinder_vol_id").closest(".form-group").show();
+            $("#id_path_to_backup").closest(".form-group").hide();
         } else if ($id_mode === 'nova') {
             $("#id_nova_inst_id").closest(".form-group").show();
+            $("#id_path_to_backup").closest(".form-group").hide();
         }
     }
 }
