@@ -25,12 +25,10 @@ import disaster_recovery.api.api as freezer_api
 class SessionConfigurationAction(workflows.Action):
     session_id = forms.ChoiceField(
         help_text=_("Set a session to attach this job"),
-        label=_("Session Name"),
-        required=True)
+        label=_("Session Name"))
 
     job_id = forms.CharField(
-        widget=forms.HiddenInput(),
-        required=True)
+        widget=forms.HiddenInput())
 
     def populate_session_id_choices(self, request, context):
         sessions = []

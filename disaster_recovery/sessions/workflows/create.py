@@ -28,8 +28,7 @@ import disaster_recovery.api.api as freezer_api
 class SessionConfigurationAction(workflows.Action):
     description = forms.CharField(
         label=_("Session Name"),
-        help_text=_("Define a name for this session"),
-        required=True)
+        help_text=_("Define a name for this session"))
 
     session_id = forms.CharField(
         widget=forms.HiddenInput(),

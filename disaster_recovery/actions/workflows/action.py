@@ -32,16 +32,14 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     action = forms.ChoiceField(
-        help_text=_("Set the action to be taken"),
-        required=True)
+        help_text=_("Set the action to be taken"))
 
     mode = forms.ChoiceField(
         help_text=_("Choose what you want to backup"),
         required=False)
 
     storage = forms.ChoiceField(
-        help_text=_("Set storage backend for a backup"),
-        required=True)
+        help_text=_("Set storage backend for a backup"))
 
     mysql_conf = forms.CharField(
         label=_("MySQL Configuration File *"),

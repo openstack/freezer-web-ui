@@ -28,8 +28,7 @@ class InfoConfigurationAction(workflows.Action):
 
     description = forms.CharField(
         label=_("Job Name"),
-        help_text=_("Set a name for this job"),
-        required=True)
+        help_text=_("Set a name for this job"))
 
     job_id = forms.CharField(
         widget=forms.HiddenInput(),

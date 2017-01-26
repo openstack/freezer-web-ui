@@ -25,8 +25,7 @@ import disaster_recovery.api.api as freezer_api
 class DestinationAction(workflows.MembershipAction):
     path = forms.CharField(label=_("Destination Path"),
                            help_text=_("The path in which the backup should be"
-                                       " restored"),
-                           required=True)
+                                       " restored"))
     backup_id = forms.CharField(widget=forms.HiddenInput())
 
     def clean(self):
