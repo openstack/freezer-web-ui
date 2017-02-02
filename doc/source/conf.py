@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # freezer-web-ui documentation build configuration file, created by
 # sphinx-quickstart on Fri Feb  5 15:10:15 2016.
 #
