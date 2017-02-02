@@ -62,7 +62,7 @@ class ClientsConfigurationAction(workflows.MembershipAction):
 
         field_name = self.get_member_field_name('member')
         if not job_id:
-            self.fields[field_name] = forms.MultipleChoiceField(required=True)
+            self.fields[field_name] = forms.MultipleChoiceField()
             self.fields[field_name].choices = client_list
 
     class Meta:
@@ -96,8 +96,7 @@ class InfoConfigurationAction(workflows.Action):
 
     description = forms.CharField(
         label=_("Job Name"),
-        help_text=_("Set a name for this job"),
-        required=True)
+        help_text=_("Set a name for this job"))
 
     job_id = forms.CharField(
         widget=forms.HiddenInput(),
