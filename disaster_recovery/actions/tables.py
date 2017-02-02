@@ -97,6 +97,9 @@ class ActionsTable(tables.DataTable):
     storage = tables.Column('storage', verbose_name=_("Storage"))
     mode = tables.Column('mode', verbose_name=_("Mode"))
 
+    def get_object_display(self, action):
+        return action.backup_name
+
     class Meta:
         name = "actions_table"
         verbose_name = _("Actions")
