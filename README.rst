@@ -65,7 +65,7 @@ To install freezer dashboard for development you need to do the following::
 
     # to disable the panel just copy the following file
 
-    # cp freezer-web-ui/disaster_recovery/enabled/_7050_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer.py
+    # cp freezer-web-ui/disaster_recovery/enabled/_7050_freezer_remove_panel_.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer_remove_panel_.py
 
     # cd /opt/stack/horizon/
 
@@ -88,7 +88,7 @@ To deploy freezer dashboard in production you need to do the following::
 
     # to disable the panel just copy the following file
 
-    # cp freezer-web-ui/disaster_recovery/enabled/_7050_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer.py
+    # cp freezer-web-ui/disaster_recovery/enabled/_7050_freezer_remove_panel_.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer_remove_panel_.py
 
     # make sure freezer is installed from source as detailed in the first step
 
