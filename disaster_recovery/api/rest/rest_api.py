@@ -15,11 +15,11 @@
 import functools
 import json
 
-from django.http import HttpResponse
+from django import http
 from django.views import generic
 
 from openstack_dashboard.api.rest import utils as rest_utils
-from openstack_dashboard.api.rest.utils import JSONResponse
+from openstack_dashboard.api.rest import utils
 
 import disaster_recovery.api.api as freezer_api
 
@@ -30,7 +30,7 @@ def prevent_json_hijacking(function):
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
         response = function(*args, **kwargs)
-        if isinstance(response, JSONResponse) and response.content:
+        if isinstance(response, utils.JSONResponse) and response.content:
             response.content = ")]}',\n" + response.content
         return response
 
@@ -49,7 +49,7 @@ class Clients(generic.View):
         # we need to resort to getting a very high number.
         clients = freezer_api.Client(request).list(json=True)
         clients = json.dumps(clients)
-        return HttpResponse(clients, content_type="application/json")
+        return http.HttpResponse(clients, content_type="application/json")
 
 
 class ActionList(generic.View):
@@ -60,7 +60,7 @@ class ActionList(generic.View):
 
         actions = freezer_api.Action(request).list(json=True)
         actions = json.dumps(actions)
-        return HttpResponse(actions, content_type="application/json")
+        return http.HttpResponse(actions, content_type="application/json")
 
 
 class Actions(generic.View):
@@ -90,4 +90,4 @@ class Actions(generic.View):
                    'selected': selected_actions}
 
         actions = json.dumps(actions)
-        return HttpResponse(actions, content_type="application/json")
+        return http.HttpResponse(actions, content_type="application/json")
