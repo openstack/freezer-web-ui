@@ -159,9 +159,13 @@ class ActionConfigurationAction(workflows.Action):
         if cleaned_data.get('action') == 'backup':
             if cleaned_data.get('mode') == 'cinder' \
                     or cleaned_data.get('mode') == 'nova':
-                self._check_container(cleaned_data)
-                self._check_backup_name(cleaned_data)
-                return cleaned_data
+                if cleaned_data.get('storage') != 'swift':
+                    self._check_backup_name(cleaned_data)
+                    self._check_container(cleaned_data)
+                    return cleaned_data
+                else:
+                    self._check_backup_name(cleaned_data)
+                    return cleaned_data
 
             self._check_backup_name(cleaned_data)
             self._check_path_to_backup(cleaned_data)
