@@ -171,6 +171,9 @@ class JobsTable(tables.DataTable):
     def get_object_id(self, row):
         return row.id
 
+    def get_object_display(self, job):
+        return job.description
+
     class Meta(object):
         name = "jobs"
         verbose_name = _("Jobs")
