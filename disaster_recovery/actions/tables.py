@@ -21,9 +21,6 @@ import disaster_recovery.api.api as freezer_api
 
 
 class DeleteAction(tables.DeleteAction):
-    name = "delete"
-    classes = ("btn-danger",)
-    icon = "remove"
     help_text = _("Delete actions is not recoverable.")
 
     @staticmethod
