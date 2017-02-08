@@ -11,6 +11,10 @@
     <span class="help-block">*** If creating a Restore Action, you must name the Action the same as the Backup Action
         you are restoring. ***</p>
 
-{% endblock %}
-
+<link rel="stylesheet" href="{{ STATIC_URL }}freezer/css/bootstrap-datetimepicker.min.css">
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/moment.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/vendor/bootstrap-datetimepicker.js'></script>
 <script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.actions.action.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.action.datetimepicker.js'></script>
+
+{% endblock %}
