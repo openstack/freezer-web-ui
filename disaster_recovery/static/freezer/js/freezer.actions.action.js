@@ -37,6 +37,7 @@ function hideEverything() {
     $("#id_restore_from_host").closest(".form-group").hide();
     $("#id_restore_from_date").closest(".form-group").hide();
     $("#restore-warning").hide();
+    $("#id_nova_network_id").closest(".form-group").hide();
 
     // Admin specific controls
     $("#id_remove_older_than").closest(".form-group").hide();
