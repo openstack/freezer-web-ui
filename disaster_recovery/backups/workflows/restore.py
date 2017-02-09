@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.core.exceptions import ValidationError
+from django.core import exceptions as d_exceptions
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import exceptions
@@ -32,7 +32,7 @@ class DestinationAction(workflows.MembershipAction):
         if 'client' in self.request.POST:
             self.cleaned_data['client'] = self.request.POST['client']
         else:
-            raise ValidationError(_('Client is required'))
+            raise d_exceptions.ValidationError(_('Client is required'))
 
         return self.cleaned_data
 
