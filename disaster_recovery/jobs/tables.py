@@ -32,7 +32,7 @@ class ObjectFilterAction(tables.FilterAction):
 class AttachJobToSession(tables.LinkAction):
     name = "attach_job_to_session"
     verbose_name = _("Attach To Session")
-    classes = ("ajax-modal")
+    classes = ("ajax-modal",)
     url = "horizon:disaster_recovery:sessions:attach"
 
     def allowed(self, request, instance):
