@@ -187,7 +187,7 @@ class ActionConfigurationAction(workflows.Action):
     def _check_nova_network_id(self, cleaned_data):
         if not cleaned_data.get('nova_network_id'):
             msg = _("You must define nova network id to restore.")
-            self._errors['nova_inst_id'] = self.error_class([msg])
+            self._errors['nova_network_id'] = self.error_class([msg])
 
     def _check_nova_inst_id(self, cleaned_data):
         if not cleaned_data.get('nova_inst_id'):
