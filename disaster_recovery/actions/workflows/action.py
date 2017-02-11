@@ -157,15 +157,19 @@ class ActionConfigurationAction(workflows.Action):
         cleaned_data = super(ActionConfigurationAction, self).clean()
 
         if cleaned_data.get('action') == 'backup':
-            if cleaned_data.get('mode') == 'cinder' \
-                    or cleaned_data.get('mode') == 'nova':
+            if cleaned_data.get('mode') == 'cinder':
                 if cleaned_data.get('storage') != 'swift':
-                    self._check_backup_name(cleaned_data)
                     self._check_container(cleaned_data)
-                    return cleaned_data
-                else:
-                    self._check_backup_name(cleaned_data)
-                    return cleaned_data
+                self._check_backup_name(cleaned_data)
+                self._check_cinder_vol_id(cleaned_data)
+                return cleaned_data
+
+            if cleaned_data.get('mode') == 'nova':
+                if cleaned_data.get('storage') != 'swift':
+                    self._check_container(cleaned_data)
+                self._check_backup_name(cleaned_data)
+                self._check_nova_inst_id(cleaned_data)
+                return cleaned_data
 
             self._check_backup_name(cleaned_data)
             self._check_path_to_backup(cleaned_data)
@@ -191,8 +195,13 @@ class ActionConfigurationAction(workflows.Action):
 
     def _check_nova_inst_id(self, cleaned_data):
         if not cleaned_data.get('nova_inst_id'):
-            msg = _("You must define nova instance id to restore.")
+            msg = _("You must define nova instance id to restore or backup.")
             self._errors['nova_inst_id'] = self.error_class([msg])
+
+    def _check_cinder_vol_id(self, cleaned_data):
+        if not cleaned_data.get('cinder_vol_id'):
+            msg = _("You must define cinder volume id to backup.")
+            self._errors['cinder_vol_id'] = self.error_class([msg])
 
     def _check_restore_abs_path(self, cleaned_data):
         if not cleaned_data.get('restore_abs_path'):
