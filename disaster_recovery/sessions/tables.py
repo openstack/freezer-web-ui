@@ -146,6 +146,9 @@ class SessionsTable(tables.DataTable):
     status = tables.Column('status',
                            verbose_name=_("Status"))
 
+    def get_object_display(self, session):
+        return session.description
+
     class Meta(object):
         name = "sessions"
         verbose_name = _("Sessions")
