@@ -46,6 +46,7 @@ def client(request):
 
     if ks_version == 3:
         credentials['project_name'] = request.user.project_name
+        credentials['project_id'] = request.user.project_id
         credentials['project_domain_name'] = \
             request.user.domain_name or 'Default'
 
