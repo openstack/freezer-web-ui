@@ -204,10 +204,11 @@ def shield(message, redirect=''):
                     # To avoid an endless loop, we must not redirect to the
                     # same page on which the error happened
                     user_home = get_user_home(view.request.user)
-                    exceptions.handle(view.request, _(message),
+                    exceptions.handle(view.request, _(error.message),
                                       redirect=user_home)
                 else:
-                    exceptions.handle(view.request, _(message), redirect=r)
+                    exceptions.handle(view.request, _(error.message),
+                                      redirect=r)
 
         return wrapped_function
     return wrap
