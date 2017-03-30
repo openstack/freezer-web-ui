@@ -41,7 +41,15 @@ class InfoConfigurationAction(workflows.Action):
     schedule_interval = forms.CharField(
         label=_("Interval"),
         required=False,
-        help_text=_("Repeat this configuration in a minutes interval."))
+        help_text=_("""Set the interval in the following format:
+                       continuous,
+                       N weeks,
+                       N days,
+                       N hours,
+                       N minutes,
+                       N seconds,
+                       If no start date is provided the job
+                       will start immediately"""))
 
     schedule_end_date = forms.CharField(
         label=_("End Date and Time"),
