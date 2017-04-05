@@ -106,18 +106,17 @@ class InfoConfigurationAction(workflows.Action):
         label=_("Start Date and Time"),
         required=False)
 
-    schedule_interval = forms.CharField(
-        label=_("Interval"),
-        required=False,
-        help_text=_("""Set the interval in the following format:
-                       continuous,
-                       N weeks,
-                       N days,
-                       N hours,
-                       N minutes,
-                       N seconds,
-                       If no start date is provided the job
-                       will start immediately"""))
+    interval_uint = forms.ChoiceField(
+        label=_("Interval Unit"),
+        help_text=_("Set the unit for the Interval"),
+        required=False)
+
+    interval_value = forms.IntegerField(
+        label=_("Interval Value"),
+        initial=1,
+        min_value=1,
+        help_text=_("Set the interval value"),
+        required=False)
 
     schedule_end_date = forms.CharField(
         label=_("End Date and Time"),
@@ -142,6 +141,17 @@ class InfoConfigurationAction(workflows.Action):
         except ValueError:
             return False
 
+    def populate_interval_uint_choices(self, request, context):
+        return [
+            ('', _("Please choose a interval unit")),
+            ('continuous', _("Continuous")),
+            ('weeks', _("Weeks")),
+            ('days', _("Days")),
+            ('hours', _("Hours")),
+            ('minutes', _("Minutes")),
+            ('seconds', _("Seconds")),
+        ]
+
     def _check_start_datetime(self, cleaned_data):
         if cleaned_data.get('schedule_start_date') and not \
                 self._validate_iso_format(
@@ -151,13 +161,13 @@ class InfoConfigurationAction(workflows.Action):
 
         if (cleaned_data.get('schedule_start_date') and
                 cleaned_data.get('schedule_end_date')) and\
-                not cleaned_data.get('schedule_interval'):
+                not cleaned_data.get('schedule_unit'):
             msg = _("Please provide this value.")
-            self._errors['schedule_interval'] = self.error_class([msg])
+            self._errors['schedule_unit'] = self.error_class([msg])
 
         if (cleaned_data.get('schedule_end_date') and
                 not cleaned_data.get('schedule_start_date')) and\
-                not cleaned_data.get('schedule_interval'):
+                not cleaned_data.get('schedule_unit'):
             msg = _("Please provide this value.")
             self._errors['schedule_start_date'] = self.error_class([msg])
 
@@ -181,7 +191,8 @@ class InfoConfiguration(workflows.Step):
                    'job_id',
                    'actions',
                    'schedule_start_date',
-                   'schedule_interval',
+                   'interval_uint',
+                   'interval_value',
                    'schedule_end_date')
 
 
@@ -198,6 +209,15 @@ class ConfigureJob(workflows.Workflow):
 
     def handle(self, request, context):
         try:
+            interval_unit = context['interval_uint']
+            if not interval_unit or interval_unit == 'continuous':
+                context['schedule_interval'] = interval_unit
+            else:
+                interval_value = context['interval_value']
+                schedule_interval = "{0} {1}".format(interval_value,
+                                                     interval_unit)
+
+                context['schedule_interval'] = schedule_interval
             if context['job_id'] != '':
                 freezer_api.Job(request).update(context['job_id'], context)
             else:
