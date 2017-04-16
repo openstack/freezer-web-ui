@@ -478,7 +478,7 @@ class Backup(object):
             return backups
 
         return [utils.BackupObject(
-            backup_id=b.get('backup_uuid'),
+            backup_id=b.get('backup_id'),
             action=b.get('backup_metadata', {}).get('action'),
             time_stamp=b.get('backup_metadata', {}).get('time_stamp'),
             backup_name=b.get('backup_metadata', {}).get('backup_name'),
@@ -503,7 +503,7 @@ class Backup(object):
 
     def get(self, backup_id, json=False):
 
-        search = {"match": [{"backup_uuid": backup_id}, ], }
+        search = {"match": [{"backup_id": backup_id}, ], }
 
         b = self.client.backups.list(limit=1, search=search)
         b = b[0]
@@ -512,7 +512,7 @@ class Backup(object):
             return b
 
         return utils.BackupObject(
-            backup_id=b.get('backup_uuid'),
+            backup_id=b.get('backup_id'),
             action=b.get('backup_metadata', {}).get('action'),
             time_stamp=b.get('backup_metadata', {}).get('time_stamp'),
             backup_name=b.get('backup_metadata', {}).get('backup_name'),
