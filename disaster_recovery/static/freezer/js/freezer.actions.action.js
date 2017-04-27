@@ -37,7 +37,7 @@ function hideEverything() {
     $("#id_restore_from_host").closest(".form-group").hide();
     $("#id_restore_from_date").closest(".form-group").hide();
     $("#restore-warning").hide();
-    $("#id_nova_network_id").closest(".form-group").hide();
+    $("#id_nova_restore_network").closest(".form-group").hide();
 
     // Admin specific controls
     $("#id_remove_older_than").closest(".form-group").hide();
@@ -131,7 +131,7 @@ function setModeOptions() {
             $("#id_cinder_vol_id").closest(".form-group").show();
         } else if ($id_mode === 'nova') {
             $("#id_nova_inst_id").closest(".form-group").show();
-            $("#id_nova_network_id").closest(".form-group").show();
+            $("#id_nova_restore_network").closest(".form-group").show();
         }
     }
 }
