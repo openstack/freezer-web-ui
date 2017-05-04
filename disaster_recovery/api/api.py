@@ -442,7 +442,7 @@ class Client(object):
         return [utils.ClientObject(
             c.get('client', {}).get('hostname'),
             c.get('client', {}).get('client_id'),
-            c.get('uuid')
+            c.get('client', {}).get('uuid')
         ) for c in clients]
 
     def get(self, client_id, json=False):
