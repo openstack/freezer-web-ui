@@ -101,7 +101,7 @@ class ActionConfigurationAction(workflows.Action):
         help_text=_("Id of nova instance for backup"),
         required=False)
 
-    nova_network_id = forms.CharField(
+    nova_restore_network = forms.CharField(
         label=_("Nova network ID *"),
         help_text=_("Id of nova network for recover"),
         required=False)
@@ -184,14 +184,14 @@ class ActionConfigurationAction(workflows.Action):
             self._check_container(cleaned_data)
             self._check_backup_name(cleaned_data)
             self._check_nova_inst_id(cleaned_data)
-            self._check_nova_network_id(cleaned_data)
+            self._check_nova_restore_network(cleaned_data)
 
         return cleaned_data
 
-    def _check_nova_network_id(self, cleaned_data):
-        if not cleaned_data.get('nova_network_id'):
+    def _check_nova_restore_network(self, cleaned_data):
+        if not cleaned_data.get('nova_restore_network'):
             msg = _("You must define nova network id to restore.")
-            self._errors['nova_network_id'] = self.error_class([msg])
+            self._errors['nova_restore_network'] = self.error_class([msg])
 
     def _check_nova_inst_id(self, cleaned_data):
         if not cleaned_data.get('nova_inst_id'):
@@ -275,7 +275,7 @@ class ActionConfiguration(workflows.Step):
                    'restore_from_date',
                    'cinder_vol_id',
                    'nova_inst_id',
-                   'nova_network_id',
+                   'nova_restore_network',
                    'get_object',
                    'dst_file',
                    'remove_older_than',
