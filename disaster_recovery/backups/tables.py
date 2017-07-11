@@ -14,11 +14,14 @@
 
 from django.core.urlresolvers import reverse
 from django.utils import safestring
+from django.utils.translation import ungettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables
 from horizon.utils import functions as utils
 
+import disaster_recovery.api.api as freezer_api
+from disaster_recovery.utils import shield
 from disaster_recovery.utils import timestamp_to_string
 
 
@@ -31,6 +34,37 @@ class Restore(tables.LinkAction):
     def get_link_url(self, datum=None):
         return reverse("horizon:disaster_recovery:backups:restore",
                        kwargs={'backup_id': datum.id})
+
+
+class DeleteBackup(tables.DeleteAction):
+    name = "delete"
+    classes = ("btn-danger",)
+    icon = "remove"
+    help_text = _("Delete backups is not recoverable.")
+
+    @staticmethod
+    def action_present(count):
+        return ungettext_lazy(
+            u"Delete Backup",
+            u"Delete Backups",
+            count
+        )
+
+    @staticmethod
+    def action_past(count):
+        return ungettext_lazy(
+            u"Deleted Backup",
+            u"Deleted Backups",
+            count
+        )
+
+    @shield("Unable to delete backup", redirect="backups:index")
+    def delete(self, request, backup_id):
+        return freezer_api.Backup(request).delete(backup_id)
+
+
+class DeleteMultipleBackups(DeleteBackup):
+    name = "delete_multiple_backups"
 
 
 class Filter(tables.FilterAction):
@@ -100,9 +134,12 @@ class BackupsTable(tables.DataTable):
         page_size = utils.get_page_size(self.request)
         return "=".join(['offset', str(self.offset + page_size)])
 
+    def get_object_display_key(self, datum):
+        return 'backup_name'
+
     class Meta:
         name = "backups"
         verbose_name = _("Backup History")
-        row_actions = (Restore,)
-        table_actions = (Filter,)
-        multi_select = False
+        row_actions = (Restore, DeleteBackup,)
+        table_actions = (Filter, DeleteMultipleBackups,)
+        multi_select = True
