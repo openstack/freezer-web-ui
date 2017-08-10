@@ -12,15 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import patterns
 from django.conf.urls import url
 
 from disaster_recovery.sessions import views
 
-
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     url(r'^(?P<session_id>[^/]+)?$',
         views.SessionsView.as_view(),
         name='index'),
@@ -37,4 +33,4 @@ urlpatterns = patterns(
         views.CreateSessionWorkflow.as_view(),
         name='edit'),
 
-)
+]

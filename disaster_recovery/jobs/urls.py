@@ -12,15 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import patterns
 from django.conf.urls import url
-
 from disaster_recovery.jobs import views
 
-
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     url(r'^(?P<job_id>[^/]+)?$',
         views.JobsView.as_view(),
         name='index'),
@@ -40,4 +35,4 @@ urlpatterns = patterns(
     url(r'^edit_actions/(?P<job_id>[^/]+)?$',
         views.ActionsInJobView.as_view(),
         name='edit_action'),
-)
+]

@@ -13,13 +13,10 @@
 # limitations under the License.
 
 from django.conf.urls import include
-from django.conf.urls import patterns
 from django.conf.urls import url
-
 import disaster_recovery.api.rest.urls as rest_urls
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'', include(rest_urls)),
-)
+]
