@@ -18,4 +18,4 @@ For example::
     enable_plugin freezer-web-ui https://github.com/openstack/freezer-web-ui master
 
 For more information, see:
- http://docs.openstack.org/developer/devstack/plugins.html
+ https://docs.openstack.org/devstack/latest/plugins.html
