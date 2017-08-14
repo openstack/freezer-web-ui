@@ -1,0 +1,636 @@
+# OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# Ian Y. Choi <ianyrchoi@gmail.com>, 2016. #zanata
+# Sungjin Kang <gang.sungjin@gmail.com>, 2016. #zanata
+# minwook-shin <minwook0106@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui 5.0.0.0rc2.dev3\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2017-08-14 03:57+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-08-05 01:43+0000\n"
+"Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
+"Language-Team: Korean (South Korea)\n"
+"Language: ko-KR\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "Action"
+msgstr "동작"
+
+msgid "Action Configuration"
+msgstr "동작 구성"
+
+msgid "Action Name"
+msgstr "동작 이름"
+
+msgid "Action Name *"
+msgstr "동작 이름 *"
+
+msgid "Action Type"
+msgstr "동작 유형"
+
+msgid "Action queued correctly. It will appear soon"
+msgstr "작업이 올바르게 대기열에 있습니다. 곧 나타납니다"
+
+msgid "Actions"
+msgstr "작업"
+
+msgid "Actions Configuration"
+msgstr "동작 구성"
+
+msgid "Actions saved correctly."
+msgstr "작업이 올바르게 저장되었습니다."
+
+msgid "Actions updated correctly."
+msgstr "동작이 올바르게 업데이트되었습니다."
+
+msgid "Admin"
+msgstr "관리자"
+
+msgid "Advanced"
+msgstr "진보된"
+
+msgid "All Clients"
+msgstr "모든 클라이언트"
+
+msgid "Attach"
+msgstr "연결"
+
+msgid "Attach To Session"
+msgstr "세션 연결"
+
+msgid "Backup"
+msgstr "백업"
+
+msgid "Backup History"
+msgstr "백업 이력"
+
+msgid "Backup Name"
+msgstr "백업 이름"
+
+msgid "Backup and Restore"
+msgstr "백업 및 복구"
+
+msgid "Backups"
+msgstr "백업"
+
+msgid "Choose what you want to backup"
+msgstr "원하는 백업을 선택하세요"
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID *"
+msgstr "Cinder 볼륨 ID *"
+
+msgid "Client ID"
+msgstr "클라이언트 ID"
+
+msgid "Client is required"
+msgstr "클라이언트가 필요함"
+
+msgid "Clients"
+msgstr "클라이언트"
+
+msgid "Clone Job"
+msgstr "작업 복제"
+
+msgid "Clone and edit a job file"
+msgstr "작업 파일 복제하고 수정"
+
+msgid "Container Name or Path"
+msgstr "컨테이너 이름 또는 경로"
+
+msgid "Continuous"
+msgstr "지속적인"
+
+msgid "Create Action"
+msgstr "동작 생성"
+
+msgid "Create Job"
+msgstr "작업 생성"
+
+msgid "Create Session"
+msgstr "세션 생성"
+
+msgid "Created At"
+msgstr "생성 시점"
+
+msgid "Days"
+msgstr "일"
+
+msgid "Define a name for this session"
+msgstr "이 세션의 이름을 정의하십시오"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "동작 삭제"
+
+msgid "Delete Client"
+msgid_plural "Delete Clients"
+msgstr[0] "클라이언트 삭제"
+
+msgid "Delete Clients is not recoverable."
+msgstr "삭제 클라이언트는 복구할 수 없습니다."
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "작업 삭제"
+
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "작업 파일 삭제"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "세션 삭제"
+
+msgid "Delete actions is not recoverable."
+msgstr "삭제 동작은 복구할 수 없습니다."
+
+msgid "Delete jobs is not recoverable."
+msgstr "삭제 작업은 복구할 수 없습니다."
+
+msgid "Delete sessions is not recoverable."
+msgstr "삭제 세션은 복구할 수 없습니다."
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "동작 삭제"
+
+msgid "Deleted Client"
+msgid_plural "Deleted Clients"
+msgstr[0] "클라이언트 삭제"
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "삭제된 작업"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "작업 파일 삭제됨"
+
+msgid "Deleted Session"
+msgid_plural "Deleted Sessions"
+msgstr[0] "세션 삭제됨"
+
+msgid "Deleted action File"
+msgid_plural "Deleted action Files"
+msgstr[0] "동작 파일 삭제됨"
+
+msgid "Destination"
+msgstr "대상"
+
+msgid "Destination File"
+msgstr "대상 파일"
+
+msgid "Destination Path"
+msgstr "대상 경로"
+
+msgid "Disaster Recovery"
+msgstr "재난 복구"
+
+msgid "Download Limit"
+msgstr "제한 다운로드"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"대역폭 제한을 초당 바이트로 다운로드하십시오. 치수 (10K, 120M, 10G)로 호출 "
+"할 수 있습니다."
+
+msgid "Edit"
+msgstr "편집"
+
+msgid "Edit Actions"
+msgstr "동작 수정"
+
+msgid "Edit Job"
+msgstr "작업 수정"
+
+msgid "Edit Session"
+msgstr "세션 수정"
+
+msgid "End Date and Time"
+msgstr "종료 날짜와 시간"
+
+msgid "End date time is not in ISO format."
+msgstr "종료 날짜 시간이 ISO 형식이 아닙니다."
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+msgstr "시스템 HTTP_PROXY 및 HTTPS_PROXY를 변경하는 프록시 강제 적용"
+
+msgid "Error getting session list"
+msgstr "세션 리스트 가져오기 오류"
+
+msgid "Exclude Files"
+msgstr "파일 제외"
+
+msgid ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+msgstr ""
+"PATTERN.Ex로 주어진 파일을 제외하십시오 : '* .log, * .pyc'는 .log로 끝나는 이"
+"름의 파일을 제외시킵니다. 기본 제외 안됨"
+
+msgid "File system"
+msgstr "파일 시스템"
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr ""
+"여기의 사용 가능한 클라이언트 목록에서 이 작업에 대한 클라이언트를 추가 및 제"
+"거 할 수 있습니다."
+
+msgid "Get A Single Object"
+msgstr "A 단일 오프젝트 가져오기"
+
+msgid "Host"
+msgstr "호스트"
+
+msgid "Hostname"
+msgstr "호스트 이름"
+
+msgid "Hours"
+msgstr "시"
+
+msgid "IP address or dns name of host to connect through ssh"
+msgstr "ssh를 통해 연결할 호스트의 IP 주소 또는 DNS 이름"
+
+msgid "In case of error, set the amount of retries for this job"
+msgstr "오류가 발생한 경우 이 작업의 재시도 횟수를 설정하십시오"
+
+msgid "Info"
+msgstr "정보"
+
+msgid "Interval"
+msgstr "간격"
+
+msgid "Interval Unit"
+msgstr "유닛 간격"
+
+msgid "Interval Value"
+msgstr "값 간격"
+
+msgid "Job Configuration"
+msgstr "작업 구성"
+
+msgid "Job ID"
+msgstr "작업 ID"
+
+msgid "Job Info"
+msgstr "작업 정보"
+
+msgid "Job Name"
+msgstr "작업 이름"
+
+msgid "Job attached successfully."
+msgstr "작업이 성공적으로 연결되었습니다."
+
+msgid "Job has started"
+msgstr "작업이 시작됨"
+
+msgid "Job has stopped"
+msgstr "작업이 정지됨"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr "작업이 올바르게 대기 중입니다. 곧 나타납니다"
+
+msgid "Job updated correctly."
+msgstr "작업이 올바르게 업데이트되었습니다."
+
+msgid "Jobs"
+msgstr "작업"
+
+msgid "Local Path"
+msgstr "로컬 경로"
+
+msgid "Log File Path"
+msgstr "로그 파일 경로"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "무손실 데이터 압축 (XZ)"
+
+msgid "Mandatory"
+msgstr "의무"
+
+msgid "Max Retries"
+msgstr "최대 재시도"
+
+msgid "Max Retries Interval"
+msgstr "최대 재시도 간격"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "최소 압축 (GZip/Zip/Zlib)"
+
+msgid "Minutes"
+msgstr "분"
+
+msgid "Mode"
+msgstr "모드"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "보다 효과적 압축 (Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File *"
+msgstr "MySQL 구성파일 *"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "No clients found."
+msgstr "클라이언트를 찾을 수 없습니다."
+
+msgid "No clients selected."
+msgstr "선택된 클라이언트가 없습니다."
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Instance ID *"
+msgstr "Nova 인스턴스 ID *"
+
+msgid "Nova network ID *"
+msgstr "Nova 네트워크 ID *"
+
+msgid "OpenStack Authentication Version"
+msgstr "OpenStack Authentication  버전"
+
+msgid "Path To Backup or Restore"
+msgstr "백업 또는 복구 경로"
+
+msgid "Path for ssh private key"
+msgstr "ssh 개인키의 경로"
+
+msgid "Please choose a interval unit"
+msgstr "간격 유닛를 선택하십시오"
+
+msgid "Please provide this value."
+msgstr "이 값을 입력하십시오."
+
+msgid "Proxy URL"
+msgstr "프록시 URL"
+
+msgid "Remove From Date"
+msgstr "데이터로부터 제거"
+
+msgid "Restore"
+msgstr "복구"
+
+msgid "Restore Absolute Path *"
+msgstr "절대 경로 복구 *"
+
+msgid "Restore From Date"
+msgstr "데이터로부터 복구"
+
+msgid "Restore From Host"
+msgstr "호스트로부터 복구"
+
+msgid "Result"
+msgstr "결과"
+
+msgid "Rules"
+msgstr "규칙"
+
+msgid "SQL Server Configuration File *"
+msgstr "SQL 서버 구성 파일 *"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host *"
+msgstr "SSH 호스트 *"
+
+msgid "SSH Private Key *"
+msgstr "SSH 개인키 *"
+
+msgid "SSH Username *"
+msgstr "SSH 사용자 이름 *"
+
+msgid "Save"
+msgstr "저장"
+
+msgid "Seconds"
+msgstr "초"
+
+msgid "Select A Session"
+msgstr "A 세션 선택"
+
+msgid "Selected Clients"
+msgstr "클라이언트 선택됨"
+
+msgid "Session"
+msgstr "세션"
+
+msgid "Session Configuration"
+msgstr "세션 구성"
+
+msgid "Session Information"
+msgstr "세션 정보"
+
+msgid "Session Name"
+msgstr "세션 이름"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr "세션이 올바르게 대기열에 있습니다. 곧 나타납니다"
+
+msgid "Sessions"
+msgstr "세션"
+
+msgid "Set a name for this job"
+msgstr "이 작업의 이름 설정"
+
+msgid "Set a session to attach this job"
+msgstr "이 작업을 첨부 할 세션 설정"
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"로그 파일을 설정하십시오. 기본적으로 /var/log/freezer.log에 기록합니다. 해당 "
+"파일에 쓰기가 가능하지 않으면, freezer는 ~/.freezer/freezer.log에 로그하려고 "
+"시도합니다"
+
+msgid "Set storage backend for a backup"
+msgstr "백업용 스토리지 백엔드 설정"
+
+msgid "Set the absolute path where you want your data restored."
+msgstr "데이터를 복원 할 절대 경로를 설정하십시오."
+
+msgid "Set the action to be taken"
+msgstr "수행 할 작업 설정"
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+msgstr ""
+"복원 할 데이터를 식별하는 데 사용되는 호스트 이름을 설정하십시오. 백업을 실"
+"행 한 동일한 호스트에서 데이터를 복원하려면 쉘에서: '$hostname'을 입력하면됩"
+"니다. 출력은 이 옵션에 전달되어야 하는 값입니다. 복원시 필수 항목"
+
+msgid "Set the interval between executions for retries in seconds"
+msgstr "재시도 횟수를 초 단위로 설정합니다."
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"간격을 다음 형식으로 설정하십시오:\n"
+"                       지속적,\n"
+"                       N 주,\n"
+"                       N 일,\n"
+"                       N 시,\n"
+"                       N 분,\n"
+"                       N 초,\n"
+"                       시작 날짜가 제공되지 않으면 작업\n"
+"                        즉시 시작됩니다."
+
+msgid "Set the interval value"
+msgstr "값 간격 설정"
+
+msgid "Set the path where the MySQL configuration file is on the file system "
+msgstr "파일 시스템에 MySQL 구성 파일이있는 경로 설정"
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system"
+msgstr "파일 시스템에 SQL Server 구성 파일이있는 경로 설정"
+
+msgid "Set the unit for the Interval"
+msgstr "간격을 위한 유닛 설정"
+
+msgid "Set this action as mandatory"
+msgstr "이 작업을 필수로 설정하십시오"
+
+msgid "Snapshot"
+msgstr "스냅샷"
+
+msgid "Source File/Directory *"
+msgstr "소스 파일/디렉토리 *"
+
+msgid "Start Date and Time"
+msgstr "시작 날짜와 시간"
+
+msgid "Start Job"
+msgstr "작업 시작"
+
+msgid "Start date time is not in ISO format."
+msgstr "시작 날짜 시간이 ISO 형식이 아닙니다."
+
+msgid "Status"
+msgstr "상태"
+
+msgid "Stop Job"
+msgstr "작업 정지"
+
+msgid "Storage"
+msgstr "스토리지"
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "The Object name you want to download on the local file system."
+msgstr "로컬 파일 시스템에서 다운로드 할 오브젝트 이름입니다."
+
+msgid "The file or directory you want to back up."
+msgstr "백업 할 파일 또는 디렉토리입니다."
+
+msgid "The path in which the backup should be restored"
+msgstr "백업을 복원해야하는 경로"
+
+msgid "Unable to attach to session."
+msgstr "세션에 연결할 수 없습니다."
+
+msgid "Unable to create session."
+msgstr "세션을 만들 수 없습니다."
+
+msgid "Unable to created job."
+msgstr "작업이 생성되지 않았습니다."
+
+msgid "Unable to retrieve client list."
+msgstr "클라이언트 목록을 찾지 못했습니다."
+
+msgid "Unable to save action file."
+msgstr "동작 파일을 저장할 수 없습니다."
+
+msgid "Unable to save actions."
+msgstr "작업을 저장할 수 없습니다."
+
+msgid "Unable to update actions."
+msgstr "동작이 업데이트되지 않았습니다."
+
+msgid "Unable to update job."
+msgstr "작업을 업데이트할 수 없습니다."
+
+msgid "Update Actions"
+msgstr "동작 업데이트"
+
+msgid "Update Job"
+msgstr "작업 업데이트"
+
+msgid "Upload Limit"
+msgstr "제한 업로드"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"대역폭 제한을 초당 바이트로 업로드합니다. 치수 (10K, 120M, 10G)로 호출 할 수 "
+"있습니다."
+
+msgid ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
+msgstr "LVM 또는 섀도 복사본 스냅샷을 사용하여 특정 시점에서 일관된 백업 수행"
+
+msgid "Weeks"
+msgstr "주"
+
+msgid "You must define a container or path to backup."
+msgstr "백업할 경로 또는 컨테이너를 정의해야합니다."
+
+msgid "You must define a path to backup."
+msgstr "백업할 경로를 정의해야합니다."
+
+msgid "You must define a path to restore."
+msgstr "복원 할 경로를 정의해야합니다."
+
+msgid "You must define an action name."
+msgstr "동작 이름을 정의해야합니다."
+
+msgid "You must define nova instance id to restore or backup."
+msgstr "nova 인스턴스 ID를 정의하여 복원 또는 백업해야합니다."
+
+msgid "You must define nova network id to restore."
+msgstr "복원 할 nova 네트워크 ID를 정의해야합니다."
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"

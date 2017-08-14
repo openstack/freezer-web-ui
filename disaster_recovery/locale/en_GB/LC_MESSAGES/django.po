@@ -5,9 +5,9 @@
 # Rob Cresswell <robert.cresswell@outlook.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: freezer-web-ui 4.0.0.0b3.dev5\n"
+"Project-Id-Version: freezer-web-ui 5.0.0.0rc2.dev3\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-03 09:18+0000\n"
+"POT-Creation-Date: 2017-08-14 03:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en-GB\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 msgid "Action"
@@ -130,9 +130,6 @@ msgstr "Clone and edit a job file"
 
 msgid "Compression Level"
 msgstr "Compression Level"
-
-msgid "Container Name or Path *"
-msgstr "Container Name or Path *"
 
 msgid "Create Action"
 msgstr "Create Action"
@@ -453,9 +450,6 @@ msgstr "Remove From Date"
 
 msgid "Remove Older Than"
 msgstr "Remove Older Than"
-
-msgid "Repeat this configuration in a minutes interval."
-msgstr "Repeat this configuration in a minutes interval."
 
 msgid "Restart Always Level"
 msgstr "Restart Always Level"

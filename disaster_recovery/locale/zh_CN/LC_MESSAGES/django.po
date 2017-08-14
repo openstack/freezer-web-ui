@@ -8,9 +8,9 @@
 # vuuv <froms2008@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: freezer-web-ui 4.0.0.0b3.dev5\n"
+"Project-Id-Version: freezer-web-ui 5.0.0.0rc2.dev3\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-01-03 09:18+0000\n"
+"POT-Creation-Date: 2017-08-14 03:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Last-Translator: howard lee <howard@mail.ustc.edu.cn>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh-CN\n"
-"X-Generator: Zanata 3.7.3\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 msgid "Action"
@@ -128,9 +128,6 @@ msgstr "克隆并编辑任务配置文件"
 
 msgid "Compression Level"
 msgstr "压缩等级"
-
-msgid "Container Name or Path *"
-msgstr "容器名称或路径*"
 
 msgid "Create Action"
 msgstr "创建action"
@@ -395,9 +392,6 @@ msgstr "根据日期进行删除"
 
 msgid "Remove Older Than"
 msgstr "删除较旧的"
-
-msgid "Repeat this configuration in a minutes interval."
-msgstr "重复该配置（以分钟级别间隔）。"
 
 msgid "Restore"
 msgstr "恢复"
