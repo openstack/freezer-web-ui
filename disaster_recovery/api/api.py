@@ -571,3 +571,6 @@ class Backup(object):
         }
         job_id = self.client.jobs.create(job)
         return Job(self.request).start(job_id)
+
+    def delete(self, backup_id):
+        return self.client.backups.delete(backup_id)
