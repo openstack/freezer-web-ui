@@ -66,7 +66,10 @@ class ClientsTable(tables.DataTable):
                               link=get_link)
     name = tables.Column('hostname', verbose_name=_("Hostname"))
 
-    class Meta:
+    def get_object_display_key(self, datum):
+        return "hostname"
+
+    class Meta(object):
         name = "clients"
         verbose_name = _("Clients")
         row_actions = (DeleteClient,)
