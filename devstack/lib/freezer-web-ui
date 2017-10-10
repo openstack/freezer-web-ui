@@ -62,10 +62,6 @@ function init_freezer_web_ui {
 
         sudo cp $FREEZER_WEB_UI_FILES/_5050_freezer.py.template $dashboard_enabled_5050_freezer_py
 
-        sudo sed -e "
-            s|%FREEZER_WEB_UI_DIR%|$FREEZER_WEB_UI_DIR|g
-        " -i $dashboard_enabled_5050_freezer_py
-
     fi
 }
 
