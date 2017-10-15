@@ -3,15 +3,16 @@
 # Andi Chandler <andi@gowling.com>, 2016. #zanata
 # Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
 # Rob Cresswell <robert.cresswell@outlook.com>, 2016. #zanata
+# Andi Chandler <andi@gowling.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: freezer-web-ui 5.0.0.0rc2.dev3\n"
+"Project-Id-Version: freezer-web-ui 5.0.1.dev13\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2017-08-14 03:57+0000\n"
+"POT-Creation-Date: 2017-10-10 04:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-06-03 10:47+0000\n"
+"PO-Revision-Date: 2017-09-28 03:36+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en-GB\n"
@@ -131,6 +132,12 @@ msgstr "Clone and edit a job file"
 msgid "Compression Level"
 msgstr "Compression Level"
 
+msgid "Container Name or Path"
+msgstr "Container Name or Path"
+
+msgid "Continuous"
+msgstr "Continuous"
+
 msgid "Create Action"
 msgstr "Create Action"
 
@@ -143,6 +150,9 @@ msgstr "Create Session"
 msgid "Created At"
 msgstr "Created At"
 
+msgid "Days"
+msgstr "Days"
+
 msgid "Define a name for this session"
 msgstr "Define a name for this session"
 
@@ -150,6 +160,11 @@ msgid "Delete Action"
 msgid_plural "Delete Actions"
 msgstr[0] "Delete Action"
 msgstr[1] "Delete Actions"
+
+msgid "Delete Backup"
+msgid_plural "Delete Backups"
+msgstr[0] "Delete Backup"
+msgstr[1] "Delete Backups"
 
 msgid "Delete Client"
 msgid_plural "Delete Clients"
@@ -177,6 +192,9 @@ msgstr[1] "Delete Sessions"
 msgid "Delete actions is not recoverable."
 msgstr "Delete actions is not recoverable."
 
+msgid "Delete backups is not recoverable."
+msgstr "Delete backups is not recoverable."
+
 msgid "Delete jobs is not recoverable."
 msgstr "Delete jobs is not recoverable."
 
@@ -187,6 +205,11 @@ msgid "Deleted Action"
 msgid_plural "Deleted Actions"
 msgstr[0] "Deleted Action"
 msgstr[1] "Deleted Actions"
+
+msgid "Deleted Backup"
+msgid_plural "Deleted Backups"
+msgstr[0] "Deleted Backup"
+msgstr[1] "Deleted Backups"
 
 msgid "Deleted Client"
 msgid_plural "Deleted Clients"
@@ -316,6 +339,9 @@ msgstr "Host"
 msgid "Hostname"
 msgstr "Hostname"
 
+msgid "Hours"
+msgstr "Hours"
+
 msgid "IP address or dns name of host to connect through ssh"
 msgstr "IP address or DNS name of host to connect through ssh"
 
@@ -325,6 +351,9 @@ msgstr "Id of cinder volume for backup"
 msgid "Id of nova instance for backup"
 msgstr "Id of nova instance for backup"
 
+msgid "Id of nova network for recover"
+msgstr "Id of nova network for recover"
+
 msgid "In case of error, set the amount of retries for this job"
 msgstr "In case of error, set the amount of retries for this job"
 
@@ -333,6 +362,12 @@ msgstr "Info"
 
 msgid "Interval"
 msgstr "Interval"
+
+msgid "Interval Unit"
+msgstr "Interval Unit"
+
+msgid "Interval Value"
+msgstr "Interval Value"
 
 msgid "Job Configuration"
 msgstr "Job Configuration"
@@ -397,6 +432,9 @@ msgstr "Microsoft SQL Server"
 msgid "Minimum Compression (GZip/Zip/Zlib)"
 msgstr "Minimum Compression (GZip/Zip/Zlib)"
 
+msgid "Minutes"
+msgstr "Minutes"
+
 msgid "Mode"
 msgstr "Mode"
 
@@ -427,6 +465,12 @@ msgstr "No clients selected."
 msgid "Nova"
 msgstr "Nova"
 
+msgid "Nova Instance ID *"
+msgstr "Nova Instance ID *"
+
+msgid "Nova network ID *"
+msgstr "Nova network ID *"
+
 msgid "OpenStack Authentication Version"
 msgstr "OpenStack Authentication Version"
 
@@ -435,6 +479,9 @@ msgstr "Path To Backup or Restore"
 
 msgid "Path for ssh private key"
 msgstr "Path for ssh private key"
+
+msgid "Please choose a interval unit"
+msgstr "Please choose a interval unit"
 
 msgid "Please provide this value."
 msgstr "Please provide this value."
@@ -503,6 +550,9 @@ msgstr "SSH Username *"
 
 msgid "Save"
 msgstr "Save"
+
+msgid "Seconds"
+msgstr "Seconds"
 
 msgid "Select A Session"
 msgstr "Select A Session"
@@ -636,6 +686,9 @@ msgstr ""
 "                       If no start date is provided the job\n"
 "                       will start immediately"
 
+msgid "Set the interval value"
+msgstr "Set the interval value"
+
 msgid ""
 "Set the maximum file chunk size in bytes to upload to swift. Default "
 "67108864 bytes (64MB)"
@@ -653,6 +706,9 @@ msgstr ""
 
 msgid "Set the path where the encryption keyis on the file system"
 msgstr "Set the path where the encryption keyis on the file system"
+
+msgid "Set the unit for the Interval"
+msgstr "Set the unit for the Interval"
 
 msgid "Set this action as mandatory"
 msgstr "Set this action as mandatory"
@@ -754,6 +810,9 @@ msgid ""
 msgstr ""
 "Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
 
+msgid "Weeks"
+msgstr "Weeks"
+
 msgid "You must define a container or path to backup."
 msgstr "You must define a container or path to backup."
 
@@ -765,6 +824,15 @@ msgstr "You must define a path to restore."
 
 msgid "You must define an action name."
 msgstr "You must define an action name."
+
+msgid "You must define cinder volume id to backup."
+msgstr "You must define cinder volume id to backup."
+
+msgid "You must define nova instance id to restore or backup."
+msgstr "You must define nova instance id to restore or backup."
+
+msgid "You must define nova network id to restore."
+msgstr "You must define nova network id to restore."
 
 msgid "insecure"
 msgstr "insecure"
