@@ -1,0 +1,20 @@
+- project:
+    name: openstack/freezer-web-ui
+    check:
+      jobs:
+        - freezer-web-ui-ubuntu-xenial:
+            voting: false
+
+- job:
+    name: freezer-web-ui-ubuntu-xenial
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/freezer-web-ui-ubuntu-xenial/run.yaml
+    post-run: playbooks/legacy/freezer-web-ui-ubuntu-xenial/post.yaml
+    timeout: 7800
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/freezer
+      - openstack/freezer-api
+      - openstack/freezer-web-ui
+      - openstack/python-freezerclient
+
