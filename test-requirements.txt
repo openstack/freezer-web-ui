@@ -10,7 +10,7 @@ pylint==1.4.5 # GPLv2
 testrepository>=0.0.18 # Apache-2.0/BSD
 testtools>=2.2.0 # MIT
 unittest2>=1.1.0 # BSD
-sphinx>=1.6.2 # BSD
+sphinx!=1.6.6,>=1.6.2 # BSD
 oslosphinx>=4.7.0 # Apache-2.0
 nose>=1.3.7 # LGPL
 nosehtmloutput>=0.0.3 # Apache-2.0
