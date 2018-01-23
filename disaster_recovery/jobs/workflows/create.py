@@ -161,13 +161,13 @@ class InfoConfigurationAction(workflows.Action):
 
         if (cleaned_data.get('schedule_start_date') and
                 cleaned_data.get('schedule_end_date')) and\
-                not cleaned_data.get('schedule_unit'):
+                not cleaned_data.get('interval_uint'):
             msg = _("Please provide this value.")
-            self._errors['schedule_unit'] = self.error_class([msg])
+            self._errors['interval_uint'] = self.error_class([msg])
 
         if (cleaned_data.get('schedule_end_date') and
                 not cleaned_data.get('schedule_start_date')) and\
-                not cleaned_data.get('schedule_unit'):
+                not cleaned_data.get('interval_uint'):
             msg = _("Please provide this value.")
             self._errors['schedule_start_date'] = self.error_class([msg])
 
