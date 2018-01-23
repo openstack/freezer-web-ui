@@ -41,7 +41,7 @@ def client(request):
         'auth_url': getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
         'endpoint': api_url,
         'version': ks_version,
-        'cert': cacert
+        'cacert': cacert
     }
 
     if ks_version == 3:
