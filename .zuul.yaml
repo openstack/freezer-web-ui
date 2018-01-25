@@ -1,5 +1,4 @@
 - project:
-    name: openstack/freezer-web-ui
     check:
       jobs:
         - freezer-web-ui-ubuntu-xenial:
