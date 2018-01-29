@@ -16,7 +16,7 @@
 if is_service_enabled freezer-web-ui; then
     if [[ "$1" == "source" || "`type -t install_freezer_web_ui`" != 'function' ]]; then
         # Initial source
-        source $FREEZER_WEB_UI_DIR/devstack/lib/freezer-web-ui
+        . $FREEZER_WEB_UI_DIR/devstack/lib/freezer-web-ui
     fi
 
     if [[ "$1" == "stack" && "$2" == "install" ]]; then
