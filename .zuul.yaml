@@ -3,7 +3,7 @@
     check:
       jobs:
         - freezer-web-ui-ubuntu-xenial:
-            voting: false
+            voting: true
 
 - job:
     name: freezer-web-ui-ubuntu-xenial
