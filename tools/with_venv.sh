@@ -4,4 +4,4 @@ VENV_PATH=${VENV_PATH:-${TOOLS_PATH}}
 VENV_DIR=${VENV_NAME:-/../.venv}
 TOOLS=${TOOLS_PATH}
 VENV=${VENV:-${VENV_PATH}/${VENV_DIR}}
-source ${VENV}/bin/activate && "$@"
+. ${VENV}/bin/activate && "$@"
