@@ -4,20 +4,24 @@
 # Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
 # Rob Cresswell <robert.cresswell@outlook.com>, 2016. #zanata
 # Andi Chandler <andi@gowling.com>, 2017. #zanata
+# Andi Chandler <andi@gowling.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: freezer-web-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-02 09:52+0000\n"
+"POT-Creation-Date: 2018-03-05 11:27+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-09-28 03:36+0000\n"
+"PO-Revision-Date: 2018-03-10 10:07+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
 "X-Generator: Zanata 4.3.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "A group of jobs which share the same scheduling time."
+msgstr "A group of jobs which share the same scheduling time."
 
 msgid "Action"
 msgstr "Action"
@@ -55,6 +59,9 @@ msgstr "Admin"
 msgid "Advanced"
 msgstr "Advanced"
 
+msgid "Advanced configuration"
+msgstr "Advanced configuration"
+
 msgid "All Clients"
 msgstr "All Clients"
 
@@ -63,6 +70,15 @@ msgstr "Allow to access swift servers without checking SSL certs."
 
 msgid "Always Level"
 msgstr "Always Level"
+
+msgid ""
+"An action is the simplest execution within a job, it could be a backup or a "
+"restore and it contains rules that the action must follow (max retries, "
+"interval between executions, etc)."
+msgstr ""
+"An action is the simplest execution within a job, it could be a backup or a "
+"restore and it contains rules that the action must follow (max retries, "
+"interval between executions, etc)."
 
 msgid "Attach"
 msgstr "Attach"
@@ -114,6 +130,9 @@ msgstr "Cinder"
 msgid "Cinder Volume ID *"
 msgstr "Cinder Volume ID *"
 
+msgid "Client"
+msgstr "Client"
+
 msgid "Client ID"
 msgstr "Client ID"
 
@@ -155,6 +174,16 @@ msgstr "Days"
 
 msgid "Define a name for this session"
 msgstr "Define a name for this session"
+
+msgid "Define extra information for the action executed by the client."
+msgstr "Define extra information for the action executed by the client."
+
+msgid ""
+"Define the following action rules: <ul> <li>Number of retries</li> "
+"<li>Retries interval</li> <li>Action is mandatory</li> </ul>"
+msgstr ""
+"Define the following action rules: <ul> <li>Number of retries</li> "
+"<li>Retries interval</li> <li>Action is mandatory</li> </ul>"
 
 msgid "Delete Action"
 msgid_plural "Delete Actions"
@@ -235,6 +264,9 @@ msgid "Deleted action File"
 msgid_plural "Deleted action Files"
 msgstr[0] "Deleted action File"
 msgstr[1] "Deleted action Files"
+
+msgid "Describes actions to be executed by a client."
+msgstr "Describes actions to be executed by a client."
 
 msgid "Destination"
 msgstr "Destination"
@@ -324,6 +356,13 @@ msgstr ""
 "Default False"
 
 msgid ""
+"For Linux, in order to use snapshot features, the data has to reside on an "
+"LVM volume."
+msgstr ""
+"For Linux, in order to use snapshot features, the data has to reside on an "
+"LVM volume."
+
+msgid ""
 "From here you can add and remove clients to this job from the list of "
 "available clients"
 msgstr ""
@@ -369,6 +408,9 @@ msgstr "Interval Unit"
 msgid "Interval Value"
 msgstr "Interval Value"
 
+msgid "Job"
+msgstr "Job"
+
 msgid "Job Configuration"
 msgstr "Job Configuration"
 
@@ -383,6 +425,13 @@ msgstr "Job Name"
 
 msgid "Job attached successfully."
 msgstr "Job attached successfully."
+
+msgid ""
+"Job executions can be executed and scheduled, by providing the following "
+"settings."
+msgstr ""
+"Job executions can be executed and scheduled, by providing the following "
+"settings."
 
 msgid "Job has started"
 msgstr "Job has started"
@@ -764,6 +813,13 @@ msgstr "The file or directory you want to back up."
 
 msgid "The path in which the backup should be restored"
 msgstr "The path in which the backup should be restored"
+
+msgid ""
+"The snapshot technologies currently supported are LVM for Linux and Volume "
+"Shadow Copy for Windows."
+msgstr ""
+"The snapshot technologies currently supported are LVM for Linux and Volume "
+"Shadow Copy for Windows."
 
 msgid "Unable to attach to session."
 msgstr "Unable to attach to session."
