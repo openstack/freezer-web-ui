@@ -4,6 +4,10 @@
         - freezer-web-ui-ubuntu-xenial:
             voting: true
 
+        - openstack-tox-lower-constraints
+    gate:
+      jobs:
+        - openstack-tox-lower-constraints
 - job:
     name: freezer-web-ui-ubuntu-xenial
     parent: legacy-dsvm-base
