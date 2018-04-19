@@ -17,6 +17,7 @@ nosehtmloutput>=0.0.3 # Apache-2.0
 openstack.nose-plugin>=0.7 # Apache-2.0
 django-nose>=1.4.4 # BSD
 nosexcover>=1.0.10 # BSD
+nose-exclude>=0.5.0 # LGPL
 
 # Horizon requirements
 Django<2.0,>=1.11 # BSD

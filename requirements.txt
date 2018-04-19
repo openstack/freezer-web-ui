@@ -3,6 +3,7 @@
 # process, which may cause wedges in the gate later.
 Django<2.0,>=1.11 # BSD
 python-freezerclient>=1.3.0 # Apache-2.0
+oslo.log  # Apache-2.0
 
 # OpenStack CI will install the following projects from git
 # if they are in the required-projects list for a job:

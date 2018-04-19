@@ -17,7 +17,8 @@ URL patterns for the OpenStack Dashboard.
 """
 
 from django.conf.urls import url
-import rest_api
+
+from disaster_recovery.api.rest import rest_api
 
 urlpatterns = [
     url(r'^api/clients/$', rest_api.Clients.as_view(), name="api_clients"),

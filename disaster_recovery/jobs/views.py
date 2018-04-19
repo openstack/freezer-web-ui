@@ -13,9 +13,9 @@
 from horizon import browsers
 from horizon import workflows
 
-import workflows.create as configure_workflow
-import workflows.update_job as update_job_workflow
-import workflows.update_actions as update_actions_workflow
+from disaster_recovery.jobs.workflows import create as configure_workflow
+from disaster_recovery.jobs.workflows import update_job as update_job_workflow
+from disaster_recovery.jobs.workflows import update_actions as update_workflow
 
 import disaster_recovery.api.api as freezer_api
 import disaster_recovery.jobs.browsers as project_browsers
@@ -85,7 +85,7 @@ class EditJobWorkflowView(workflows.WorkflowView):
 
 
 class ActionsInJobView(workflows.WorkflowView):
-    workflow_class = update_actions_workflow.UpdateActions
+    workflow_class = update_workflow.UpdateActions
 
     @shield("Unable to get job", redirect="jobs:index")
     def get_object(self):
