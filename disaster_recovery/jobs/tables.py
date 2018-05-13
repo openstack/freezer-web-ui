@@ -18,7 +18,7 @@ from django.utils.translation import ungettext_lazy
 
 from horizon import tables
 from horizon import messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 import disaster_recovery.api.api as freezer_api
 from disaster_recovery.utils import shield
