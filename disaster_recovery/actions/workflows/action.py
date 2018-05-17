@@ -41,6 +41,18 @@ class ActionConfigurationAction(workflows.Action):
     storage = forms.ChoiceField(
         help_text=_("Set storage backend for a backup"))
 
+    engine_name = forms.ChoiceField(
+        help_text=_("Engine to be used for backup/restore. "
+                    "With tar, the file inode will be checked for changes "
+                    "amid backup execution. If the file inode changed, the "
+                    "whole file will be backed up. With rsync, the data "
+                    "blocks changes will be verified and only the changed "
+                    "blocks will be backed up. Tar is faster, but is uses "
+                    "more space and bandwidth. Rsync is slower, but uses "
+                    "less space and bandwidth. Nova engine can be used to"
+                    " backup/restore running instances. Backing up instances"
+                    " and it's metadata."))
+
     mysql_conf = forms.CharField(
         label=_("MySQL Configuration File *"),
         help_text=_("Set the path where the MySQL configuration file "
@@ -247,6 +259,15 @@ class ActionConfigurationAction(workflows.Action):
             ('ssh', _("SSH")),
         ]
 
+    def populate_engine_name_choices(self, request, context):
+        return [
+            ('tar', _("tar")),
+            ('rsync', _("rsync")),
+            ('rsyncv2', _("rsyncv2")),
+            ('nova', _("nova")),
+            ('osbrick', _("osbrick")),
+        ]
+
     def __init__(self, request, context, *args, **kwargs):
         self.request = request
         self.context = context
@@ -265,6 +286,7 @@ class ActionConfiguration(workflows.Step):
                    'action',
                    'mode',
                    'storage',
+                   'engine_name',
                    'backup_name',
                    'mysql_conf',
                    'sql_server_conf',
