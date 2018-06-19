@@ -331,7 +331,7 @@ class AdvancedConfigurationAction(workflows.Action):
         widget=forms.URLInput(),
         required=False)
 
-    os_auth_ver = forms.ChoiceField(
+    os_identity_api_version = forms.ChoiceField(
         label=_("OpenStack Authentication Version"),
         help_text=_("Swift auth version, could be 1, 2 or 3"),
         required=False)
@@ -472,7 +472,7 @@ class AdvancedConfigurationAction(workflows.Action):
         widget=forms.CheckboxInput(),
         required=False)
 
-    def populate_os_auth_ver_choices(self, request, context):
+    def populate_os_identity_api_version_choices(self, request, context):
         return [
             ('2', _("v2")),
             ('1', _("v1")),
@@ -490,7 +490,7 @@ class AdvancedConfiguration(workflows.Step):
     contributes = ('exclude',
                    'log_file',
                    'proxy',
-                   'os_auth_ver',
+                   'os_identity_api_version',
                    'upload_limit',
                    'download_limit',
                    'compression',
