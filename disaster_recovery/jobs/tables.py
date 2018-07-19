@@ -44,9 +44,6 @@ class AttachJobToSession(tables.LinkAction):
 
 
 class DeleteJob(tables.DeleteAction):
-    name = "delete"
-    classes = ("btn-danger",)
-    icon = "remove"
     help_text = _("Delete jobs is not recoverable.")
 
     @staticmethod
@@ -193,9 +190,6 @@ class JobsTable(tables.DataTable):
 
 
 class DeleteAction(tables.DeleteAction):
-    name = "delete"
-    classes = ("btn-danger",)
-    icon = "remove"
     help_text = _("Delete actions is not recoverable.")
 
     @staticmethod

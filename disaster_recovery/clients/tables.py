@@ -26,9 +26,6 @@ class Filter(tables.FilterAction):
 
 
 class DeleteClient(tables.DeleteAction):
-    name = "delete"
-    classes = ("btn-danger",)
-    icon = "remove"
     help_text = _("Delete Clients is not recoverable.")
 
     @staticmethod
