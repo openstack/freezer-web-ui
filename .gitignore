@@ -20,6 +20,7 @@ subunit.log
 .cache
 AUTHORS
 ChangeLog
+node_modules
 
 # Django files that get created during the test runs
 .secret_key_store
