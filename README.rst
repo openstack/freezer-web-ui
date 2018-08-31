@@ -14,9 +14,7 @@ Freezer - Horizon Dashboard
 freezer-web-ui is a horizon plugin based in django aimed at providing an interaction
 with freezer
 
-* Release management: https://launchpad.net/freezer
-* Blueprints and feature specifications: https://blueprints.launchpad.net/freezer
-* Issue tracking: https://bugs.launchpad.net/freezer
+* Issue tracking and feature specifications: https://storyboard.openstack.org/#!/project/openstack/freezer-web-ui
 
 Requirements
 ============
