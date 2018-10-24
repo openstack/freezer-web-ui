@@ -37,9 +37,6 @@ class Restore(tables.LinkAction):
 
 
 class DeleteBackup(tables.DeleteAction):
-    name = "delete"
-    classes = ("btn-danger",)
-    icon = "remove"
     help_text = _("Delete backups is not recoverable.")
 
     @staticmethod
