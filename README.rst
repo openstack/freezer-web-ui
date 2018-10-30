@@ -21,9 +21,9 @@ Requirements
 
 Freezer Dashboard requires a freezer API client to be installed in the same environment as horizon::
 
-    git clone https://github.com/openstack/freezer
-    cd freezer
-    python setup.py install (is important that freezer is installed from source and not with pip and
+    git clone https://github.com/openstack/python-freezerclient
+    cd python-freezerclient
+    python setup.py install (is important that freezer API client is installed from source and not with pip and
                              is installed on horizon virtual environment)
 
 Freezer Dashboard requires a freezer API endpoint which you can install following this steps:
