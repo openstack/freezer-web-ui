@@ -17,7 +17,13 @@ from oslo_log import log
 
 from django.conf import settings
 from horizon.utils.memoized import memoized  # noqa
-from freezerclient.v1 import client as freezer_client
+
+# When  python-freezerclient 2.0 released, directly use freezerclient.client
+# as freezer_client.
+# The current python-freezerclient version hasn't freezerclient.client module.
+# from freezerclient import client as freezer_client
+
+from freezerclient.v2 import client as freezer_client
 
 from disaster_recovery import utils
 
@@ -29,26 +35,17 @@ LOG = log.getLogger(__name__)
 def client(request):
     """Return a freezer client object"""
     api_url = _get_service_url(request)
-
     # get keystone version to connect to
-    ks_version = getattr(settings,
-                         'OPENSTACK_API_VERSIONS', {}).get('identity', 2.0)
-
-    cacert = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
 
     credentials = {
         'token': request.user.token.id,
         'auth_url': getattr(settings, 'OPENSTACK_KEYSTONE_URL'),
         'endpoint': api_url,
-        'version': ks_version,
-        'cacert': cacert
+        'project_id': request.user.project_id,
     }
 
-    if ks_version == 3:
-        credentials['project_name'] = request.user.project_name
-        credentials['project_id'] = request.user.project_id
-        credentials['project_domain_name'] = \
-            request.user.domain_name or 'Default'
+    credentials['project_domain_name'] = \
+        request.user.domain_name or 'Default'
 
     return freezer_client.Client(**credentials)
 
@@ -426,6 +423,7 @@ class Client(object):
 
     def __init__(self, request):
         self.request = request
+
         self.client = client(request)
 
     def list(self, json=False, limit=500, offset=0, search=None):
