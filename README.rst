@@ -111,3 +111,9 @@ If you are developing or deploying under proxies remember to set no_proxies for:
 
     freezer-api endpoint
     keystone endpoint
+
+Source Code
+===========
+
+The project source code repository is located at:
+https://git.openstack.org/cgit/openstack/freezer-web-ui
