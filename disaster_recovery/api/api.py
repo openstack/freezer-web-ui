@@ -17,13 +17,7 @@ from oslo_log import log
 
 from django.conf import settings
 from horizon.utils.memoized import memoized  # noqa
-
-# When  python-freezerclient 2.0 released, directly use freezerclient.client
-# as freezer_client.
-# The current python-freezerclient version hasn't freezerclient.client module.
-# from freezerclient import client as freezer_client
-
-from freezerclient.v2 import client as freezer_client
+from freezerclient import client as freezer_client
 
 from disaster_recovery import utils
 
