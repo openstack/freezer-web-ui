@@ -1,20 +1,19 @@
 - project:
     templates:
+      - check-requirements
+      - openstack-lower-constraints-jobs
       - openstack-python-jobs
       - openstack-python35-jobs
       - openstack-python36-jobs
-      - check-requirements
     check:
       jobs:
         - freezer-web-ui-ubuntu-xenial:
             voting: true
-
-        - openstack-tox-lower-constraints
         - openstack-tox-pylint
     gate:
       jobs:
-        - openstack-tox-lower-constraints
         - openstack-tox-pylint
+
 - job:
     name: freezer-web-ui-ubuntu-xenial
     parent: legacy-dsvm-base
