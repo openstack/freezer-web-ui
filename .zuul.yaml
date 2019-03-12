@@ -7,18 +7,19 @@
       - openstack-python36-jobs
     check:
       jobs:
-        - freezer-web-ui-ubuntu-xenial:
-            voting: true
+        # making n-v till story#2005227
+        - freezer-web-ui-ubuntu:
+            voting: false
         - openstack-tox-pylint
     gate:
       jobs:
         - openstack-tox-pylint
 
 - job:
-    name: freezer-web-ui-ubuntu-xenial
+    name: freezer-web-ui-ubuntu
     parent: legacy-dsvm-base
-    run: playbooks/legacy/freezer-web-ui-ubuntu-xenial/run.yaml
-    post-run: playbooks/legacy/freezer-web-ui-ubuntu-xenial/post.yaml
+    run: playbooks/legacy/freezer-web-ui-ubuntu/run.yaml
+    post-run: playbooks/legacy/freezer-web-ui-ubuntu/post.yaml
     timeout: 7800
     required-projects:
       - openstack-infra/devstack-gate
