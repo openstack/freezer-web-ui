@@ -7,9 +7,7 @@
       - openstack-python36-jobs
     check:
       jobs:
-        # making n-v till story#2005227
-        - freezer-web-ui-ubuntu:
-            voting: false
+        - freezer-web-ui-ubuntu
         - openstack-tox-pylint
     gate:
       jobs:
