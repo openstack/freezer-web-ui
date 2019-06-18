@@ -116,4 +116,4 @@ Source Code
 ===========
 
 The project source code repository is located at:
-https://git.openstack.org/cgit/openstack/freezer-web-ui
+https://opendev.org/openstack/freezer-web-ui/
