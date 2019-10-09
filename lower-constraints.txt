@@ -20,7 +20,7 @@ idna==2.6
 imagesize==1.0.0
 iso8601==0.1.12
 Jinja2==2.10
-keystoneauth1==3.14.0
+keystoneauth1==3.16.0
 linecache2==1.0.0
 logilab-common==1.4.1
 MarkupSafe==1.0
