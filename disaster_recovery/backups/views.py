@@ -61,8 +61,8 @@ class RestoreView(workflows.WorkflowView):
     @shield('Unable to get backup.', redirect='backups:index')
     def get_workflow_name(self):
         backup = freezer_api.Backup(self.request).get(self.kwargs['backup_id'])
-        backup_date_str = datetime.datetime.fromtimestamp(int(backup.time_stamp))\
-            .strftime("%Y/%m/%d %H:%M")
+        backup_date_str = datetime.datetime.fromtimestamp(
+            int(backup.time_stamp)).strftime("%Y/%m/%d %H:%M")
         return "Restore '{}' from {}".format(backup.backup_name,
                                              backup_date_str)
 
