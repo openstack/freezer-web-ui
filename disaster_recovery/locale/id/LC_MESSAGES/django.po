@@ -1,0 +1,925 @@
+# OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# suhartono <cloudsuhartono@gmail.com>, 2020. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui VERSION\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2020-04-07 01:53+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-06-08 05:21+0000\n"
+"Last-Translator: suhartono <cloudsuhartono@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"X-Generator: Zanata 4.3.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "A group of jobs which share the same scheduling time."
+msgstr "Sekelompok jobs yang memiliki waktu penjadwalan yang sama."
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Action Configuration"
+msgstr "Action Configuration (Konfigurasi Tindakan)"
+
+msgid "Action Name"
+msgstr "Action Name"
+
+msgid "Action Name *"
+msgstr "Action Name *"
+
+msgid "Action Type"
+msgstr "Action Type"
+
+msgid "Action queued correctly. It will appear soon"
+msgstr "Tindakan diantrIkan dengan benar. Akan segera muncul"
+
+msgid "Actions"
+msgstr "Aksi"
+
+msgid "Actions Configuration"
+msgstr "Actions Configuration"
+
+msgid "Actions saved correctly."
+msgstr "Actions disimpan dengan benar."
+
+msgid "Actions updated correctly."
+msgstr "Tindakan diperbarui dengan benar."
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Advanced"
+msgstr "Advanced (Maju)"
+
+msgid "Advanced configuration"
+msgstr "Konfigurasi lanjutan"
+
+msgid "All Clients"
+msgstr "All Clients (Semua Klien)"
+
+msgid "Allow to access swift servers without checking SSL certs."
+msgstr "Izinkan mengakses server swift tanpa memeriksa sertifikat SSL."
+
+msgid "Always Level"
+msgstr "Always Level"
+
+msgid ""
+"An action is the simplest execution within a job, it could be a backup or a "
+"restore and it contains rules that the action must follow (max retries, "
+"interval between executions, etc)."
+msgstr ""
+"Suatu tindakan adalah eksekusi paling sederhana dalam suatu pekerjaan, bisa "
+"berupa cadangan atau pemulihan dan berisi aturan yang harus diikuti oleh "
+"tindakan (maks retries, interval antara eksekusi, dll)."
+
+msgid "Attach"
+msgstr "Attach (Melampirkan)"
+
+msgid "Attach To Session"
+msgstr "Attach To Session"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Backup History"
+msgstr "Backup History"
+
+msgid "Backup Name"
+msgstr "Backup Name (Nama Cadangan)"
+
+msgid "Backup and Restore"
+msgstr "Backup dan Restore"
+
+msgid "Backups"
+msgstr "Backups (Cadangan)"
+
+msgid ""
+"Checks in the specified container for object older than the specified days."
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default False (Disabled) The option --remove-older-then is deprecated "
+"and will be removed soon"
+msgstr ""
+"Cek dalam kontainer yang ditentukan untuk objek yang lebih tua dari hari "
+"yang ditentukan. Jika misal 30 ditentukan, itu akan menghapus objek jarak "
+"jauh yang lebih tua dari 30 hari. Default False (Disabled) Opsi --remove-"
+"older-then sudah usang dan akan segera dihapus"
+
+msgid ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-03-25T23:23:23. Make "
+"sure the 'T' is between date and time "
+msgstr ""
+"Memeriksa kontainer yang ditentukan dan menghapus objek yang lebih tua dari "
+"datetime yang disediakan dalam format YYYY-MM-DDThh:mm:ss misal "
+"1974-03-25T23:23:23. Pastikan 'T' berada di antara tanggal dan waktu"
+
+msgid "Choose what you want to backup"
+msgstr "Pilih apa yang ingin Anda backup"
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID *"
+msgstr "Cinder Volume ID *"
+
+msgid "Client"
+msgstr "Client"
+
+msgid "Client ID"
+msgstr "Client ID"
+
+msgid "Client is required"
+msgstr "Klien diperlukan"
+
+msgid "Clients"
+msgstr "Klien"
+
+msgid "Clone Job"
+msgstr "Clone Job"
+
+msgid "Clone and edit a job file"
+msgstr "Mengkloning dan mengedit file job"
+
+msgid "Compression Level"
+msgstr "Tingkat Kompresi"
+
+msgid "Container Name or Path"
+msgstr "Container Name atau Path"
+
+msgid "Continuous"
+msgstr "Continuous (Kontinu)"
+
+msgid "Create Action"
+msgstr "Create Action"
+
+msgid "Create Job"
+msgstr "Buat Job"
+
+msgid "Create Session"
+msgstr "Create Session (Buat Sesi)"
+
+msgid "Created At"
+msgstr "Created At (Dibuat di)"
+
+msgid "Days"
+msgstr "Days"
+
+msgid "Define a name for this session"
+msgstr "Tetapkan nama untuk sesi ini"
+
+msgid "Define extra information for the action executed by the client."
+msgstr "Tetapkan informasi tambahan untuk tindakan yang dilakukan oleh klien."
+
+msgid ""
+"Define the following action rules: <ul> <li>Number of retries</li> "
+"<li>Retries interval</li> <li>Action is mandatory</li> </ul>"
+msgstr ""
+"Tetapkan aturan tindakan berikut: <ul> <li>Number of retries</li> "
+"<li>Retries interval</li> <li>Action is mandatory</li> </ul>"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "Delete Action"
+
+msgid "Delete Backup"
+msgid_plural "Delete Backups"
+msgstr[0] "Delete Backup"
+
+msgid "Delete Client"
+msgid_plural "Delete Clients"
+msgstr[0] "Delete Client"
+
+msgid "Delete Clients is not recoverable."
+msgstr "Hapus Klien tidak dapat dipulihkan."
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "Delete Job"
+
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "Delete Job File"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "Delete Session"
+
+msgid "Delete actions is not recoverable."
+msgstr "Tindakan menghapus tidak dapat dipulihkan."
+
+msgid "Delete backups is not recoverable."
+msgstr "Hapus cadangan tidak dapat dipulihkan."
+
+msgid "Delete jobs is not recoverable."
+msgstr "Hapus pekerjaan tidak dapat dipulihkan."
+
+msgid "Delete sessions is not recoverable."
+msgstr "Sesi penghapusan tidak dapat dipulihkan."
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "Deleted Action"
+
+msgid "Deleted Backup"
+msgid_plural "Deleted Backups"
+msgstr[0] "Deleted Backup"
+
+msgid "Deleted Client"
+msgid_plural "Deleted Clients"
+msgstr[0] "Deleted Client"
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "Deleted Job"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "Deleted Job File"
+
+msgid "Deleted Session"
+msgid_plural "Deleted Sessions"
+msgstr[0] "Deleted Session"
+
+msgid "Deleted action File"
+msgid_plural "Deleted action Files"
+msgstr[0] "Deleted action File"
+
+msgid "Describes actions to be executed by a client."
+msgstr "Menjelaskan tindakan yang akan dieksekusi oleh klien."
+
+msgid "Destination"
+msgstr "Tujuan"
+
+msgid "Destination File"
+msgstr "Destination File"
+
+msgid "Destination Path"
+msgstr "Destination Path (Jalur Tujuan)"
+
+msgid ""
+"Disable incremental feature. By default freezer build the meta data even for "
+"level 0 backup. By setting this option incremental meta data is not created "
+"at all. Default disabled"
+msgstr ""
+"Nonaktifkan fitur tambahan. Secara default, freezer membuat data meta bahkan "
+"untuk cadangan level 0. Dengan mengatur opsi ini, meta data tambahan tidak "
+"dibuat sama sekali. Bawaan dinonaktifkan"
+
+msgid "Disaster Recovery"
+msgstr "Disaster Recovery"
+
+msgid "Do everything except writing or removing objects"
+msgstr "Lakukan segalanya kecuali menulis atau menghapus objek"
+
+msgid "Download Limit"
+msgstr "Download Limit (Batas Unduhan)"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Unduh batas bandwidth dalam Bytes per detik. Itu dapat dipanggil dengan "
+"dimensi (10K, 120M, 10G)."
+
+msgid "Dry Run"
+msgstr "Dry Run"
+
+msgid "Edit"
+msgstr "Ubah"
+
+msgid "Edit Actions"
+msgstr "Edit Actions"
+
+msgid "Edit Job"
+msgstr "Edit Job"
+
+msgid "Edit Session"
+msgstr "Edit Session"
+
+msgid "Encryption Key"
+msgstr "Encryption Key"
+
+msgid "End Date and Time"
+msgstr "End Date and Time (Tanggal dan Waktu Berakhir)"
+
+msgid "End date time is not in ISO format."
+msgstr "Waktu tanggal akhir tidak dalam format ISO."
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY"
+msgstr "Terapkan proxy yang mengubah sistem HTTP_PROXY dan HTTPS_PROXY"
+
+msgid ""
+"Engine to be used for backup/restore. With tar, the file inode will be "
+"checked for changes amid backup execution. If the file inode changed, the "
+"whole file will be backed up. With rsync, the data blocks changes will be "
+"verified and only the changed blocks will be backed up. Tar is faster, but "
+"is uses more space and bandwidth. Rsync is slower, but uses less space and "
+"bandwidth. Nova engine can be used to backup/restore running instances. "
+"Backing up instances and it's metadata."
+msgstr ""
+"Mesin yang akan digunakan untuk backup/restore. Dengan tar, inode file akan "
+"diperiksa untuk perubahan di tengah eksekusi backup. Jika inode file "
+"berubah, seluruh file akan backed up. Dengan rsync, perubahan blok data akan "
+"diverifikasi dan hanya blok yang diubah yang akan backed up. Tar lebih "
+"cepat, tetapi menggunakan lebih banyak ruang dan bandwidth. Rsync lebih "
+"lambat, tetapi menggunakan lebih sedikit ruang dan bandwidth. Mesin Nova "
+"dapat digunakan untuk membuat backup/restore instance yang berjalan. Backing "
+"up instance dan metadatanya."
+
+msgid "Error getting session list"
+msgstr "Kesalahan mendapatkan daftar sesi"
+
+msgid "Exclude Files"
+msgstr "Exclude Files"
+
+msgid ""
+"Exclude files, given as a PATTERN.Ex: '*.log, *.pyc' will exclude any file "
+"with name ending with .log. Default no exclude"
+msgstr ""
+"Kecualikan file, diberikan sebagai  PATTERN.Ex: '*.log, *.pyc' akan "
+"mengecualikan file apa pun dengan nama yang diakhiri dengan .log. Bawaan "
+"tidak dikecualikan"
+
+msgid "File system"
+msgstr "File system"
+
+msgid "Follow Symlinks"
+msgstr "Follow Symlinks"
+
+msgid ""
+"Follow hard and soft links and archive and dump the files they refer to. "
+"Default False"
+msgstr ""
+"Ikuti tautan keras dan lunak serta arsipkan dan buang file yang dirujuk. "
+"Default False"
+
+msgid ""
+"For Linux, in order to use snapshot features, the data has to reside on an "
+"LVM volume."
+msgstr ""
+"Untuk Linux, agar dapat menggunakan fitur snapshot, data harus berada pada "
+"volume LVM."
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr ""
+"Dari sini Anda dapat menambah dan menghapus klien ke job ini dari daftar "
+"klien yang tersedia"
+
+msgid "Get A Single Object"
+msgstr "Get A Single Object"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Hours"
+msgstr "Hours"
+
+msgid "IP address or dns name of host to connect through ssh"
+msgstr "Alamat IP atau nama host dns untuk terhubung melalui ssh"
+
+msgid "Id of cinder volume for backup"
+msgstr "Id volume cinder untuk backup"
+
+msgid "Id of nova instance for backup"
+msgstr "Id of nova instance untuk backup"
+
+msgid "Id of nova network for recover"
+msgstr "Id of nova-network untuk recover"
+
+msgid "In case of error, set the amount of retries for this job"
+msgstr ""
+"Jika terjadi kesalahan, atur jumlah percobaan ulang untuk pekerjaan ini"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Interval Unit"
+msgstr "Interval Unit"
+
+msgid "Interval Value"
+msgstr "Interval Value (nilai interval)"
+
+msgid "Job"
+msgstr "Job"
+
+msgid "Job Configuration"
+msgstr "Konfigurasi Job"
+
+msgid "Job ID"
+msgstr "Job ID"
+
+msgid "Job Info"
+msgstr "Job Info"
+
+msgid "Job Name"
+msgstr "Job Name (Nama Pekerjaan)"
+
+msgid "Job attached successfully."
+msgstr "Pekerjaan terlampir dengan sukses."
+
+msgid ""
+"Job executions can be executed and scheduled, by providing the following "
+"settings."
+msgstr ""
+"Eksekusi Job dapat dieksekusi dan dijadwalkan, dengan memberikan pengaturan "
+"berikut."
+
+msgid "Job has started"
+msgstr "Job sudah dimulai"
+
+msgid "Job has stopped"
+msgstr "Job telah berhenti"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr "Pekerjaan diantrikan dengan benar. Akan segera muncul"
+
+msgid "Job updated correctly."
+msgstr "Pekerjaan diperbarui dengan benar."
+
+msgid "Jobs"
+msgstr "Jobs"
+
+msgid "Local Path"
+msgstr "Local Path"
+
+msgid "Log File Path"
+msgstr "Log File Path"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "Lossless Data Compression (XZ)"
+
+msgid "Mandatory"
+msgstr "Mandatory (Wajib)"
+
+msgid "Max Level"
+msgstr "Max Level"
+
+msgid "Max Priority"
+msgstr "Max Priority"
+
+msgid "Max Retries"
+msgstr "Max Retries"
+
+msgid "Max Retries Interval"
+msgstr "Max Retries Interval"
+
+msgid "Maximum Segment Size"
+msgstr "Ukuran Segmen Maksimum"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "Kompresi Minimum (GZip/Zip/Zlib)"
+
+msgid "Minutes"
+msgstr "Minutes"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "Kompresi Lebih Efektif (Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File *"
+msgstr "MySQL Configuration File *"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "No Incremental"
+msgstr "No Incremental (Tidak ada tambahan)"
+
+msgid "No clients found."
+msgstr "Tidak ada klien yang ditemukan."
+
+msgid "No clients selected."
+msgstr "Tidak ada klien yang dipilih."
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Instance ID *"
+msgstr "Nova Instance ID *"
+
+msgid "Nova network ID *"
+msgstr "Nova network ID *"
+
+msgid "OpenStack Authentication Version"
+msgstr "OpenStack Authentication Version"
+
+msgid "Path To Backup or Restore"
+msgstr "Path To Backup atau Restore"
+
+msgid "Path for ssh private key"
+msgstr "Path untuk ssh private key"
+
+msgid "Please choose a interval unit"
+msgstr "Silakan pilih unit interval"
+
+msgid "Please provide this value."
+msgstr "Tolong berikan nilai ini."
+
+msgid "Proxy URL"
+msgstr "Proxy URL"
+
+msgid "Quiet"
+msgstr "Quiet (Diam)"
+
+msgid "Remove From Date"
+msgstr "Remove From Date"
+
+msgid "Remove Older Than"
+msgstr "Remove Older Than"
+
+msgid "Restart Always Level"
+msgstr "Restart Always Level"
+
+msgid ""
+"Restart the backup from level 0 after n days. Valid only if --always-level "
+"option if set. If --always-level is used together with --remove-older-then, "
+"there might be the chance where the initial level 0 will be removed Default "
+"False (Disabled)"
+msgstr ""
+"Restart backup dari level 0 setelah n hari. Valid jika hanya opsi --always-"
+"level disetel. Jika --always-level digunakan bersama dengan --remove-older-"
+"then, mungkin ada kemungkinan di mana level awal 0 akan dihapus Default "
+"False (Disabled)"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Restore Absolute Path *"
+msgstr "Restore Absolute Path *"
+
+msgid "Restore From Date"
+msgstr "Restore From Date"
+
+msgid "Restore From Host"
+msgstr "Restore From Host"
+
+msgid "Restore job successfully queued. It will get executed soon."
+msgstr "Pulihkan pekerjaan yang berhasil antri. Ini akan segera dieksekusi."
+
+msgid "Result"
+msgstr "Hasil"
+
+msgid "Rules"
+msgstr "Rules"
+
+msgid "SQL Server Configuration File *"
+msgstr "SQL Server Configuration File *"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host *"
+msgstr "SSH Host *"
+
+msgid "SSH Private Key *"
+msgstr "SSH Private Key *"
+
+msgid "SSH Username *"
+msgstr "SSH Username *"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Seconds"
+msgstr "Seconds"
+
+msgid "Select A Session"
+msgstr "Select A Session"
+
+msgid "Selected Clients"
+msgstr "Selected Clients (Klien yang Dipilih)"
+
+msgid "Session"
+msgstr "Session"
+
+msgid "Session Configuration"
+msgstr "Session Configuration"
+
+msgid "Session Information"
+msgstr "Session Information (Informasi Sesi)"
+
+msgid "Session Name"
+msgstr "Session Name (Nama Sesi)"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr "Sesi antri dengan benar. Akan segera muncul"
+
+msgid "Sessions"
+msgstr "Sessions"
+
+msgid "Set a name for this job"
+msgstr "Tetapkan nama untuk job ini"
+
+msgid "Set a session to attach this job"
+msgstr "Atur sesi untuk melampirkan job ini"
+
+msgid ""
+"Set backup maximum level used with tar to implement incremental backup. If a "
+"level 3 is specified, the backup will be executed from level 0 to level 3 "
+"and to that point always a backup level 3 will be executed. It will not "
+"restart from level 0. This option has precedence over --max-backup-level. "
+"Default False (Disabled)"
+msgstr ""
+"Setel level maksimum backup yang digunakan dengan tar untuk "
+"mengimplementasikan backup inkremental. Jika level 3 ditentukan, cadangan "
+"akan dieksekusi dari level 0 ke level 3, dan ke titik itu selalu level "
+"cadangan 3 akan dieksekusi. Ini tidak akan restart dari level 0. Opsi ini "
+"lebih diutamakan daripada --max-backup-level. Default False (Disabled)"
+
+msgid ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default current "
+"node hostname."
+msgstr ""
+"Tetapkan nama host untuk menjalankan tindakan. Jika Anda menjalankan freezer "
+"dari satu host tetapi Anda ingin menghapus objek milik host lain maka Anda "
+"dapat mengatur opsi ini menjadi hostname dan melakukan tindakan yang sesuai. "
+"Hostname node aktif saat ini."
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"Atur file log. Secara default log ke /var/log/freezer.log Jika file itu "
+"tidak bisa ditulisi, freezer mencoba masuk ke  ~/.freezer/freezer.log"
+
+msgid "Set storage backend for a backup"
+msgstr "Setel backend penyimpanan untuk backup"
+
+msgid "Set the absolute path where you want your data restored."
+msgstr ""
+"Tetapkan path absolut tempat Anda ingin data Anda dipulihkan (restored)"
+
+msgid ""
+"Set the absolute path where you want your data restored.Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1979-10-03T23:23:23'. Make "
+"sure the 'T' is between date and time"
+msgstr ""
+"Tetapkan jalur absolut di mana Anda ingin data Anda dipulihkan. Mohon "
+"berikan datetime dalam format 'YYYY-MM-DDThh:mm:ss' i.e. "
+"'1979-10-03T23:23:23'. Pastikan 'T' berada di antara tanggal dan waktu"
+
+msgid "Set the action to be taken"
+msgstr "Tetapkan tindakan yang akan diambil"
+
+msgid ""
+"Set the backup level used with tar to implement incremental backup. If a "
+"level 1 is specified but no level 0 is already available, a level 0 will be "
+"done and subsequently backs to level 1. Default 0 (No Incremental)"
+msgstr ""
+"Setel level backup yang digunakan dengan tar untuk mengimplementasikan "
+"backup inkremental. Jika level 1 ditentukan tetapi tidak ada level 0 yang "
+"tersedia, level 0 akan dilakukan dan kemudian kembali ke level 1. Default 0 "
+"(No Incremental)"
+
+msgid ""
+"Set the cpu process to the highest priority (i.e. -20 on Linux) and real-"
+"time for I/O. The process priority will be set only if nice and ionice are "
+"installed Default disabled. Use with caution."
+msgstr ""
+"Atur proses CPU ke prioritas tertinggi (mis. -20 di Linux) dan real-time "
+"untuk I/O. Prioritas proses akan ditetapkan hanya jika nice dan ionice "
+"diinstal. Default dinonaktifkan. Gunakan dengan hati-hati."
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore"
+msgstr ""
+"Tetapkan hostname yang digunakan untuk mengidentifikasi data yang ingin Anda "
+"pulihkan. Jika Anda ingin mengembalikan data di host yang sama dengan tempat "
+"backup dilakukan, ketikkan saja dari shell Anda: '$ hostname' dan hasilnya "
+"adalah nilai yang harus diberikan ke opsi ini. Mandatory dengan Restore"
+
+msgid "Set the interval between executions for retries in seconds"
+msgstr ""
+"Tetapkan interval antara eksekusi untuk mencoba lagi dalam hitungan detik"
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"Atur interval dalam format berikut:\n"
+"                        kontinu,\n"
+"                        N minggu,\n"
+"                        N hari,\n"
+"                        N jam,\n"
+"                        N menit,\n"
+"                        N detik,\n"
+"                        Jika tidak ada tanggal mulai disediakan job\n"
+"                        akan segera dimulai"
+
+msgid "Set the interval value"
+msgstr "Tetapkan nilai interval"
+
+msgid ""
+"Set the maximum file chunk size in bytes to upload to swift. Default "
+"67108864 bytes (64MB)"
+msgstr ""
+"Atur ukuran potongan file maksimum dalam byte untuk diunggah ke swift. "
+"Default 67108864 byte (64MB)"
+
+msgid "Set the path where the MySQL configuration file is on the file system "
+msgstr "Atur jalur tempat file konfigurasi MySQL berada di sistem file"
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system"
+msgstr "Atur jalur di mana file konfigurasi SQL Server berada di sistem file"
+
+msgid "Set the path where the encryption keyis on the file system"
+msgstr "Atur path tempat kunci enkripsi berada di sistem file"
+
+msgid "Set the unit for the Interval"
+msgstr "Atur unit untuk Interval"
+
+msgid "Set this action as mandatory"
+msgstr "Tetapkan tindakan ini sebagai wajib"
+
+msgid "Snapshot"
+msgstr "Snapshot"
+
+msgid "Source File/Directory *"
+msgstr "Source File/Directory *"
+
+msgid "Start Date and Time"
+msgstr "Start Date and Time (Tanggal dan Waktu Mulai)"
+
+msgid "Start Job"
+msgstr "Start Job"
+
+msgid "Start date time is not in ISO format."
+msgstr "Waktu tanggal mulai tidak dalam format ISO."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stop Job"
+msgstr "Stop Job"
+
+msgid "Storage"
+msgstr "Storage"
+
+msgid "Suppress error messages"
+msgstr "Menekan pesan kesalahan"
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "Swift auth version, could be 1, 2 or 3"
+msgstr "Swift auth version, bisa 1, 2 atau 3"
+
+msgid "Swift container for swift backend or path for ssh or local backend"
+msgstr ""
+"Kontainer Swift untuk swift backend atau path untuk ssh atau backend lokal"
+
+msgid "The Object name you want to download on the local file system."
+msgstr "Nama Objek yang ingin Anda unduh di sistem file lokal."
+
+msgid ""
+"The file name used to save the object on your local disk and upload file in "
+"swift."
+msgstr ""
+"Nama file yang digunakan untuk menyimpan objek di disk lokal Anda dan "
+"mengunggah file dengan swift."
+
+msgid "The file or directory you want to back up."
+msgstr "File atau direktori yang ingin Anda buat back up."
+
+msgid "The path in which the backup should be restored"
+msgstr "Path di mana cadangan harus dipulihkan"
+
+msgid ""
+"The snapshot technologies currently supported are LVM for Linux and Volume "
+"Shadow Copy for Windows."
+msgstr ""
+"Teknologi snapshot yang saat ini didukung adalah LVM untuk Linux dan Volume "
+"Shadow Copy untuk Windows."
+
+msgid "Unable to attach to session."
+msgstr "Tidak dapat melampirkan sesi."
+
+msgid "Unable to create session."
+msgstr "Tidak dapat membuat sesi."
+
+msgid "Unable to created job."
+msgstr "Tidak dapat menciptakan job."
+
+msgid "Unable to retrieve client list."
+msgstr "Tidak dapat mengambil daftar klien."
+
+msgid "Unable to save action file."
+msgstr "Tidak dapat menyimpan file tindakan."
+
+msgid "Unable to save actions."
+msgstr "Tidak dapat menyimpan tindakan."
+
+msgid "Unable to update actions."
+msgstr "Tidak dapat memperbarui tindakan."
+
+msgid "Unable to update job."
+msgstr "Tidak dapat memperbarui pekerjaan."
+
+msgid "Update Actions"
+msgstr "Update Actions (Perbarui Tindakan)"
+
+msgid "Update Job"
+msgstr "Update Job (Perbarui Pekerjaan)"
+
+msgid "Upload Limit"
+msgstr "Upload Limit  (Batas Pengunggahan)"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Unggah batas bandwidth dalam Bytes per detik. Itu dapat dipanggil dengan "
+"dimensi (10K, 120M, 10G)."
+
+msgid ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups"
+msgstr ""
+"Gunakan snapshot LVM atau Shadow Copy untuk mendapatkan backups konsisten "
+"waktu"
+
+msgid "Weeks"
+msgstr "Weeks"
+
+msgid "You must define a container or path to backup."
+msgstr "Anda harus menentukan kontainer atau path untuk backup."
+
+msgid "You must define a path to backup."
+msgstr "Anda harus menentukan path untuk backup."
+
+msgid "You must define a path to restore."
+msgstr "Anda harus menetapkan path untuk restore."
+
+msgid "You must define an action name."
+msgstr "Anda harus menentukan nama tindakan (action name)."
+
+msgid "You must define cinder volume id to backup."
+msgstr "Anda harus menentukan id volume cinder untuk dicadangkan (backup)"
+
+msgid "You must define nova instance id to restore or backup."
+msgstr "Anda harus menentukan id instance-nova untuk  restore atau backup."
+
+msgid "You must define nova network id to restore."
+msgstr "Anda harus menentukan id network-nova untuk dipulihkan (restore)"
+
+msgid "insecure"
+msgstr "insecure"
+
+msgid "nova"
+msgstr "nova"
+
+msgid "osbrick"
+msgstr "osbrick"
+
+msgid "rsync"
+msgstr "rsync"
+
+msgid "rsyncv2"
+msgstr "rsyncv2"
+
+msgid "tar"
+msgstr "tar"
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"
