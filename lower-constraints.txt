@@ -41,7 +41,7 @@ requests==2.18.4
 rfc3986==1.1.0
 rjsmin==1.0.12
 snowballstemmer==1.2.1
-Sphinx==1.6.2
+Sphinx==2.0.0
 sphinxcontrib-websupport==1.0.1
 stevedore==1.28.0
 termcolor==1.1.0
