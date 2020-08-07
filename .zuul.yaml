@@ -6,22 +6,27 @@
       - openstack-python3-victoria-jobs
     check:
       jobs:
-        - freezer-web-ui-ubuntu
+        - freezer-web-ui
         - openstack-tox-pylint
     gate:
       jobs:
         - openstack-tox-pylint
 
 - job:
-    name: freezer-web-ui-ubuntu
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/freezer-web-ui-ubuntu/run.yaml
-    post-run: playbooks/legacy/freezer-web-ui-ubuntu/post.yaml
-    timeout: 7800
+    name: freezer-web-ui
+    parent: devstack
+    description: |
+      Base devstack job to ensure freezer-web-ui can be installed
     required-projects:
-      - openstack/devstack-gate
-      - openstack/freezer
-      - openstack/freezer-api
-      - openstack/freezer-web-ui
-      - openstack/python-freezerclient
-
+      - opendev.org/openstack/freezer
+      - opendev.org/openstack/freezer-api
+      - opendev.org/openstack/freezer-web-ui
+      - opendev.org/openstack/horizon
+      - opendev.org/openstack/python-freezerclient
+    vars:
+      devstack_plugins:
+        freezer-api: https://opendev.org/openstack/freezer-api
+        freezer: https://opendev.org/openstack/freezer
+        freezer-web-ui: https://opendev.org/openstack/freezer-web-ui
+      devstack_services:
+        horizon: true
