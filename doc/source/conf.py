@@ -44,8 +44,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'freezer-web-ui'
-copyright = u'2016, OpenStack'
+project = 'freezer-web-ui'
+copyright = '2016, OpenStack'
 
 # General information about the project.
 openstackdocs_repo_name = 'openstack/freezer-web-ui'
@@ -193,8 +193,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'freezer-web-ui.tex', u'freezer-web-ui Documentation',
-   u'OpenStack', 'manual'),
+  ('index', 'freezer-web-ui.tex', 'freezer-web-ui Documentation',
+   'OpenStack', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -223,8 +223,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'freezer-web-ui', u'freezer-web-ui Documentation',
-     [u'OpenStack'], 1)
+    ('index', 'freezer-web-ui', 'freezer-web-ui Documentation',
+     ['OpenStack'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -237,8 +237,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'freezer-web-ui', u'freezer-web-ui Documentation',
-   u'OpenStack', 'freezer-web-ui', 'One line description of project.',
+  ('index', 'freezer-web-ui', 'freezer-web-ui Documentation',
+   'OpenStack', 'freezer-web-ui', 'One line description of project.',
    'Miscellaneous'),
 ]
 
