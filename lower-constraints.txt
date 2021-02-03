@@ -49,4 +49,4 @@ testrepository==0.0.18
 testtools==2.2.0
 traceback2==1.4.0
 urllib3==1.22
-wrapt==1.10.11
+wrapt==1.11
