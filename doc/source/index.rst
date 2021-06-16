@@ -11,7 +11,15 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+For Contributors
+================
 
+* If you are a new contributor to freezer-web-ui please refer: :doc:`contributor/contributing`
+
+  .. toctree::
+     :hidden:
+
+     contributor/contributing
 
 Indices and tables
 ==================
