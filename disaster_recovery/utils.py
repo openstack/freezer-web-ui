@@ -31,6 +31,7 @@ LOG = logging.getLogger(__name__)
 
 def create_dict(**kwargs):
     """Create a dict only with values that exists so we avoid send keys with
+
     None values
     """
     return {k: v for k, v in kwargs.items() if v}
@@ -53,6 +54,7 @@ def create_dummy_id():
 
 def get_action_ids(ids):
     """Return an ordered list of actions for a new job
+
     """
     ids = ids.split('===')
     return [i for i in ids if i]
@@ -60,6 +62,7 @@ def get_action_ids(ids):
 
 def assign_and_remove(source_dict, dest_dict, key):
     """Assign a value to a destination dict from a source dict
+
     if the key exists
     """
     if key in source_dict:
@@ -183,6 +186,7 @@ class ClientObject(object):
 
 def shield(message, redirect=''):
     """decorator to reduce boilerplate try except blocks for horizon functions
+
     :param message: a str error message
     :param redirect: a str with the redirect namespace without including
                      horizon:disaster_recovery:
@@ -216,6 +220,7 @@ def shield(message, redirect=''):
 
 def timestamp_to_iso(ts):
     """Generate an iso date from time stamp
+
     :param ts: time stamp
     :return: iso date
     """

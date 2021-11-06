@@ -74,6 +74,7 @@ def _get_service_url(request):
 
 def get_schedule_info(context):
     """Get schedule info from context
+
     """
     scheduling = {}
     try:
@@ -396,6 +397,7 @@ class Action(object):
 
     def _build(self, action):
         """Get a flat action dict and convert it to a freezer action format
+
         """
         action_rules = {}
 
