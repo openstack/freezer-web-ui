@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from disaster_recovery.clients import views
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    re_path(r'^$', views.IndexView.as_view(), name='index'),
 
-    url(r'^(?P<client_id>[^/]+)?$',
-        views.ClientView.as_view(),
-        name='client'),
+    re_path(r'^(?P<client_id>[^/]+)?$',
+            views.ClientView.as_view(),
+            name='client'),
 ]

@@ -13,15 +13,16 @@
 # limitations under the License.
 
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from disaster_recovery.backups import views
 
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<backup_id>[^/]*)$', views.DetailView.as_view(), name='detail'),
-    url(r'^restore/(?P<backup_id>.*)$',
-        views.RestoreView.as_view(),
-        name='restore'),
+    re_path(r'^$', views.IndexView.as_view(), name='index'),
+    re_path(r'^(?P<backup_id>[^/]*)$', views.DetailView.as_view(),
+            name='detail'),
+    re_path(r'^restore/(?P<backup_id>.*)$',
+            views.RestoreView.as_view(),
+            name='restore'),
 ]

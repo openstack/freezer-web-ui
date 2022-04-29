@@ -12,27 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import url
+from django.urls import re_path
 from disaster_recovery.jobs import views
 
 urlpatterns = [
-    url(r'^(?P<job_id>[^/]+)?$',
-        views.JobsView.as_view(),
-        name='index'),
+    re_path(r'^(?P<job_id>[^/]+)?$',
+            views.JobsView.as_view(),
+            name='index'),
 
-    url(r'^create/$',
-        views.JobWorkflowView.as_view(),
-        name='create'),
+    re_path(r'^create/$',
+            views.JobWorkflowView.as_view(),
+            name='create'),
 
-    url(r'^configure/(?P<job_id>[^/]+)?$',
-        views.JobWorkflowView.as_view(),
-        name='configure'),
+    re_path(r'^configure/(?P<job_id>[^/]+)?$',
+            views.JobWorkflowView.as_view(),
+            name='configure'),
 
-    url(r'^edit/(?P<job_id>[^/]+)?$',
-        views.EditJobWorkflowView.as_view(),
-        name='edit_job'),
+    re_path(r'^edit/(?P<job_id>[^/]+)?$',
+            views.EditJobWorkflowView.as_view(),
+            name='edit_job'),
 
-    url(r'^edit_actions/(?P<job_id>[^/]+)?$',
-        views.ActionsInJobView.as_view(),
-        name='edit_action'),
+    re_path(r'^edit_actions/(?P<job_id>[^/]+)?$',
+            views.ActionsInJobView.as_view(),
+            name='edit_action'),
 ]
