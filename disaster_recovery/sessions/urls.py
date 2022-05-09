@@ -12,25 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from disaster_recovery.sessions import views
 
 urlpatterns = [
-    url(r'^(?P<session_id>[^/]+)?$',
-        views.SessionsView.as_view(),
-        name='index'),
+    re_path(r'^(?P<session_id>[^/]+)?$',
+            views.SessionsView.as_view(),
+            name='index'),
 
-    url(r'^attach_to_session/(?P<job_id>[^/]+)?$',
-        views.AttachToSessionWorkflow.as_view(),
-        name='attach'),
+    re_path(r'^attach_to_session/(?P<job_id>[^/]+)?$',
+            views.AttachToSessionWorkflow.as_view(),
+            name='attach'),
 
-    url(r'^create/$',
-        views.CreateSessionWorkflow.as_view(),
-        name='create'),
+    re_path(r'^create/$',
+            views.CreateSessionWorkflow.as_view(),
+            name='create'),
 
-    url(r'^edit/(?P<session_id>[^/]+)?$',
-        views.CreateSessionWorkflow.as_view(),
-        name='edit'),
+    re_path(r'^edit/(?P<session_id>[^/]+)?$',
+            views.CreateSessionWorkflow.as_view(),
+            name='edit'),
 
 ]

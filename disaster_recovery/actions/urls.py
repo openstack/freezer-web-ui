@@ -12,18 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from disaster_recovery.actions import views
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    re_path(r'^$', views.IndexView.as_view(), name='index'),
 
-    url(r'^create/(?P<action_id>[^/]+)?$',
-        views.ActionWorkflowView.as_view(),
-        name='create'),
+    re_path(r'^create/(?P<action_id>[^/]+)?$',
+            views.ActionWorkflowView.as_view(),
+            name='create'),
 
-    url(r'^action/(?P<action_id>[^/]+)?$',
-        views.ActionView.as_view(),
-        name='action'),
+    re_path(r'^action/(?P<action_id>[^/]+)?$',
+            views.ActionView.as_view(),
+            name='action'),
 ]
