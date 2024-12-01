@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 from django.urls import reverse
 
 from horizon import tables
@@ -45,7 +45,7 @@ class DeleteSession(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Session",
             u"Delete Sessions",
             count
@@ -53,7 +53,7 @@ class DeleteSession(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Session",
             u"Deleted Sessions",
             count
@@ -85,7 +85,7 @@ class DeleteJobFromSession(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Job",
             u"Delete Jobs",
             count
@@ -93,7 +93,7 @@ class DeleteJobFromSession(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Job",
             u"Deleted Jobs",
             count

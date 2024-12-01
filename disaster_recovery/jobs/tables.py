@@ -13,8 +13,8 @@
 # limitations under the License.
 
 from django import shortcuts
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 
 from horizon import tables
 from horizon import messages
@@ -48,7 +48,7 @@ class DeleteJob(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Job File",
             u"Delete Job Files",
             count
@@ -56,7 +56,7 @@ class DeleteJob(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Job File",
             u"Deleted Job Files",
             count
@@ -194,7 +194,7 @@ class DeleteAction(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Action",
             u"Delete Action",
             count
@@ -202,7 +202,7 @@ class DeleteAction(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted action File",
             u"Deleted action Files",
             count

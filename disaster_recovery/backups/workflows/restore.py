@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from django.core import exceptions as d_exceptions
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from horizon import exceptions
 from horizon import forms

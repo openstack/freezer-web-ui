@@ -11,8 +11,8 @@
 #  under the License.
 
 from django import shortcuts
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ngettext_lazy
 
 from horizon import tables
 from django.urls import reverse
@@ -25,7 +25,7 @@ class DeleteAction(tables.DeleteAction):
 
     @staticmethod
     def action_present(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Delete Action",
             u"Delete Actions",
             count
@@ -33,7 +33,7 @@ class DeleteAction(tables.DeleteAction):
 
     @staticmethod
     def action_past(count):
-        return ungettext_lazy(
+        return ngettext_lazy(
             u"Deleted Action",
             u"Deleted Actions",
             count
