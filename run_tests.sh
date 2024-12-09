@@ -57,7 +57,7 @@ root=`pwd -P`
 venv=$root/.venv
 venv_env_version=$venv/environments
 with_venv=tools/with_venv.sh
-included_dirs="disaster_recovery"
+included_dirs="freezer_ui"
 
 always_venv=0
 backup_env=0
@@ -187,7 +187,7 @@ function warn_on_flake8_without_venv {
 function run_pep8 {
   echo "Running flake8 ..."
   warn_on_flake8_without_venv
-  DJANGO_SETTINGS_MODULE=disaster_recovery.test.settings ${command_wrapper} flake8
+  DJANGO_SETTINGS_MODULE=freezer_ui.test.settings ${command_wrapper} flake8
 }
 
 function run_pep8_changed {
@@ -200,13 +200,13 @@ function run_pep8_changed {
     files=$(git diff --name-only $base_commit | tr '\n' ' ')
     echo "Running flake8 on ${files}"
     warn_on_flake8_without_venv
-    diff -u --from-file /dev/null ${files} | DJANGO_SETTINGS_MODULE=disaster_recovery.test.settings ${command_wrapper} flake8 --diff
+    diff -u --from-file /dev/null ${files} | DJANGO_SETTINGS_MODULE=freezer_ui.test.settings ${command_wrapper} flake8 --diff
     exit
 }
 
 function run_sphinx {
     echo "Building sphinx..."
-    DJANGO_SETTINGS_MODULE=disaster_recovery.test.settings ${command_wrapper} python setup.py build_sphinx
+    DJANGO_SETTINGS_MODULE=freezer_ui.test.settings ${command_wrapper} python setup.py build_sphinx
     echo "Build complete."
 }
 
@@ -340,7 +340,7 @@ function run_tests {
   fi
 
   if [ $with_selenium -eq 0 -a $integration -eq 0 ]; then
-      testopts="$testopts --exclude-dir=disaster_recovery/test/integration_tests"
+      testopts="$testopts --exclude-dir=freezer_ui/test/integration_tests"
   fi
 
   if [ $selenium_headless -eq 1 ]; then
@@ -361,11 +361,11 @@ function run_tests_subset {
 
 function run_tests_all {
   echo "Running Freezer Web UI tests"
-  export NOSE_XUNIT_FILE=disaster_recovery/nosetests.xml
+  export NOSE_XUNIT_FILE=freezer_ui/nosetests.xml
   if [ "$NOSE_WITH_HTML_OUTPUT" = '1' ]; then
     export NOSE_HTML_OUT_FILE='dashboard_nose_results.html'
   fi
-  ${command_wrapper} ${coverage_run} $root/manage.py test disaster_recovery --settings=disaster_recovery.test.settings $testopts
+  ${command_wrapper} ${coverage_run} $root/manage.py test freezer_ui --settings=freezer_ui.test.settings $testopts
   # get results of the openstack_dashboard tests
   DASHBOARD_RESULT=$?
 
@@ -421,7 +421,7 @@ function babel_extract {
 function run_makemessages {
 
   echo -n "freezer web ui: "
-  cd disaster_recovery
+  cd freezer_ui
   babel_extract django
   FREEZER_PY_RESULT=$?
 
@@ -431,7 +431,7 @@ function run_makemessages {
 
   cd ..
   if [ $check_only -eq 1 ]; then
-    rm disaster_recovery/locale/django*.pot
+    rm freezer_ui/locale/django*.pot
   fi
 
   exit $(($FREEZER_PY_RESULT || $FREEZER_JS_RESULT))

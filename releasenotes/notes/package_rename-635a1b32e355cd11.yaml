@@ -1,0 +1,7 @@
+---
+prelude: >
+    Python package name for Freezer Horizon Dashboard has been renamed from
+    ``disaster_recovery`` to ``freezer_ui`` in order to align with repository
+    naming and naming conventions for Dashboards.
+    This will not have any effect on URIs inside of the Horizon as well as
+    representation of the Dashboard in UI.
