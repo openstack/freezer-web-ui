@@ -46,8 +46,8 @@ If keystone service-create and endpoint-create are not available you can set as 
     # add FREEZER_API_URL = http://<api_url>:<port>
 
 
-Dev Installation
-================
+Installation
+============
 
 In the installation procedure we'll assume your main Horizon dashboard
 directory is /opt/stack/horizon/openstack_dashboard/dashboards/.
@@ -61,9 +61,7 @@ To install freezer dashboard for development you need to do the following::
 
     # cp freezer-web-ui/freezer_ui/enabled/_5050_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/_5050_freezer.py
 
-    # to disable the panel just copy the following file
-
-    # cp freezer-web-ui/freezer_ui/enabled/_7050_freezer_remove_panel_.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer_remove_panel_.py
+    # to disable the panel set `DISABLED = True` in /opt/stack/horizon/openstack_dashboard/enabled/_5050_freezer.py
 
     # cd /opt/stack/horizon/
 
@@ -72,25 +70,6 @@ To install freezer dashboard for development you need to do the following::
     # make sure freezer is installed from source as detailed in the first step
 
     # ./run_tests.sh --runserver 0.0.0.0:8000
-
-Production Installation
-=======================
-
-To deploy freezer dashboard in production you need to do the following::
-
-    # git clone https://github.com/openstack/freezer-web-ui
-
-    # cd freezer-web-ui
-
-    # cp freezer-web-ui/freezer_ui/enabled/_5050_freezer.py  /opt/stack/horizon/openstack_dashboard/enabled/_5050_freezer.py
-
-    # to disable the panel just copy the following file
-
-    # cp freezer-web-ui/freezer_ui/enabled/_7050_freezer_remove_panel_.py  /opt/stack/horizon/openstack_dashboard/enabled/_7050_freezer_remove_panel_.py
-
-    # make sure freezer is installed from source as detailed in the first step
-
-    # restart apache2 service
 
 
 A new tab called "Disaster Recovery" will appear on your panels.
