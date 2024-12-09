@@ -60,7 +60,7 @@ def _get_service_url(request):
     try:
         catalog = (getattr(request.user, "service_catalog", []))
         for c in catalog:
-            if c['name'] == 'freezer':
+            if c['type'] == 'backup':
                 for endpoint_type in endpoint_type_priority:
                     for e in c['endpoints']:
                         if e['interface'] in endpoint_type:
