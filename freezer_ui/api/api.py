@@ -311,7 +311,7 @@ class Session(object):
                                               v['result'])
                     for k, v in session['jobs'].iteritems()]
         except AttributeError as error:
-            LOG.error(error.message)
+            LOG.exception(error)
         return jobs
 
     def _build(self, session):

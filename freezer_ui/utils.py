@@ -200,7 +200,7 @@ def shield(message, redirect=''):
             try:
                 return function(view, *args, **kwargs)
             except Exception as error:
-                LOG.error(error.message)
+                LOG.exception(error)
                 namespace = "horizon:disaster_recovery:"
                 r = reverse("{0}{1}".format(namespace, redirect))
 
@@ -208,10 +208,10 @@ def shield(message, redirect=''):
                     # To avoid an endless loop, we must not redirect to the
                     # same page on which the error happened
                     user_home = get_user_home(view.request.user)
-                    exceptions.handle(view.request, _(error.message),
+                    exceptions.handle(view.request, _(str(error)),
                                       redirect=user_home)
                 else:
-                    exceptions.handle(view.request, _(error.message),
+                    exceptions.handle(view.request, _(str(error)),
                                       redirect=r)
 
         return wrapped_function
