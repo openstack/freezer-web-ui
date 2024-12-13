@@ -33,7 +33,7 @@ class JobsView(browsers.ResourceBrowserView):
 
     @shield("Unable to get actions for this job.", redirect='jobs:index')
     def get_actions_in_job_data(self):
-        if self.kwargs['job_id']:
+        if self.kwargs.get('job_id', None):
             return freezer_api.Job(self.request).actions(self.kwargs['job_id'])
         return []
 

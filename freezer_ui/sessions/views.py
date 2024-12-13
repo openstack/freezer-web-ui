@@ -33,7 +33,7 @@ class SessionsView(browsers.ResourceBrowserView):
 
     @shield('Unable to get job list.', redirect='sessions:index')
     def get_jobs_data(self):
-        if self.kwargs['session_id']:
+        if self.kwargs.get('session_id', None):
             return freezer_api.Session(self.request).jobs(
                 self.kwargs['session_id'])
         return []
