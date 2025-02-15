@@ -41,8 +41,8 @@ class InstallVenv(object):
         sys.exit(1)
 
     def check_python_version(self):
-        if sys.version_info < (2, 6):
-            self.die("Need Python Version >= 2.6")
+        if sys.version_info[0] < 3:
+            raise Exception("Need Python Version 3")
 
     def run_command_with_code(self, cmd, redirect_output=True,
                               check_exit_code=True):
@@ -158,6 +158,6 @@ class Fedora(Distro):
             return
 
         if not self.check_pkg('python-virtualenv'):
-            self.die("Please install 'python-virtualenv'.")
+            self.die("Please install 'python3-virtualenv'.")
 
         super(Fedora, self).install_virtualenv()
