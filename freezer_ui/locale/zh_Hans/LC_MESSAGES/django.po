@@ -6,16 +6,17 @@
 # howard lee <howard@mail.ustc.edu.cn>, 2016. #zanata
 # liujunpeng <liujunpeng@inspur.com>, 2016. #zanata
 # vuuv <froms2008@gmail.com>, 2016. #zanata
+# Jimmy Li <ljzljm@163.com>, 2021. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: freezer-web-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2021-02-17 01:26+0000\n"
+"POT-Creation-Date: 2022-05-09 01:26+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-09-05 03:42+0000\n"
-"Last-Translator: howard lee <howard@mail.ustc.edu.cn>\n"
+"PO-Revision-Date: 2021-09-10 01:08+0000\n"
+"Last-Translator: Jimmy Li <ljzljm@163.com>\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -56,6 +57,9 @@ msgstr "管理员"
 
 msgid "Advanced"
 msgstr "高级"
+
+msgid "Advanced configuration"
+msgstr "高级配置"
 
 msgid "All Clients"
 msgstr "所有的Clients"
@@ -129,6 +133,9 @@ msgstr "克隆并编辑任务配置文件"
 msgid "Compression Level"
 msgstr "压缩等级"
 
+msgid "Container Name or Path"
+msgstr "容器名称或路径"
+
 msgid "Create Action"
 msgstr "创建action"
 
@@ -141,12 +148,19 @@ msgstr "创建Session"
 msgid "Created At"
 msgstr "创建于"
 
+msgid "Days"
+msgstr "日"
+
 msgid "Define a name for this session"
 msgstr "为session定义名称"
 
 msgid "Delete Action"
 msgid_plural "Delete Actions"
 msgstr[0] "删除Action"
+
+msgid "Delete Backup"
+msgid_plural "Delete Backups"
+msgstr[0] "删除备份"
 
 msgid "Delete Clients is not recoverable."
 msgstr "删除Clients操作是不可恢复的。"
@@ -155,8 +169,19 @@ msgid "Delete Job"
 msgid_plural "Delete Jobs"
 msgstr[0] "删除任务"
 
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "删除任务文件"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "删除Session"
+
 msgid "Delete actions is not recoverable."
 msgstr "删除actions操作不可恢复"
+
+msgid "Delete backups is not recoverable."
+msgstr "删除备份是不可恢复的。"
 
 msgid "Delete jobs is not recoverable."
 msgstr "删除任务操作时不可恢复的。"
@@ -168,9 +193,17 @@ msgid "Deleted Action"
 msgid_plural "Deleted Actions"
 msgstr[0] "已删除的Actions"
 
+msgid "Deleted Backup"
+msgid_plural "Deleted Backups"
+msgstr[0] "已删除的备份"
+
 msgid "Deleted Job"
 msgid_plural "Deleted Jobs"
 msgstr[0] "已删除的任务"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "已删除的任务文件"
 
 msgid "Destination"
 msgstr "目的地"
@@ -261,6 +294,9 @@ msgstr "主机"
 msgid "Hostname"
 msgstr "主机名"
 
+msgid "Hours"
+msgstr "小时"
+
 msgid "IP address or dns name of host to connect through ssh"
 msgstr "通过ssh连接的主机的ip地址或者dns名称"
 
@@ -278,6 +314,9 @@ msgstr "信息"
 
 msgid "Interval"
 msgstr "间隔"
+
+msgid "Job"
+msgstr "任务"
 
 msgid "Job Configuration"
 msgstr "任务配置"
@@ -342,6 +381,9 @@ msgstr "Microsoft SQL Server"
 msgid "Minimum Compression (GZip/Zip/Zlib)"
 msgstr "最小压缩方式(GZip/Zip/Zlib)"
 
+msgid "Minutes"
+msgstr "分"
+
 msgid "Mode"
 msgstr "模式"
 
@@ -372,6 +414,9 @@ msgstr "没有选择任何clients。"
 msgid "Nova"
 msgstr "Nova"
 
+msgid "Nova network ID *"
+msgstr "Nova 网络ID *"
+
 msgid "OpenStack Authentication Version"
 msgstr "OpenStack认证系统版本"
 
@@ -380,6 +425,9 @@ msgstr "备份或恢复路径"
 
 msgid "Path for ssh private key"
 msgstr "ssh私钥路径"
+
+msgid "Please choose a interval unit"
+msgstr "请选择间隔单位"
 
 msgid "Please provide this value."
 msgstr "请提供值。"
@@ -431,6 +479,9 @@ msgstr "SSH用户名*"
 
 msgid "Save"
 msgstr "保存"
+
+msgid "Seconds"
+msgstr "秒"
 
 msgid "Select A Session"
 msgstr "选择一个Session"
@@ -633,6 +684,9 @@ msgid ""
 msgstr ""
 "以每秒钟字节量的形式设置上传带宽限制，可以使用如下的形式：10k,120M,10G。"
 
+msgid "Weeks"
+msgstr "周"
+
 msgid "You must define a container or path to backup."
 msgstr "你必须定义一个用于备份的容器或者路径"
 
@@ -644,6 +698,15 @@ msgstr "你必须定义一个用于恢复的路径"
 
 msgid "You must define an action name."
 msgstr "你必须定义一个action名称"
+
+msgid "nova"
+msgstr "nova"
+
+msgid "rsync"
+msgstr "rsync"
+
+msgid "tar"
+msgstr "tar"
 
 msgid "v1"
 msgstr "v1"
