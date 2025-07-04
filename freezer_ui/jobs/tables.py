@@ -49,16 +49,16 @@ class DeleteJob(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Job File",
-            u"Delete Job Files",
+            "Delete Job File",
+            "Delete Job Files",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Job File",
-            u"Deleted Job Files",
+            "Deleted Job File",
+            "Deleted Job Files",
             count
         )
 
@@ -195,16 +195,16 @@ class DeleteAction(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Action",
-            u"Delete Action",
+            "Delete Action",
+            "Delete Action",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted action File",
-            u"Deleted action Files",
+            "Deleted action File",
+            "Deleted action Files",
             count
         )
 

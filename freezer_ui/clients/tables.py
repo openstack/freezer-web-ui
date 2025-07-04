@@ -31,16 +31,16 @@ class DeleteClient(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Client",
-            u"Delete Clients",
+            "Delete Client",
+            "Delete Clients",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Client",
-            u"Deleted Clients",
+            "Deleted Client",
+            "Deleted Clients",
             count
         )
 

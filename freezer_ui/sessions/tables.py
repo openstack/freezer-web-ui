@@ -46,16 +46,16 @@ class DeleteSession(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Session",
-            u"Delete Sessions",
+            "Delete Session",
+            "Delete Sessions",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Session",
-            u"Deleted Sessions",
+            "Deleted Session",
+            "Deleted Sessions",
             count
         )
 
@@ -86,16 +86,16 @@ class DeleteJobFromSession(tables.DeleteAction):
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            u"Delete Job",
-            u"Delete Jobs",
+            "Delete Job",
+            "Delete Jobs",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            u"Deleted Job",
-            u"Deleted Jobs",
+            "Deleted Job",
+            "Deleted Jobs",
             count
         )
 
