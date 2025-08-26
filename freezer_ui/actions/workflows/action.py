@@ -352,7 +352,7 @@ class AdvancedConfigurationAction(workflows.Action):
 
     os_identity_api_version = forms.ChoiceField(
         label=_("OpenStack Authentication Version"),
-        help_text=_("Swift auth version, could be 1, 2 or 3."),
+        help_text=_("OpenStack identity API version, must be 3."),
         required=False)
 
     upload_limit = forms.IntegerField(
@@ -490,8 +490,6 @@ class AdvancedConfigurationAction(workflows.Action):
 
     def populate_os_identity_api_version_choices(self, request, context):
         return [
-            ('2', _("v2")),
-            ('1', _("v1")),
             ('3', _("v3")),
         ]
 
