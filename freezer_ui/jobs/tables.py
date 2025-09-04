@@ -44,7 +44,7 @@ class AttachJobToSession(tables.LinkAction):
 
 
 class DeleteJob(tables.DeleteAction):
-    help_text = _("Delete jobs is not recoverable.")
+    help_text = _("Deleted Jobs is not recoverable.")
 
     @staticmethod
     def action_present(count):
@@ -190,7 +190,7 @@ class JobsTable(tables.DataTable):
 
 
 class DeleteAction(tables.DeleteAction):
-    help_text = _("Delete actions is not recoverable.")
+    help_text = _("Deleted Actions is not recoverable.")
 
     @staticmethod
     def action_present(count):
@@ -203,8 +203,8 @@ class DeleteAction(tables.DeleteAction):
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            "Deleted action File",
-            "Deleted action Files",
+            "Deleted Action File",
+            "Deleted Action Files",
             count
         )
 

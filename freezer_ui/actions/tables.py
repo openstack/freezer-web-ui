@@ -21,7 +21,7 @@ import freezer_ui.api.api as freezer_api
 
 
 class DeleteAction(tables.DeleteAction):
-    help_text = _("Delete actions is not recoverable.")
+    help_text = _("Deleted Actions is not recoverable.")
 
     @staticmethod
     def action_present(count):
