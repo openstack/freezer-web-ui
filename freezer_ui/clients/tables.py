@@ -26,7 +26,7 @@ class Filter(tables.FilterAction):
 
 
 class DeleteClient(tables.DeleteAction):
-    help_text = _("Delete Clients is not recoverable.")
+    help_text = _("Deleted Clients is not recoverable.")
 
     @staticmethod
     def action_present(count):

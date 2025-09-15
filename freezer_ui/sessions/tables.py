@@ -41,7 +41,7 @@ class CreateJob(tables.LinkAction):
 
 
 class DeleteSession(tables.DeleteAction):
-    help_text = _("Delete sessions is not recoverable.")
+    help_text = _("Deleted Sessions is not recoverable.")
 
     @staticmethod
     def action_present(count):
@@ -81,7 +81,7 @@ class DeleteMultipleActions(DeleteSession):
 
 class DeleteJobFromSession(tables.DeleteAction):
     name = "delete_job_from_session"
-    help_text = _("Delete jobs is not recoverable.")
+    help_text = _("Deleted Jobs is not recoverable.")
 
     @staticmethod
     def action_present(count):

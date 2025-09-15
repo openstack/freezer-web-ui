@@ -37,7 +37,7 @@ class Restore(tables.LinkAction):
 
 
 class DeleteBackup(tables.DeleteAction):
-    help_text = _("Delete backups is not recoverable.")
+    help_text = _("Deleted Backups is not recoverable.")
 
     @staticmethod
     def action_present(count):
