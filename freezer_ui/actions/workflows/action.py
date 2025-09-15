@@ -136,9 +136,7 @@ class ActionConfigurationAction(workflows.Action):
                     "objects older than the specified days. "
                     "If i.e. 30 is specified, it will remove "
                     "the remote objects older than 30 days. "
-                    "Default: False (Disabled). The option "
-                    "--remove-older-then is deprecated and "
-                    "will be removed soon."),
+                    "Default: False (Disabled)."),
         required=False)
 
     remove_from_date = forms.CharField(
@@ -447,10 +445,7 @@ class AdvancedConfigurationAction(workflows.Action):
         min_value=0,
         help_text=_("Restart the backup from level 0 after N days. "
                     "Valid only if --always-level option if set. "
-                    "If --always-level is used together with "
-                    "--remove-older-then, there might be the "
-                    "chance where the initial level 0 will be "
-                    "removed. Default: False (Disabled)."),
+                    "Default: False (Disabled)."),
         required=False)
 
     insecure = forms.BooleanField(
