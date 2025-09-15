@@ -102,7 +102,7 @@ class CreateSession(workflows.Workflow):
     slug = "create_session"
     name = _("Create Session")
     finalize_button_name = _("Save")
-    success_message = _('Session queued correctly. It will appear soon')
+    success_message = _('Session queued correctly. It will appear soon.')
     failure_message = _('Unable to create session.')
     success_url = "horizon:disaster_recovery:sessions:index"
     default_steps = (SessionConfiguration,)
