@@ -32,3 +32,8 @@ node_modules
 
 # Coverage data
 .coverage.*
+
+# ignore zanata/sphinx cache on translation job
+.zanata-cache/
+doc/source/.doctrees/
+upper-constraints.txt
