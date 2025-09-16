@@ -1,0 +1,972 @@
+# Dmitriy Chubinidze <dcu995@gmail.com>, 2025. #zanata
+# Ivan Anfimov <lazekteam@gmail.com>, 2025. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: freezer-web-ui VERSION\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2025-09-15 13:18+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2025-09-16 12:23+0000\n"
+"Last-Translator: Ivan Anfimov <lazekteam@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"X-Generator: Zanata 4.3.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+msgid "A group of jobs which share the same scheduling time."
+msgstr "Группа заданий, которые имеют одинаковое плановое время."
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Action Configuration"
+msgstr "Конфигурация действия"
+
+msgid "Action Name"
+msgstr "Имя действия"
+
+msgid "Action Type"
+msgstr "Тип действия"
+
+msgid "Action queued correctly. It will appear soon."
+msgstr "Действие добавлено в очередь корректно. Скоро появится."
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Actions Configuration"
+msgstr "Конфигурация действий"
+
+msgid "Actions saved correctly."
+msgstr "Действия сохранены корректно."
+
+msgid "Actions updated correctly."
+msgstr "Действия обновлены правильно."
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Advanced"
+msgstr "Расширенный"
+
+msgid "Advanced configuration"
+msgstr "Расширенная конфигурация"
+
+msgid "All Clients"
+msgstr "Все клиенты"
+
+msgid "Allow to access Swift servers without checking SSL certificates."
+msgstr "Разрешить доступ к серверам Swift без проверки SSL-сертификатов."
+
+msgid "Always Level"
+msgstr "Постоянный уровень"
+
+msgid ""
+"An action is the simplest execution within a job, it could be a backup or a "
+"restore and it contains rules that the action must follow (max retries, "
+"interval between executions, etc)."
+msgstr ""
+"Действие - это простейшее выполнение в задании. Это может быть резервное "
+"копирование или восстановление. Оно содержит правила, которым должно "
+"следовать действие (максимальное количество повторных попыток, интервал "
+"между выполнениями и т. д.)."
+
+msgid "Attach"
+msgstr "Привязать"
+
+msgid "Attach To Session"
+msgstr "Прикрепить к сессии"
+
+msgid "Available Actions"
+msgstr "Доступные действия"
+
+msgid "Backup"
+msgstr "Резервная копия"
+
+msgid "Backup History"
+msgstr "История резервной копии"
+
+msgid "Backup Name"
+msgstr "Имя резервной копии"
+
+msgid "Backup and Restore"
+msgstr "Резервное копирование и восстановление"
+
+msgid "Backups"
+msgstr "Резервные копии"
+
+msgid ""
+"Checks in the specified container for object older than the specified days. "
+"If i.e. 30 is specified, it will remove the remote object older than 30 "
+"days. Default: False (Disabled). The option --remove-older-then is "
+"deprecated and will be removed soon."
+msgstr ""
+"Проверяет указанный контейнер на наличие объектов старше указанного "
+"количества дней. Если указано, например, 30, удалит удалённый объект старше "
+"30 дней. По умолчанию: False (отключено). Параметр --remove-older-then "
+"устарел и будет удален в ближайшее время."
+
+msgid ""
+"Checks the specified container and removes objects older than the provided "
+"datetime in the format YYYY-MM-DDThh:mm:ss i.e. 1974-03-25T23:23:23. Make "
+"sure the 'T' is between date and time."
+msgstr ""
+"Проверяет указанный контейнер и удаляет объекты старше указанной даты и "
+"времени в формате ГГГГ-ММ-ДДTчч:мм:сс, например, 1974-03-25T23:23:23. "
+"Убедитесь, что между датой и временем находится символ 'T'."
+
+msgid "Choose what you want to backup."
+msgstr "Выберите для чего именно вы хотите создать резервную копию."
+
+msgid "Cinder"
+msgstr "Cinder"
+
+msgid "Cinder Volume ID"
+msgstr "ID диска Cinder"
+
+msgid "Client"
+msgstr "Клиент"
+
+msgid "Client ID"
+msgstr "ID клиента"
+
+msgid "Client is required"
+msgstr "Требуется клиент"
+
+msgid "Clients"
+msgstr "Клиенты"
+
+msgid "Clone Job"
+msgstr "Клонировать задание"
+
+msgid "Clone and edit a job file"
+msgstr "Клонировать и изменить файл задания"
+
+msgid "Compression Level"
+msgstr "Уровень сжатия"
+
+msgid "Container Name or Path"
+msgstr "Имя контейнера или путь"
+
+msgid "Continuous"
+msgstr "Непрерывный"
+
+msgid "Create Action"
+msgstr "Создать действие"
+
+msgid "Create Job"
+msgstr "Создать задание"
+
+msgid "Create Session"
+msgstr "Создать сессию"
+
+msgid "Created At"
+msgstr "Создана в"
+
+msgid "Days"
+msgstr "Дней"
+
+msgid "Define a name for this session"
+msgstr "Определить название для этой сесиии"
+
+msgid "Define extra information for the action executed by the client."
+msgstr ""
+"Определите дополнительную информацию для действия, выполняемого клиентом."
+
+msgid ""
+"Define the following action rules: <ul> <li>Number of retries</li> "
+"<li>Retries interval</li> <li>Action is mandatory</li> </ul>"
+msgstr ""
+"Определите следующие правила действий: <ul> <li>Количество повторных "
+"попыток</li> <li>Интервал повторных попыток</li> <li>Действие обязательно</"
+"li> </ul>"
+
+msgid "Delete Action"
+msgid_plural "Delete Actions"
+msgstr[0] "Удалить действие"
+msgstr[1] "Удалить действия"
+msgstr[2] "Удалить действия"
+
+msgid "Delete Backup"
+msgid_plural "Delete Backups"
+msgstr[0] "Удалить резервную копию"
+msgstr[1] "Удалить резервные копии"
+msgstr[2] "Удалить резервные копии"
+
+msgid "Delete Client"
+msgid_plural "Delete Clients"
+msgstr[0] "Удалить клиента"
+msgstr[1] "Удалить клиентов"
+msgstr[2] "Удалить клиентов"
+
+msgid "Delete Job"
+msgid_plural "Delete Jobs"
+msgstr[0] "Удалить задание"
+msgstr[1] "Удалить задания"
+msgstr[2] "Удалить задания"
+
+msgid "Delete Job File"
+msgid_plural "Delete Job Files"
+msgstr[0] "Удалить файл задания"
+msgstr[1] "Удалить файлы задания"
+msgstr[2] "Удалить файлы задания"
+
+msgid "Delete Session"
+msgid_plural "Delete Sessions"
+msgstr[0] "Удалить сессию"
+msgstr[1] "Удалить сессии"
+msgstr[2] "Удалить сессии"
+
+msgid "Deleted Action"
+msgid_plural "Deleted Actions"
+msgstr[0] "Действие удалено"
+msgstr[1] "Действия удалены"
+msgstr[2] "Действия удалены"
+
+msgid "Deleted Action File"
+msgid_plural "Deleted Action Files"
+msgstr[0] "Файл действия удален"
+msgstr[1] "Файлы действия удалены"
+msgstr[2] "Файлы действия удалены"
+
+msgid "Deleted Actions is not recoverable."
+msgstr "Удаленные действия не подлежат восстановлению."
+
+msgid "Deleted Backup"
+msgid_plural "Deleted Backups"
+msgstr[0] "Резервная копия удалена"
+msgstr[1] "Резервные копии удалены"
+msgstr[2] "Резервные копии удалены"
+
+msgid "Deleted Backups is not recoverable."
+msgstr "Удаленные резервные копии не подлежат восстановлению."
+
+msgid "Deleted Client"
+msgid_plural "Deleted Clients"
+msgstr[0] "Клиент удален"
+msgstr[1] "Клиенты удалены"
+msgstr[2] "Клиенты удалены"
+
+msgid "Deleted Clients is not recoverable."
+msgstr "Удаленные клиенты не подлежат восстановлению."
+
+msgid "Deleted Job"
+msgid_plural "Deleted Jobs"
+msgstr[0] "Задание удалено"
+msgstr[1] "Задания удалены"
+msgstr[2] "Задания удалены"
+
+msgid "Deleted Job File"
+msgid_plural "Deleted Job Files"
+msgstr[0] "Файл задания удален"
+msgstr[1] "Файлы задания удалены"
+msgstr[2] "Файлы задания удалены"
+
+msgid "Deleted Jobs is not recoverable."
+msgstr "Удаленные задания не подлежат восстановлению."
+
+msgid "Deleted Session"
+msgid_plural "Deleted Sessions"
+msgstr[0] "Сессия удалена"
+msgstr[1] "Сессии удалены"
+msgstr[2] "Сессии удалены"
+
+msgid "Deleted Sessions is not recoverable."
+msgstr "Удаленные сессии не подлежат восстановлению."
+
+msgid "Describes actions to be executed by a client."
+msgstr "Описывает действия, которые должен выполнить клиент."
+
+msgid "Destination"
+msgstr "Место назначения"
+
+msgid "Destination File"
+msgstr "Файл назначения"
+
+msgid "Destination Path"
+msgstr "Путь назначения"
+
+msgid ""
+"Disable incremental feature. By default freezer build the meta data even for "
+"level 0 backup. By setting this option incremental meta data is not created "
+"at all. Default: Disabled."
+msgstr ""
+"Отключить функцию инкрементного резервного копирования. По умолчанию Freezer "
+"создает метаданные даже для резервной копии уровня 0. При установке этого "
+"параметра инкрементные метаданные вообще не создаются. По умолчанию: "
+"отключено."
+
+msgid "Disaster Recovery"
+msgstr "Disaster Recovery"
+
+msgid "Do everything except writing or removing objects."
+msgstr "Выполнить все, кроме записи или удаления объектов."
+
+msgid "Download Limit"
+msgstr "Ограничение скачивания"
+
+msgid ""
+"Download bandwidth limit in Bytes per sec.. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Ограничение пропускной способности скачивания в байтах в секунду. Можно "
+"задать размерами (10 КБ, 120 МБ, 10 Гб)."
+
+msgid "Drag actions in the order they will be executed on the client."
+msgstr ""
+"Перетаскивайте действия в том порядке, в котором они будут выполняться на "
+"клиенте."
+
+msgid "Dry Run"
+msgstr "Пробный запуск"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Edit Actions"
+msgstr "Изменить действия"
+
+msgid "Edit Job"
+msgstr "Изменить задание"
+
+msgid "Edit Session"
+msgstr "Изменить сессию"
+
+msgid "Encryption Key"
+msgstr "Ключ шифрования"
+
+msgid "End Date and Time"
+msgstr "Дата и время окончания"
+
+msgid "End date time is not in ISO format."
+msgstr "Дата и время окончания не в формате ISO."
+
+msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY."
+msgstr ""
+"Включить прокси-сервер, который изменяет системные HTTP_PROXY и HTTPS_PROXY."
+
+msgid ""
+"Engine to be used for backup/restore. With tar, the file inode will be "
+"checked for changes amid backup execution. If the file inode changed, the "
+"whole file will be backed up. With rsync, the data blocks changes will be "
+"verified and only the changed blocks will be backed up. Tar is faster, but "
+"is uses more space and bandwidth. Rsync is slower, but uses less space and "
+"bandwidth. Nova engine can be used to backup/restore running instances. "
+"Backing up instances and it's metadata."
+msgstr ""
+"Движок, используемый для резервного копирования/восстановления. Tar "
+"проверяет индексный дескриптор файла на наличие изменений во время "
+"выполнения резервного копирования. Если индексный дескриптор файла "
+"изменился, будет создана резервная копия всего файла. Rsync проверяет "
+"изменения блоков данных и копирует только измененные блоки. Tar быстрее, но "
+"использует больше места и трафика. Rsync медленнее, но использует меньше "
+"места и трафика. Движок Nova можно использовать для резервного копирования/"
+"восстановления запущенных инстансов. Резервное копирование инстансов и их "
+"метаданных."
+
+msgid "Error getting session list"
+msgstr "Ошибка получения списка сессий"
+
+msgid "Exclude Files"
+msgstr "Исключить файлы"
+
+msgid ""
+"Exclude files, given as a PATTERN. Example: '*.log, *.pyc' will exclude any "
+"file with name ending with .log. Default: no exclude."
+msgstr ""
+"Исключить файлы, заданные ШАБЛОНОМ. Пример: '*.log, *.pyc' исключит все "
+"файлы с расширением .log. По умолчанию: без исключений."
+
+msgid "File system"
+msgstr "Файловая система"
+
+msgid "Follow Symlinks"
+msgstr "Переход по символическим ссылкам"
+
+msgid ""
+"Follow hard and soft links and archive and dump the files they refer to. "
+"Default: False."
+msgstr ""
+"Переходить по жестким и мягким ссылкам, архивировать и выгружать файлы, на "
+"которые они ссылаются. По умолчанию: False."
+
+msgid ""
+"For Linux, in order to use snapshot features, the data has to reside on an "
+"LVM volume."
+msgstr ""
+"В Linux, для использования функций снимков данные должны находиться на томе "
+"LVM."
+
+msgid ""
+"From here you can add and remove clients to this job from the list of "
+"available clients"
+msgstr ""
+"Здесь вы можете добавлять и удалять клиентов для этого задания из списка "
+"доступных клиентов"
+
+msgid "Get A Single Object"
+msgstr "Получить один объект"
+
+msgid "Host"
+msgstr "Хост"
+
+msgid "Hostname"
+msgstr "Имя сервера"
+
+msgid "Hours"
+msgstr "Часов"
+
+msgid "ID of Cinder Volume for backup."
+msgstr "ID диска Cinder для резервного копирования."
+
+msgid "ID of Nova Instance for backup."
+msgstr "ID инстанса Nova для резервного копирования."
+
+msgid "ID of Nova Network for recover."
+msgstr "ID сети Nova для восстановления."
+
+msgid "IP address or DNS name of host to connect through SSH."
+msgstr "IP-адрес или DNS-имя хоста для подключения по SSH."
+
+msgid "In case of error, set the amount of retries for this job."
+msgstr ""
+"В случае ошибки установите количество повторных попыток для данного задания."
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "Insecure"
+msgstr "Незащищенный"
+
+msgid "Interval"
+msgstr "Интервал"
+
+msgid "Interval Unit"
+msgstr "Единица интервала"
+
+msgid "Interval Value"
+msgstr "Значение интервала"
+
+msgid "Job"
+msgstr "Задание"
+
+msgid "Job Configuration"
+msgstr "Конфигурация задания"
+
+msgid "Job ID"
+msgstr "ID задания"
+
+msgid "Job Info"
+msgstr "Информация о задании"
+
+msgid "Job Name"
+msgstr "Имя задания"
+
+msgid "Job attached successfully."
+msgstr "Задание успешно привязано."
+
+msgid ""
+"Job executions can be executed and scheduled, by providing the following "
+"settings."
+msgstr ""
+"Выполнение заданий можно выполнить и запланировать, указав следующие "
+"настройки."
+
+msgid "Job has started"
+msgstr "Задание запущено"
+
+msgid "Job has stopped"
+msgstr "Задание остановлено"
+
+msgid "Job queued correctly. It will appear soon"
+msgstr "Задание поставлено в очередь правильно. Оно скоро появится"
+
+msgid "Job updated correctly."
+msgstr "Задание обновлено ​​корректно."
+
+msgid "Jobs"
+msgstr "Задания"
+
+msgid "Local Path"
+msgstr "Локальный путь"
+
+msgid "Log File Path"
+msgstr "Путь к файлу журнала"
+
+msgid "Lossless Data Compression (XZ)"
+msgstr "Сжатие данных без потерь (XZ)"
+
+msgid "Mandatory"
+msgstr "Обязательный"
+
+msgid "Max Level"
+msgstr "Максимальный уровень"
+
+msgid "Max Priority"
+msgstr "Максимальный приоритет"
+
+msgid "Max Retries"
+msgstr "Максимальное количество повторов"
+
+msgid "Max Retries Interval"
+msgstr "Максимальный интервал повторных попыток"
+
+msgid "Maximum Segment Size"
+msgstr "Максимальный размер сегмента"
+
+msgid "Microsoft SQL Server"
+msgstr "Microsoft SQL Server"
+
+msgid "Minimum Compression (GZip/Zip/Zlib)"
+msgstr "Минимальное сжатие (GZip/Zip/Zlib)"
+
+msgid "Minutes"
+msgstr "Минут"
+
+msgid "Mode"
+msgstr "Режим"
+
+msgid "MongoDB"
+msgstr "MongoDB"
+
+msgid "More Effective Compression (Bzip2)"
+msgstr "Более эффективное сжатие (Bzip2)"
+
+msgid "MySQL"
+msgstr "MySQL"
+
+msgid "MySQL Configuration File"
+msgstr "Файл конфигурации MySQL"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "No Incremental"
+msgstr "Неинкрементальный"
+
+msgid "No clients found."
+msgstr "Клиенты не найдены."
+
+msgid "No clients selected."
+msgstr "Клиенты не выбраны."
+
+msgid "Nova"
+msgstr "Nova"
+
+msgid "Nova Instance ID"
+msgstr "ID инстанса Nova"
+
+msgid "Nova Network ID"
+msgstr "ID сети Nova"
+
+msgid "OpenStack Authentication Version"
+msgstr "Версия аутентификации OpenStack"
+
+msgid "Path To Backup or Restore"
+msgstr "Путь к резервному копированию или восстановлению"
+
+msgid "Path for SSH private key."
+msgstr "Путь к закрытому ключу SSH."
+
+msgid "Please choose a interval unit"
+msgstr "Пожалуйста, выберите единицу измерения интервала"
+
+msgid "Please provide this value."
+msgstr "Пожалуйста, укажите это значение."
+
+msgid "Proxy URL"
+msgstr "Proxy URL"
+
+msgid "Quiet"
+msgstr "Тихий"
+
+msgid "Remove From Date"
+msgstr "Удалить с даты"
+
+msgid "Remove Older Than"
+msgstr "Удалить старше чем"
+
+msgid "Restart Always Level"
+msgstr "Перезапустить постоянный уровень"
+
+msgid ""
+"Restart the backup from level 0 after N days. Valid only if --always-level "
+"option if set. If --always-level is used together with --remove-older-then, "
+"there might be the chance where the initial level 0 will be removed. "
+"Default: False (Disabled)."
+msgstr ""
+"Перезапустите резервное копирование с уровня 0 через N дней. Действует "
+"только если установлен параметр --always-level. Если --always-level "
+"используется вместе с --remove-older-then, существует вероятность удаления "
+"исходного уровня 0. По умолчанию: False (отключено)."
+
+msgid "Restore"
+msgstr "Восстановление"
+
+msgid "Restore Absolute Path"
+msgstr "Восстановить абсолютный путь"
+
+msgid "Restore From Date"
+msgstr "Восстановить с даты"
+
+msgid "Restore From Host"
+msgstr "Восстановить с хоста"
+
+msgid "Restore job successfully queued. It will get executed soon."
+msgstr ""
+"Задание по восстановлению успешно поставлено в очередь. Оно будет выполнено "
+"в ближайшее время."
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "Rules"
+msgstr "Правила"
+
+msgid "SQL Server Configuration File"
+msgstr "Файл конфигурации SQL сервера"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "SSH Host"
+msgstr "SSH хост"
+
+msgid "SSH Private Key"
+msgstr "Закрытый ключ SSH"
+
+msgid "SSH Username"
+msgstr "Имя пользователя SSH"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Seconds"
+msgstr "Секунд"
+
+msgid "Select A Session"
+msgstr "Выберите сессию"
+
+msgid "Selected Actions In Order"
+msgstr "Выбранные действия по порядку"
+
+msgid "Selected Clients"
+msgstr "Выбранные клиенты"
+
+msgid "Session"
+msgstr "Сессия"
+
+msgid "Session Configuration"
+msgstr "Конфигурация сессии"
+
+msgid "Session Information"
+msgstr "Информация о сессии"
+
+msgid "Session Name"
+msgstr "Имя сессии"
+
+msgid "Session queued correctly. It will appear soon"
+msgstr "Сессия поставлена в очередь корректно. Она скоро появится"
+
+msgid "Sessions"
+msgstr "Сессии"
+
+msgid "Set a name for this job"
+msgstr "Установите имя для этого задания"
+
+msgid "Set a session to attach this job"
+msgstr "Установите сессию, чтобы привязать это задание"
+
+msgid ""
+"Set backup maximum level used with tar to implement incremental backup. If a "
+"level 3 is specified, the backup will be executed from level 0 to level 3 "
+"and to that point always a backup level 3 will be executed. It will not "
+"restart from level 0. This option has precedence over --max-backup-level. "
+"Default: False (Disabled)."
+msgstr ""
+"Установите максимальный уровень резервного копирования, используемый tar для "
+"реализации инкрементного резервного копирования. Если указан уровень 3, "
+"резервное копирование будет выполняться с уровня 0 до уровня 3, и до этой "
+"точки всегда будет выполняться резервное копирование уровня 3. Перезапуск с "
+"уровня 0 не производится. Этот параметр имеет приоритет над --max-backup-"
+"level. По умолчанию: False (отключено)."
+
+msgid ""
+"Set hostname to execute actions. If you are executing freezer from one host "
+"but you want to delete objects belonging to another host then you can set "
+"this option that hostname and execute appropriate actions. Default: Current "
+"hostname."
+msgstr ""
+"Задайте имя хоста для выполнения действий. Если вы запускаете Freezer с "
+"одного хоста, но хотите удалить объекты, принадлежащие другому, вы можете "
+"задать этот параметр, указав имя хоста и выполнив соответствующие действия. "
+"По умолчанию: текущее имя хоста."
+
+msgid ""
+"Set log file. By default logs to /var/log/freezer.log If that file is not "
+"writable, Freezer tries to log to ~/.freezer/freezer.log"
+msgstr ""
+"Задать файл лога. По умолчанию логи ведутся в /var/log/freezer.log. Если "
+"этот файл недоступен для записи, Freezer пытается вести лог в ~/.freezer/"
+"freezer.log"
+
+msgid "Set storage backend for a backup."
+msgstr "Настройте хранилище для резервного копирования."
+
+msgid "Set the absolute path where you want your data restored."
+msgstr "Укажите абсолютный путь, по которому вы хотите восстановить данные."
+
+msgid ""
+"Set the absolute path where you want your data restored. Please provide "
+"datetime in format 'YYYY-MM-DDThh:mm:ss' i.e. '1979-10-03T23:23:23'. Make "
+"sure the 'T' is between date and time."
+msgstr ""
+"Укажите абсолютный путь к папке, куда вы хотите восстановить данные. Укажите "
+"дату и время в формате 'ГГГГ-ММ-ДДTчч:мм:сс', например, "
+"'1979-10-03T23:23:23'. Убедитесь, что между датой и временем находится "
+"символ 'T'."
+
+msgid "Set the action to be taken."
+msgstr "Укажите действие, которое необходимо выполнить."
+
+msgid ""
+"Set the backup level used with tar to implement incremental backup. If a "
+"level 1 is specified but no level 0 is already available, a level 0 will be "
+"done and subsequently backs to level 1. Default: 0 (No Incremental)."
+msgstr ""
+"Установите уровень резервного копирования, используемый tar для реализации "
+"инкрементного резервного копирования. Если указан уровень 1, но уровень 0 "
+"недоступен, будет создан уровень 0, а затем выполнен возврат к уровню 1. По "
+"умолчанию: 0 (без инкрементного)."
+
+msgid ""
+"Set the cpu process to the highest priority (i.e. -20 on Linux) and real-"
+"time for I/O. The process priority will be set only if nice and ionice are "
+"installed. Default: Disabled. Use with caution."
+msgstr ""
+"Установите наивысший приоритет для процесса (например, -20 в Linux) и режим "
+"реального времени для ввода-вывода. Приоритет процесса будет установлен "
+"только при наличии установленных модулей nice и ionice. По умолчанию: "
+"отключено. Используйте с осторожностью."
+
+msgid ""
+"Set the hostname used to identify the data you want to restore from. If you "
+"want to restore data in the same host where the backup was executed just "
+"type from your shell: '$ hostname' and the output is the value that needs to "
+"be passed to this option. Mandatory with Restore."
+msgstr ""
+"Укажите имя хоста, используемое для идентификации данных, с которого вы "
+"хотите восстановить данные. Если вы хотите восстановить данные на том же "
+"хосте, где была создана резервная копия, просто введите в командной строке: "
+"'$ hostname', и в результате будет получено значение, которое необходимо "
+"передать в этот параметр. Обязательно для функции восстановления."
+
+msgid "Set the interval between executions for retries in seconds."
+msgstr ""
+"Установите интервал между выполнениями для повторных попыток в секундах."
+
+msgid ""
+"Set the interval in the following format:\n"
+"                       continuous,\n"
+"                       N weeks,\n"
+"                       N days,\n"
+"                       N hours,\n"
+"                       N minutes,\n"
+"                       N seconds,\n"
+"                       If no start date is provided the job\n"
+"                       will start immediately"
+msgstr ""
+"Задайте интервал в следующем формате:\n"
+"                       непрерывно,\n"
+"                       N недель,\n"
+"                       N дней,\n"
+"                       N часов,\n"
+"                       N минут,\n"
+"                       N секунд,\n"
+"                      Если дата начала не указана, задание\n"
+"                       начнется немедленно"
+
+msgid "Set the interval value"
+msgstr "Установите значение интервала"
+
+msgid ""
+"Set the maximum file chunk size in bytes to upload to Swift. Default: "
+"67108864 bytes (64MB)."
+msgstr ""
+"Установите максимальный размер фрагмента файла в байтах для загрузки в "
+"Swift. Значение по умолчанию: 67108864 байт (64 МБ)."
+
+msgid "Set the path where the MySQL configuration file is on the file system."
+msgstr "Укажите путь к файлу конфигурации MySQL в файловой системе."
+
+msgid ""
+"Set the path where the SQL Server configuration file is on the file system."
+msgstr "Укажите путь к файлу конфигурации SQL сервера в файловой системе."
+
+msgid "Set the path where the encryption key is on the file system."
+msgstr "Укажите путь к ключу шифрования в файловой системе."
+
+msgid "Set the unit for the Interval"
+msgstr "Установите единицу измерения для интервала"
+
+msgid "Set this action as mandatory."
+msgstr "Установите это действие как обязательное."
+
+msgid "Snapshot"
+msgstr "Снимок"
+
+msgid "Source File/Directory"
+msgstr "Исходный файл/каталог"
+
+msgid "Start Date and Time"
+msgstr "Дата и время начала"
+
+msgid "Start Job"
+msgstr "Запустить задание"
+
+msgid "Start date time is not in ISO format."
+msgstr "Дата и время начала не в формате ISO."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Stop Job"
+msgstr "Остановить задание"
+
+msgid "Storage"
+msgstr "Хранилище"
+
+msgid "Suppress error messages."
+msgstr "Подавлять сообщения об ошибках."
+
+msgid "Swift"
+msgstr "Swift"
+
+msgid "Swift auth version, could be 1, 2 or 3."
+msgstr "Версия аутентификации Swift может быть 1, 2 или 3."
+
+msgid "Swift container for Swift backend or path for SSH or local backend."
+msgstr ""
+"Контейнер Swift для бэкенда Swift или путь для SSH или локального бэкенда."
+
+msgid "The Object name you want to download on the local file system."
+msgstr "Имя объекта, который вы хотите загрузить в локальную файловую систему."
+
+msgid ""
+"The file name used to save the object on your local disk and upload file in "
+"Swift."
+msgstr ""
+"Имя файла, используемое для сохранения объекта на локальном диске и загрузки "
+"файла в Swift."
+
+msgid "The file or directory you want to backup."
+msgstr "Файл или каталог, для которого вы хотите создать резервную копию."
+
+msgid "The path in which the backup should be restored"
+msgstr "Путь, по которому следует восстановить резервную копию"
+
+msgid ""
+"The snapshot technologies currently supported are LVM for Linux and Volume "
+"Shadow Copy for Windows."
+msgstr ""
+"В настоящее время поддерживаются следующие технологии снимков: LVM для Linux "
+"и Volume Shadow Copy для Windows."
+
+msgid "Unable to attach to session."
+msgstr "Не удалось привязать к сессии."
+
+msgid "Unable to create session."
+msgstr "Не удалось создать сессию."
+
+msgid "Unable to created job."
+msgstr "Не удалось создать задание."
+
+msgid "Unable to retrieve client list."
+msgstr "Не удалось получить список клиентов."
+
+msgid "Unable to save action file."
+msgstr "Не удалось сохранить файл действия."
+
+msgid "Unable to save actions."
+msgstr "Не удалось сохранить действия."
+
+msgid "Unable to update actions."
+msgstr "Не удалось обновить действия."
+
+msgid "Unable to update job."
+msgstr "Не удалось обновить задание."
+
+msgid "Update Actions"
+msgstr "Обновить действия"
+
+msgid "Update Job"
+msgstr "Обновить задание"
+
+msgid "Upload Limit"
+msgstr "Ограничение загрузки"
+
+msgid ""
+"Upload bandwidth limit in Bytes per sec.. Can be invoked with dimensions "
+"(10K, 120M, 10G)."
+msgstr ""
+"Ограничение пропускной способности загрузки в байтах в секунду. Можно задать "
+"размерами (10 КБ, 120 МБ, 10 Гб)."
+
+msgid ""
+"Use a LVM or Shadow Copy snapshot to have point in time consistent backups."
+msgstr ""
+"Используйте снимок LVM или Shadow Copy для создания резервных копий, "
+"соответствующих определенному моменту времени."
+
+msgid "Weeks"
+msgstr "Недель"
+
+msgid "You must define Cinder Volume ID to backup."
+msgstr "Для резервного копирования необходимо указать ID диска Cinder."
+
+msgid "You must define Nova Instance ID to restore or backup."
+msgstr ""
+"Для восстановления или резервного копирования необходимо указать ID инстанса "
+"Nova."
+
+msgid "You must define Nova Network ID to restore."
+msgstr "Для восстановления необходимо указать ID сети Nova."
+
+msgid "You must define a container or path to backup."
+msgstr "Необходимо определить контейнер или путь для резервного копирования."
+
+msgid "You must define a path to backup."
+msgstr "Необходимо указать путь к резервной копии."
+
+msgid "You must define a path to restore."
+msgstr "Необходимо указать путь для восстановления."
+
+msgid "You must define an action name."
+msgstr "Необходимо определить имя действия."
+
+msgid "nova"
+msgstr "nova"
+
+msgid "osbrick"
+msgstr "osbrick"
+
+msgid "rsync"
+msgstr "rsync"
+
+msgid "rsyncv2"
+msgstr "rsyncv2"
+
+msgid "tar"
+msgstr "tar"
+
+msgid "v1"
+msgstr "v1"
+
+msgid "v2"
+msgstr "v2"
+
+msgid "v3"
+msgstr "v3"
