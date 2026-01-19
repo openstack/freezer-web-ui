@@ -200,7 +200,7 @@ class ConfigureJob(workflows.Workflow):
     slug = "job"
     name = _("Job Configuration")
     finalize_button_name = _("Save")
-    success_message = _('Job queued correctly. It will appear soon')
+    success_message = _('Job queued correctly. It will appear soon.')
     failure_message = _('Unable to created job.')
     success_url = "horizon:disaster_recovery:jobs:index"
     default_steps = (InfoConfiguration,

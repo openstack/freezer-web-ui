@@ -133,9 +133,9 @@ class ActionConfigurationAction(workflows.Action):
     remove_older_than = forms.CharField(
         label=_("Remove Older Than"),
         help_text=_("Checks in the specified container for "
-                    "object older than the specified days. "
+                    "objects older than the specified days. "
                     "If i.e. 30 is specified, it will remove "
-                    "the remote object older than 30 days. "
+                    "the remote objects older than 30 days. "
                     "Default: False (Disabled). The option "
                     "--remove-older-then is deprecated and "
                     "will be removed soon."),
@@ -145,8 +145,8 @@ class ActionConfigurationAction(workflows.Action):
         label=_("Remove From Date"),
         help_text=_("Checks the specified container and removes "
                     "objects older than the provided datetime "
-                    "in the format YYYY-MM-DDThh:mm:ss "
-                    "i.e. 1974-03-25T23:23:23. Make sure the "
+                    "in the format 'YYYY-MM-DDThh:mm:ss' "
+                    "i.e. '1974-03-25T23:23:23'. Make sure the "
                     "'T' is between date and time."),
         required=False)
 
@@ -331,16 +331,16 @@ class AdvancedConfigurationAction(workflows.Action):
     log_file = forms.CharField(
         label=_("Log File Path"),
         help_text=_("Set log file. By default logs to "
-                    "/var/log/freezer.log If that file "
+                    "/var/log/freezer.log. If that file "
                     "is not writable, Freezer tries to "
-                    "log to ~/.freezer/freezer.log"),
+                    "log to ~/.freezer/freezer.log."),
         required=False)
 
     exclude = forms.CharField(
         label=_("Exclude Files"),
         help_text=_("Exclude files, given as a PATTERN. "
                     "Example: '*.log, *.pyc' will exclude "
-                    "any file with name ending with .log. "
+                    "any files with name ending with .log. "
                     "Default: no exclude."),
         widget=forms.widgets.Textarea(),
         required=False)
@@ -361,7 +361,7 @@ class AdvancedConfigurationAction(workflows.Action):
         label=_("Upload Limit"),
         help_text=_("Upload bandwidth limit in Bytes per sec.. "
                     "Can be invoked with dimensions "
-                    "(10K, 120M, 10G)."),
+                    "(10 KB, 120 MB, 10 GB)."),
         min_value=-1,
         required=False)
 
@@ -369,7 +369,7 @@ class AdvancedConfigurationAction(workflows.Action):
         label=_("Download Limit"),
         help_text=_("Download bandwidth limit in Bytes per sec.. "
                     "Can be invoked with dimensions "
-                    "(10K, 120M, 10G)."),
+                    "(10 KB, 120 MB, 10 GB)."),
         min_value=-1,
         required=False)
 
@@ -387,14 +387,14 @@ class AdvancedConfigurationAction(workflows.Action):
         label=_("Maximum Segment Size"),
         help_text=_("Set the maximum file chunk size in bytes "
                     "to upload to Swift. "
-                    "Default: 67108864 bytes (64MB)."),
+                    "Default: 67108864 bytes (64 MB)."),
         min_value=1,
         required=False)
 
     hostname = forms.CharField(
         label=_("Hostname"),
         help_text=_("Set hostname to execute actions. If you are "
-                    "executing freezer from one host but you want "
+                    "executing Freezer from one host but you want "
                     "to delete objects belonging to another host "
                     "then you can set this option that hostname and "
                     "execute appropriate actions. Default: Current "
@@ -410,7 +410,7 @@ class AdvancedConfigurationAction(workflows.Action):
     no_incremental = forms.BooleanField(
         label=_("No Incremental"),
         help_text=_("Disable incremental feature. By default "
-                    "freezer build the meta data even for "
+                    "Freezer build the meta data even for "
                     "level 0 backup. By setting this option "
                     "incremental meta data is not created at all. "
                     "Default: Disabled."),
