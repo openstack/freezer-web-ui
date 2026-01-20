@@ -5,7 +5,7 @@ var Browser = (function () {
     url += "//";
     url += $(location).attr("host");
 
-    url += WEBROOT + 'freezer_ui/api/';
+    url += WEBROOT + 'project/freezer-api/';
 
     return {
         get_url : function () {
