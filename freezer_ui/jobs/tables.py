@@ -33,13 +33,13 @@ class AttachJobToSession(tables.LinkAction):
     name = "attach_job_to_session"
     verbose_name = _("Attach To Session")
     classes = ("ajax-modal",)
-    url = "horizon:disaster_recovery:sessions:attach"
+    url = "horizon:project:freezer-sessions:attach"
 
     def allowed(self, request, instance):
         return True
 
     def get_link_url(self, datum):
-        return reverse("horizon:disaster_recovery:sessions:attach",
+        return reverse("horizon:project:freezer-sessions:attach",
                        kwargs={'job_id': datum.job_id})
 
 
@@ -62,7 +62,7 @@ class DeleteJob(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete job", redirect="jobs:index")
+    @shield("Unable to delete job", redirect="freezer-jobs:index")
     def delete(self, request, job_id):
         return freezer_api.Job(request).delete(job_id)
 
@@ -76,10 +76,10 @@ class CloneJob(tables.Action):
     verbose_name = _("Clone Job")
     help_text = _("Clone and edit a job file")
 
-    @shield("Unable to clone job", redirect="jobs:index")
+    @shield("Unable to clone job", redirect="freezer-jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).clone(job_id)
-        return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+        return shortcuts.redirect('horizon:project:freezer-jobs:index')
 
 
 class EditJob(tables.LinkAction):
@@ -89,7 +89,7 @@ class EditJob(tables.LinkAction):
     icon = "pencil"
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:jobs:edit_job",
+        return reverse("horizon:project:freezer-jobs:edit_job",
                        kwargs={'job_id': datum.job_id})
 
 
@@ -100,7 +100,7 @@ class EditActionsInJob(tables.LinkAction):
     icon = "pencil"
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:jobs:edit_action",
+        return reverse("horizon:project:freezer-jobs:edit_action",
                        kwargs={'job_id': datum.job_id})
 
 
@@ -108,11 +108,11 @@ class StartJob(tables.Action):
     name = "start_job"
     verbose_name = _("Start Job")
 
-    @shield("Unable to start job", redirect="jobs:index")
+    @shield("Unable to start job", redirect="freezer-jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).start(job_id)
         messages.success(request, _("Job has started"))
-        return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+        return shortcuts.redirect('horizon:project:freezer-jobs:index')
 
     def allowed(self, request, job=None):
         return True
@@ -122,11 +122,11 @@ class StopJob(tables.Action):
     name = "stop_job"
     verbose_name = _("Stop Job")
 
-    @shield("Unable to stop job", redirect="jobs:index")
+    @shield("Unable to stop job", redirect="freezer-jobs:index")
     def single(self, table, request, job_id):
         freezer_api.Job(request).stop(job_id)
         messages.success(request, _("Job has stopped"))
-        return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+        return shortcuts.redirect('horizon:project:freezer-jobs:index')
 
     def allowed(self, request, job=None):
         if job.event == 'stop':
@@ -135,14 +135,14 @@ class StopJob(tables.Action):
 
 
 def get_link(row):
-    return reverse('horizon:disaster_recovery:jobs:index',
+    return reverse('horizon:project:freezer-jobs:index',
                    kwargs={'job_id': row.job_id})
 
 
 class CreateJob(tables.LinkAction):
     name = "create"
     verbose_name = _("Create Job")
-    url = "horizon:disaster_recovery:jobs:create"
+    url = "horizon:project:freezer-jobs:create"
     classes = ("ajax-modal",)
     icon = "plus"
 
@@ -208,10 +208,10 @@ class DeleteAction(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete action", redirect="jobs:index")
+    @shield("Unable to delete action", redirect="freezer-jobs:index")
     def delete(self, request, obj_id):
         freezer_api.Job(request).delete_action(obj_id)
-        return reverse("horizon:disaster_recovery:jobs:index")
+        return reverse("horizon:project:freezer-jobs:index")
 
 
 class DeleteMultipleActions(DeleteAction):

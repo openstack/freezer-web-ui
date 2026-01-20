@@ -30,7 +30,7 @@ class ActionsConfigurationAction(workflows.Action):
     class Meta(object):
         name = _("Actions")
         slug = "actions"
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "project/freezer-jobs" \
                              "/_actions.html"
 
 
@@ -181,7 +181,7 @@ class InfoConfigurationAction(workflows.Action):
     class Meta(object):
         name = _("Job Info")
         slug = "info"
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "project/freezer-jobs" \
                              "/_info.html"
 
 
@@ -202,7 +202,7 @@ class ConfigureJob(workflows.Workflow):
     finalize_button_name = _("Save")
     success_message = _('Job queued correctly. It will appear soon.')
     failure_message = _('Unable to created job.')
-    success_url = "horizon:disaster_recovery:jobs:index"
+    success_url = "horizon:project:freezer-jobs:index"
     default_steps = (InfoConfiguration,
                      ClientsConfiguration,
                      ActionsConfiguration)
@@ -222,7 +222,7 @@ class ConfigureJob(workflows.Workflow):
                 freezer_api.Job(request).update(context['job_id'], context)
             else:
                 freezer_api.Job(request).create(context)
-            return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+            return shortcuts.redirect('horizon:freezer-project:jobs:index')
         except Exception:
             exceptions.handle(request)
             return False

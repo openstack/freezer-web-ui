@@ -275,7 +275,7 @@ class ActionConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Action")
-        help_text_template = "disaster_recovery/actions" \
+        help_text_template = "project/freezer-actions" \
                              "/_action.html"
 
 
@@ -317,7 +317,7 @@ class SnapshotConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Snapshot")
-        help_text_template = "disaster_recovery/actions" \
+        help_text_template = "project/freezer-actions" \
                              "/_snapshot.html"
 
 
@@ -502,7 +502,7 @@ class AdvancedConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Advanced")
-        help_text_template = "disaster_recovery/actions" \
+        help_text_template = "project/freezer-actions" \
                              "/_advanced.html"
 
 
@@ -554,7 +554,7 @@ class RulesConfigurationAction(workflows.Action):
 
     class Meta(object):
         name = _("Rules")
-        help_text_template = "disaster_recovery/actions" \
+        help_text_template = "project/freezer-actions" \
                              "/_rules.html"
 
 
@@ -571,7 +571,7 @@ class ActionWorkflow(workflows.Workflow):
     finalize_button_name = _("Save")
     success_message = _('Action queued correctly. It will appear soon.')
     failure_message = _('Unable to save action file.')
-    success_url = "horizon:disaster_recovery:actions:index"
+    success_url = "horizon:project:freezer-actions:index"
 
     default_steps = (ActionConfiguration,
                      SnapshotConfiguration,
@@ -586,8 +586,8 @@ class ActionWorkflow(workflows.Workflow):
                 freezer_api.Action(request).update(context,
                                                    context['action_id'])
 
-            return shortcuts.redirect('horizon:disaster_recovery:'
-                                      'actions:index')
+            return shortcuts.redirect('horizon:project:'
+                                      'freezer-actions:index')
         except Exception:
             exceptions.handle(request)
             return False

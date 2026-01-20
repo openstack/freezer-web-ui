@@ -91,7 +91,7 @@ class InfoConfigurationAction(workflows.Action):
     class Meta(object):
         name = _("Job Info")
         slug = "info"
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "project/freezer-jobs" \
                              "/_info.html"
 
 
@@ -111,14 +111,14 @@ class UpdateJob(workflows.Workflow):
     finalize_button_name = _("Save")
     success_message = _('Job updated correctly.')
     failure_message = _('Unable to update job.')
-    success_url = "horizon:disaster_recovery:jobs:index"
+    success_url = "horizon:project:freezer-jobs:index"
     default_steps = (InfoConfiguration,)
 
     def handle(self, request, context):
         try:
             if context['job_id'] != '':
                 freezer_api.Job(request).update(context['job_id'], context)
-            return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+            return shortcuts.redirect('horizon:project:freezer-jobs:index')
         except Exception:
             exceptions.handle(request)
             return False

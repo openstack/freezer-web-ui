@@ -28,20 +28,20 @@ from freezer_ui.utils import shield
 
 class IndexView(tables.DataTableView):
     name = _("Backups")
-    slug = "backups"
+    slug = "freezer-backups"
     table_class = freezer_tables.BackupsTable
-    template_name = "disaster_recovery/backups/index.html"
+    template_name = "project/freezer-backups/index.html"
 
-    @shield('Unable to retrieve backups.', redirect='backups:index')
+    @shield('Unable to retrieve backups.', redirect='freezer-backups:index')
     def get_data(self):
         filters = self.table.get_filter_string() or None
         return freezer_api.Backup(self.request).list(search=filters)
 
 
 class DetailView(generic.TemplateView):
-    template_name = 'disaster_recovery/backups/detail.html'
+    template_name = 'project/freezer-backups/detail.html'
 
-    @shield('Unable to get backup.', redirect='backups:index')
+    @shield('Unable to get backup.', redirect='freezer-backups:index')
     def get_context_data(self, **kwargs):
         backup = freezer_api.Backup(self.request).get(kwargs['backup_id'],
                                                       json=True)
@@ -51,14 +51,14 @@ class DetailView(generic.TemplateView):
 class RestoreView(workflows.WorkflowView):
     workflow_class = restore_workflow.Restore
 
-    @shield('Unable to get backup.', redirect='backups:index')
+    @shield('Unable to get backup.', redirect='freezer-backups:index')
     def get_object(self, *args, **kwargs):
         return freezer_api.Backup(self.request).get(self.kwargs['backup_id'])
 
     def is_update(self):
         return 'name' in self.kwargs and bool(self.kwargs['name'])
 
-    @shield('Unable to get backup.', redirect='backups:index')
+    @shield('Unable to get backup.', redirect='freezer-backups:index')
     def get_workflow_name(self):
         backup = freezer_api.Backup(self.request).get(self.kwargs['backup_id'])
         backup_date_str = datetime.datetime.fromtimestamp(
@@ -69,7 +69,7 @@ class RestoreView(workflows.WorkflowView):
     def get_initial(self):
         return {"backup_id": self.kwargs['backup_id']}
 
-    @shield('Unable to get backup.', redirect='backups:index')
+    @shield('Unable to get backup.', redirect='freezer-backups:index')
     def get_workflow(self, *args, **kwargs):
         workflow = super(RestoreView, self).get_workflow(*args, **kwargs)
         workflow.name = self.get_workflow_name()

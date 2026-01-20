@@ -43,7 +43,7 @@ class DeleteAction(tables.DeleteAction):
         freezer_api.Action(request).delete(action_id)
         # TODO(m3m0): this shouldnt redirect here when an action is deleted
         # from jobs views
-        return shortcuts.redirect('horizon:disaster_recovery:actions:index')
+        return shortcuts.redirect('horizon:project:freezer-actions:index')
 
 
 class DeleteMultipleActions(DeleteAction):
@@ -58,7 +58,7 @@ class Filter(tables.FilterAction):
 class CreateAction(tables.LinkAction):
     name = "create_action"
     verbose_name = _("Create Action")
-    url = "horizon:disaster_recovery:actions:create"
+    url = "horizon:project:freezer-actions:create"
     classes = ("ajax-modal",)
     icon = "plus"
 
@@ -70,12 +70,12 @@ class EditAction(tables.LinkAction):
     icon = "pencil"
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:actions:create",
+        return reverse("horizon:project:freezer-actions:create",
                        kwargs={'action_id': datum.action_id})
 
 
 def get_link(action):
-    return reverse('horizon:disaster_recovery:actions:action',
+    return reverse('horizon:project:freezer-actions:action',
                    kwargs={'action_id': action.id})
 
 

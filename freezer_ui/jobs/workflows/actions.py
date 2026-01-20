@@ -26,7 +26,7 @@ class ActionsConfigurationAction(workflows.Action):
     class Meta(object):
         name = _("Actions")
         slug = "actions"
-        help_text_template = "disaster_recovery/jobs" \
+        help_text_template = "project/freezer-jobs" \
                              "/_actions.html"
 
 
@@ -58,12 +58,12 @@ class Info(workflows.Step):
 
 
 class ConfigureActions(workflows.Workflow):
-    slug = "job"
+    slug = "freezer-job"
     name = _("Actions Configuration")
     finalize_button_name = _("Save")
     success_message = _('Actions saved correctly.')
     failure_message = _('Unable to save actions.')
-    success_url = "horizon:disaster_recovery:jobs:index"
+    success_url = "horizon:project:freezer-jobs:index"
     default_steps = (ActionsConfiguration, Info)
 
     def handle(self, request, context):
@@ -71,7 +71,7 @@ class ConfigureActions(workflows.Workflow):
             if context['job_id'] != '':
                 freezer_api.Job(request).update_actions(context['job_id'],
                                                         context['actions'])
-            return shortcuts.redirect('horizon:disaster_recovery:jobs:index')
+            return shortcuts.redirect('horizon:project:freezer-jobs:index')
         except Exception:
             exceptions.handle(request)
             return False

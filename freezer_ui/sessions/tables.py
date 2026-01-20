@@ -28,14 +28,14 @@ class ObjectFilterAction(tables.FilterAction):
 
 
 def get_link(session):
-    return reverse('horizon:disaster_recovery:sessions:index',
+    return reverse('horizon:project:freezer-sessions:index',
                    kwargs={'session_id': session.session_id})
 
 
 class CreateJob(tables.LinkAction):
     name = "create_session"
     verbose_name = _("Create Session")
-    url = "horizon:disaster_recovery:sessions:create"
+    url = "horizon:project:freezer-sessions:create"
     classes = ("ajax-modal",)
     icon = "plus"
 
@@ -59,7 +59,7 @@ class DeleteSession(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete session", redirect="sessions:index")
+    @shield("Unable to delete session", redirect="freezer-sessions:index")
     def delete(self, request, session_id):
         return freezer_api.Session(request).delete(session_id)
 
@@ -71,7 +71,7 @@ class EditSession(tables.LinkAction):
     icon = "pencil"
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:sessions:edit",
+        return reverse("horizon:project:freezer-sessions:edit",
                        kwargs={'session_id': datum.session_id})
 
 
@@ -99,7 +99,7 @@ class DeleteJobFromSession(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete session", redirect="sessions:index")
+    @shield("Unable to delete session", redirect="freezer-sessions:index")
     def delete(self, request, session):
         job_id, session_id = session.split('===')
         return freezer_api.Session(request).remove_job(session_id, job_id)

@@ -16,12 +16,7 @@ from django.utils.translation import gettext_lazy as _
 
 import horizon
 
-from freezer_ui import dashboard
-
 
 class JobsPanel(horizon.Panel):
     name = _("Jobs")
-    slug = "jobs"
-
-
-dashboard.Freezer.register(JobsPanel)
+    slug = "freezer-jobs"

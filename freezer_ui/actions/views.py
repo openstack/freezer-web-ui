@@ -28,20 +28,20 @@ from freezer_ui.utils import shield
 
 class IndexView(tables.DataTableView):
     name = _("Actions")
-    slug = "actions"
+    slug = "freezer-actions"
     table_class = freezer_tables.ActionsTable
-    template_name = "disaster_recovery/actions/index.html"
+    template_name = "project/freezer-actions/index.html"
 
-    @shield("Unable to get actions", redirect="actions:index")
+    @shield("Unable to get actions", redirect="freezer-actions:index")
     def get_data(self):
         filters = self.table.get_filter_string() or None
         return freezer_api.Action(self.request).list(search=filters)
 
 
 class ActionView(generic.TemplateView):
-    template_name = 'disaster_recovery/actions/detail.html'
+    template_name = 'project/freezer-actions/detail.html'
 
-    @shield('Unable to get action', redirect='actions:index')
+    @shield('Unable to get action', redirect='freezer-actions:index')
     def get_context_data(self, **kwargs):
         action = freezer_api.Action(self.request).get(kwargs['action_id'],
                                                       json=True)
@@ -50,7 +50,7 @@ class ActionView(generic.TemplateView):
 
 class ActionWorkflowView(workflows.WorkflowView):
     workflow_class = action_workflow.ActionWorkflow
-    success_url = reverse_lazy("horizon:disaster_recovery:actions:index")
+    success_url = reverse_lazy("horizon:project:freezer-actions:index")
 
     def is_update(self):
         return 'action_id' in self.kwargs and bool(self.kwargs['action_id'])
