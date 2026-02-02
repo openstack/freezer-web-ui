@@ -22,9 +22,9 @@ import freezer_ui.api.api as freezer_api
 from freezer_ui.utils import shield
 
 
-class ObjectFilterAction(tables.FilterAction):
+class SessionFilterAction(tables.FilterAction):
     def allowed(self, request, datum):
-        return bool(self.table.kwargs['session_id'])
+        return bool(self.table.kwargs.get('session_id'))
 
 
 def get_link(session):
@@ -123,7 +123,7 @@ class JobsTable(tables.DataTable):
     class Meta(object):
         name = "jobs"
         verbose_name = _("Jobs")
-        table_actions = (ObjectFilterAction,)
+        table_actions = (SessionFilterAction,)
         row_actions = (DeleteJobFromSession,)
         footer = False
         multi_select = True
@@ -147,7 +147,7 @@ class SessionsTable(tables.DataTable):
     class Meta(object):
         name = "sessions"
         verbose_name = _("Sessions")
-        table_actions = (ObjectFilterAction,
+        table_actions = (SessionFilterAction,
                          CreateJob,
                          DeleteMultipleActions)
         row_actions = (EditSession,

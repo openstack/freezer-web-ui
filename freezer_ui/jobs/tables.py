@@ -24,9 +24,9 @@ import freezer_ui.api.api as freezer_api
 from freezer_ui.utils import shield
 
 
-class ObjectFilterAction(tables.FilterAction):
+class JobFilterAction(tables.FilterAction):
     def allowed(self, request, datum):
-        return bool(self.table.kwargs['job_id'])
+        return bool(self.table.kwargs.get('job_id'))
 
 
 class AttachJobToSession(tables.LinkAction):
@@ -174,7 +174,7 @@ class JobsTable(tables.DataTable):
     class Meta(object):
         name = "jobs"
         verbose_name = _("Jobs")
-        table_actions = (ObjectFilterAction,
+        table_actions = (JobFilterAction,
                          CreateJob,
                          DeleteMultipleJobs)
         row_actions = (StartJob,
@@ -231,7 +231,7 @@ class ActionsTable(tables.DataTable):
     class Meta(object):
         name = "actions_in_job"
         verbose_name = _("Actions")
-        table_actions = (ObjectFilterAction,
+        table_actions = (JobFilterAction,
                          DeleteMultipleActions)
         row_actions = (DeleteAction,)
         footer = False
