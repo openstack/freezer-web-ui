@@ -1,0 +1,10 @@
+---
+prelude: >
+    Freezer Horizon plugin no longer ships it's own "Disaster Recovery"
+    dashboard and adds "Backup and Recovery" section under the "Project"
+    dashboard instead.
+upgrade:
+  - |
+    Please make sure to update all user documentation to reffer to Freezer
+    sections in Horizon through the "Project" menu rather then standalone
+    top-level "Disaster and Recovery".

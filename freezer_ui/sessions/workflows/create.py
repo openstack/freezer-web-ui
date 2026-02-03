@@ -84,8 +84,8 @@ class SessionConfigurationAction(workflows.Action):
 
     class Meta:
         name = _("Session Information")
-        slug = "sessions"
-        help_text_template = "disaster_recovery/sessions" \
+        slug = "freezer-sessions"
+        help_text_template = "project/freezer-sessions" \
                              "/_info.html"
 
 
@@ -104,7 +104,7 @@ class CreateSession(workflows.Workflow):
     finalize_button_name = _("Save")
     success_message = _('Session queued correctly. It will appear soon.')
     failure_message = _('Unable to create session.')
-    success_url = "horizon:disaster_recovery:sessions:index"
+    success_url = "horizon:project:freezer-sessions:index"
     default_steps = (SessionConfiguration,)
 
     def handle(self, request, context):
@@ -114,7 +114,7 @@ class CreateSession(workflows.Workflow):
                                                     context['session_id'])
             else:
                 freezer_api.Session(request).create(context)
-            return reverse("horizon:disaster_recovery:sessions:index")
+            return reverse("horizon:project:freezer-sessions:index")
         except Exception:
             exceptions.handle(request)
             return False

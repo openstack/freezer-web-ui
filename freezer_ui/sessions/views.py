@@ -25,13 +25,13 @@ from freezer_ui.utils import shield
 
 class SessionsView(browsers.ResourceBrowserView):
     browser_class = project_browsers.SessionBrowser
-    template_name = "disaster_recovery/sessions/browser.html"
+    template_name = "project/freezer-sessions/browser.html"
 
-    @shield('Unable to get sessions list.', redirect='sessions:index')
+    @shield('Unable to get sessions list.', redirect='freezer-sessions:index')
     def get_sessions_data(self):
         return freezer_api.Session(self.request).list(limit=100)
 
-    @shield('Unable to get job list.', redirect='sessions:index')
+    @shield('Unable to get job list.', redirect='freezer-sessions:index')
     def get_jobs_data(self):
         if self.kwargs.get('session_id', None):
             return freezer_api.Session(self.request).jobs(
@@ -42,7 +42,7 @@ class SessionsView(browsers.ResourceBrowserView):
 class AttachToSessionWorkflow(workflows.WorkflowView):
     workflow_class = attach.AttachJobToSession
 
-    @shield('Unable to get job', redirect='jobs:index')
+    @shield('Unable to get job', redirect='freezer-jobs:index')
     def get_object(self, *args, **kwargs):
         return freezer_api.Job(self.request).get(self.kwargs['job_id'])
 
@@ -50,7 +50,7 @@ class AttachToSessionWorkflow(workflows.WorkflowView):
         return 'job_id' in self.kwargs and \
                bool(self.kwargs['job_id'])
 
-    @shield('Unable to get job', redirect='jobs:index')
+    @shield('Unable to get job', redirect='freezer-jobs:index')
     def get_initial(self):
         initial = super(AttachToSessionWorkflow, self).get_initial()
         job = self.get_object()
@@ -61,11 +61,11 @@ class AttachToSessionWorkflow(workflows.WorkflowView):
 class CreateSessionWorkflow(workflows.WorkflowView):
     workflow_class = create.CreateSession
 
-    @shield('Unable to get session', redirect='sessions:index')
+    @shield('Unable to get session', redirect='freezer-sessions:index')
     def get_object(self, *args, **kwargs):
         return freezer_api.Session(self.request).get(self.kwargs['session_id'])
 
-    @shield('Unable to get session', redirect='sessions:index')
+    @shield('Unable to get session', redirect='freezer-sessions:index')
     def get_initial(self):
         initial = super(CreateSessionWorkflow, self).get_initial()
         if self.is_update():

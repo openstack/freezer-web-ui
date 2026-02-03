@@ -10,7 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-# Some helper functions to use the disaster_recovery client functionality
+# Some helper functions to use the freezer client functionality
 # from horizon.
 
 from oslo_log import log

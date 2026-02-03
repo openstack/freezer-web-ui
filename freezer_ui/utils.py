@@ -189,7 +189,7 @@ def shield(message, redirect=''):
 
     :param message: a str error message
     :param redirect: a str with the redirect namespace without including
-                     horizon:disaster_recovery:
+                     horizon:project:
                      eg. @shield('error', redirect='jobs:index')
     """
     def wrap(function):
@@ -201,7 +201,7 @@ def shield(message, redirect=''):
                 return function(view, *args, **kwargs)
             except Exception as error:
                 LOG.exception(error)
-                namespace = "horizon:disaster_recovery:"
+                namespace = "horizon:project:"
                 r = reverse("{0}{1}".format(namespace, redirect))
 
                 if view.request.path == r:

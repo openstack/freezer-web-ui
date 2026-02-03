@@ -12,4 +12,4 @@
 
 import pbr.version
 
-version_info = pbr.version.VersionInfo('disaster_recovery')
+version_info = pbr.version.VersionInfo('freezer_ui')

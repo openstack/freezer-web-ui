@@ -25,20 +25,20 @@ from freezer_ui.utils import shield
 
 class IndexView(tables.DataTableView):
     name = _("Clients")
-    slug = "clients"
+    slug = "freezer-clients"
     table_class = freezer_tables.ClientsTable
-    template_name = "disaster_recovery/clients/index.html"
+    template_name = "project/freezer-clients/index.html"
 
-    @shield('Unable to get clients', redirect='clients:index')
+    @shield('Unable to get clients', redirect='freezer-clients:index')
     def get_data(self):
         filters = self.table.get_filter_string() or None
         return freezer_api.Client(self.request).list(search=filters)
 
 
 class ClientView(generic.TemplateView):
-    template_name = 'disaster_recovery/clients/detail.html'
+    template_name = 'project/freezer-clients/detail.html'
 
-    @shield('Unable to get client', redirect='clients:index')
+    @shield('Unable to get client', redirect='freezer-clients:index')
     def get_context_data(self, **kwargs):
         client = freezer_api.Client(self.request).get(kwargs['client_id'],
                                                       json=True)

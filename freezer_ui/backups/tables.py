@@ -32,7 +32,7 @@ class Restore(tables.LinkAction):
     ajax = True
 
     def get_link_url(self, datum=None):
-        return reverse("horizon:disaster_recovery:backups:restore",
+        return reverse("horizon:project:freezer-backups:restore",
                        kwargs={'backup_id': datum.id})
 
 
@@ -55,7 +55,7 @@ class DeleteBackup(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete backup", redirect="backups:index")
+    @shield("Unable to delete backup", redirect="freezer-backups:index")
     def delete(self, request, backup_id):
         return freezer_api.Backup(request).delete(backup_id)
 
@@ -113,7 +113,7 @@ def icons(backup):
 
 
 def backup_detail_view(backup):
-    return reverse("horizon:disaster_recovery:backups:detail",
+    return reverse("horizon:project:freezer-backups:detail",
                    kwargs={'backup_id': backup.id})
 
 

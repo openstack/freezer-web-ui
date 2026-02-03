@@ -25,13 +25,14 @@ from freezer_ui.utils import shield
 
 class JobsView(browsers.ResourceBrowserView):
     browser_class = project_browsers.ContainerBrowser
-    template_name = "disaster_recovery/jobs/browser.html"
+    template_name = "project/freezer-jobs/browser.html"
 
-    @shield("Unable to get job", redirect='jobs:index')
+    @shield("Unable to get job", redirect='freezer-jobs:index')
     def get_jobs_data(self):
         return freezer_api.Job(self.request).list(limit=100)
 
-    @shield("Unable to get actions for this job.", redirect='jobs:index')
+    @shield("Unable to get actions for this job.",
+            redirect='freezer-jobs:index')
     def get_actions_in_job_data(self):
         if self.kwargs.get('job_id', None):
             return freezer_api.Job(self.request).actions(self.kwargs['job_id'])
@@ -41,14 +42,14 @@ class JobsView(browsers.ResourceBrowserView):
 class JobWorkflowView(workflows.WorkflowView):
     workflow_class = configure_workflow.ConfigureJob
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_object(self):
         return freezer_api.Job(self.request).get(self.kwargs['job_id'])
 
     def is_update(self):
         return 'job_id' in self.kwargs and bool(self.kwargs['job_id'])
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_initial(self):
         initial = super(JobWorkflowView, self).get_initial()
         if self.is_update():
@@ -64,14 +65,14 @@ class JobWorkflowView(workflows.WorkflowView):
 class EditJobWorkflowView(workflows.WorkflowView):
     workflow_class = update_job_workflow.UpdateJob
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_object(self):
         return freezer_api.Job(self.request).get(self.kwargs['job_id'])
 
     def is_update(self):
         return 'job_id' in self.kwargs and bool(self.kwargs['job_id'])
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_initial(self):
         initial = super(EditJobWorkflowView, self).get_initial()
         if self.is_update():
@@ -87,14 +88,14 @@ class EditJobWorkflowView(workflows.WorkflowView):
 class ActionsInJobView(workflows.WorkflowView):
     workflow_class = update_workflow.UpdateActions
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_object(self):
         return freezer_api.Job(self.request).get(self.kwargs['job_id'])
 
     def is_update(self):
         return 'job_id' in self.kwargs and bool(self.kwargs['job_id'])
 
-    @shield("Unable to get job", redirect="jobs:index")
+    @shield("Unable to get job", redirect="freezer-jobs:index")
     def get_initial(self):
         initial = super(ActionsInJobView, self).get_initial()
         if self.is_update():

@@ -44,7 +44,7 @@ class DeleteClient(tables.DeleteAction):
             count
         )
 
-    @shield("Unable to delete client", redirect="clients:index")
+    @shield("Unable to delete client", redirect="freezer-clients:index")
     def delete(self, request, client_id):
         return freezer_api.Client(request).delete(client_id)
 
@@ -54,7 +54,7 @@ class DeleteMultipleClients(DeleteClient):
 
 
 def get_link(client):
-    return reverse('horizon:disaster_recovery:clients:client',
+    return reverse('horizon:project:freezer-clients:client',
                    kwargs={'client_id': client.id})
 
 
