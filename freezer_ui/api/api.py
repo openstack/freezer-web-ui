@@ -309,7 +309,7 @@ class Session(object):
                                               session_id,
                                               v['client_id'],
                                               v['result'])
-                    for k, v in session['jobs'].iteritems()]
+                    for k, v in session['jobs'].items()]
         except AttributeError as error:
             LOG.exception(error)
         return jobs
