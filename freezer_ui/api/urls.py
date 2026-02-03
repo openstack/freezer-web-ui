@@ -12,11 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import include
-from django.urls import re_path
-import freezer_ui.api.rest.urls as rest_urls
+"""
+URL patterns for the OpenStack Dashboard.
+"""
 
+from django.urls import re_path
+
+from freezer_ui.api.rest import rest_api
 
 urlpatterns = [
-    re_path(r'', include(rest_urls)),
+    re_path(r'^clients/$', rest_api.Clients.as_view(),
+            name="api_clients"),
+    re_path(r'^actions/$', rest_api.ActionList.as_view(),
+            name="api_actions"),
+    re_path(r'^actions/job/(?P<job_id>[^/]+)?$',
+            rest_api.Actions.as_view(), name="api_actions_in_job"),
 ]

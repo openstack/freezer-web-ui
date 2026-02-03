@@ -1,4 +1,4 @@
-# (c) Copyright 2014,2015 Hewlett-Packard Development Company, L.P.
+# Copyright 2026 Cleura AB
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,19 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-URL patterns for the OpenStack Dashboard.
-"""
+import horizon
 
-from django.urls import re_path
 
-from freezer_ui.api.rest import rest_api
+class FreezerApi(horizon.Panel):
+    name = "Freezer API"
+    slug = "freezer-api"
 
-urlpatterns = [
-    re_path(r'^api/clients/$', rest_api.Clients.as_view(),
-            name="api_clients"),
-    re_path(r'^api/actions/$', rest_api.ActionList.as_view(),
-            name="api_actions"),
-    re_path(r'^api/actions/job/(?P<job_id>[^/]+)?$',
-            rest_api.Actions.as_view(), name="api_actions_in_job"),
-]
+    def nav(self, context):
+        return False
