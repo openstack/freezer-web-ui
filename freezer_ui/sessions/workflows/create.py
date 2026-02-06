@@ -36,7 +36,13 @@ class SessionConfigurationAction(workflows.Action):
 
     schedule_start_date = forms.CharField(
         label=_("Start Date and Time"),
-        required=False)
+        required=False,
+        help_text=_(
+            "Optional. Start time for the session in ISO format: "
+            "YYYY-MM-DDTHH:MM:SS (for example: 2026-02-06T14:30:00). "
+            "If not provided, the session will start immediately."
+        )
+    )
 
     schedule_interval = forms.CharField(
         label=_("Interval"),
@@ -53,7 +59,14 @@ class SessionConfigurationAction(workflows.Action):
 
     schedule_end_date = forms.CharField(
         label=_("End Date and Time"),
-        required=False)
+        required=False,
+        help_text=_(
+            "Optional. End time for the session in ISO format: "
+            "YYYY-MM-DDTHH:MM:SS (for example: 2026-02-06T18:00:00). "
+            "If not provided, the session will run indefinitely "
+            "or until manually stopped."
+        )
+    )
 
     def clean(self):
         cleaned_data = super(SessionConfigurationAction, self).clean()
