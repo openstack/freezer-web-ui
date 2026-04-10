@@ -39,7 +39,9 @@ class ActionConfigurationAction(workflows.Action):
         required=False)
 
     storage = forms.ChoiceField(
-        help_text=_("Set storage backend for a backup."))
+        help_text=_("Set storage backend for a backup. "
+                    "(Not required for Cinder Native mode)."),
+        required=False)
 
     engine_name = forms.ChoiceField(
         help_text=_("Engine to be used for backup/restore. "
@@ -51,7 +53,9 @@ class ActionConfigurationAction(workflows.Action):
                     "more space and bandwidth. Rsync is slower, but uses "
                     "less space and bandwidth. Nova engine can be used to "
                     "backup/restore running instances. Backing up instances "
-                    "and it's metadata."))
+                    "and it's metadata. "
+                    "(Not required for Cinder Native mode)."),
+        required=False)
 
     mysql_conf = forms.CharField(
         label=_("MySQL Configuration File"),
@@ -106,6 +110,21 @@ class ActionConfigurationAction(workflows.Action):
     cinder_vol_id = forms.CharField(
         label=_("Cinder Volume ID"),
         help_text=_("ID of Cinder Volume for backup."),
+        required=False)
+
+    cindernative_vol_id = forms.CharField(
+        label=_("Cinder Native Volume ID"),
+        help_text=_("ID of Cinder Volume for native backup."),
+        required=False)
+
+    fullbackup_rotation = forms.IntegerField(
+        label=_("Full Backup Rotation"),
+        help_text=_("Number of full backups to keep for Cinder Native."),
+        required=False)
+
+    glance_image_id = forms.CharField(
+        label=_("Glance Image ID"),
+        help_text=_("ID of Glance Image for backup or restore."),
         required=False)
 
     nova_inst_id = forms.CharField(
@@ -173,6 +192,18 @@ class ActionConfigurationAction(workflows.Action):
                 self._check_cinder_vol_id(cleaned_data)
                 return cleaned_data
 
+            if cleaned_data.get('mode') == 'cindernative':
+                self._check_backup_name(cleaned_data)
+                self._check_cindernative_vol_id(cleaned_data)
+                return cleaned_data
+
+            if cleaned_data.get('mode') == 'glance':
+                if cleaned_data.get('storage') != 'swift':
+                    self._check_container(cleaned_data)
+                self._check_backup_name(cleaned_data)
+                self._check_glance_image_id(cleaned_data)
+                return cleaned_data
+
             if cleaned_data.get('mode') == 'nova':
                 if cleaned_data.get('storage') != 'swift':
                     self._check_container(cleaned_data)
@@ -194,6 +225,11 @@ class ActionConfigurationAction(workflows.Action):
             self._check_backup_name(cleaned_data)
             self._check_nova_inst_id(cleaned_data)
             self._check_nova_restore_network(cleaned_data)
+        elif cleaned_data.get('action') == 'restore' \
+                and cleaned_data.get('mode') == 'glance':
+            self._check_container(cleaned_data)
+            self._check_backup_name(cleaned_data)
+            self._check_glance_image_id(cleaned_data)
 
         return cleaned_data
 
@@ -207,10 +243,20 @@ class ActionConfigurationAction(workflows.Action):
             msg = _("You must define Nova Instance ID to restore or backup.")
             self._errors['nova_inst_id'] = self.error_class([msg])
 
+    def _check_glance_image_id(self, cleaned_data):
+        if not cleaned_data.get('glance_image_id'):
+            msg = _("You must define Glance Image ID to backup/restore.")
+            self._errors['glance_image_id'] = self.error_class([msg])
+
     def _check_cinder_vol_id(self, cleaned_data):
         if not cleaned_data.get('cinder_vol_id'):
             msg = _("You must define Cinder Volume ID to backup.")
             self._errors['cinder_vol_id'] = self.error_class([msg])
+
+    def _check_cindernative_vol_id(self, cleaned_data):
+        if not cleaned_data.get('cindernative_vol_id'):
+            msg = _("You must define Cinder Native Volume ID to backup/admin.")
+            self._errors['cindernative_vol_id'] = self.error_class([msg])
 
     def _check_restore_abs_path(self, cleaned_data):
         if not cleaned_data.get('restore_abs_path'):
@@ -239,7 +285,9 @@ class ActionConfigurationAction(workflows.Action):
             ('mysql', _("MySQL")),
             ('mssql', _("Microsoft SQL Server")),
             ('cinder', _("Cinder")),
+            ('cindernative', _("Cinder Native")),
             ('nova', _("Nova")),
+            ('glance', _("Glance")),
         ]
 
     def populate_action_choices(self, request, context):
@@ -263,6 +311,7 @@ class ActionConfigurationAction(workflows.Action):
             ('rsyncv2', _("rsyncv2")),
             ('nova', _("nova")),
             ('osbrick', _("osbrick")),
+            ('glance', _("glance")),
         ]
 
     def __init__(self, request, context, *args, **kwargs):
@@ -293,7 +342,10 @@ class ActionConfiguration(workflows.Step):
                    'restore_from_host',
                    'restore_from_date',
                    'cinder_vol_id',
+                   'cindernative_vol_id',
+                   'fullbackup_rotation',
                    'nova_inst_id',
+                   'glance_image_id',
                    'nova_restore_network',
                    'get_object',
                    'dst_file',
