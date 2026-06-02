@@ -44,18 +44,17 @@ class SessionConfigurationAction(workflows.Action):
         )
     )
 
-    schedule_interval = forms.CharField(
-        label=_("Interval"),
-        required=False,
-        help_text=_("""Set the interval in the following format:
-                       continuous,
-                       N weeks,
-                       N days,
-                       N hours,
-                       N minutes,
-                       N seconds,
-                       If no start date is provided the job
-                       will start immediately"""))
+    interval_unit = forms.ChoiceField(
+        label=_("Interval Unit"),
+        help_text=_("Set the unit for the Interval"),
+        required=False)
+
+    interval_value = forms.IntegerField(
+        label=_("Interval Value"),
+        initial=1,
+        min_value=1,
+        help_text=_("Set the interval value"),
+        required=False)
 
     schedule_end_date = forms.CharField(
         label=_("End Date and Time"),
@@ -67,6 +66,12 @@ class SessionConfigurationAction(workflows.Action):
             "or until manually stopped."
         )
     )
+
+    def __init__(self, request, context, *args, **kwargs):
+        self.request = request
+        self.context = context
+        super(SessionConfigurationAction, self).__init__(
+            request, context, *args, **kwargs)
 
     def clean(self):
         cleaned_data = super(SessionConfigurationAction, self).clean()
@@ -81,25 +86,47 @@ class SessionConfigurationAction(workflows.Action):
         except ValueError:
             return False
 
+    def populate_interval_unit_choices(self, request, context):
+        return [
+            ('', _("Please choose a interval unit")),
+            ('continuous', _("Continuous")),
+            ('weeks', _("Weeks")),
+            ('days', _("Days")),
+            ('hours', _("Hours")),
+            ('minutes', _("Minutes")),
+            ('seconds', _("Seconds")),
+        ]
+
     def _check_start_datetime(self, cleaned_data):
-        if cleaned_data.get('start_datetime') and not \
+        if cleaned_data.get('schedule_start_date') and not \
                 self._validate_iso_format(
                     cleaned_data.get('schedule_start_date')):
             msg = _("Start date time is not in ISO format.")
             self._errors['schedule_start_date'] = self.error_class([msg])
 
+        if (cleaned_data.get('schedule_start_date') and
+                cleaned_data.get('schedule_end_date')) and \
+                not cleaned_data.get('interval_unit'):
+            msg = _("Please provide this value.")
+            self._errors['interval_unit'] = self.error_class([msg])
+
+        if (cleaned_data.get('schedule_end_date') and
+                not cleaned_data.get('schedule_start_date')) and \
+                not cleaned_data.get('interval_unit'):
+            msg = _("Please provide this value.")
+            self._errors['schedule_start_date'] = self.error_class([msg])
+
     def _check_end_datetime(self, cleaned_data):
-        if cleaned_data.get('end_datetime') and not \
+        if cleaned_data.get('schedule_end_date') and not \
                 self._validate_iso_format(
                     cleaned_data.get('schedule_end_date')):
             msg = _("End date time is not in ISO format.")
             self._errors['schedule_end_date'] = self.error_class([msg])
 
-    class Meta:
+    class Meta(object):
         name = _("Session Information")
         slug = "freezer-sessions"
-        help_text_template = "project/freezer-sessions" \
-                             "/_info.html"
+        help_text_template = "project/freezer-sessions/_info.html"
 
 
 class SessionConfiguration(workflows.Step):
@@ -107,7 +134,8 @@ class SessionConfiguration(workflows.Step):
     contributes = ('description',
                    'session_id',
                    'schedule_start_date',
-                   'schedule_interval',
+                   'interval_unit',
+                   'interval_value',
                    'schedule_end_date')
 
 
@@ -122,11 +150,21 @@ class CreateSession(workflows.Workflow):
 
     def handle(self, request, context):
         try:
+            interval_unit = context['interval_unit']
+            if not interval_unit or interval_unit == 'continuous':
+                context['schedule_interval'] = interval_unit
+            else:
+                interval_value = context['interval_value']
+                schedule_interval = "{0} {1}".format(interval_value,
+                                                     interval_unit)
+                context['schedule_interval'] = schedule_interval
+
             if context['session_id'] != '':
                 freezer_api.Session(request).update(context,
                                                     context['session_id'])
             else:
                 freezer_api.Session(request).create(context)
+
             return reverse("horizon:project:freezer-sessions:index")
         except Exception:
             exceptions.handle(request)
