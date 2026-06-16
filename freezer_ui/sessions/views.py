@@ -12,31 +12,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from horizon import browsers
+import pprint
+
+from django.views import generic
+from horizon import tables
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
-import freezer_ui.sessions.browsers as project_browsers
+from freezer_ui.sessions import tables as freezer_tables
 
 from freezer_ui.sessions.workflows import attach
 from freezer_ui.sessions.workflows import create
 from freezer_ui.utils import shield
 
 
-class SessionsView(browsers.ResourceBrowserView):
-    browser_class = project_browsers.SessionBrowser
-    template_name = "project/freezer-sessions/browser.html"
+class SessionsView(tables.DataTableView):
+    table_class = freezer_tables.SessionsTable
+    template_name = "project/freezer-sessions/index.html"
 
     @shield('Unable to get sessions list.', redirect='freezer-sessions:index')
-    def get_sessions_data(self):
+    def get_data(self):
         return freezer_api.Session(self.request).list(limit=100)
 
-    @shield('Unable to get job list.', redirect='freezer-sessions:index')
-    def get_jobs_data(self):
-        if self.kwargs.get('session_id', None):
-            return freezer_api.Session(self.request).jobs(
-                self.kwargs['session_id'])
-        return []
+
+class DetailView(generic.TemplateView):
+    template_name = 'project/freezer-sessions/detail.html'
+
+    @shield('Unable to get session.', redirect='freezer-sessions:index')
+    def get_context_data(self, **kwargs):
+        session = freezer_api.Session(self.request).get(kwargs['session_id'],
+                                                        json=True)
+        return {'data': pprint.pformat(session)}
 
 
 class AttachToSessionWorkflow(workflows.WorkflowView):

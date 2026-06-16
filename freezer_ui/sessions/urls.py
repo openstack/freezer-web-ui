@@ -17,9 +17,9 @@ from django.urls import re_path
 from freezer_ui.sessions import views
 
 urlpatterns = [
-    re_path(r'^(?P<session_id>[^/]+)?$',
-            views.SessionsView.as_view(),
-            name='index'),
+    re_path(r'^$', views.SessionsView.as_view(), name='index'),
+    re_path(r'^(?P<session_id>[^/]+)$', views.DetailView.as_view(),
+            name='detail'),
 
     re_path(r'^attach_to_session/(?P<job_id>[^/]+)?$',
             views.AttachToSessionWorkflow.as_view(),

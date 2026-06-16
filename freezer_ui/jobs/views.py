@@ -10,33 +10,39 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-from horizon import browsers
+import pprint
+
+from django.views import generic
+from horizon import tables
 from horizon import workflows
 
+from freezer_ui.jobs import tables as freezer_tables
 from freezer_ui.jobs.workflows import create as configure_workflow
 from freezer_ui.jobs.workflows import update_job as update_job_workflow
 from freezer_ui.jobs.workflows import update_actions as update_workflow
 
 import freezer_ui.api.api as freezer_api
-import freezer_ui.jobs.browsers as project_browsers
 
 from freezer_ui.utils import shield
 
 
-class JobsView(browsers.ResourceBrowserView):
-    browser_class = project_browsers.ContainerBrowser
-    template_name = "project/freezer-jobs/browser.html"
+class JobsView(tables.DataTableView):
+    table_class = freezer_tables.JobsTable
+    template_name = "project/freezer-jobs/index.html"
 
     @shield("Unable to get job", redirect='freezer-jobs:index')
-    def get_jobs_data(self):
+    def get_data(self):
         return freezer_api.Job(self.request).list(limit=100)
 
-    @shield("Unable to get actions for this job.",
-            redirect='freezer-jobs:index')
-    def get_actions_in_job_data(self):
-        if self.kwargs.get('job_id', None):
-            return freezer_api.Job(self.request).actions(self.kwargs['job_id'])
-        return []
+
+class DetailView(generic.TemplateView):
+    template_name = 'project/freezer-jobs/detail.html'
+
+    @shield('Unable to get job.', redirect='freezer-jobs:index')
+    def get_context_data(self, **kwargs):
+        job = freezer_api.Job(self.request).get(kwargs['job_id'],
+                                                json=True)
+        return {'data': pprint.pformat(job)}
 
 
 class JobWorkflowView(workflows.WorkflowView):
