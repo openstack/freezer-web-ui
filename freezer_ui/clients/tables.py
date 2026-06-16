@@ -48,6 +48,15 @@ class DeleteClient(tables.DeleteAction):
     def delete(self, request, client_id):
         return freezer_api.Client(request).delete(client_id)
 
+    def allowed(self, request, datum):
+        if datum:
+            if getattr(datum, 'is_central', False):
+                return False
+            if (getattr(datum, 'project_id', None) and
+                    datum.project_id != request.user.project_id):
+                return False
+        return True
+
 
 class DeleteMultipleClients(DeleteClient):
     name = "delete_multiple_clients"

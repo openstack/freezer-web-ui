@@ -452,14 +452,18 @@ class Client(object):
         return [utils.ClientObject(
             c.get('client', {}).get('hostname'),
             c.get('client', {}).get('client_id'),
-            c.get('client', {}).get('uuid')
+            c.get('client', {}).get('uuid') or c.get('uuid'),
+            is_central=c.get('client', {}).get('is_central', False),
+            project_id=c.get('project_id')
         ) for c in clients]
 
     def to_object(self, c):
         return utils.ClientObject(
             c.get('client', {}).get('hostname'),
             c.get('client', {}).get('client_id'),
-            c.get('uuid'))
+            c.get('uuid') or c.get('client', {}).get('uuid'),
+            is_central=c.get('client', {}).get('is_central', False),
+            project_id=c.get('project_id'))
 
     def get(self, client_id, json=False):
         c = self.client.clients.get(client_id)

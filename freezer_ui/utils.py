@@ -177,11 +177,14 @@ class BackupObject(object):
 
 
 class ClientObject(object):
-    def __init__(self, hostname, client_id, client_uuid):
+    def __init__(self, hostname, client_id, client_uuid, is_central=False,
+                 project_id=None):
         self.hostname = hostname
         self.client_id = client_id
         self.uuid = client_uuid
         self.id = client_id
+        self.is_central = is_central
+        self.project_id = project_id
 
 
 def shield(message, redirect=''):
