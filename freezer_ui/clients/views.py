@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
@@ -38,10 +39,16 @@ class ClientView(generic.TemplateView):
 
     @shield('Unable to get client', redirect='freezer-clients:index')
     def get_context_data(self, **kwargs):
-        client = freezer_api.Client(self.request).get(kwargs['client_id'],
-                                                      json=True)
+        client_api = freezer_api.Client(self.request)
+        client = client_api.get(kwargs['client_id'], json=True)
+        client_info = client.get('client', {})
+        client_obj = client_api.to_object(client)
+        table = freezer_tables.ClientsTable(self.request)
+        actions = table.render_row_actions(client_obj)
         return {
             'client': client,
-            'page_title': (client.get('client', {}).get('hostname') or
-                           client.get('client', {}).get('client_id'))
+            'page_title': (client_info.get('hostname') or
+                           client_info.get('client_id')),
+            'actions': actions,
+            'url': reverse('horizon:project:freezer-clients:index')
         }

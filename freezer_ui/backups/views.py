@@ -12,6 +12,7 @@
 
 import datetime
 
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
@@ -32,7 +33,7 @@ class IndexView(tables.DataTableView):
     table_class = freezer_tables.BackupsTable
     template_name = "project/freezer-backups/index.html"
 
-    @shield('Unable to retrieve backups.', redirect='freezer-backups:index')
+    @shield('Unable to get backups.', redirect='freezer-backups:index')
     def get_data(self):
         filters = self.table.get_filter_string() or None
         return freezer_api.Backup(self.request).list(search=filters)
@@ -43,8 +44,8 @@ class DetailView(generic.TemplateView):
 
     @shield('Unable to get backup.', redirect='freezer-backups:index')
     def get_context_data(self, **kwargs):
-        backup = freezer_api.Backup(self.request).get(kwargs['backup_id'],
-                                                      json=True)
+        backup_api = freezer_api.Backup(self.request)
+        backup = backup_api.get(kwargs['backup_id'], json=True)
         metadata = backup.get('backup_metadata', {})
         if 'time_stamp' in metadata and metadata['time_stamp']:
             try:
@@ -52,10 +53,15 @@ class DetailView(generic.TemplateView):
                     timestamp_to_string(metadata['time_stamp']))
             except Exception:
                 metadata['time_stamp_formatted'] = metadata['time_stamp']
+        backup_obj = backup_api.to_object(backup)
+        table = freezer_tables.BackupsTable(self.request)
+        actions = table.render_row_actions(backup_obj)
         return {
             'backup': backup,
             'page_title': (metadata.get('backup_name') or
-                           backup.get('backup_id'))
+                           backup.get('backup_id')),
+            'actions': actions,
+            'url': reverse('horizon:project:freezer-backups:index')
         }
 
 

@@ -124,3 +124,109 @@ class FreezerTestCase(test.TestCase):
         self.assertTemplateUsed(res, 'project/freezer-clients/detail.html')
         self.assertContains(res, 'test-client-hostname')
         mock_client_inst.get.assert_called_once_with('client-123', json=True)
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_job_to_object(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        job_data = {
+            'job_id': 'job-123',
+            'description': 'test-job-desc',
+            'job_schedule': {'result': 'success', 'event': 'stop'},
+            'client_id': 'client-1'
+        }
+        api_job = freezer_api.Job(None)
+        obj = api_job.to_object(job_data)
+        self.assertEqual(obj.job_id, 'job-123')
+        self.assertEqual(obj.description, 'test-job-desc')
+        self.assertEqual(obj.client_id, 'client-1')
+        self.assertEqual(obj.result, 'success')
+        self.assertEqual(obj.event, 'stop')
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_session_to_object(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        session_data = {
+            'session_id': 'session-123',
+            'description': 'test-session-desc',
+            'status': 'active',
+            'jobs': [],
+            'schedule': {
+                'schedule_start_date': '2026-06-16',
+                'schedule_interval': 'daily',
+                'schedule_end_date': '2026-06-17'
+            }
+        }
+        api_session = freezer_api.Session(None)
+        obj = api_session.to_object(session_data)
+        self.assertEqual(obj.session_id, 'session-123')
+        self.assertEqual(obj.description, 'test-session-desc')
+        self.assertEqual(obj.status, 'active')
+        self.assertEqual(obj.schedule_start_date, '2026-06-16')
+        self.assertEqual(obj.schedule_interval, 'daily')
+        self.assertEqual(obj.schedule_end_date, '2026-06-17')
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_action_to_object(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        action_data = {
+            'action_id': 'action-123',
+            'freezer_action': {
+                'action': 'backup',
+                'backup_name': 'test-backup-name',
+                'path_to_backup': '/tmp/backup',
+                'storage': 'swift',
+                'mode': 'fs',
+                'container': 'test-container'
+            },
+            'mandatory': True,
+            'max_retries': 3,
+            'max_retries_interval': 60
+        }
+        api_action = freezer_api.Action(None)
+        obj = api_action.to_object(action_data)
+        self.assertEqual(obj.action_id, 'action-123')
+        self.assertEqual(obj.action, 'backup')
+        self.assertEqual(obj.backup_name, 'test-backup-name')
+        self.assertEqual(obj.path_to_backup, '/tmp/backup')
+        self.assertEqual(obj.storage, 'swift')
+        self.assertEqual(obj.mode, 'fs')
+        self.assertEqual(obj.container, 'test-container')
+        self.assertEqual(obj.mandatory, True)
+        self.assertEqual(obj.max_retries, 3)
+        self.assertEqual(obj.max_retries_interval, 60)
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_client_to_object(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        client_data = {
+            'client': {
+                'client_id': 'client-123',
+                'hostname': 'test-client-hostname',
+            },
+            'uuid': 'uuid-123'
+        }
+        api_client = freezer_api.Client(None)
+        obj = api_client.to_object(client_data)
+        self.assertEqual(obj.client_id, 'client-123')
+        self.assertEqual(obj.hostname, 'test-client-hostname')
+        self.assertEqual(obj.uuid, 'uuid-123')
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_backup_to_object(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        backup_data = {
+            'backup_id': 'backup-123',
+            'backup_metadata': {
+                'backup_name': 'test-backup-name',
+                'action': 'backup',
+                'storage': 'swift',
+                'time_stamp': 1234567890
+            }
+        }
+        api_backup = freezer_api.Backup(None)
+        obj = api_backup.to_object(backup_data)
+        self.assertEqual(obj.backup_id, 'backup-123')
+        self.assertEqual(obj.backup_name, 'test-backup-name')
+        self.assertEqual(obj.action, 'backup')
+        self.assertEqual(obj.storage, 'swift')
+        self.assertEqual(obj.time_stamp, 1234567890)

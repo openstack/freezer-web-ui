@@ -11,9 +11,9 @@
 #  under the License.
 
 from django.urls import reverse_lazy
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
-
 from horizon import tables
 from horizon import workflows
 
@@ -41,11 +41,16 @@ class ActionView(generic.TemplateView):
 
     @shield('Unable to get action', redirect='freezer-actions:index')
     def get_context_data(self, **kwargs):
-        action = freezer_api.Action(self.request).get(kwargs['action_id'],
-                                                      json=True)
+        action_api = freezer_api.Action(self.request)
+        action = action_api.get(kwargs['action_id'], json=True)
+        action_obj = action_api.to_object(action)
+        table = freezer_tables.ActionsTable(self.request)
+        actions = table.render_row_actions(action_obj)
         return {
             'action': action,
-            'page_title': action.get('action_id')
+            'page_title': action.get('action_id'),
+            'actions': actions,
+            'url': reverse('horizon:project:freezer-actions:index')
         }
 
 
