@@ -1,16 +1,116 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block title %}{% trans "Sessions" %}{% endblock %}
+{% block title %}{% trans "Session Detail" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Sessions") %}
+  <div class="page-header detail-header">
+    <div class="row">
+      <div class="detail-title col-xs-12 col-sm-9">
+        <span class="h1 word-wrap">{{ session.session_tag|default:session.session_id }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock page_header %}
 
 {% block main %}
-  <div class="row">
-    <div class="col-sm-12">
-        <pre>{{ data }}</pre>
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{% trans "Overview" %}</a>
+      </li>
+      <li role="presentation">
+        <a href="#associated_jobs" aria-controls="associated_jobs" role="tab" data-toggle="tab">{% trans "Associated Jobs" %}</a>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Overview Tab -->
+      <div role="tabpanel" class="tab-pane active" id="overview">
+        <div class="detail">
+          <dl class="dl-horizontal">
+            <dt>{% trans "Session Tag" %}</dt>
+            <dd>{{ session.session_tag }}</dd>
+            <dt>{% trans "Session ID" %}</dt>
+            <dd>{{ session.session_id }}</dd>
+            <dt>{% trans "Description" %}</dt>
+            <dd>{{ session.description|default:_("No description provided") }}</dd>
+            <dt>{% trans "Status" %}</dt>
+            <dd>
+              {% if session.status == "completed" %}
+                <span class="label label-success">{% trans "Completed" %}</span>
+              {% elif session.status == "running" %}
+                <span class="label label-info">{% trans "Running" %}</span>
+              {% elif session.status == "scheduled" %}
+                <span class="label label-primary">{% trans "Scheduled" %}</span>
+              {% else %}
+                {{ session.status|default:_("N/A") }}
+              {% endif %}
+            </dd>
+            <dt>{% trans "Time Started" %}</dt>
+            <dd>{{ session.time_started_formatted|default:_("N/A") }}</dd>
+            <dt>{% trans "Time Ended" %}</dt>
+            <dd>{{ session.time_ended_formatted|default:_("N/A") }}</dd>
+            <dt>{% trans "User ID" %}</dt>
+            <dd>{{ session.user_id }}</dd>
+            <dt>{% trans "Project ID" %}</dt>
+            <dd>{{ session.project_id|default:_("N/A") }}</dd>
+          </dl>
+
+          <h4>{% trans "Session Schedule" %}</h4>
+          <hr class="header_rule">
+          <dl class="dl-horizontal">
+            <dt>{% trans "Start Date" %}</dt>
+            <dd>{{ session.schedule.schedule_start_date|default:_("N/A") }}</dd>
+            <dt>{% trans "Interval" %}</dt>
+            <dd>{{ session.schedule.schedule_interval|default:_("N/A") }}</dd>
+            <dt>{% trans "End Date" %}</dt>
+            <dd>{{ session.schedule.schedule_end_date|default:_("N/A") }}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Associated Jobs Tab -->
+      <div role="tabpanel" class="tab-pane" id="associated_jobs">
+        <div class="detail">
+          {% if session.jobs %}
+            <table class="table table-striped table-bordered table-hover" style="margin-top: 15px;">
+              <thead>
+                <tr>
+                  <th class="col-sm-4">{% trans "Job ID" %}</th>
+                  <th class="col-sm-4">{% trans "Client / Host ID" %}</th>
+                  <th class="col-sm-4">{% trans "Status / Result" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for job_id, details in session.jobs.items %}
+                  <tr>
+                    <td>{{ job_id }}</td>
+                    <td>{{ details.client_id }}</td>
+                    <td>
+                      {% if details.result == "success" %}
+                        <span class="label label-success">{% trans "Success" %}</span>
+                      {% elif details.result == "fail" %}
+                        <span class="label label-danger">{% trans "Fail" %}</span>
+                      {% else %}
+                        {{ details.result|default:_("Pending") }}
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <div class="alert alert-info" style="margin-top: 15px;">
+              {% trans "No jobs associated with this session." %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
+</div>
 {% endblock %}

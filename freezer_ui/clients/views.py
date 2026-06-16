@@ -10,8 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import pprint
-
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
@@ -42,4 +40,8 @@ class ClientView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         client = freezer_api.Client(self.request).get(kwargs['client_id'],
                                                       json=True)
-        return {'data': pprint.pformat(client)}
+        return {
+            'client': client,
+            'page_title': (client.get('client', {}).get('hostname') or
+                           client.get('client', {}).get('client_id'))
+        }

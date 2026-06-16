@@ -1,16 +1,158 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block title %}{% trans "Jobs" %}{% endblock %}
+{% block title %}{% trans "Job Detail" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Jobs") %}
+  <div class="page-header detail-header">
+    <div class="row">
+      <div class="detail-title col-xs-12 col-sm-9">
+        <span class="h1 word-wrap">{{ job.description|default:job.job_id }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock page_header %}
 
 {% block main %}
-  <div class="row">
-    <div class="col-sm-12">
-        <pre>{{ data }}</pre>
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{% trans "Overview" %}</a>
+      </li>
+      <li role="presentation">
+        <a href="#job_actions" aria-controls="job_actions" role="tab" data-toggle="tab">{% trans "Job Actions" %}</a>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Overview Tab -->
+      <div role="tabpanel" class="tab-pane active" id="overview">
+        <div class="detail">
+          <dl class="dl-horizontal">
+            <dt>{% trans "Job ID" %}</dt>
+            <dd>{{ job.job_id }}</dd>
+            <dt>{% trans "Client / Host ID" %}</dt>
+            <dd>{{ job.client_id }}</dd>
+            <dt>{% trans "Description" %}</dt>
+            <dd>{{ job.description|default:_("No description provided") }}</dd>
+            {% if job.session_id %}
+              <dt>{% trans "Session ID" %}</dt>
+              <dd>{{ job.session_id }}</dd>
+              <dt>{% trans "Session Name" %}</dt>
+              <dd>{{ job.session_name|default:_("N/A") }}</dd>
+              <dt>{% trans "Session Tag" %}</dt>
+              <dd>{{ job.session_tag|default:_("N/A") }}</dd>
+            {% endif %}
+            <dt>{% trans "User ID" %}</dt>
+            <dd>{{ job.user_id }}</dd>
+            <dt>{% trans "Project ID" %}</dt>
+            <dd>{{ job.project_id|default:_("N/A") }}</dd>
+            <dt>{% trans "Version" %}</dt>
+            <dd>{{ job.version|default:0 }}</dd>
+          </dl>
+
+          <h4>{% trans "Job Schedule" %}</h4>
+          <hr class="header_rule">
+          <dl class="dl-horizontal">
+            <dt>{% trans "Event Status" %}</dt>
+            <dd>
+              {% if job.job_schedule.event == "start" %}
+                <span class="label label-success">{% trans "Start" %}</span>
+              {% elif job.job_schedule.event == "stop" %}
+                <span class="label label-default">{% trans "Stop" %}</span>
+              {% elif job.job_schedule.event == "abort" %}
+                <span class="label label-danger">{% trans "Abort" %}</span>
+              {% else %}
+                {{ job.job_schedule.event|default:_("N/A") }}
+              {% endif %}
+            </dd>
+            <dt>{% trans "Status" %}</dt>
+            <dd>
+              {% if job.job_schedule.status == "completed" %}
+                <span class="label label-success">{% trans "Completed" %}</span>
+              {% elif job.job_schedule.status == "running" %}
+                <span class="label label-info">{% trans "Running" %}</span>
+              {% elif job.job_schedule.status == "scheduled" %}
+                <span class="label label-primary">{% trans "Scheduled" %}</span>
+              {% else %}
+                {{ job.job_schedule.status|default:_("N/A") }}
+              {% endif %}
+            </dd>
+            <dt>{% trans "Result" %}</dt>
+            <dd>
+              {% if job.job_schedule.result == "success" %}
+                <span class="label label-success">{% trans "Success" %}</span>
+              {% elif job.job_schedule.result == "fail" %}
+                <span class="label label-danger">{% trans "Fail" %}</span>
+              {% else %}
+                {{ job.job_schedule.result|default:_("Pending") }}
+              {% endif %}
+            </dd>
+            <dt>{% trans "Time Created" %}</dt>
+            <dd>{{ job.job_schedule.time_created_formatted|default:_("N/A") }}</dd>
+            <dt>{% trans "Time Started" %}</dt>
+            <dd>{{ job.job_schedule.time_started_formatted|default:_("N/A") }}</dd>
+            <dt>{% trans "Time Ended" %}</dt>
+            <dd>{{ job.job_schedule.time_ended_formatted|default:_("N/A") }}</dd>
+            <dt>{% trans "Schedule Interval" %}</dt>
+            <dd>{{ job.job_schedule.schedule_interval|default:_("N/A") }}</dd>
+            <dt>{% trans "Start Date" %}</dt>
+            <dd>{{ job.job_schedule.schedule_start_date|default:_("N/A") }}</dd>
+            <dt>{% trans "End Date" %}</dt>
+            <dd>{{ job.job_schedule.schedule_end_date|default:_("N/A") }}</dd>
+            <dt>{% trans "Current PID" %}</dt>
+            <dd>{{ job.job_schedule.current_pid|default:_("N/A") }}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Job Actions Tab -->
+      <div role="tabpanel" class="tab-pane" id="job_actions">
+        <div class="detail">
+          {% if job.job_actions %}
+            {% for action in job.job_actions %}
+              <h4>{% trans "Action" %} #{{ forloop.counter }} (ID: <a href="{% url 'horizon:project:freezer-actions:action' action.action_id %}">{{ action.action_id }}</a>)</h4>
+              <hr class="header_rule">
+              <dl class="dl-horizontal">
+                <dt>{% trans "Action Type" %}</dt>
+                <dd><span class="label label-info">{{ action.freezer_action.action|default:_("N/A") }}</span></dd>
+                <dt>{% trans "Mode" %}</dt>
+                <dd>{{ action.freezer_action.mode|default:_("N/A") }}</dd>
+                <dt>{% trans "Backup Name" %}</dt>
+                <dd>{{ action.freezer_action.backup_name|default:_("N/A") }}</dd>
+                <dt>{% trans "Path to Backup" %}</dt>
+                <dd>{{ action.freezer_action.path_to_backup|default:_("N/A") }}</dd>
+                <dt>{% trans "Restore Absolute Path" %}</dt>
+                <dd>{{ action.freezer_action.restore_abs_path|default:_("N/A") }}</dd>
+                <dt>{% trans "Storage" %}</dt>
+                <dd>{{ action.freezer_action.storage|default:_("N/A") }}</dd>
+                <dt>{% trans "Container" %}</dt>
+                <dd>{{ action.freezer_action.container|default:_("N/A") }}</dd>
+                <dt>{% trans "Mandatory" %}</dt>
+                <dd>
+                  {% if action.mandatory %}
+                    <span class="label label-danger">{% trans "Yes" %}</span>
+                  {% else %}
+                    <span class="label label-default">{% trans "No" %}</span>
+                  {% endif %}
+                </dd>
+                <dt>{% trans "Max Retries" %}</dt>
+                <dd>{{ action.max_retries|default:0 }}</dd>
+                <dt>{% trans "Max Retries Interval (seconds)" %}</dt>
+                <dd>{{ action.max_retries_interval|default:0 }}</dd>
+              </dl>
+            {% endfor %}
+          {% else %}
+            <div class="alert alert-info" style="margin-top: 15px;">
+              {% trans "No actions defined for this job." %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
+</div>
 {% endblock %}

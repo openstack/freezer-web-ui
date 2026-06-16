@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pprint
-
 from django.views import generic
 from horizon import tables
 from horizon import workflows
@@ -24,6 +22,7 @@ from freezer_ui.sessions import tables as freezer_tables
 from freezer_ui.sessions.workflows import attach
 from freezer_ui.sessions.workflows import create
 from freezer_ui.utils import shield
+from freezer_ui.utils import timestamp_to_string
 
 
 class SessionsView(tables.DataTableView):
@@ -42,7 +41,18 @@ class DetailView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         session = freezer_api.Session(self.request).get(kwargs['session_id'],
                                                         json=True)
-        return {'data': pprint.pformat(session)}
+        for key in ['time_started', 'time_ended']:
+            if key in session and session[key]:
+                try:
+                    session[key + '_formatted'] = (
+                        timestamp_to_string(session[key]))
+                except Exception:
+                    session[key + '_formatted'] = session[key]
+        return {
+            'session': session,
+            'page_title': (session.get('session_tag') or
+                           session.get('session_id'))
+        }
 
 
 class AttachToSessionWorkflow(workflows.WorkflowView):

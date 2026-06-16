@@ -11,7 +11,6 @@
 #  under the License.
 
 import datetime
-import pprint
 
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -24,6 +23,7 @@ import freezer_ui.api.api as freezer_api
 from freezer_ui.backups import tables as freezer_tables
 from freezer_ui.backups.workflows import restore as restore_workflow
 from freezer_ui.utils import shield
+from freezer_ui.utils import timestamp_to_string
 
 
 class IndexView(tables.DataTableView):
@@ -45,7 +45,18 @@ class DetailView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         backup = freezer_api.Backup(self.request).get(kwargs['backup_id'],
                                                       json=True)
-        return {'data': pprint.pformat(backup)}
+        metadata = backup.get('backup_metadata', {})
+        if 'time_stamp' in metadata and metadata['time_stamp']:
+            try:
+                metadata['time_stamp_formatted'] = (
+                    timestamp_to_string(metadata['time_stamp']))
+            except Exception:
+                metadata['time_stamp_formatted'] = metadata['time_stamp']
+        return {
+            'backup': backup,
+            'page_title': (metadata.get('backup_name') or
+                           backup.get('backup_id'))
+        }
 
 
 class RestoreView(workflows.WorkflowView):
