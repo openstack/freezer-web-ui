@@ -23,6 +23,9 @@
             <div class="panel-heading">{% blocktrans %}Available Actions{% endblocktrans %}</div>
             <div class="panel-body">
                 <ul id="actions_available" class="connectedSortable list-group dark_stripe">
+                    {% for action in available_actions %}
+                    <li class="list-group-item" id="{{ action.action_id }}">({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -33,6 +36,9 @@
             <div class="panel-heading">{% blocktrans %}Selected Actions In Order{% endblocktrans %}</div>
             <div class="panel-body">
                 <ul id="actions_selected" class="connectedSortable list-group dark_stripe">
+                    {% for action in selected_actions %}
+                    <li class="list-group-item" id="{{ action.action_id }}">({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -48,5 +54,4 @@
     {{ step.get_help_text }}
 </div>
 
-<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.common.js'></script>
 <script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.jobs.sortable.js'></script>

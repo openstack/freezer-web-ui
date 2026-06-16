@@ -1,11 +1,16 @@
 var Browser = (function () {
 
     var url = null;
-    url = $(location).attr("protocol");
-    url += "//";
-    url += $(location).attr("host");
+    var webroot = '/';
+    if (typeof WEBROOT !== 'undefined') {
+        webroot = WEBROOT;
+    } else if (typeof window.WEBROOT !== 'undefined') {
+        webroot = window.WEBROOT;
+    } else if (typeof horizon !== 'undefined' && typeof horizon.conf !== 'undefined' && typeof horizon.conf.webroot !== 'undefined') {
+        webroot = horizon.conf.webroot;
+    }
 
-    url += WEBROOT + 'project/freezer-api/';
+    url = webroot + 'project/freezer-api/';
 
     return {
         get_url : function () {

@@ -15,6 +15,8 @@
 import datetime
 
 from django import shortcuts
+import logging
+
 from django.utils.translation import gettext_lazy as _
 
 from horizon import exceptions
@@ -23,9 +25,26 @@ from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
 
+LOG = logging.getLogger(__name__)
+
 
 class ActionsConfigurationAction(workflows.Action):
-    pass
+
+    def __init__(self, request, context, *args, **kwargs):
+        super().__init__(request, context, *args, **kwargs)
+        self.available_actions = []
+        try:
+            self.available_actions = freezer_api.Action(
+                request).list(json=True)
+        except Exception:
+            LOG.exception('Unable to retrieve actions')
+
+    def get_help_text(self, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['available_actions'] = (
+            self.available_actions)
+        extra_context['selected_actions'] = []
+        return super().get_help_text(extra_context)
 
     class Meta(object):
         name = _("Actions")

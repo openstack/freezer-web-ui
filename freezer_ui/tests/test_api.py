@@ -13,6 +13,25 @@
 from unittest import mock
 from django.urls import reverse
 from openstack_dashboard.test import helpers as test
+from openstack_dashboard.api.rest import utils as rest_utils
+
+
+class SetterProperty(object):
+    def __init__(self, prop):
+        self.prop = prop
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        if 'json_value' in obj.__dict__:
+            return obj.__dict__['json_value']
+        return self.prop.__get__(obj, objtype)
+
+    def __set__(self, obj, value):
+        obj.__dict__['json_value'] = value
+
+
+rest_utils.JSONResponse.json = SetterProperty(rest_utils.JSONResponse.json)
 
 
 class FreezerTestCase(test.TestCase):
@@ -257,3 +276,39 @@ class FreezerTestCase(test.TestCase):
                                     is_central=False,
                                     project_id='project-123')
         self.assertTrue(action.allowed(request, client_valid))
+
+    @mock.patch('freezer_ui.api.api.Action')
+    @mock.patch('freezer_ui.api.api.Job')
+    def test_api_actions_in_job(self, mock_job_class, mock_action_class):
+        mock_action_inst = mock_action_class.return_value
+        mock_job_inst = mock_job_class.return_value
+
+        mock_action_inst.list.return_value = [
+            {'action_id': 'action-1', 'freezer_action': {'action': 'backup'}},
+            {'action_id': 'action-2', 'freezer_action': {'action': 'backup'}},
+            {'action_id': 'action-3', 'freezer_action': {'action': 'restore'}},
+        ]
+
+        mock_job_inst.actions.return_value = [
+            {'action_id': 'action-2', 'freezer_action': {'action': 'backup'}},
+            {'action_id': 'action-4', 'freezer_action': {'action': 'admin'}},
+        ]
+
+        url = reverse('horizon:project:freezer-api:api_actions_in_job',
+                      kwargs={'job_id': 'job-123'})
+        res = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(res.status_code, 200)
+
+        import json
+        data = json.loads(res.content)
+
+        selected_ids = [a['action_id'] for a in data['selected']]
+        self.assertIn('action-2', selected_ids)
+        self.assertIn('action-4', selected_ids)
+        self.assertEqual(len(selected_ids), 2)
+
+        available_ids = [a['action_id'] for a in data['available']]
+        self.assertIn('action-1', available_ids)
+        self.assertIn('action-3', available_ids)
+        self.assertNotIn('action-2', available_ids)
+        self.assertEqual(len(available_ids), 2)

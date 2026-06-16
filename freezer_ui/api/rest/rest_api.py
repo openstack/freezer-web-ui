@@ -31,7 +31,10 @@ def prevent_json_hijacking(function):
     def wrapper(*args, **kwargs):
         response = function(*args, **kwargs)
         if isinstance(response, utils.JSONResponse) and response.content:
-            response.content = ")]}',\n" + response.content
+            if isinstance(response.content, bytes):
+                response.content = b")]}',\n" + response.content
+            else:
+                response.content = ")]}',\n" + response.content
         return response
 
     return wrapper
@@ -70,21 +73,17 @@ class Actions(generic.View):
         actions = freezer_api.Action(request).list(json=True)
         actions_in_job = freezer_api.Job(request).actions(job_id, api=True)
 
-        action_ids = [a['action_id'] for a in actions]
-        actions_in_job_ids = [a['action_id'] for a in actions_in_job]
-
-        available = set.difference(set(action_ids), set(actions_in_job_ids))
-        selected = set.intersection(set(action_ids), set(actions_in_job_ids))
+        actions_in_job_ids = {
+            a['action_id'] for a in actions_in_job
+            if 'action_id' in a
+        }
 
         available_actions = []
         for action in actions:
-            if action['action_id'] in available:
+            if action.get('action_id') not in actions_in_job_ids:
                 available_actions.append(action)
 
-        selected_actions = []
-        for action in actions_in_job:
-            if action['action_id'] in selected:
-                selected_actions.append(action)
+        selected_actions = actions_in_job
 
         actions = {'available': available_actions,
                    'selected': selected_actions}
