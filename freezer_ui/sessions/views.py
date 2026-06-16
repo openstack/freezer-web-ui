@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from django.urls import reverse
 from django.views import generic
 from horizon import tables
 from horizon import workflows
@@ -39,8 +40,8 @@ class DetailView(generic.TemplateView):
 
     @shield('Unable to get session.', redirect='freezer-sessions:index')
     def get_context_data(self, **kwargs):
-        session = freezer_api.Session(self.request).get(kwargs['session_id'],
-                                                        json=True)
+        session_api = freezer_api.Session(self.request)
+        session = session_api.get(kwargs['session_id'], json=True)
         for key in ['time_started', 'time_ended']:
             if key in session and session[key]:
                 try:
@@ -48,10 +49,15 @@ class DetailView(generic.TemplateView):
                         timestamp_to_string(session[key]))
                 except Exception:
                     session[key + '_formatted'] = session[key]
+        session_obj = session_api.to_object(session)
+        table = freezer_tables.SessionsTable(self.request)
+        actions = table.render_row_actions(session_obj)
         return {
             'session': session,
             'page_title': (session.get('session_tag') or
-                           session.get('session_id'))
+                           session.get('session_id')),
+            'actions': actions,
+            'url': reverse('horizon:project:freezer-sessions:index')
         }
 
 

@@ -10,6 +10,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+from django.urls import reverse
 from django.views import generic
 from horizon import tables
 from horizon import workflows
@@ -39,8 +40,8 @@ class DetailView(generic.TemplateView):
 
     @shield('Unable to get job.', redirect='freezer-jobs:index')
     def get_context_data(self, **kwargs):
-        job = freezer_api.Job(self.request).get(kwargs['job_id'],
-                                                json=True)
+        job_api = freezer_api.Job(self.request)
+        job = job_api.get(kwargs['job_id'], json=True)
         if '_version' in job:
             job['version'] = job['_version']
         schedule = job.get('job_schedule', {})
@@ -51,9 +52,14 @@ class DetailView(generic.TemplateView):
                         timestamp_to_string(schedule[key]))
                 except Exception:
                     schedule[key + '_formatted'] = schedule[key]
+        job_obj = job_api.to_object(job)
+        table = freezer_tables.JobsTable(self.request)
+        actions = table.render_row_actions(job_obj)
         return {
             'job': job,
-            'page_title': job.get('description') or job.get('job_id')
+            'page_title': job.get('description') or job.get('job_id'),
+            'actions': actions,
+            'url': reverse('horizon:project:freezer-jobs:index')
         }
 
 

@@ -125,18 +125,21 @@ class Job(object):
             job.get('client_id')
         ) for job in jobs]
 
-    def get(self, job_id, json=False):
-        job = self.client.jobs.get(job_id)
-
-        if json:
-            return job
-
+    def to_object(self, job):
         return utils.JobObject(
             job.get('job_id'),
             job.get('description'),
             job.get('job_schedule', {}).get('result'),
             job.get('job_schedule', {}).get('event'),
             job.get('client_id'))
+
+    def get(self, job_id, json=False):
+        job = self.client.jobs.get(job_id)
+
+        if json:
+            return job
+
+        return self.to_object(job)
 
     def create(self, job):
         return self._build(job)
@@ -260,12 +263,7 @@ class Session(object):
             session.get('schedule', {}).get('schedule_end_date')
         ) for session in sessions]
 
-    def get(self, session_id, json=False):
-        session = self.client.sessions.get(session_id)
-
-        if json:
-            return session
-
+    def to_object(self, session):
         return utils.SessionObject(
             session.get('session_id'),
             session.get('description'),
@@ -274,6 +272,14 @@ class Session(object):
             session.get('schedule', {}).get('schedule_start_date'),
             session.get('schedule', {}).get('schedule_interval'),
             session.get('schedule', {}).get('schedule_end_date'))
+
+    def get(self, session_id, json=False):
+        session = self.client.sessions.get(session_id)
+
+        if json:
+            return session
+
+        return self.to_object(session)
 
     def create(self, session):
         return self._build(session)
@@ -352,6 +358,21 @@ class Action(object):
             mode=action['freezer_action'].get('mode')
         ) for action in actions]
 
+    def to_object(self, action):
+        freezer_action = action.get('freezer_action', {})
+        return utils.ActionObjectDetail(
+            action_id=action.get('action_id'),
+            action=freezer_action.get('action'),
+            backup_name=freezer_action.get('backup_name'),
+            path_to_backup=freezer_action.get('path_to_backup'),
+            storage=freezer_action.get('storage'),
+            mode=freezer_action.get('mode'),
+            container=freezer_action.get('container'),
+            mandatory=action.get('mandatory'),
+            max_retries=action.get('max_retries'),
+            max_retries_interval=action.get('max_retries_interval')
+        )
+
     def get(self, job_id, json=False):
 
         action = self.client.actions.get(job_id)
@@ -359,12 +380,7 @@ class Action(object):
         if json:
             return action
 
-        return utils.ActionObjectDetail(
-            action.get('action_id'),
-            action['freezer_action'].get('action'),
-            action['freezer_action'].get('backup_name'),
-            action['freezer_action'].get('path_to_backup'),
-            action['freezer_action'].get('storage'))
+        return self.to_object(action)
 
     def create(self, action):
         return self._build(action)
@@ -439,16 +455,19 @@ class Client(object):
             c.get('client', {}).get('uuid')
         ) for c in clients]
 
+    def to_object(self, c):
+        return utils.ClientObject(
+            c.get('client', {}).get('hostname'),
+            c.get('client', {}).get('client_id'),
+            c.get('uuid'))
+
     def get(self, client_id, json=False):
         c = self.client.clients.get(client_id)
 
         if json:
             return c
 
-        return utils.ClientObject(
-            c.get('client', {}).get('hostname'),
-            c.get('client', {}).get('client_id'),
-            c.get('uuid'))
+        return self.to_object(c)
 
     def delete(self, client_id):
         return self.client.clients.delete(client_id)
@@ -495,16 +514,7 @@ class Backup(object):
             mode=b.get('backup_metadata', {}).get('ssh_mode'),
         ) for b in backups]
 
-    def get(self, backup_id, json=False):
-
-        search = {"match": [{"backup_id": backup_id}, ], }
-
-        b = self.client.backups.list(limit=1, search=search)
-        b = b[0]
-
-        if json:
-            return b
-
+    def to_object(self, b):
         return utils.BackupObject(
             backup_id=b.get('backup_id'),
             action=b.get('backup_metadata', {}).get('action'),
@@ -528,6 +538,18 @@ class Backup(object):
             ssh_port=b.get('backup_metadata', {}).get('ssh_port'),
             mode=b.get('backup_metadata', {}).get('ssh_mode'),
         )
+
+    def get(self, backup_id, json=False):
+
+        search = {"match": [{"backup_id": backup_id}, ], }
+
+        b = self.client.backups.list(limit=1, search=search)
+        b = b[0]
+
+        if json:
+            return b
+
+        return self.to_object(b)
 
     def restore(self, data):
         backup = self.get(data['backup_id'])

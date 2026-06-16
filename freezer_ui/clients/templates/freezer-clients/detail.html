@@ -7,7 +7,15 @@
   <div class="page-header detail-header">
     <div class="row">
       <div class="detail-title col-xs-12 col-sm-9">
-        <span class="h1 word-wrap">{{ client.client.hostname|default:client.client.client_id }}</span>
+        <span class="h1 word-wrap">{% block page_title %}{{ client.client.hostname|default:client.client.client_id }}{% endblock %}</span>
+      </div>
+      <div class="detail-actions col-xs-12 col-sm-3 text-right">
+        {% if actions %}
+        <form class="detail-actions-form actions_column" action="{{ url }}" method="POST">
+          {% csrf_token %}
+          {{ actions }}
+        </form>
+        {% endif %}
       </div>
     </div>
   </div>
