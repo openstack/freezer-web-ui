@@ -134,9 +134,9 @@ class StopJob(tables.Action):
         return True
 
 
-def get_link(row):
-    return reverse('horizon:project:freezer-jobs:index',
-                   kwargs={'job_id': row.job_id})
+def job_detail_view(job):
+    return reverse("horizon:project:freezer-jobs:detail",
+                   kwargs={'job_id': job.id})
 
 
 class CreateJob(tables.LinkAction):
@@ -153,7 +153,7 @@ class UpdateRow(tables.Row):
 
 class JobsTable(tables.DataTable):
     job_name = tables.Column("description",
-                             link=get_link,
+                             link=job_detail_view,
                              verbose_name=_("Name"))
 
     client_id = tables.Column("client_id",

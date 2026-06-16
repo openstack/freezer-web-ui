@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+
+{% block css %}
+  {% include "_stylesheets.html" %}
+{% endblock %}
+
 {% load i18n %}
 {% block title %}{% trans "Sessions" %}{% endblock %}
 
@@ -7,5 +12,5 @@
 {% endblock page_header %}
 
 {% block main %}
-  {{ session_configuration_browser.render }}
+  {{ table.render }}
 {% endblock %}

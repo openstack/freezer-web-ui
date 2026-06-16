@@ -27,9 +27,9 @@ class SessionFilterAction(tables.FilterAction):
         return bool(self.table.kwargs.get('session_id'))
 
 
-def get_link(session):
-    return reverse('horizon:project:freezer-sessions:index',
-                   kwargs={'session_id': session.session_id})
+def session_detail_view(session):
+    return reverse("horizon:project:freezer-sessions:detail",
+                   kwargs={'session_id': session.id})
 
 
 class CreateJob(tables.LinkAction):
@@ -135,7 +135,7 @@ class UpdateRow(tables.Row):
 
 class SessionsTable(tables.DataTable):
     description = tables.Column('description',
-                                link=get_link,
+                                link=session_detail_view,
                                 verbose_name=_("Session"))
 
     status = tables.Column('status',

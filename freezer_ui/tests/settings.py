@@ -14,7 +14,12 @@
 
 import socket
 
-from horizon.test.settings import *  # noqa
+import freezer_ui.enabled
+from openstack_dashboard.test.settings import *  # noqa
+from openstack_dashboard.test.settings import HORIZON_CONFIG
+from openstack_dashboard import enabled as openstack_enabled
+from openstack_dashboard.utils import settings as horizon_settings
+
 
 SECRET_KEY = 'HELLA_SECRET!'
 
@@ -33,7 +38,6 @@ TESTSERVER = 'http://testserver'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 OPENSTACK_ADDRESS = "localhost"
 OPENSTACK_ADMIN_TOKEN = "openstack"
@@ -79,3 +83,20 @@ LOGGING = {
         }
     }
 }
+
+INSTALLED_APPS = [
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.staticfiles',
+    'django.contrib.messages',
+    'django.contrib.humanize',
+    'openstack_auth',
+    'compressor',
+    'horizon',
+    'openstack_dashboard',
+]
+horizon_settings.update_dashboards([
+    openstack_enabled, freezer_ui.enabled], HORIZON_CONFIG, INSTALLED_APPS)
+INSTALLED_APPS = tuple(INSTALLED_APPS)
+ALLOWED_HOSTS = ['*']

@@ -16,9 +16,9 @@ from django.urls import re_path
 from freezer_ui.jobs import views
 
 urlpatterns = [
-    re_path(r'^(?P<job_id>[^/]+)?$',
-            views.JobsView.as_view(),
-            name='index'),
+    re_path(r'^$', views.JobsView.as_view(), name='index'),
+    re_path(r'^(?P<job_id>[^/]+)$', views.DetailView.as_view(),
+            name='detail'),
 
     re_path(r'^create/$',
             views.JobWorkflowView.as_view(),
