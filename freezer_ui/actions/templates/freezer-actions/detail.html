@@ -1,17 +1,83 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block title %}{% trans "Action" %}{% endblock %}
+{% block title %}{% trans "Action Detail" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Action") %}
+  <div class="page-header detail-header">
+    <div class="row">
+      <div class="detail-title col-xs-12 col-sm-9">
+        <span class="h1 word-wrap">{{ action.action_id }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock page_header %}
 
 {% block main %}
-    <div class="row">
-   <div class="col-sm-12">
-       <pre>{{ data }}</pre>
-   </div>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="detail">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Action ID" %}</dt>
+        <dd>{{ action.action_id }}</dd>
+        <dt>{% trans "User ID" %}</dt>
+        <dd>{{ action.user_id }}</dd>
+        <dt>{% trans "Project ID" %}</dt>
+        <dd>{{ action.project_id }}</dd>
+      </dl>
 
+      <h4>{% trans "Execution Rules" %}</h4>
+      <hr class="header_rule">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Mandatory" %}</dt>
+        <dd>
+          {% if action.mandatory %}
+            <span class="label label-danger">{% trans "Yes" %}</span>
+          {% else %}
+            <span class="label label-default">{% trans "No" %}</span>
+          {% endif %}
+        </dd>
+        <dt>{% trans "Max Retries" %}</dt>
+        <dd>{{ action.max_retries|default:0 }}</dd>
+        <dt>{% trans "Max Retries Interval (seconds)" %}</dt>
+        <dd>{{ action.max_retries_interval|default:0 }}</dd>
+      </dl>
+
+      <h4>{% trans "Action Parameters" %}</h4>
+      <hr class="header_rule">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Action Type" %}</dt>
+        <dd><span class="label label-info">{{ action.freezer_action.action|default:_("N/A") }}</span></dd>
+        <dt>{% trans "Backup/Restore Mode" %}</dt>
+        <dd>{{ action.freezer_action.mode|default:_("N/A") }}</dd>
+        <dt>{% trans "Backup Name" %}</dt>
+        <dd>{{ action.freezer_action.backup_name|default:_("N/A") }}</dd>
+        <dt>{% trans "Path to Backup" %}</dt>
+        <dd>{{ action.freezer_action.path_to_backup|default:_("N/A") }}</dd>
+        <dt>{% trans "Restore Absolute Path" %}</dt>
+        <dd>{{ action.freezer_action.restore_abs_path|default:_("N/A") }}</dd>
+        <dt>{% trans "Storage" %}</dt>
+        <dd>{{ action.freezer_action.storage|default:_("N/A") }}</dd>
+        <dt>{% trans "Container" %}</dt>
+        <dd>{{ action.freezer_action.container|default:_("N/A") }}</dd>
+        {% if action.freezer_action.engine %}
+          <dt>{% trans "Engine" %}</dt>
+          <dd>{{ action.freezer_action.engine }}</dd>
+        {% endif %}
+        {% if action.freezer_action.mysql_db_name %}
+          <dt>{% trans "MySQL DB Name" %}</dt>
+          <dd>{{ action.freezer_action.mysql_db_name }}</dd>
+        {% endif %}
+        {% if action.freezer_action.sqlserver_db_name %}
+          <dt>{% trans "SQL Server DB Name" %}</dt>
+          <dd>{{ action.freezer_action.sqlserver_db_name }}</dd>
+        {% endif %}
+        {% if action.freezer_action.cinder_vol_id %}
+          <dt>{% trans "Cinder Volume ID" %}</dt>
+          <dd>{{ action.freezer_action.cinder_vol_id }}</dd>
+        {% endif %}
+      </dl>
+    </div>
+  </div>
+</div>
 {% endblock %}

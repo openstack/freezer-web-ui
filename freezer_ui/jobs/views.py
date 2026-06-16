@@ -10,8 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import pprint
-
 from django.views import generic
 from horizon import tables
 from horizon import workflows
@@ -24,6 +22,7 @@ from freezer_ui.jobs.workflows import update_actions as update_workflow
 import freezer_ui.api.api as freezer_api
 
 from freezer_ui.utils import shield
+from freezer_ui.utils import timestamp_to_string
 
 
 class JobsView(tables.DataTableView):
@@ -42,7 +41,20 @@ class DetailView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         job = freezer_api.Job(self.request).get(kwargs['job_id'],
                                                 json=True)
-        return {'data': pprint.pformat(job)}
+        if '_version' in job:
+            job['version'] = job['_version']
+        schedule = job.get('job_schedule', {})
+        for key in ['time_created', 'time_started', 'time_ended']:
+            if key in schedule and schedule[key]:
+                try:
+                    schedule[key + '_formatted'] = (
+                        timestamp_to_string(schedule[key]))
+                except Exception:
+                    schedule[key + '_formatted'] = schedule[key]
+        return {
+            'job': job,
+            'page_title': job.get('description') or job.get('job_id')
+        }
 
 
 class JobWorkflowView(workflows.WorkflowView):

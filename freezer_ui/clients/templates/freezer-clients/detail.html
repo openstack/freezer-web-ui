@@ -1,17 +1,90 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block title %}{% trans "Client" %}{% endblock %}
+{% block title %}{% trans "Client Detail" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Client") %}
+  <div class="page-header detail-header">
+    <div class="row">
+      <div class="detail-title col-xs-12 col-sm-9">
+        <span class="h1 word-wrap">{{ client.client.hostname|default:client.client.client_id }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock page_header %}
 
 {% block main %}
-    <div class="row">
-   <div class="col-sm-12">
-       <pre>{{ data }}</pre>
-   </div>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="detail">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Client ID" %}</dt>
+        <dd>{{ client.client.client_id }}</dd>
+        <dt>{% trans "Hostname" %}</dt>
+        <dd>{{ client.client.hostname|default:_("N/A") }}</dd>
+        <dt>{% trans "UUID" %}</dt>
+        <dd>{{ client.client.uuid|default:_("N/A") }}</dd>
+        <dt>{% trans "Description" %}</dt>
+        <dd>{{ client.client.description|default:_("No description provided") }}</dd>
+        <dt>{% trans "Is Central Agent" %}</dt>
+        <dd>
+          {% if client.client.is_central %}
+            <span class="label label-success">{% trans "Yes" %}</span>
+          {% else %}
+            <span class="label label-default">{% trans "No" %}</span>
+          {% endif %}
+        </dd>
+        <dt>{% trans "User ID" %}</dt>
+        <dd>{{ client.user_id }}</dd>
+        <dt>{% trans "Project ID" %}</dt>
+        <dd>{{ client.project_id|default:_("N/A") }}</dd>
+      </dl>
 
+      <h4>{% trans "Supported Capabilities" %}</h4>
+      <hr class="header_rule">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Supported Actions" %}</dt>
+        <dd>
+          {% if client.client.supported_actions %}
+            {% for action in client.client.supported_actions %}
+              <span class="label label-primary" style="margin-right: 5px; display: inline-block;">{{ action }}</span>
+            {% endfor %}
+          {% else %}
+            {% trans "None" %}
+          {% endif %}
+        </dd>
+        <dt>{% trans "Supported Modes" %}</dt>
+        <dd>
+          {% if client.client.supported_modes %}
+            {% for mode in client.client.supported_modes %}
+              <span class="label label-info" style="margin-right: 5px; display: inline-block;">{{ mode }}</span>
+            {% endfor %}
+          {% else %}
+            {% trans "None" %}
+          {% endif %}
+        </dd>
+        <dt>{% trans "Supported Storages" %}</dt>
+        <dd>
+          {% if client.client.supported_storages %}
+            {% for storage in client.client.supported_storages %}
+              <span class="label label-success" style="margin-right: 5px; display: inline-block;">{{ storage }}</span>
+            {% endfor %}
+          {% else %}
+            {% trans "None" %}
+          {% endif %}
+        </dd>
+        <dt>{% trans "Supported Engines" %}</dt>
+        <dd>
+          {% if client.client.supported_engines %}
+            {% for engine in client.client.supported_engines %}
+              <span class="label label-warning" style="margin-right: 5px; display: inline-block;">{{ engine }}</span>
+            {% endfor %}
+          {% else %}
+            {% trans "None" %}
+          {% endif %}
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
 {% endblock %}

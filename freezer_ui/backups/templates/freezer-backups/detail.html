@@ -1,17 +1,92 @@
 {% extends 'base.html' %}
 
 {% load i18n %}
-{% block title %}{% trans "Backups" %}{% endblock %}
+{% block title %}{% trans "Backup Detail" %}{% endblock %}
 
 {% block page_header %}
-  {% include "horizon/common/_page_header.html" with title=_("Backups") %}
+  <div class="page-header detail-header">
+    <div class="row">
+      <div class="detail-title col-xs-12 col-sm-9">
+        <span class="h1 word-wrap">{{ backup.backup_metadata.backup_name|default:backup.backup_id }}</span>
+      </div>
+    </div>
+  </div>
 {% endblock page_header %}
 
 {% block main %}
-    <div class="row">
-   <div class="col-sm-12">
-       <pre>{{ data }}</pre>
-   </div>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="detail">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Backup Name" %}</dt>
+        <dd>{{ backup.backup_metadata.backup_name|default:_("-") }}</dd>
+        <dt>{% trans "Backup ID" %}</dt>
+        <dd>{{ backup.backup_id }}</dd>
+        <dt>{% trans "Action Type" %}</dt>
+        <dd>{{ backup.backup_metadata.action }}</dd>
+        <dt>{% trans "Created At" %}</dt>
+        <dd>{{ backup.backup_metadata.time_stamp_formatted|default:_("N/A") }}</dd>
+        <dt>{% trans "Backup Media" %}</dt>
+        <dd>{{ backup.backup_metadata.backup_media|default:_("N/A") }}</dd>
+        <dt>{% trans "Path to Backup" %}</dt>
+        <dd>{{ backup.backup_metadata.path_to_backup|default:_("N/A") }}</dd>
+        <dt>{% trans "Client Hostname" %}</dt>
+        <dd>{{ backup.backup_metadata.hostname|default:_("N/A") }}</dd>
+      </dl>
 
+      <h4>{% trans "Specs" %}</h4>
+      <hr class="header_rule">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Backup Level" %}</dt>
+        <dd>
+          {{ backup.backup_metadata.curr_backup_level|default:0 }}
+          {% if backup.backup_metadata.level %}
+            ({% trans "Max level" %}: {{ backup.backup_metadata.level }})
+          {% endif %}
+        </dd>
+        <dt>{% trans "Encrypted" %}</dt>
+        <dd>
+          {% if backup.backup_metadata.encrypted %}
+            <span class="label label-success">{% trans "Yes" %}</span>
+          {% else %}
+            <span class="label label-default">{% trans "No" %}</span>
+          {% endif %}
+        </dd>
+        <dt>{% trans "Total Broken Links" %}</dt>
+        <dd>{{ backup.backup_metadata.total_broken_links|default:0 }}</dd>
+        <dt>{% trans "Excluded Files" %}</dt>
+        <dd>
+          {% if backup.backup_metadata.excluded_files %}
+            <ul>
+              {% for file in backup.backup_metadata.excluded_files %}
+                <li>{{ file }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {% trans "None" %}
+          {% endif %}
+        </dd>
+      </dl>
+
+      <h4>{% trans "Storage & Connection Information" %}</h4>
+      <hr class="header_rule">
+      <dl class="dl-horizontal">
+        <dt>{% trans "Storage Engine" %}</dt>
+        <dd>{{ backup.backup_metadata.storage|default:_("N/A") }}</dd>
+        <dt>{% trans "Container / Bucket / Directory" %}</dt>
+        <dd>{{ backup.backup_metadata.container|default:_("N/A") }}</dd>
+        {% if backup.backup_metadata.ssh_host %}
+          <dt>{% trans "SSH Host" %}</dt>
+          <dd>{{ backup.backup_metadata.ssh_host }}</dd>
+          <dt>{% trans "SSH Username" %}</dt>
+          <dd>{{ backup.backup_metadata.ssh_username|default:_("N/A") }}</dd>
+          <dt>{% trans "SSH Port" %}</dt>
+          <dd>{{ backup.backup_metadata.ssh_port|default:22 }}</dd>
+          <dt>{% trans "SSH Key / Mode" %}</dt>
+          <dd>{{ backup.backup_metadata.ssh_key|default:_("N/A") }} {% if backup.backup_metadata.ssh_mode %}({{ backup.backup_metadata.ssh_mode }}){% endif %}</dd>
+        {% endif %}
+      </dl>
+    </div>
+  </div>
+</div>
 {% endblock %}

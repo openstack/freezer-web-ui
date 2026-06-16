@@ -10,8 +10,6 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import pprint
-
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -45,7 +43,10 @@ class ActionView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         action = freezer_api.Action(self.request).get(kwargs['action_id'],
                                                       json=True)
-        return {'data': pprint.pformat(action)}
+        return {
+            'action': action,
+            'page_title': action.get('action_id')
+        }
 
 
 class ActionWorkflowView(workflows.WorkflowView):
