@@ -230,3 +230,30 @@ class FreezerTestCase(test.TestCase):
         self.assertEqual(obj.action, 'backup')
         self.assertEqual(obj.storage, 'swift')
         self.assertEqual(obj.time_stamp, 1234567890)
+
+    def test_delete_client_allowed(self):
+        from freezer_ui.clients.tables import DeleteClient
+        from freezer_ui.utils import ClientObject
+
+        request = mock.Mock()
+        request.user.project_id = 'project-123'
+
+        action = DeleteClient()
+
+        # Central client should NOT be allowed
+        client_central = ClientObject('host1', 'id1', 'uuid1',
+                                      is_central=True,
+                                      project_id='project-123')
+        self.assertFalse(action.allowed(request, client_central))
+
+        # Client from mismatched project should NOT be allowed
+        client_mismatched = ClientObject('host1', 'id1', 'uuid1',
+                                         is_central=False,
+                                         project_id='project-other')
+        self.assertFalse(action.allowed(request, client_mismatched))
+
+        # Valid client should be allowed
+        client_valid = ClientObject('host1', 'id1', 'uuid1',
+                                    is_central=False,
+                                    project_id='project-123')
+        self.assertTrue(action.allowed(request, client_valid))
