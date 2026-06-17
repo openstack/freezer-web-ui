@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freezer-web-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2025-09-15 13:18+0000\n"
+"POT-Creation-Date: 2026-06-16 19:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,9 +82,6 @@ msgstr "Cinder"
 
 msgid "Cinder Volume ID"
 msgstr "Cinder 볼륨 ID"
-
-msgid "Client"
-msgstr "클라이언트"
 
 msgid "Client ID"
 msgstr "클라이언트 ID"
@@ -201,18 +198,8 @@ msgstr "대상 파일"
 msgid "Destination Path"
 msgstr "대상 경로"
 
-msgid "Disaster Recovery"
-msgstr "재난 복구"
-
 msgid "Download Limit"
 msgstr "제한 다운로드"
-
-msgid ""
-"Download bandwidth limit in Bytes per sec.. Can be invoked with dimensions "
-"(10K, 120M, 10G)."
-msgstr ""
-"대역폭 제한을 초당 바이트로 다운로드하십시오. 치수 (10K, 120M, 10G)로 호출 "
-"할 수 있습니다."
 
 msgid "Edit"
 msgstr "편집"
@@ -234,22 +221,6 @@ msgstr "종료 날짜 시간이 ISO 형식이 아닙니다."
 
 msgid "Enforce proxy that alters system HTTP_PROXY and HTTPS_PROXY."
 msgstr "시스템 HTTP_PROXY 및 HTTPS_PROXY를 변경하는 프록시 강제 적용."
-
-msgid ""
-"Engine to be used for backup/restore. With tar, the file inode will be "
-"checked for changes amid backup execution. If the file inode changed, the "
-"whole file will be backed up. With rsync, the data blocks changes will be "
-"verified and only the changed blocks will be backed up. Tar is faster, but "
-"is uses more space and bandwidth. Rsync is slower, but uses less space and "
-"bandwidth. Nova engine can be used to backup/restore running instances. "
-"Backing up instances and it's metadata."
-msgstr ""
-"백업/복원에 사용할 엔진. tar를 사용하면 백업 실행 중에 파일 inode의 변경 사항"
-"을 확인할 수 있다. 파일 inode가 변경되면 파일 전체가 백업된다. rsync를 사용하"
-"면 데이터 블록 변경 사항이 확인되고 변경된 블록만 백업된다. 타르는 더 빠르지"
-"만 더 많은 공간과 대역폭을 사용한다. Rsync는 느리지만 공간과 대역폭을 덜 사용"
-"한다. 실행 중인 인스턴스를 백업/복원하는 데 Nova 엔진을 사용할 수 있다. 인스"
-"턴스를 백업하면 메타데이터가 된다."
 
 msgid "Error getting session list"
 msgstr "세션 리스트 가져오기 오류"
@@ -317,9 +288,6 @@ msgstr "작업이 시작됨"
 
 msgid "Job has stopped"
 msgstr "작업이 정지됨"
-
-msgid "Job queued correctly. It will appear soon"
-msgstr "작업이 올바르게 대기 중입니다. 곧 나타납니다"
 
 msgid "Job updated correctly."
 msgstr "작업이 올바르게 업데이트되었습니다."
@@ -444,17 +412,11 @@ msgstr "클라이언트 선택됨"
 msgid "Session"
 msgstr "세션"
 
-msgid "Session Configuration"
-msgstr "세션 구성"
-
 msgid "Session Information"
 msgstr "세션 정보"
 
 msgid "Session Name"
 msgstr "세션 이름"
-
-msgid "Session queued correctly. It will appear soon"
-msgstr "세션이 올바르게 대기열에 있습니다. 곧 나타납니다"
 
 msgid "Sessions"
 msgstr "세션"
@@ -464,9 +426,6 @@ msgstr "이 작업의 이름 설정"
 
 msgid "Set a session to attach this job"
 msgstr "이 작업을 첨부 할 세션 설정"
-
-msgid "Set storage backend for a backup."
-msgstr "백업용 스토리지 백엔드 설정."
 
 msgid "Set the absolute path where you want your data restored."
 msgstr "데이터를 복원 할 절대 경로를 설정하십시오."
@@ -593,13 +552,6 @@ msgstr "작업 업데이트"
 msgid "Upload Limit"
 msgstr "제한 업로드"
 
-msgid ""
-"Upload bandwidth limit in Bytes per sec.. Can be invoked with dimensions "
-"(10K, 120M, 10G)."
-msgstr ""
-"대역폭 제한을 초당 바이트로 업로드합니다. 치수 (10K, 120M, 10G)로 호출 할 수 "
-"있습니다."
-
 msgid "Weeks"
 msgstr "주"
 
@@ -629,12 +581,6 @@ msgstr "rsyncv2"
 
 msgid "tar"
 msgstr "tar"
-
-msgid "v1"
-msgstr "v1"
-
-msgid "v2"
-msgstr "v2"
 
 msgid "v3"
 msgstr "v3"
