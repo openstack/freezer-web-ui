@@ -69,12 +69,11 @@ class ActionsConfigurationAction(workflows.Action):
     class Meta(object):
         name = _("Actions")
         slug = "actions"
-        help_text_template = "project/freezer-jobs" \
-                             "/_actions.html"
 
 
 class ActionsConfiguration(workflows.Step):
     action_class = ActionsConfigurationAction
+    template_name = "project/freezer-jobs/_actions.html"
     contributes = ()
 
 

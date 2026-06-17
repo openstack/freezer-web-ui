@@ -63,6 +63,21 @@ class FreezerTestCase(test.TestCase):
         self.assertContains(res, 'test-job-desc')
         mock_job_inst.get.assert_called_once_with('job-123', json=True)
 
+    @mock.patch('freezer_ui.api.api.Job')
+    def test_job_detail_view_get_none_schedule(self, mock_job_class):
+        mock_job_inst = mock_job_class.return_value
+        mock_job_inst.get.return_value = {
+            'job_id': 'job-123',
+            'description': 'test-job-desc',
+            'job_schedule': None,
+            'client_id': 'client-1'
+        }
+
+        url = reverse('horizon:project:freezer-jobs:detail',
+                      kwargs={'job_id': 'job-123'})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+
     @mock.patch('freezer_ui.api.api.Session')
     def test_sessions_view_get(self, mock_session_class):
         mock_session_inst = mock_session_class.return_value
@@ -159,6 +174,23 @@ class FreezerTestCase(test.TestCase):
         self.assertEqual(obj.description, 'test-job-desc')
         self.assertEqual(obj.client_id, 'client-1')
         self.assertEqual(obj.result, 'success')
+        self.assertEqual(obj.event, 'stop')
+
+    @mock.patch('freezer_ui.api.api.client')
+    def test_job_to_object_none_schedule(self, mock_client_factory):
+        import freezer_ui.api.api as freezer_api
+        job_data = {
+            'job_id': 'job-123',
+            'description': 'test-job-desc',
+            'job_schedule': None,
+            'client_id': 'client-1'
+        }
+        api_job = freezer_api.Job(None)
+        obj = api_job.to_object(job_data)
+        self.assertEqual(obj.job_id, 'job-123')
+        self.assertEqual(obj.description, 'test-job-desc')
+        self.assertEqual(obj.client_id, 'client-1')
+        self.assertEqual(obj.result, 'pending')
         self.assertEqual(obj.event, 'stop')
 
     @mock.patch('freezer_ui.api.api.client')
@@ -312,3 +344,104 @@ class FreezerTestCase(test.TestCase):
         self.assertIn('action-3', available_ids)
         self.assertNotIn('action-2', available_ids)
         self.assertEqual(len(available_ids), 2)
+
+    @mock.patch('freezer_ui.api.api.Client')
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Action')
+    def test_actions_configuration_action_capability_filtering(
+            self, mock_action, mock_job, mock_client):
+        mock_action.return_value.list.return_value = [
+            {
+                'action_id': 'action-swift',
+                'freezer_action': {
+                    'action': 'backup',
+                    'mode': 'fs',
+                    'storage': 'swift',
+                    'engine': 'tar'
+                }
+            },
+            {
+                'action_id': 'action-local',
+                'freezer_action': {
+                    'action': 'backup',
+                    'mode': 'fs',
+                    'storage': 'local',
+                    'engine': 'tar'
+                }
+            },
+            {
+                'action_id': 'action-cindernative',
+                'freezer_action': {
+                    'action': 'backup',
+                    'mode': 'cindernative',
+                }
+            }
+        ]
+
+        mock_job.return_value.get.return_value = {
+            'job_id': 'job-123',
+            'client_id': 'client-1'
+        }
+        mock_job.return_value.actions.return_value = []
+
+        mock_client.return_value.get.return_value = {
+            'client': {
+                'client_id': 'client-1',
+                'supported_actions': ['backup', 'restore'],
+                'supported_modes': ['fs', 'cindernative'],
+                'supported_storages': ['swift'],
+                'supported_engines': ['tar']
+            }
+        }
+
+        from freezer_ui.jobs.workflows.update_actions import (
+            ActionsConfigurationAction)
+        request = mock.Mock()
+        context = {'job_id': 'job-123'}
+
+        form_action = ActionsConfigurationAction(request, context)
+
+        available_ids = [
+            a['action_id'] for a in form_action.available_actions
+        ]
+        self.assertIn('action-swift', available_ids)
+        self.assertIn('action-cindernative', available_ids)
+        self.assertNotIn('action-local', available_ids)
+
+    @mock.patch('freezer_ui.api.api.Client')
+    def test_restore_destination_action_init(self, mock_client):
+        mock_client.return_value.list.return_value = [
+            mock.Mock(id='client-1', hostname='host1'),
+            mock.Mock(id='client-2', hostname='host2')
+        ]
+
+        from freezer_ui.backups.workflows.restore import DestinationAction
+        request = mock.Mock()
+        context = {'backup_id': 'backup-123'}
+
+        action = DestinationAction(request, context)
+        self.assertEqual(len(action.available_clients), 2)
+
+    @mock.patch('freezer_ui.api.api.Client')
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Action')
+    def test_edit_actions_view_get(self, mock_action, mock_job, mock_client):
+        mock_action.return_value.list.return_value = []
+        mock_job.return_value.get.return_value = mock.Mock(
+            id='job-123',
+            job_id='job-123',
+            client_id='client-1'
+        )
+        mock_job.return_value.actions.return_value = []
+        mock_client.return_value.get.return_value = {
+            'client': {
+                'client_id': 'client-1',
+                'supported_actions': ['backup', 'restore'],
+            }
+        }
+        mock_client.return_value.list.return_value = []
+
+        url = reverse('horizon:project:freezer-jobs:edit_action',
+                      kwargs={'job_id': 'job-123'})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)

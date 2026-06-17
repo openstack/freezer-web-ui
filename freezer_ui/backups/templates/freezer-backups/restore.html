@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <noscript><h3>{{ step }}</h3></noscript>
 <div class="row">
     <div class="col-sm-12">
@@ -10,7 +12,18 @@
                 </tr>
             </thead>
             <tbody id="available_clients">
-
+                {% for c in available_clients %}
+                <tr>
+                    <td class="multi_select_column">
+                        <input type="radio" name="client" value="{{ c.id }}">
+                    </td>
+                    <td>{{ c.hostname }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">{% trans "No clients found." %}</td>
+                </tr>
+                {% endfor %}
             </tbody>
             <tfoot>
                 <tr>

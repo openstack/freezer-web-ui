@@ -44,7 +44,7 @@ class DetailView(generic.TemplateView):
         job = job_api.get(kwargs['job_id'], json=True)
         if '_version' in job:
             job['version'] = job['_version']
-        schedule = job.get('job_schedule', {})
+        schedule = job.get('job_schedule') or {}
         for key in ['time_created', 'time_started', 'time_ended']:
             if key in schedule and schedule[key]:
                 try:
@@ -81,7 +81,7 @@ class JobWorkflowView(workflows.WorkflowView):
             job = freezer_api.Job(self.request).get(self.kwargs['job_id'],
                                                     json=True)
             initial.update(**job)
-            initial.update(**job['job_schedule'])
+            initial.update(**(job.get('job_schedule') or {}))
 
         return initial
 
@@ -104,7 +104,7 @@ class EditJobWorkflowView(workflows.WorkflowView):
             job = freezer_api.Job(self.request).get(self.kwargs['job_id'],
                                                     json=True)
             initial.update(**job)
-            initial.update(**job['job_schedule'])
+            initial.update(**(job.get('job_schedule') or {}))
 
         return initial
 

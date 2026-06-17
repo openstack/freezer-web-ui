@@ -101,6 +101,26 @@ def get_schedule_info(context):
     return scheduling
 
 
+def _sanitize_action(action):
+    if not isinstance(action, dict):
+        return action
+    if 'action_id' not in action:
+        action['action_id'] = ''
+    if ('freezer_action' not in action or
+            not isinstance(action['freezer_action'], dict)):
+        action['freezer_action'] = {}
+    freezer_action = action['freezer_action']
+    for key in ['action', 'mode', 'storage', 'engine',
+                'engine_name', 'backup_name']:
+        if key not in freezer_action:
+            freezer_action[key] = None
+    return action
+
+
+def _sanitize_actions(actions):
+    return [_sanitize_action(action) for action in actions]
+
+
 class Job(object):
 
     def __init__(self, request):
@@ -120,17 +140,18 @@ class Job(object):
         return [utils.JobObject(
             job.get('job_id'),
             job.get('description'),
-            job.get('job_schedule', {}).get('result'),
-            job.get('job_schedule', {}).get('status'),
+            (job.get('job_schedule') or {}).get('result'),
+            (job.get('job_schedule') or {}).get('status'),
             job.get('client_id')
         ) for job in jobs]
 
     def to_object(self, job):
+        sched = job.get('job_schedule') or {}
         return utils.JobObject(
             job.get('job_id'),
             job.get('description'),
-            job.get('job_schedule', {}).get('result'),
-            job.get('job_schedule', {}).get('event'),
+            sched.get('result'),
+            sched.get('event'),
             job.get('client_id'))
 
     def get(self, job_id, json=False):
@@ -170,15 +191,17 @@ class Job(object):
         if not job:
             return []
 
+        job_actions = job.get('job_actions') or []
+
         if api:
-            return job.get('job_actions', [])
+            return _sanitize_actions(job_actions)
 
         return [utils.ActionObject(
             action_id=a.get('action_id'),
-            action=a.get('freezer_action', {}).get('action'),
-            backup_name=a.get('freezer_action', {}).get('backup_name'),
+            action=(a.get('freezer_action') or {}).get('action'),
+            backup_name=(a.get('freezer_action') or {}).get('backup_name'),
             job_id=job_id
-        ) for a in job.get('job_actions')]
+        ) for a in job_actions if a]
 
     def delete_action(self, ids):
         action_id, job_id = ids.split('===')
@@ -346,7 +369,7 @@ class Action(object):
                                            search=search)
 
         if json:
-            return actions
+            return _sanitize_actions(actions)
 
         return [utils.ActionObjectDetail(
             action.get('action_id'),
@@ -378,7 +401,7 @@ class Action(object):
         action = self.client.actions.get(job_id)
 
         if json:
-            return action
+            return _sanitize_action(action)
 
         return self.to_object(action)
 

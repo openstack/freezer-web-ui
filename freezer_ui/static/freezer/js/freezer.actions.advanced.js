@@ -18,11 +18,12 @@
 
 "use strict";
 
-$(function () {
+function initActionsAdvanced() {
     var $noIncremental = $("#id_no_incremental");
-    if (!$noIncremental.length) {
+    if (!$noIncremental.length || $noIncremental.data('freezer-initialized')) {
         return;
     }
+    $noIncremental.data('freezer-initialized', true);
 
     $noIncremental.click(function () {
         if ($noIncremental.is(":checked")) {
@@ -35,4 +36,18 @@ $(function () {
             $("#id_restart_always_level").closest(".form-group").show();
         }
     });
+}
+
+if (typeof horizon !== 'undefined') {
+    horizon.addInitFunction(function () {
+        initActionsAdvanced();
+    });
+} else {
+    $(function () {
+        initActionsAdvanced();
+    });
+}
+
+$(document).on("show.bs.modal", ".modal", function () {
+    initActionsAdvanced();
 });

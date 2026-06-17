@@ -18,12 +18,13 @@
 
 "use strict";
 
-$(function () {
+function initJobsCreateInfos() {
     var $intervalUint = $("#id_interval_uint");
 
-    if (!$intervalUint.length) {
+    if (!$intervalUint.length || $intervalUint.data('freezer-initialized')) {
         return;
     }
+    $intervalUint.data('freezer-initialized', true);
 
     function showIntervalValue() {
         $("#id_interval_value").closest(".form-group").show();
@@ -43,4 +44,18 @@ $(function () {
     });
 
     hideIntervalValue();
+}
+
+if (typeof horizon !== 'undefined') {
+    horizon.addInitFunction(function () {
+        initJobsCreateInfos();
+    });
+} else {
+    $(function () {
+        initJobsCreateInfos();
+    });
+}
+
+$(document).on("show.bs.modal", ".modal", function () {
+    initJobsCreateInfos();
 });
