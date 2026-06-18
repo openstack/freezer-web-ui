@@ -37,6 +37,20 @@ def create_dict(**kwargs):
     return {k: v for k, v in kwargs.items() if v}
 
 
+def datetime_to_iso_string(value):
+    """Convert a datetime value to an ISO format string for the freezer API.
+
+    Intended for use in form clean_<field> methods to convert
+    DateTimeField values back to strings.
+
+    :param value: a datetime.datetime instance or None
+    :returns: ISO formatted string (YYYY-MM-DDThh:mm:ss) or empty string
+    """
+    if value:
+        return value.strftime('%Y-%m-%dT%H:%M:%S')
+    return ''
+
+
 def timestamp_to_string(ts):
     return django_date(
         datetime.datetime.fromtimestamp(int(ts)),

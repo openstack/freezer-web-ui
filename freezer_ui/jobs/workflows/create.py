@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import datetime
 
 from django import shortcuts
 import logging
@@ -24,6 +23,7 @@ from horizon import forms
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
+from freezer_ui.utils import datetime_to_iso_string
 
 LOG = logging.getLogger(__name__)
 
@@ -121,9 +121,15 @@ class InfoConfigurationAction(workflows.Action):
         widget=forms.HiddenInput(),
         required=False)
 
-    schedule_start_date = forms.CharField(
+    schedule_start_date = forms.DateTimeField(
         label=_("Start Date and Time"),
-        required=False)
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M:%S', '%Y-%m-%dT%H:%M'],
+        widget=forms.DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M',
+        ),
+    )
 
     interval_uint = forms.ChoiceField(
         label=_("Interval Unit"),
@@ -137,28 +143,21 @@ class InfoConfigurationAction(workflows.Action):
         help_text=_("Set the interval value"),
         required=False)
 
-    schedule_end_date = forms.CharField(
+    schedule_end_date = forms.DateTimeField(
         label=_("End Date and Time"),
-        required=False)
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M:%S', '%Y-%m-%dT%H:%M'],
+        widget=forms.DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M',
+        ),
+    )
 
     def __init__(self, request, context, *args, **kwargs):
         self.request = request
         self.context = context
         super(InfoConfigurationAction, self).__init__(
             request, context, *args, **kwargs)
-
-    def clean(self):
-        cleaned_data = super(InfoConfigurationAction, self).clean()
-        self._check_start_datetime(cleaned_data)
-        self._check_end_datetime(cleaned_data)
-        return cleaned_data
-
-    def _validate_iso_format(self, start_date):
-        try:
-            return datetime.datetime.strptime(
-                start_date, "%Y-%m-%dT%H:%M:%S")
-        except ValueError:
-            return False
 
     def populate_interval_uint_choices(self, request, context):
         return [
@@ -171,31 +170,28 @@ class InfoConfigurationAction(workflows.Action):
             ('seconds', _("Seconds")),
         ]
 
-    def _check_start_datetime(self, cleaned_data):
-        if cleaned_data.get('schedule_start_date') and not \
-                self._validate_iso_format(
-                    cleaned_data.get('schedule_start_date')):
-            msg = _("Start date time is not in ISO format.")
-            self._errors['schedule_start_date'] = self.error_class([msg])
+    def clean_schedule_start_date(self):
+        return datetime_to_iso_string(
+            self.cleaned_data.get('schedule_start_date'))
 
-        if (cleaned_data.get('schedule_start_date') and
-                cleaned_data.get('schedule_end_date')) and\
-                not cleaned_data.get('interval_uint'):
-            msg = _("Please provide this value.")
-            self._errors['interval_uint'] = self.error_class([msg])
+    def clean_schedule_end_date(self):
+        return datetime_to_iso_string(
+            self.cleaned_data.get('schedule_end_date'))
 
-        if (cleaned_data.get('schedule_end_date') and
-                not cleaned_data.get('schedule_start_date')) and\
-                not cleaned_data.get('interval_uint'):
-            msg = _("Please provide this value.")
-            self._errors['schedule_start_date'] = self.error_class([msg])
+    def clean(self):
+        cleaned_data = super().clean()
+        start = cleaned_data.get('schedule_start_date')
+        end = cleaned_data.get('schedule_end_date')
 
-    def _check_end_datetime(self, cleaned_data):
-        if cleaned_data.get('end_datetime') and not \
-                self._validate_iso_format(
-                    cleaned_data.get('schedule_end_date')):
-            msg = _("End date time is not in ISO format.")
-            self._errors['schedule_end_date'] = self.error_class([msg])
+        if start and end and not cleaned_data.get('interval_uint'):
+            self._errors['interval_uint'] = self.error_class(
+                [_("Please provide this value.")])
+
+        if end and not start and not cleaned_data.get('interval_uint'):
+            self._errors['schedule_start_date'] = self.error_class(
+                [_("Please provide this value.")])
+
+        return cleaned_data
 
     class Meta(object):
         name = _("Job Info")

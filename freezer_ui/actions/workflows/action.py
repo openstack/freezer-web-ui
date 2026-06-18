@@ -20,6 +20,7 @@ from horizon import forms
 from horizon import workflows
 
 import freezer_ui.api.api as freezer_api
+from freezer_ui.utils import datetime_to_iso_string
 
 
 class ActionConfigurationAction(workflows.Action):
@@ -98,14 +99,16 @@ class ActionConfigurationAction(workflows.Action):
                     "with Restore."),
         required=False)
 
-    restore_from_date = forms.CharField(
+    restore_from_date = forms.DateTimeField(
         label=_("Restore From Date"),
-        help_text=_("Set the absolute path where you want "
-                    "your data restored. Please provide "
-                    "datetime in format 'YYYY-MM-DDThh:mm:ss' "
-                    "i.e. '1979-10-03T23:23:23'. Make sure the "
-                    "'T' is between date and time."),
-        required=False)
+        help_text=_("Set the date and time to restore from."),
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M:%S', '%Y-%m-%dT%H:%M'],
+        widget=forms.DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M',
+        ),
+    )
 
     cinder_vol_id = forms.CharField(
         label=_("Cinder Volume ID"),
@@ -158,14 +161,16 @@ class ActionConfigurationAction(workflows.Action):
                     "Default: False (Disabled)."),
         required=False)
 
-    remove_from_date = forms.CharField(
+    remove_from_date = forms.DateTimeField(
         label=_("Remove From Date"),
-        help_text=_("Checks the specified container and removes "
-                    "objects older than the provided datetime "
-                    "in the format 'YYYY-MM-DDThh:mm:ss' "
-                    "i.e. '1974-03-25T23:23:23'. Make sure the "
-                    "'T' is between date and time."),
-        required=False)
+        help_text=_("Remove objects older than this date and time."),
+        required=False,
+        input_formats=['%Y-%m-%dT%H:%M:%S', '%Y-%m-%dT%H:%M'],
+        widget=forms.DateTimeInput(
+            attrs={'type': 'datetime-local'},
+            format='%Y-%m-%dT%H:%M',
+        ),
+    )
 
     ssh_key = forms.CharField(
         label=_("SSH Private Key"),
@@ -180,6 +185,14 @@ class ActionConfigurationAction(workflows.Action):
         label=_("SSH Host"),
         help_text=_("IP address or DNS name of host to connect through SSH."),
         required=False)
+
+    def clean_restore_from_date(self):
+        return datetime_to_iso_string(
+            self.cleaned_data.get('restore_from_date'))
+
+    def clean_remove_from_date(self):
+        return datetime_to_iso_string(
+            self.cleaned_data.get('remove_from_date'))
 
     def clean(self):
         cleaned_data = super(ActionConfigurationAction, self).clean()
