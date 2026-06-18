@@ -52,6 +52,9 @@ def datetime_to_iso_string(value):
 
 
 def timestamp_to_string(ts):
+    if not ts or ts == -1:
+        return None
+
     return django_date(
         datetime.datetime.fromtimestamp(int(ts)),
         'SHORT_DATETIME_FORMAT')
