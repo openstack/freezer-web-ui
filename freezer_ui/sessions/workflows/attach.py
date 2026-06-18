@@ -58,7 +58,7 @@ class AttachJobToSession(workflows.Workflow):
     finalize_button_name = _("Attach")
     success_message = _('Job attached successfully.')
     failure_message = _('Unable to attach to session.')
-    success_url = "horizon:disaster_recovery:jobs:index"
+    success_url = "horizon:project:freezer-jobs:index"
     default_steps = (SessionConfiguration,)
 
     def handle(self, request, context):
@@ -66,7 +66,7 @@ class AttachJobToSession(workflows.Workflow):
             freezer_api.Session(request).add_job(context['session_id'],
                                                  context['job_id'])
 
-            return reverse("horizon:disaster_recovery:jobs:index")
+            return reverse("horizon:project:freezer-jobs:index")
         except Exception:
             exceptions.handle(request)
             return False

@@ -42,7 +42,7 @@ class DestinationAction(workflows.MembershipAction):
 
 
 class Destination(workflows.Step):
-    template_name = 'disaster_recovery/backups/restore.html'
+    template_name = 'project/freezer-backups/restore.html'
     action_class = DestinationAction
     contributes = ('client', 'path', 'backup_id')
 
@@ -54,7 +54,7 @@ class Restore(workflows.Workflow):
     slug = "restore"
     name = _("Restore")
     finalize_button_name = _("Restore")
-    success_url = "horizon:disaster_recovery:backups:index"
+    success_url = "horizon:project:freezer-backups:index"
     success_message = _("Restore job successfully queued. It will get "
                         "executed soon.")
     wizard = False
