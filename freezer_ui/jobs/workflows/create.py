@@ -237,7 +237,7 @@ class ConfigureJob(workflows.Workflow):
                 freezer_api.Job(request).update(context['job_id'], context)
             else:
                 freezer_api.Job(request).create(context)
-            return shortcuts.redirect('horizon:freezer-project:jobs:index')
+            return shortcuts.redirect('horizon:project:freezer-jobs:index')
         except Exception:
             exceptions.handle(request)
             return False
