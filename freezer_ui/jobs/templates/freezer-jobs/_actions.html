@@ -3,13 +3,6 @@
 {% block help_message %}
 {% endblock %}
 
-<style>
-  #actions_available, #actions_selected {
-      position: relative;
-      min-height: 100px;
-  }
-</style>
-
 <div class="row">
     <div class="col-sm-12">
         <p>{% blocktrans %}Drag actions in the order they will be executed on the client.{% endblocktrans %}</p>
@@ -53,5 +46,3 @@
 <div class="col-sm-12">
     {{ step.get_help_text }}
 </div>
-
-<script type='text/javascript' src='{{ STATIC_URL }}freezer/js/freezer.jobs.sortable.js'></script>

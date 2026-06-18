@@ -18,23 +18,29 @@
 
 "use strict";
 
-function showIntervalValue() {
-    $("#id_interval_value").closest(".form-group").show();
-}
-
-function hideIntervalValue() {
-    $("#id_interval_value").closest(".form-group").hide();
-}
-
-$("#id_interval_uint").change(function () {
-    var $interval_uint = $("#id_interval_uint").val();
-    if ($interval_uint != 'continuous') {
-        showIntervalValue();
-    } else {
-        hideIntervalValue();
-    }
-});
-
 $(function () {
+    var $intervalUint = $("#id_interval_uint");
+
+    if (!$intervalUint.length) {
+        return;
+    }
+
+    function showIntervalValue() {
+        $("#id_interval_value").closest(".form-group").show();
+    }
+
+    function hideIntervalValue() {
+        $("#id_interval_value").closest(".form-group").hide();
+    }
+
+    $intervalUint.change(function () {
+        var interval_uint_val = $intervalUint.val();
+        if (interval_uint_val !== 'continuous') {
+            showIntervalValue();
+        } else {
+            hideIntervalValue();
+        }
+    });
+
     hideIntervalValue();
 });

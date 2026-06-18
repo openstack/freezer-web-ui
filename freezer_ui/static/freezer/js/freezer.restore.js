@@ -20,35 +20,40 @@
 
 
 function get_url() {
-  var url = Browser.get_url();
+  var url = freezerBrowser.get_url();
   url += 'clients/';
   return url;
 }
 
 function freezerGetRow(item) {
-  var tr = $('<tr>');
-  tr.append($('<td class="multi_select_column">')
-    .append($('<input type="radio" name="client">')
-      .attr('value', item.client.client_id)));
-  tr.append($('<td>').text(item.client.hostname));
-  return tr;
+  var radioInput = $('<input type="radio" name="client">')
+    .val(item.client.client_id); // .val() is more idiomatic for form inputs
+
+  var radioCell = $('<td class="multi_select_column">').append(radioInput);
+  var hostnameCell = $('<td>').text(item.client.hostname);
+  return $('<tr>').append(radioCell, hostnameCell);
 }
 
-$.ajax({
-    url: get_url(),
-    type: "GET",
-    cache: false,
-    dataType: 'json',
-    contentType: 'application/json; charset=utf-8',
-    success: function(data) {
-        $.each(data, function (index, item) {
-            $("#available_clients").append(freezerGetRow(item));
-        });
-    },
-    error: function (request, error) {
-        $("#available_clients").append(
-            '<tr><td>Error getting client list</td></tr>' // UNTRANSLATED
-        );
+$(function () {
+    if ($("#available_clients").length === 0) {
+        return;
     }
-});
 
+    $.ajax({
+        url: get_url(),
+        type: "GET",
+        cache: false,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function(data) {
+            $.each(data, function (index, item) {
+                $("#available_clients").append(freezerGetRow(item));
+            });
+        },
+        error: function (request, error) {
+            $("#available_clients").append(
+                '<tr><td>Error getting client list</td></tr>' // UNTRANSLATED
+            );
+        }
+    });
+});
