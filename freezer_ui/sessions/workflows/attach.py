@@ -70,3 +70,61 @@ class AttachJobToSession(workflows.Workflow):
         except Exception:
             exceptions.handle(request)
             return False
+
+
+class JobConfigurationAction(workflows.Action):
+    job_id = forms.ChoiceField(
+        help_text=_("Select a job to attach to this session"),
+        label=_("Job"))
+
+    session_id = forms.CharField(
+        widget=forms.HiddenInput())
+
+    def populate_job_id_choices(self, request, context):
+        jobs = []
+        try:
+            jobs = freezer_api.Job(request).list()
+        except Exception:
+            exceptions.handle(request, _('Error getting jobs list'))
+
+        attached_job_ids = set(context.get('attached_job_ids') or [])
+        choices = [
+            (j.job_id, j.description) for j in jobs
+            if j.job_id not in attached_job_ids
+        ]
+        choices.insert(0, ('', _('Select A Job')))
+        return choices
+
+    class Meta:
+        name = _("Jobs")
+        slug = "jobs"
+
+
+class JobConfiguration(workflows.Step):
+    action_class = JobConfigurationAction
+    depends_on = ('attached_job_ids',)
+    contributes = ('session_id',
+                   'job_id')
+
+
+class AttachJobWorkflow(workflows.Workflow):
+    slug = "attach_job"
+    name = _("Attach Job")
+    finalize_button_name = _("Attach")
+    success_message = _('Job attached successfully.')
+    failure_message = _('Unable to attach job.')
+    default_steps = (JobConfiguration,)
+
+    def get_success_url(self):
+        url = reverse("horizon:project:freezer-sessions:detail",
+                      kwargs={'session_id': self.context['session_id']})
+        return url + "?tab=associated_jobs"
+
+    def handle(self, request, context):
+        try:
+            freezer_api.Session(request).add_job(context['session_id'],
+                                                 context['job_id'])
+            return True
+        except Exception:
+            exceptions.handle(request)
+            return False

@@ -23,3 +23,15 @@ var freezerBrowser = (function () {
     };
 
 })();
+
+$(function () {
+    'use strict';
+    // Sync active tab to URL search parameter
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        var tabName = $(e.target).attr('href').substring(1);
+        var url = new URL(window.location);
+        url.searchParams.set('tab', tabName);
+        window.history.replaceState({}, '', url);
+    });
+});
+

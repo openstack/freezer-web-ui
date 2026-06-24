@@ -13,7 +13,6 @@
 # limitations under the License.
 
 from django.urls import reverse
-from django.views import generic
 from horizon import tables
 from horizon import workflows
 
@@ -22,6 +21,7 @@ from freezer_ui.sessions import tables as freezer_tables
 
 from freezer_ui.sessions.workflows import attach
 from freezer_ui.sessions.workflows import create
+from freezer_ui import utils
 from freezer_ui.utils import shield
 from freezer_ui.utils import timestamp_to_string
 
@@ -35,13 +35,38 @@ class SessionsView(tables.DataTableView):
         return freezer_api.Session(self.request).list(limit=100)
 
 
-class DetailView(generic.TemplateView):
+class DetailView(tables.DataTableView):
+    table_class = freezer_tables.JobsTable
     template_name = 'project/freezer-sessions/detail.html'
+
+    def get_session(self):
+        if not hasattr(self, '_session'):
+            session_id = self.kwargs['session_id']
+            self._session = freezer_api.Session(self.request).get(
+                session_id, json=True)
+        return self._session
+
+    @shield('Unable to get jobs list.', redirect='freezer-sessions:index')
+    def get_data(self):
+        session = self.get_session()
+        jobs = []
+        if session and 'jobs' in session:
+            jobs = [
+                utils.JobsInSessionObject(
+                    job_id=k,
+                    session_id=self.kwargs['session_id'],
+                    client_id=v.get('client_id', ''),
+                    result=v.get('result')
+                )
+                for k, v in session['jobs'].items()
+            ]
+        return jobs
 
     @shield('Unable to get session.', redirect='freezer-sessions:index')
     def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         session_api = freezer_api.Session(self.request)
-        session = session_api.get(kwargs['session_id'], json=True)
+        session = self.get_session()
         for key in ['time_started', 'time_ended']:
             if key in session and session[key]:
                 try:
@@ -52,13 +77,36 @@ class DetailView(generic.TemplateView):
         session_obj = session_api.to_object(session)
         table = freezer_tables.SessionsTable(self.request)
         actions = table.render_row_actions(session_obj)
-        return {
+        context.update({
             'session': session,
             'page_title': (session.get('session_tag') or
                            session.get('session_id')),
             'actions': actions,
-            'url': reverse('horizon:project:freezer-sessions:index')
-        }
+            'url': reverse('horizon:project:freezer-sessions:index'),
+            'active_tab': self.request.GET.get('tab', 'overview')
+        })
+        return context
+
+
+class AttachJobView(workflows.WorkflowView):
+    workflow_class = attach.AttachJobWorkflow
+
+    @shield("Unable to get session", redirect="freezer-sessions:index")
+    def get_object(self):
+        if not hasattr(self, '_session'):
+            session_id = self.kwargs['session_id']
+            self._session = freezer_api.Session(self.request).get(
+                session_id, json=True)
+        return self._session
+
+    def get_initial(self):
+        initial = super().get_initial()
+        session = self.get_object()
+        initial.update({
+            'session_id': self.kwargs['session_id'],
+            'attached_job_ids': list(session.get('jobs', {}).keys())
+        })
+        return initial
 
 
 class AttachToSessionWorkflow(workflows.WorkflowView):

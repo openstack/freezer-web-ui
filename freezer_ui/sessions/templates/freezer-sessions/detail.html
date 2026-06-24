@@ -26,10 +26,10 @@
   <div class="col-sm-12">
     <!-- Tab Navigation -->
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active">
+      <li role="presentation"{% if active_tab == 'overview' %} class="active"{% endif %}>
         <a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{% trans "Overview" %}</a>
       </li>
-      <li role="presentation">
+      <li role="presentation"{% if active_tab == 'associated_jobs' %} class="active"{% endif %}>
         <a href="#associated_jobs" aria-controls="associated_jobs" role="tab" data-toggle="tab">{% trans "Associated Jobs" %}</a>
       </li>
     </ul>
@@ -37,7 +37,7 @@
     <!-- Tab Content -->
     <div class="tab-content">
       <!-- Overview Tab -->
-      <div role="tabpanel" class="tab-pane active" id="overview">
+      <div role="tabpanel" class="tab-pane{% if active_tab == 'overview' %} active{% endif %}" id="overview">
         <div class="detail">
           <dl class="dl-horizontal">
             <dt>{% trans "Session Tag" %}</dt>
@@ -82,48 +82,9 @@
       </div>
 
       <!-- Associated Jobs Tab -->
-      <div role="tabpanel" class="tab-pane" id="associated_jobs">
+      <div role="tabpanel" class="tab-pane{% if active_tab == 'associated_jobs' %} active{% endif %}" id="associated_jobs">
         <div class="detail">
-          {% if session.jobs %}
-            <table class="table table-striped" style="margin-top: 15px;">
-              <thead>
-                <tr>
-                  <th class="col-sm-4">{% trans "Job ID" %}</th>
-                  <th class="col-sm-4">{% trans "Client / Host ID" %}</th>
-                  <th class="col-sm-4">{% trans "Status / Result" %}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for job_id, details in session.jobs.items %}
-                  <tr>
-                    <td>
-                      <a href="{% url 'horizon:project:freezer-jobs:detail' job_id %}">{{ job_id }}</a>
-                    </td>
-                    <td>
-                      {% if details.client_id %}
-                        <a href="{% url 'horizon:project:freezer-clients:client' details.client_id %}">{{ details.client_id }}</a>
-                      {% else %}
-                        -
-                      {% endif %}
-                    </td>
-                    <td>
-                      {% if details.result == "success" %}
-                        <span class="label label-success">{% trans "Success" %}</span>
-                      {% elif details.result == "fail" %}
-                        <span class="label label-danger">{% trans "Fail" %}</span>
-                      {% else %}
-                        {{ details.result|default:_("Pending") }}
-                      {% endif %}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          {% else %}
-            <div class="alert alert-info" style="margin-top: 15px;">
-              {% trans "No jobs associated with this session." %}
-            </div>
-          {% endif %}
+          {{ table.render }}
         </div>
       </div>
     </div>

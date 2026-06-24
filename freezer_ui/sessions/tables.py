@@ -81,33 +81,72 @@ class DeleteMultipleActions(DeleteSession):
 
 class DeleteJobFromSession(tables.DeleteAction):
     name = "delete_job_from_session"
-    help_text = _("Deleted Jobs is not recoverable.")
+    help_text = _(
+        "Disassociating a job removes it from the session, "
+        "but does not delete the job itself."
+    )
 
     @staticmethod
     def action_present(count):
         return ngettext_lazy(
-            "Delete Job",
-            "Delete Jobs",
+            "Disassociate Job",
+            "Disassociate Jobs",
             count
         )
 
     @staticmethod
     def action_past(count):
         return ngettext_lazy(
-            "Deleted Job",
-            "Deleted Jobs",
+            "Disassociated Job",
+            "Disassociated Jobs",
             count
         )
 
-    @shield("Unable to delete session", redirect="freezer-sessions:index")
+    @shield("Unable to disassociate job.", redirect="freezer-sessions:index")
     def delete(self, request, session):
         job_id, session_id = session.split('===')
         return freezer_api.Session(request).remove_job(session_id, job_id)
 
+    def get_success_url(self, request=None):
+        session_id = self.table.kwargs.get('session_id')
+        url = reverse("horizon:project:freezer-sessions:detail",
+                      kwargs={'session_id': session_id})
+        return url + "?tab=associated_jobs"
+
+
+class AttachJob(tables.LinkAction):
+    name = "attach_job"
+    verbose_name = _("Attach Job")
+    classes = ("ajax-modal",)
+    icon = "plus"
+
+    def get_link_url(self, datum=None):
+        session_id = self.table.kwargs.get('session_id')
+        return reverse("horizon:project:freezer-sessions:attach_job",
+                       kwargs={'session_id': session_id})
+
+
+def get_job_link(job):
+    return reverse("horizon:project:freezer-jobs:detail",
+                   kwargs={'job_id': job.job_id})
+
+
+def get_client_link(job):
+    if job.client_id:
+        return reverse("horizon:project:freezer-clients:client",
+                       kwargs={'client_id': job.client_id})
+    return None
+
 
 class JobsTable(tables.DataTable):
+    job_id = tables.Column(
+        'job_id',
+        link=get_job_link,
+        verbose_name=_("Job ID"))
+
     client_id = tables.Column(
         'client_id',
+        link=get_client_link,
         verbose_name=_("Client ID"))
 
     result = tables.Column(
@@ -123,7 +162,7 @@ class JobsTable(tables.DataTable):
     class Meta(object):
         name = "jobs"
         verbose_name = _("Jobs")
-        table_actions = (SessionFilterAction,)
+        table_actions = (SessionFilterAction, AttachJob, DeleteJobFromSession)
         row_actions = (DeleteJobFromSession,)
         footer = False
         multi_select = True

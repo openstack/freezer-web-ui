@@ -95,7 +95,12 @@ class FreezerTestCase(test.TestCase):
             'session_id': 'session-123',
             'description': 'test-session-desc',
             'status': 'active',
-            'jobs': []
+            'jobs': {
+                'job-1': {
+                    'client_id': 'client-1',
+                    'result': 'success'
+                }
+            }
         }
 
         url = reverse('horizon:project:freezer-sessions:detail',
@@ -103,6 +108,8 @@ class FreezerTestCase(test.TestCase):
         res = self.client.get(url)
         self.assertTemplateUsed(res, 'project/freezer-sessions/detail.html')
         self.assertContains(res, 'test-session-desc')
+        self.assertContains(res, 'job-1')
+        self.assertContains(res, 'client-1')
         mock_session_inst.get.assert_called_once_with('session-123', json=True)
 
     @mock.patch('freezer_ui.api.api.Backup')
@@ -200,7 +207,7 @@ class FreezerTestCase(test.TestCase):
             'session_id': 'session-123',
             'description': 'test-session-desc',
             'status': 'active',
-            'jobs': [],
+            'jobs': {},
             'schedule': {
                 'schedule_start_date': '2026-06-16',
                 'schedule_interval': 'daily',
@@ -445,3 +452,46 @@ class FreezerTestCase(test.TestCase):
                       kwargs={'job_id': 'job-123'})
         res = self.client.get(url)
         self.assertEqual(res.status_code, 200)
+
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_attach_job_view_get(self, mock_session_class, mock_job_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.get.return_value = {
+            'session_id': 'session-123',
+            'jobs': {'job-1': {}}
+        }
+        mock_job_inst = mock_job_class.return_value
+        mock_job_inst.list.return_value = [
+            mock.Mock(job_id='job-1', description='job 1'),
+            mock.Mock(job_id='job-2', description='job 2'),
+        ]
+
+        url = reverse('horizon:project:freezer-sessions:attach_job',
+                      kwargs={'session_id': 'session-123'})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        mock_session_inst.get.assert_called_once_with('session-123', json=True)
+        mock_job_inst.list.assert_called_once()
+
+        workflow = res.context['workflow']
+        choices = dict(workflow.steps[0].action.fields['job_id'].choices)
+        self.assertNotIn('job-1', choices)
+        self.assertIn('job-2', choices)
+
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_attach_job_workflow_handle(self, mock_session_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.add_job.return_value = {}
+
+        from freezer_ui.sessions.workflows.attach import AttachJobWorkflow
+        request = mock.Mock()
+        workflow = AttachJobWorkflow(request)
+        context = {
+            'session_id': 'session-123',
+            'job_id': 'job-2'
+        }
+        success = workflow.handle(request, context)
+        self.assertTrue(success)
+        mock_session_inst.add_job.assert_called_once_with(
+            'session-123', 'job-2')

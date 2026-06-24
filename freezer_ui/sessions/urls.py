@@ -21,6 +21,10 @@ urlpatterns = [
     re_path(r'^(?P<session_id>[^/]+)$', views.DetailView.as_view(),
             name='detail'),
 
+    re_path(r'^(?P<session_id>[^/]+)/attach_job/$',
+            views.AttachJobView.as_view(),
+            name='attach_job'),
+
     re_path(r'^attach_to_session/(?P<job_id>[^/]+)?$',
             views.AttachToSessionWorkflow.as_view(),
             name='attach'),
