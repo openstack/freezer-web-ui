@@ -18,12 +18,13 @@
 
 "use strict";
 
-$(function () {
+function initActionsAction() {
     var $idAction = $("#id_action");
 
-    if (!$idAction.length) {
+    if (!$idAction.length || $idAction.data('freezer-initialized')) {
         return;
     }
+    $idAction.data('freezer-initialized', true);
 
     function hideEverything() {
         // Common controls
@@ -31,12 +32,14 @@ $(function () {
         $("#id_container").closest(".form-group").hide();
         $("#id_path_to_backup").closest(".form-group").hide();
         $("#id_storage").closest(".form-group").hide();
+        $("#id_engine_name").closest(".form-group").hide();
 
         // Backup specific controls
         $("#id_mysql_conf").closest(".form-group").hide();
         $("#id_mode").closest(".form-group").hide();
         $("#id_sql_server_conf").closest(".form-group").hide();
         $("#id_cinder_vol_id").closest(".form-group").hide();
+        $("#id_cindernative_vol_id").closest(".form-group").hide();
         $("#id_nova_inst_id").closest(".form-group").hide();
 
         // Restore specific controls
@@ -72,6 +75,7 @@ $(function () {
         $("#id_path_to_backup").closest(".form-group").show();
         $("#id_backup_name").closest(".form-group").show();
         $("#id_storage").closest(".form-group").show();
+        $("#id_engine_name").closest(".form-group").show();
     }
 
     function showRestoreOptions() {
@@ -82,6 +86,7 @@ $(function () {
         $("#id_restore_from_host").closest(".form-group").show();
         $("#id_restore_from_date").closest(".form-group").show();
         $("#id_storage").closest(".form-group").show();
+        $("#id_engine_name").closest(".form-group").show();
         $("#restore-warning").show();
     }
 
@@ -125,6 +130,12 @@ $(function () {
             } else if ($id_mode === 'cinder') {
                 $("#id_cinder_vol_id").closest(".form-group").show();
                 $("#id_path_to_backup").closest(".form-group").hide();
+            } else if ($id_mode === 'cindernative') {
+                $("#id_cindernative_vol_id").closest(".form-group").show();
+                $("#id_path_to_backup").closest(".form-group").hide();
+                $("#id_storage").closest(".form-group").hide();
+                $("#id_engine_name").closest(".form-group").hide();
+                $("#id_container").closest(".form-group").hide();
             } else if ($id_mode === 'nova') {
                 $("#id_nova_inst_id").closest(".form-group").show();
                 $("#id_path_to_backup").closest(".form-group").hide();
@@ -136,6 +147,11 @@ $(function () {
                 $("#id_sql_server_conf").closest(".form-group").show();
             } else if ($id_mode === 'cinder') {
                 $("#id_cinder_vol_id").closest(".form-group").show();
+            } else if ($id_mode === 'cindernative') {
+                $("#id_cindernative_vol_id").closest(".form-group").show();
+                $("#id_storage").closest(".form-group").hide();
+                $("#id_engine_name").closest(".form-group").hide();
+                $("#id_container").closest(".form-group").hide();
             } else if ($id_mode === 'nova') {
                 $("#id_nova_inst_id").closest(".form-group").show();
                 $("#id_nova_restore_network").closest(".form-group").show();
@@ -154,4 +170,18 @@ $(function () {
     setActionOptions();
     setStorageOptions();
     setModeOptions();
+}
+
+if (typeof horizon !== 'undefined') {
+    horizon.addInitFunction(function () {
+        initActionsAction();
+    });
+} else {
+    $(function () {
+        initActionsAction();
+    });
+}
+
+$(document).on("show.bs.modal", ".modal", function () {
+    initActionsAction();
 });

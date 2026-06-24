@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 
 from django import shortcuts
 import logging
@@ -33,28 +34,34 @@ class ActionsConfigurationAction(workflows.Action):
     def __init__(self, request, context, *args, **kwargs):
         super().__init__(request, context, *args, **kwargs)
         self.available_actions = []
+        self.clients_json = "[]"
         try:
             self.available_actions = freezer_api.Action(
                 request).list(json=True)
         except Exception:
             LOG.exception('Unable to retrieve actions')
+        try:
+            clients = freezer_api.Client(request).list(json=True)
+            self.clients_json = json.dumps(clients)
+        except Exception:
+            pass
 
     def get_help_text(self, extra_context=None):
         extra_context = extra_context or {}
         extra_context['available_actions'] = (
             self.available_actions)
         extra_context['selected_actions'] = []
+        extra_context['clients_json'] = self.clients_json
         return super().get_help_text(extra_context)
 
     class Meta(object):
         name = _("Actions")
         slug = "actions"
-        help_text_template = "project/freezer-jobs" \
-                             "/_actions.html"
 
 
 class ActionsConfiguration(workflows.Step):
     action_class = ActionsConfigurationAction
+    template_name = "project/freezer-jobs/_actions.html"
     contributes = ('actions',)
 
 

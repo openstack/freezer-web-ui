@@ -16,8 +16,14 @@
             <div class="panel-heading">{% blocktrans %}Available Actions{% endblocktrans %}</div>
             <div class="panel-body">
                 <ul id="actions_available" class="connectedSortable list-group dark_stripe">
-                    {% for action in available_actions %}
-                    <li class="list-group-item" id="{{ action.action_id }}">({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}</li>
+                    {% for action in form.available_actions %}
+                    <li class="list-group-item" id="{{ action.action_id }}"
+                        data-action="{{ action.freezer_action.action|default:'' }}"
+                        data-mode="{{ action.freezer_action.mode|default:'' }}"
+                        data-storage="{{ action.freezer_action.storage|default:'' }}"
+                        data-engine="{{ action.freezer_action.engine_name|default:action.freezer_action.engine|default:'' }}">
+                        ({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -29,8 +35,14 @@
             <div class="panel-heading">{% blocktrans %}Selected Actions In Order{% endblocktrans %}</div>
             <div class="panel-body">
                 <ul id="actions_selected" class="connectedSortable list-group dark_stripe">
-                    {% for action in selected_actions %}
-                    <li class="list-group-item" id="{{ action.action_id }}">({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}</li>
+                    {% for action in form.selected_actions %}
+                    <li class="list-group-item" id="{{ action.action_id }}"
+                        data-action="{{ action.freezer_action.action|default:'' }}"
+                        data-mode="{{ action.freezer_action.mode|default:'' }}"
+                        data-storage="{{ action.freezer_action.storage|default:'' }}"
+                        data-engine="{{ action.freezer_action.engine_name|default:action.freezer_action.engine|default:'' }}">
+                        ({{ action.freezer_action.action }}) {{ action.freezer_action.backup_name }}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -46,3 +58,6 @@
 <div class="col-sm-12">
     {{ step.get_help_text }}
 </div>
+<script>
+  window.allClients = {{ form.clients_json|default:'[]'|safe }};
+</script>

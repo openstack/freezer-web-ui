@@ -18,13 +18,17 @@
 
 "use strict";
 
-$(function () {
+function initActionsSnapshot() {
     var $useSnapshot = $("#id_use_snapshot");
     var $isWindows = $("#id_is_windows");
 
-    if (!$useSnapshot.length && !$isWindows.length) {
+    if ((!$useSnapshot.length && !$isWindows.length) || 
+        ($useSnapshot.length && $useSnapshot.data('freezer-initialized')) || 
+        ($isWindows.length && $isWindows.data('freezer-initialized'))) {
         return;
     }
+    if ($useSnapshot.length) { $useSnapshot.data('freezer-initialized', true); }
+    if ($isWindows.length) { $isWindows.data('freezer-initialized', true); }
 
     function hideOptions() {
         // Snapshot specific controls
@@ -74,4 +78,18 @@ $(function () {
             hideSnapshotOptions();
         }
     });
+}
+
+if (typeof horizon !== 'undefined') {
+    horizon.addInitFunction(function () {
+        initActionsSnapshot();
+    });
+} else {
+    $(function () {
+        initActionsSnapshot();
+    });
+}
+
+$(document).on("show.bs.modal", ".modal", function () {
+    initActionsSnapshot();
 });

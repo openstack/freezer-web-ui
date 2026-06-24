@@ -28,6 +28,19 @@ class DestinationAction(workflows.MembershipAction):
                                        " restored"))
     backup_id = forms.CharField(widget=forms.HiddenInput())
 
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        self.available_clients = []
+        try:
+            self.available_clients = freezer_api.Client(request).list()
+        except Exception:
+            pass
+
+    def get_help_text(self, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['available_clients'] = self.available_clients
+        return super().get_help_text(extra_context)
+
     def clean(self):
         if 'client' in self.request.POST:
             self.cleaned_data['client'] = self.request.POST['client']
