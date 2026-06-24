@@ -75,6 +75,18 @@ class EditSession(tables.LinkAction):
                        kwargs={'session_id': datum.session_id})
 
 
+class ManageJobs(tables.LinkAction):
+    name = "manage_jobs"
+    verbose_name = _("Manage Jobs")
+    url = "horizon:project:freezer-sessions:manage_jobs"
+    classes = ("ajax-modal",)
+    icon = "pencil"
+
+    def get_link_url(self, datum=None):
+        return reverse("horizon:project:freezer-sessions:manage_jobs",
+                       kwargs={'session_id': datum.session_id})
+
+
 class DeleteMultipleActions(DeleteSession):
     name = "delete_multiple_actions"
 
@@ -190,6 +202,7 @@ class SessionsTable(tables.DataTable):
                          CreateJob,
                          DeleteMultipleActions)
         row_actions = (EditSession,
+                       ManageJobs,
                        DeleteSession,)
         footer = False
         multi_select = True

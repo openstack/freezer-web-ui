@@ -109,6 +109,24 @@ class AttachJobView(workflows.WorkflowView):
         return initial
 
 
+class ManageJobsView(workflows.WorkflowView):
+    workflow_class = create.ManageJobsWorkflow
+
+    @shield("Unable to get session", redirect="freezer-sessions:index")
+    def get_object(self):
+        session_id = self.kwargs['session_id']
+        return freezer_api.Session(self.request).get(session_id, json=True)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        session = self.get_object()
+        initial.update({
+            'session_id': self.kwargs['session_id'],
+            'jobs': list(session.get('jobs', {}).keys())
+        })
+        return initial
+
+
 class AttachToSessionWorkflow(workflows.WorkflowView):
     workflow_class = attach.AttachJobToSession
 

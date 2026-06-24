@@ -25,6 +25,10 @@ urlpatterns = [
             views.AttachJobView.as_view(),
             name='attach_job'),
 
+    re_path(r'^(?P<session_id>[^/]+)/manage_jobs/$',
+            views.ManageJobsView.as_view(),
+            name='manage_jobs'),
+
     re_path(r'^attach_to_session/(?P<job_id>[^/]+)?$',
             views.AttachToSessionWorkflow.as_view(),
             name='attach'),

@@ -25,6 +25,128 @@ import freezer_ui.api.api as freezer_api
 from freezer_ui.utils import datetime_to_iso_string
 
 
+def update_session_jobs(request, session_id, selected_job_ids):
+    # Fetch current session jobs
+    try:
+        session = freezer_api.Session(request).get(session_id, json=True)
+        current_job_ids = set(session.get('jobs', {}).keys())
+    except Exception:
+        current_job_ids = set()
+
+    selected_job_ids = set(selected_job_ids or [])
+
+    # Jobs to add
+    for job_id in selected_job_ids - current_job_ids:
+        try:
+            freezer_api.Session(request).add_job(session_id, job_id)
+        except Exception:
+            pass
+
+    # Jobs to remove
+    for job_id in current_job_ids - selected_job_ids:
+        try:
+            freezer_api.Session(request).remove_job(session_id, job_id)
+        except Exception:
+            pass
+
+
+class JobsConfigurationAction(workflows.MembershipAction):
+    def __init__(self, request, context, *args, **kwargs):
+        super(JobsConfigurationAction, self).__init__(request,
+                                                      context,
+                                                      *args,
+                                                      **kwargs)
+        err_msg = _('Unable to retrieve jobs list.')
+
+        default_role_name = self.get_default_role_field_name()
+        self.fields[default_role_name] = forms.CharField(required=False)
+        self.fields[default_role_name].initial = 'member'
+
+        all_jobs = []
+        try:
+            all_jobs = freezer_api.Job(request).list()
+        except Exception:
+            exceptions.handle(request, err_msg)
+
+        job_list = [(j.job_id, j.description or j.job_id) for j in all_jobs]
+
+        field_name = self.get_member_field_name('member')
+        self.fields[field_name] = forms.MultipleChoiceField(required=False)
+        self.fields[field_name].choices = job_list
+
+        session_id = (context.get('session_id') or
+                      self.initial.get('session_id'))
+        initial_jobs = (context.get('jobs') or
+                        self.initial.get('jobs') or [])
+        if isinstance(initial_jobs, dict):
+            self.fields[field_name].initial = list(initial_jobs.keys())
+        elif isinstance(initial_jobs, list) and initial_jobs:
+            self.fields[field_name].initial = initial_jobs
+        elif session_id:
+            try:
+                session = freezer_api.Session(request).get(
+                    session_id, json=True)
+                self.fields[field_name].initial = list(
+                    session.get('jobs', {}).keys())
+            except Exception:
+                pass
+
+    class Meta:
+        name = _("Jobs")
+        slug = 'selected_jobs'
+
+
+class JobsConfiguration(workflows.UpdateMembersStep):
+    action_class = JobsConfigurationAction
+    help_text = _("From here you can associate and disassociate jobs "
+                  "to this session from the list of available jobs")
+    available_list_title = _("All Jobs")
+    members_list_title = _("Associated Jobs")
+    no_available_text = _("No jobs found.")
+    no_members_text = _("No jobs selected.")
+    show_roles = False
+    depends_on = ('session_id', 'jobs')
+    contributes = ("jobs",)
+
+    def contribute(self, data, context):
+        request = self.workflow.request
+        if data:
+            field_name = self.get_member_field_name('member')
+            context["jobs"] = request.POST.getlist(field_name)
+        return context
+
+
+class ManageJobsWorkflow(workflows.Workflow):
+    slug = "manage_jobs"
+    name = _("Manage Session Jobs")
+    finalize_button_name = _("Save")
+    success_message = _('Session jobs updated successfully.')
+    failure_message = _('Unable to update session jobs.')
+    default_steps = (JobsConfiguration,)
+
+    def get_success_url(self):
+        session_id = self.context.get('session_id')
+        referer = self.request.META.get('HTTP_REFERER')
+        if session_id and referer:
+            from urllib.parse import urlparse
+            path = urlparse(referer).path
+            if ('/freezer-sessions/%s' % session_id) in path:
+                url = reverse("horizon:project:freezer-sessions:detail",
+                              kwargs={'session_id': session_id})
+                return url + "?tab=associated_jobs"
+        return reverse("horizon:project:freezer-sessions:index")
+
+    def handle(self, request, context):
+        try:
+            update_session_jobs(request,
+                                context['session_id'],
+                                context.get('jobs', []))
+            return True
+        except Exception:
+            exceptions.handle(request)
+            return False
+
+
 class SessionConfigurationAction(workflows.Action):
     description = forms.CharField(
         label=_("Session Name"),
@@ -138,7 +260,19 @@ class CreateSession(workflows.Workflow):
     success_message = _('Session queued correctly. It will appear soon.')
     failure_message = _('Unable to create session.')
     success_url = "horizon:project:freezer-sessions:index"
-    default_steps = (SessionConfiguration,)
+    default_steps = (SessionConfiguration,
+                     JobsConfiguration)
+
+    def get_success_url(self):
+        session_id = self.context.get('session_id')
+        referer = self.request.META.get('HTTP_REFERER')
+        if session_id and referer:
+            from urllib.parse import urlparse
+            path = urlparse(referer).path
+            if ('/freezer-sessions/%s' % session_id) in path:
+                return reverse("horizon:project:freezer-sessions:detail",
+                               kwargs={'session_id': session_id})
+        return reverse("horizon:project:freezer-sessions:index")
 
     def handle(self, request, context):
         try:
@@ -152,12 +286,14 @@ class CreateSession(workflows.Workflow):
                 context['schedule_interval'] = schedule_interval
 
             if context['session_id'] != '':
-                freezer_api.Session(request).update(context,
-                                                    context['session_id'])
+                session_id = context['session_id']
+                freezer_api.Session(request).update(context, session_id)
             else:
-                freezer_api.Session(request).create(context)
+                session_id = freezer_api.Session(request).create(context)
 
-            return reverse("horizon:project:freezer-sessions:index")
+            update_session_jobs(request, session_id, context.get('jobs', []))
+
+            return True
         except Exception:
             exceptions.handle(request)
             return False

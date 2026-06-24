@@ -495,3 +495,160 @@ class FreezerTestCase(test.TestCase):
         self.assertTrue(success)
         mock_session_inst.add_job.assert_called_once_with(
             'session-123', 'job-2')
+
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_create_session_view_get(self, mock_session_class, mock_job_class):
+        mock_job_inst = mock_job_class.return_value
+        mock_job_inst.list.return_value = [
+            mock.Mock(job_id='job-1', description='job 1'),
+        ]
+
+        url = reverse('horizon:project:freezer-sessions:create')
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'horizon/common/_workflow.html')
+        mock_job_inst.list.assert_called_once()
+
+        workflow = res.context['workflow']
+        steps = [s.slug for s in workflow.steps]
+        self.assertIn('freezer-sessions', steps)
+        self.assertIn('selected_jobs', steps)
+
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_create_session_workflow_handle(self, mock_session_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.create.return_value = 'session-123'
+        mock_session_inst.get.return_value = {
+            'session_id': 'session-123',
+            'jobs': {}
+        }
+        mock_session_inst.add_job.return_value = {}
+
+        from freezer_ui.sessions.workflows.create import CreateSession
+        request = mock.Mock()
+        workflow = CreateSession(request)
+        context = {
+            'session_id': '',
+            'description': 'test-session',
+            'interval_unit': 'days',
+            'interval_value': 2,
+            'schedule_start_date': '',
+            'schedule_end_date': '',
+            'jobs': ['job-1', 'job-2']
+        }
+        res = workflow.handle(request, context)
+        self.assertTrue(res)
+        mock_session_inst.create.assert_called_once()
+        mock_session_inst.add_job.assert_has_calls([
+            mock.call('session-123', 'job-1'),
+            mock.call('session-123', 'job-2')
+        ], any_order=True)
+
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_edit_session_view_get(self, mock_session_class, mock_job_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.get.return_value = {
+            'session_id': 'session-123',
+            'description': 'test-session-desc',
+            'status': 'active',
+            'jobs': {
+                'job-1': {
+                    'client_id': 'client-1',
+                    'result': 'success'
+                }
+            },
+            'schedule': {}
+        }
+        mock_job_inst = mock_job_class.return_value
+        mock_job_inst.list.return_value = [
+            mock.Mock(job_id='job-1', description='job 1'),
+            mock.Mock(job_id='job-2', description='job 2'),
+        ]
+
+        url = reverse('horizon:project:freezer-sessions:edit',
+                      kwargs={'session_id': 'session-123'})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'horizon/common/_workflow.html')
+
+        workflow = res.context['workflow']
+        steps = [s.slug for s in workflow.steps]
+        self.assertIn('freezer-sessions', steps)
+        self.assertIn('selected_jobs', steps)
+
+        step = workflow.steps[1]
+        choices = dict(step.action.fields['selected_jobs_role_member'].choices)
+        self.assertIn('job-1', choices)
+        initial_selected = (
+            step.action.fields['selected_jobs_role_member'].initial)
+        self.assertEqual(initial_selected, ['job-1'])
+
+    @mock.patch('freezer_ui.api.api.Job')
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_manage_jobs_view_get(self, mock_session_class, mock_job_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.get.return_value = {
+            'session_id': 'session-123',
+            'description': 'test-session-desc',
+            'status': 'active',
+            'jobs': {
+                'job-1': {
+                    'client_id': 'client-1',
+                    'result': 'success'
+                }
+            },
+            'schedule': {}
+        }
+        mock_job_inst = mock_job_class.return_value
+        mock_job_inst.list.return_value = [
+            mock.Mock(job_id='job-1', description='job 1'),
+            mock.Mock(job_id='job-2', description='job 2'),
+        ]
+
+        url = reverse('horizon:project:freezer-sessions:manage_jobs',
+                      kwargs={'session_id': 'session-123'})
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'horizon/common/_workflow.html')
+
+        workflow = res.context['workflow']
+        steps = [s.slug for s in workflow.steps]
+        self.assertIn('selected_jobs', steps)
+
+        step = workflow.steps[0]
+        choices = dict(step.action.fields['selected_jobs_role_member'].choices)
+        self.assertIn('job-1', choices)
+        initial_selected = (
+            step.action.fields['selected_jobs_role_member'].initial)
+        self.assertEqual(initial_selected, ['job-1'])
+
+    @mock.patch('freezer_ui.api.api.Session')
+    def test_manage_jobs_workflow_handle(self, mock_session_class):
+        mock_session_inst = mock_session_class.return_value
+        mock_session_inst.get.return_value = {
+            'session_id': 'session-123',
+            'jobs': {
+                'job-1': {},
+                'job-2': {}
+            }
+        }
+        mock_session_inst.add_job.return_value = {}
+        mock_session_inst.remove_job.return_value = {}
+
+        from freezer_ui.sessions.workflows.create import (
+            ManageJobsWorkflow)
+        request = mock.Mock()
+        workflow = ManageJobsWorkflow(request)
+        context = {
+            'session_id': 'session-123',
+            'jobs': ['job-2', 'job-3']
+        }
+        res = workflow.handle(request, context)
+        self.assertTrue(res)
+        mock_session_inst.get.assert_called_once_with('session-123', json=True)
+        mock_session_inst.add_job.assert_called_once_with(
+            'session-123', 'job-3')
+        mock_session_inst.remove_job.assert_called_once_with(
+            'session-123', 'job-1')
