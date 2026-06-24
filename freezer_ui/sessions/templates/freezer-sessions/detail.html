@@ -96,8 +96,16 @@
               <tbody>
                 {% for job_id, details in session.jobs.items %}
                   <tr>
-                    <td>{{ job_id }}</td>
-                    <td>{{ details.client_id }}</td>
+                    <td>
+                      <a href="{% url 'horizon:project:freezer-jobs:detail' job_id %}">{{ job_id }}</a>
+                    </td>
+                    <td>
+                      {% if details.client_id %}
+                        <a href="{% url 'horizon:project:freezer-clients:client' details.client_id %}">{{ details.client_id }}</a>
+                      {% else %}
+                        -
+                      {% endif %}
+                    </td>
                     <td>
                       {% if details.result == "success" %}
                         <span class="label label-success">{% trans "Success" %}</span>
