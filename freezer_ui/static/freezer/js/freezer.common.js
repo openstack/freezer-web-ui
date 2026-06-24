@@ -1,4 +1,5 @@
-var Browser = (function () {
+var freezerBrowser = (function () {
+    'use strict';
 
     var url = null;
     var webroot = '/';
@@ -15,7 +16,10 @@ var Browser = (function () {
     return {
         get_url : function () {
             return url;
+        },
+        get_webroot: function () {
+            return webroot;
         }
-    }
+    };
 
 })();

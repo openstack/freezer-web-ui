@@ -18,53 +18,60 @@
 
 "use strict";
 
-function hideOptions() {
-    // Snapshot specific controls
-    $("#id_is_windows").closest(".form-group").hide();
-    $("#id_is_linux").closest(".form-group").hide();
-}
+$(function () {
+    var $useSnapshot = $("#id_use_snapshot");
+    var $isWindows = $("#id_is_windows");
 
-function is_windows() {
-    if ($("#id_is_windows").is(":checked")) {
-        return true;
+    if (!$useSnapshot.length && !$isWindows.length) {
+        return;
     }
-}
 
-function showWindowsSnapshotOptions() {
-    $("#id_vssadmin").closest(".form-group").show();
-}
-
-function hideWindowsSnapshotOptions() {
-    $("#id_vssadmin").closest(".form-group").hide();
-}
-
-
-function hideSnapshotOptions() {
-    $("#id_is_windows").closest(".form-group").hide();
-}
-
-function showSnapshotOptions() {
-    $("#id_is_windows").closest(".form-group").show();
-    if (is_windows()) {
-        showWindowsSnapshotOptions();
-    } else {
+    function hideOptions() {
+        // Snapshot specific controls
+        $isWindows.closest(".form-group").hide();
+        $("#id_is_linux").closest(".form-group").hide();
     }
-}
 
-hideOptions();
-
-$("#id_use_snapshot").click(function () {
-    if ($("#id_use_snapshot").is(":checked")) {
-        showSnapshotOptions();
-    } else {
-        hideSnapshotOptions();
+    function is_windows() {
+        return $isWindows.is(":checked");
     }
-});
 
-$("#id_is_windows").click(function () {
-    if ($("#id_use_snapshot").is(":checked")) {
-        showSnapshotOptions();
-    } else {
-        hideSnapshotOptions();
+    function showWindowsSnapshotOptions() {
+        $("#id_vssadmin").closest(".form-group").show();
     }
+
+    function hideWindowsSnapshotOptions() {
+        $("#id_vssadmin").closest(".form-group").hide();
+    }
+
+    function hideSnapshotOptions() {
+        $isWindows.closest(".form-group").hide();
+    }
+
+    function showSnapshotOptions() {
+        $isWindows.closest(".form-group").show();
+        if (is_windows()) {
+            showWindowsSnapshotOptions();
+        } else {
+            hideWindowsSnapshotOptions();
+        }
+    }
+
+    hideOptions();
+
+    $useSnapshot.click(function () {
+        if ($useSnapshot.is(":checked")) {
+            showSnapshotOptions();
+        } else {
+            hideSnapshotOptions();
+        }
+    });
+
+    $isWindows.click(function () {
+        if ($useSnapshot.is(":checked")) {
+            showSnapshotOptions();
+        } else {
+            hideSnapshotOptions();
+        }
+    });
 });

@@ -4,25 +4,24 @@
 
 
 $(function () {
+    var $sortableLists = $(".sortable_lists");
+    if (!$sortableLists.length) {
+        return;
+    }
     $("#actions_available, #actions_selected").sortable({
         connectWith: ".connectedSortable"
     }).disableSelection();
-});
 
-// BAD: This is putting all these members on global scope.
+    var $parentContainer = $sortableLists.parent();
+    $parentContainer.removeClass("col-sm-6").addClass("col-sm-12");
+    $parentContainer.siblings().hide();
 
-var parent = $(".sortable_lists").parent();
-parent.removeClass("col-sm-6");
-parent.addClass("col-sm-12");
-var siblings = parent.siblings();
-siblings.hide();
-
-
-$("form").submit(function (event) {
-    var ids = "";
-    $("#actions_selected li").each(function (index) {
-        ids += ($(this).attr('id'));
-        ids += "===";
+    $sortableLists.closest("form").submit(function (event) {
+        var selectedIds = $("#actions_selected li").map(function () {
+            return $(this).attr('id');
+        }).get();
+        var idString = selectedIds.join('===');
+        if (idString) { idString += '==='; }
+        $('#id_actions').val(idString);
     });
-    $('#id_actions').val(ids);
 });
