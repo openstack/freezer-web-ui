@@ -107,9 +107,7 @@ function initJobsSortable() {
         }
     }).disableSelection();
 
-    var $parentContainer = $sortableLists.parent();
-    $parentContainer.removeClass("col-sm-6").addClass("col-sm-12");
-    $parentContainer.siblings().hide();
+
 
     if (typeof window.allClients !== 'undefined') {
         allClients = window.allClients;
