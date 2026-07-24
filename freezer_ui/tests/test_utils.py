@@ -14,6 +14,7 @@ import datetime
 
 from openstack_dashboard.test import helpers as test
 
+from freezer_ui.utils import BackupObject
 from freezer_ui.utils import datetime_to_iso_string
 
 
@@ -25,3 +26,9 @@ class UtilsTestCase(test.TestCase):
     def test_datetime_to_iso_string_with_datetime(self):
         dt = datetime.datetime(2026, 6, 18, 12, 34, 56)
         self.assertEqual(datetime_to_iso_string(dt), '2026-06-18T12:34:56')
+
+    def test_backup_object_status(self):
+        obj1 = BackupObject(backup_id='b1')
+        self.assertEqual(obj1.status, 'available')
+        obj2 = BackupObject(backup_id='b2', status='creating')
+        self.assertEqual(obj2.status, 'creating')

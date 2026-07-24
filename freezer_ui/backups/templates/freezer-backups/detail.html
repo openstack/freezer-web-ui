@@ -30,6 +30,8 @@
         <dd>{{ backup.backup_metadata.backup_name|default:_("-") }}</dd>
         <dt>{% trans "Backup ID" %}</dt>
         <dd>{{ backup.backup_id }}</dd>
+        <dt>{% trans "Status" %}</dt>
+        <dd>{{ backup.status|default:_("available") }}</dd>
         <dt>{% trans "Action Type" %}</dt>
         <dd>{{ backup.backup_metadata.action }}</dd>
         <dt>{% trans "Created At" %}</dt>

@@ -170,11 +170,12 @@ class BackupObject(object):
                  curr_backup_level=None, encrypted=None,
                  total_broken_links=None, excluded_files=None, storage=None,
                  ssh_host=None, ssh_key=None, ssh_username=None,
-                 ssh_port=None, mode=None):
+                 ssh_port=None, mode=None, status=None):
         self.backup_id = backup_id
         self.id = backup_id
         self.backup_name = backup_name
         self.action = action or 'backup'
+        self.status = status or 'available'
         self.time_stamp = time_stamp
         self.backup_media = backup_media or 'fs'
         self.path_to_backup = path_to_backup

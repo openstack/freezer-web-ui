@@ -519,6 +519,7 @@ class Backup(object):
 
         return [utils.BackupObject(
             backup_id=b.get('backup_id'),
+            status=b.get('status', 'available'),
             action=b.get('backup_metadata', {}).get('action'),
             time_stamp=b.get('backup_metadata', {}).get('time_stamp'),
             backup_name=b.get('backup_metadata', {}).get('backup_name'),
@@ -544,6 +545,7 @@ class Backup(object):
     def to_object(self, b):
         return utils.BackupObject(
             backup_id=b.get('backup_id'),
+            status=b.get('status', 'available'),
             action=b.get('backup_metadata', {}).get('action'),
             time_stamp=b.get('backup_metadata', {}).get('time_stamp'),
             backup_name=b.get('backup_metadata', {}).get('backup_name'),

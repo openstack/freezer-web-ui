@@ -122,6 +122,7 @@ class BackupsTable(tables.DataTable):
                                 verbose_name=_("Backup Name"),
                                 link=backup_detail_view)
     hostname = tables.Column('hostname', verbose_name=_("Hostname"))
+    status = tables.Column('status', verbose_name=_("Status"))
     created = tables.Column("time_stamp",
                             verbose_name=_("Created At"),
                             filters=[timestamp_to_string])

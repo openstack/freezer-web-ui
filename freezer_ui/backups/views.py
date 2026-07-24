@@ -47,6 +47,8 @@ class DetailView(generic.TemplateView):
         backup_api = freezer_api.Backup(self.request)
         backup = backup_api.get(kwargs['backup_id'], json=True)
         metadata = backup.get('backup_metadata', {})
+        if 'status' not in backup:
+            backup['status'] = 'available'
         if 'time_stamp' in metadata and metadata['time_stamp']:
             try:
                 metadata['time_stamp_formatted'] = (
