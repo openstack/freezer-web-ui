@@ -6,12 +6,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freezer-web-ui VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2026-06-19 07:25+0000\n"
+"POT-Creation-Date: 2026-06-24 15:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2026-06-19 11:34+0000\n"
-"Last-Translator: Dmitriy Chubinidze <dcu995@gmail.com>\n"
+"PO-Revision-Date: 2026-07-25 04:27+0000\n"
+"Last-Translator: Ivan Anfimov <lazekteam@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "X-Generator: Zanata 4.3.3\n"
@@ -49,7 +49,7 @@ msgid "Action Type"
 msgstr "Тип действия"
 
 msgid "Action queued correctly. It will appear soon."
-msgstr "Действие добавлено в очередь корректно. Скоро появится."
+msgstr "Действие корректно добавлено в очередь. Оно скоро появится."
 
 msgid "Actions"
 msgstr "Действия"
@@ -61,7 +61,7 @@ msgid "Actions saved correctly."
 msgstr "Действия сохранены корректно."
 
 msgid "Actions updated correctly."
-msgstr "Действия обновлены правильно."
+msgstr "Действия обновлены корректно."
 
 msgid "Admin"
 msgstr "Администратор"
@@ -74,6 +74,9 @@ msgstr "Расширенная конфигурация"
 
 msgid "All Clients"
 msgstr "Все клиенты"
+
+msgid "All Jobs"
+msgstr "Все задания"
 
 msgid "Allow to access Swift servers without checking SSL certificates."
 msgstr "Разрешить доступ к серверам Swift без проверки SSL-сертификатов."
@@ -97,8 +100,11 @@ msgstr "Связанные задания"
 msgid "Attach"
 msgstr "Привязать"
 
+msgid "Attach Job"
+msgstr "Привязать задание"
+
 msgid "Attach To Session"
-msgstr "Прикрепить к сессии"
+msgstr "Привязать к сессии"
 
 msgid "Available Actions"
 msgstr "Доступные действия"
@@ -250,12 +256,6 @@ msgstr[0] "Удалить клиента"
 msgstr[1] "Удалить клиентов"
 msgstr[2] "Удалить клиентов"
 
-msgid "Delete Job"
-msgid_plural "Delete Jobs"
-msgstr[0] "Удалить задание"
-msgstr[1] "Удалить задания"
-msgstr[2] "Удалить задания"
-
 msgid "Delete Job File"
 msgid_plural "Delete Job Files"
 msgstr[0] "Удалить файл задания"
@@ -301,12 +301,6 @@ msgstr[2] "Клиенты удалены"
 msgid "Deleted Clients is not recoverable."
 msgstr "Удаленные клиенты не подлежат восстановлению."
 
-msgid "Deleted Job"
-msgid_plural "Deleted Jobs"
-msgstr[0] "Задание удалено"
-msgstr[1] "Задания удалены"
-msgstr[2] "Задания удалены"
-
 msgid "Deleted Job File"
 msgid_plural "Deleted Job Files"
 msgstr[0] "Файл задания удален"
@@ -349,6 +343,23 @@ msgstr ""
 "метаданные даже для резервной копии уровня 0. При включении этого параметра "
 "метаданные для инкрементного резервного копирования не создаются. По "
 "умолчанию: отключено."
+
+msgid "Disassociate Job"
+msgid_plural "Disassociate Jobs"
+msgstr[0] "Отвязать задание"
+msgstr[1] "Отвязать задания"
+msgstr[2] "Отвязать задания"
+
+msgid "Disassociated Job"
+msgid_plural "Disassociated Jobs"
+msgstr[0] "Задание отвязано"
+msgstr[1] "Задания отвязаны"
+msgstr[2] "Задания отвязаны"
+
+msgid ""
+"Disassociating a job removes it from the session, but does not delete the "
+"job itself."
+msgstr "Отвязка задания удаляет его из сессии, но не удаляет само задание."
 
 msgid "Do everything except writing or removing objects."
 msgstr "Выполнить все, кроме записи или удаления объектов."
@@ -426,6 +437,9 @@ msgstr ""
 "инстансов, включая их метаданные. (Не требуется при использовании режима "
 "Cinder Native)."
 
+msgid "Error getting jobs list"
+msgstr "Ошибка при получении списка заданий"
+
 msgid "Error getting session list"
 msgstr "Ошибка получения списка сессий"
 
@@ -477,6 +491,13 @@ msgid ""
 msgstr ""
 "Здесь вы можете добавлять и удалять клиентов для этого задания из списка "
 "доступных клиентов"
+
+msgid ""
+"From here you can associate and disassociate jobs to this session from the "
+"list of available jobs"
+msgstr ""
+"Здесь можно привязать или отвязать задания для этой сессии, выбрав их из "
+"списка доступных заданий"
 
 msgid "Full Backup Rotation"
 msgstr "Ротация полных резервных копий"
@@ -580,8 +601,7 @@ msgid "Job has stopped"
 msgstr "Задание остановлено"
 
 msgid "Job queued correctly. It will appear soon."
-msgstr ""
-"Задание успешно поставлено в очередь. Оно появится через некоторое время."
+msgstr "Задание корректно добавлено в очередь. Оно скоро появится."
 
 msgid "Job updated correctly."
 msgstr "Задание обновлено ​​корректно."
@@ -597,6 +617,12 @@ msgstr "Путь к файлу журнала"
 
 msgid "Lossless Data Compression (XZ)"
 msgstr "Сжатие данных без потерь (XZ)"
+
+msgid "Manage Jobs"
+msgstr "Управление заданиями"
+
+msgid "Manage Session Jobs"
+msgstr "Управление заданиями сессии"
 
 msgid "Mandatory"
 msgstr "Обязательный"
@@ -673,8 +699,11 @@ msgstr "Клиенты не выбраны."
 msgid "No description provided"
 msgstr "Описание отсутствует"
 
-msgid "No jobs associated with this session."
-msgstr "С этой сессией не связано ни одного задания."
+msgid "No jobs found."
+msgstr "Задания не найдены."
+
+msgid "No jobs selected."
+msgstr "Не выбрано ни одного задания."
 
 msgid "None"
 msgstr "Нет"
@@ -825,8 +854,14 @@ msgstr "Запланировано"
 msgid "Seconds"
 msgstr "Секунд"
 
+msgid "Select A Job"
+msgstr "Выберите задание"
+
 msgid "Select A Session"
 msgstr "Выберите сессию"
+
+msgid "Select a job to attach to this session"
+msgstr "Выберите задание, которое нужно привязать к этой сессии"
 
 msgid "Selected Actions In Order"
 msgstr "Выбранные действия по порядку"
@@ -855,8 +890,11 @@ msgstr "Расписание сессии"
 msgid "Session Tag"
 msgstr "Метка сессии"
 
+msgid "Session jobs updated successfully."
+msgstr "Задания сессии успешно обновлены."
+
 msgid "Session queued correctly. It will appear soon."
-msgstr "Сессия успешно добавлена ​​в очередь. Она скоро появится."
+msgstr "Сессия корректно добавлена в очередь. Она скоро появится."
 
 msgid "Sessions"
 msgstr "Сессии"
@@ -1025,9 +1063,6 @@ msgstr "Дата и время начала не в формате ISO."
 msgid "Status"
 msgstr "Статус"
 
-msgid "Status / Result"
-msgstr "Статус / результат"
-
 msgid "Stop"
 msgstr "Остановить"
 
@@ -1109,6 +1144,9 @@ msgstr "Всего поврежденных ссылок"
 msgid "UUID"
 msgstr "UUID"
 
+msgid "Unable to attach job."
+msgstr "Не удалось привязать задание."
+
 msgid "Unable to attach to session."
 msgstr "Не удалось привязать к сессии."
 
@@ -1121,6 +1159,9 @@ msgstr "Не удалось создать задание."
 msgid "Unable to retrieve client list."
 msgstr "Не удалось получить список клиентов."
 
+msgid "Unable to retrieve jobs list."
+msgstr "Не удалось получить список заданий."
+
 msgid "Unable to save action file."
 msgstr "Не удалось сохранить файл действия."
 
@@ -1132,6 +1173,9 @@ msgstr "Не удалось обновить действия."
 
 msgid "Unable to update job."
 msgstr "Не удалось обновить задание."
+
+msgid "Unable to update session jobs."
+msgstr "Не удалось обновить задания сессии."
 
 msgid "Update Actions"
 msgstr "Обновить действия"
